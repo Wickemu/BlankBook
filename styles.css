@@ -83,3 +83,18 @@ body {
   height: calc(1.8125rem + 2px);
   padding: .25rem .5rem;
 }
+
+.sticky-search-bar {
+  position: -webkit-sticky; /* For Safari */
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1000;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#finalStory {
+  white-space: pre-wrap; /* Preserves both spaces and line breaks */
+  /* Optionally, you might also want: word-wrap: break-word; */
+}
