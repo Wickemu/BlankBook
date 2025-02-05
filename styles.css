@@ -39,7 +39,7 @@ header, footer {
   max-height: 600px;
   overflow-y: auto;
   padding: 10px;
-  background-color: #e9ecef;
+  /*background-color: #e9ecef;*/
   border-radius: 5px;
 }
 
@@ -136,4 +136,20 @@ header, footer {
   #sidePlaceholderPanel {
     display: none !important;
   }
+}
+
+/* Saved stories list items */
+#savedStoriesList .list-group-item {
+  margin-bottom: 10px;
+}
+
+/* Custom placeholder options styling */
+#customPlaceholderOptions,
+#modalCustomPlaceholderOptions {
+  margin-bottom: 10px;
+}
+#customPlaceholderOptions label,
+#modalCustomPlaceholderOptions label {
+  margin-right: 10px;
+  font-size: 0.9rem;
 }

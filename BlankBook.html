@@ -23,7 +23,12 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarContent">
-        <!-- Optional navigation items could go here -->
+        <!-- New: My Saved Stories button -->
+        <div class="ml-auto">
+          <button id="mySavedStoriesBtn" class="btn btn-outline-secondary btn-sm" aria-label="My Saved Stories">
+            <i class="fas fa-bookmark"></i> My Saved Stories
+          </button>
+        </div>
       </div>
     </nav>
   </header>
@@ -84,6 +89,10 @@
             <button id="saveStory" class="btn btn-info btn-sm" aria-label="Save Story">
               <i class="fas fa-save"></i> Save Story
             </button>
+            <!-- New: Save Story to Site -->
+            <button id="saveStoryToSite" class="btn btn-info btn-sm" aria-label="Save Story to Site">
+              <i class="fas fa-cloud-upload-alt"></i> Save Story to Site
+            </button>
             <button id="startGame" class="btn btn-success btn-sm" aria-label="Start Game">
               <i class="fas fa-play"></i> Start Game
             </button>
@@ -106,6 +115,18 @@
               <i class="fas fa-plus-circle"></i>
               Add "<span id="searchQueryBtn"></span>"
             </button>
+            <!-- New custom placeholder type options -->
+            <div id="customPlaceholderOptions" class="mb-2">
+              <label>
+                <input type="radio" name="customPlaceholderType" value="generic" checked> Generic
+              </label>
+              <label>
+                <input type="radio" name="customPlaceholderType" value="noun"> Noun
+              </label>
+              <label>
+                <input type="radio" name="customPlaceholderType" value="verb"> Verb
+              </label>
+            </div>
             <p>No placeholders found for "<span id="searchQuery"></span>".</p>
           </div>
           <div id="placeholderAccordion" class="accordion"></div>
@@ -140,6 +161,18 @@
                 <i class="fas fa-plus-circle"></i>
                 Add "<span id="modalSearchQueryBtn"></span>"
               </button>
+              <!-- New modal custom placeholder type options -->
+              <div id="modalCustomPlaceholderOptions" class="mb-2">
+                <label>
+                  <input type="radio" name="modalCustomPlaceholderType" value="generic" checked> Generic
+                </label>
+                <label>
+                  <input type="radio" name="modalCustomPlaceholderType" value="noun"> Noun
+                </label>
+                <label>
+                  <input type="radio" name="modalCustomPlaceholderType" value="verb"> Verb
+                </label>
+              </div>
               <p>No placeholders found for "<span id="modalSearchQuery"></span>".</p>
             </div>
             <div id="modalPlaceholderAccordion"></div>
@@ -181,7 +214,11 @@
         <button id="createNewStory2" class="btn btn-danger btn-sm" aria-label="Create New Story">
           <i class="fas fa-redo-alt"></i> Create New Story
         </button>
-        <button id="saveCompletedStory" class="btn btn-info float-right btn-sm" aria-label="Save Completed Story">
+        <!-- New: Save Completed Story to Site -->
+        <button id="saveCompletedStoryToSite" class="btn btn-info float-right btn-sm" aria-label="Save Story to Site">
+          <i class="fas fa-cloud-upload-alt"></i> Save Story to Site
+        </button>
+        <button id="saveCompletedStory" class="btn btn-info float-right btn-sm mr-2" aria-label="Save Completed Story">
           <i class="fas fa-save"></i> Save Completed Story
         </button>
       </div>
@@ -191,6 +228,28 @@
   <footer class="text-center mt-4">
     <p>&copy; 2025 Mad Libs Game. All rights reserved.</p>
   </footer>
+
+  <!-- Saved Stories Modal -->
+  <div class="modal fade" id="savedStoriesModal" tabindex="-1" aria-labelledby="savedStoriesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="savedStoriesModalLabel">My Saved Stories</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="savedStoriesList" class="list-group">
+            <!-- This list is populated by main.js -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="closeSavedStories" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- jQuery, jQuery UI, Bootstrap JS, and SweetAlert2 -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
