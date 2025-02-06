@@ -1,0 +1,1894 @@
+[
+  {
+    "storyTitle": "Bowser, the Hopeless Romantic",
+    "storyAuthor": "Jack Armstrong (with ChatGPT)",
+    "storyText": "Bowser stood atop his {JJ1}, lava-surrounded castle, gazing at the framed portrait of Princess Peach he kept on his bedside {NN_Furniture1}. His massive {NNS_BodyPart1} traced the edges of the frame as he sighed, steam {VBG1} from his nostrils.\n\n“She’s just… perfect,” he muttered to himself, tail swishing behind him. “Her smile, her hair, her {NN_BodyPart1}, her—”\n\nA loud, {JJ2} cough interrupted his {VBG_Stative1}. {NN_Person1} hovered nearby, adjusting his {NNS_Clothing1}. “Your Majesty, {Exclamation1}! Might I remind you that the princess has rejected every {JJ3} romantic gesture you’ve ever attempted?”\n\nBowser {VBD_Onomatopoeia1}. “That’s just because I haven’t found the right one yet. This time, she’ll see how much I {VB_Stative1}!”\n\nLater that evening, Bowser arrived at Peach’s castle in a {JJ4}, flower-covered airship, flanked by legions of Koopa Troopas and {NNS1}. The ship descended {RB1} onto the palace grounds, and Bowser {VBD_Movement1} forward, holding a bouquet the size of a {NN_Concrete1}.\n\nPeach, standing at the entrance with her {NNS_BodyPart2} crossed, {VBD_Onomatopoeia2}. “Bowser, what is this?”\n\n“A {JJ5} declaration of {NN_Emotion1}!” Bowser boomed, spreading his arms wide. “I’ve written you a poem, forged a {JJ6} statue in your honor, and I even—”\n\n“Bowser.” Peach {VBD_Action1} the bridge of her nose. “I’m flattered. {RB2}. But for the {JJS_Ordinal1} time… no.”\n\nBowser’s grin faltered. “But why? I’m strong, I'm {JJ7}, I have my own kingdom, I—”\n\n“{Exclamation2}, you kidnapped me again last week.”\n\n“That was a misunderstanding!”\n\n“You locked me in a {NN_Concrete2}.”\n\n“For {NN_Abstract1}!”\n\nPeach sighed, rubbing her {NNS_BodyPart3}. “Bowser, you’re just not my type. I don’t know how to make this {JJR1}.”\n\nBowser deflated slightly, shoulders {VBG2}. “Not even a little {JJ8} bit?”\n\n“No.”\n\n{NN_Person1} floated up beside Bowser, patting him on the {NN_BodyPart3}. “Come on, Your Majesy. Let’s go home.”\n\nBowser {VBD_Action2} back to the airship, tossing the bouquet over the side. A Chain Chomp {RB3} caught it in its {NNS_BodyPart4}. As the airship ascended, he cast one last, {JJ9} look at the princess below.\n\n“Maybe next time…” he {VBD_Communication1}.\n\nPeach {VBD_Transitive1} her eyes and walked back inside, already forgetting the {JJ10} ordeal.",
+    "variables": [
+      {
+        "id": "JJ1",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 0
+      },
+      {
+        "id": "NN_Furniture1",
+        "internalType": "Furniture (Singular)",
+        "display": "Furniture (Singular)",
+        "order": 1
+      },
+      {
+        "id": "NNS_BodyPart1",
+        "internalType": "Bodypart (Plural)",
+        "display": "Bodypart (Plural)",
+        "order": 2
+      },
+      {
+        "id": "VBG1",
+        "internalType": "Verb (Present Participle)",
+        "display": "Verb (Present Participle)",
+        "order": 3
+      },
+      {
+        "id": "NN_BodyPart1",
+        "internalType": "Bodypart (Singular)",
+        "display": "Bodypart (Singular)",
+        "order": 4
+      },
+      {
+        "id": "JJ2",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 5
+      },
+      {
+        "id": "VBG_Stative1",
+        "internalType": "Stative Verb (Present Participle)",
+        "display": "Stative Verb (Present Participle)",
+        "order": 6
+      },
+      {
+        "id": "NN_Person1",
+        "internalType": "Person (Singular)",
+        "display": "Person (Singular)",
+        "order": 7
+      },
+      {
+        "id": "NNS_Clothing1",
+        "internalType": "Clothing (Plural)",
+        "display": "Clothing (Plural)",
+        "order": 8
+      },
+      {
+        "id": "Exclamation1",
+        "internalType": "Exclamation",
+        "display": "Exclamation",
+        "order": 9
+      },
+      {
+        "id": "JJ3",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 10
+      },
+      {
+        "id": "VBD_Onomatopoeia1",
+        "internalType": "Onomatopoeia Verb (Past Tense)",
+        "display": "Onomatopoeia Verb (Past Tense)",
+        "order": 11
+      },
+      {
+        "id": "VB_Stative1",
+        "internalType": "Stative Verb (Base Form)",
+        "display": "Stative Verb (Base Form)",
+        "order": 12
+      },
+      {
+        "id": "JJ4",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 13
+      },
+      {
+        "id": "NNS1",
+        "internalType": "Common noun (Plural)",
+        "display": "Common noun (Plural)",
+        "order": 14
+      },
+      {
+        "id": "RB1",
+        "internalType": "Adverb",
+        "display": "Adverb",
+        "order": 15
+      },
+      {
+        "id": "VBD_Movement1",
+        "internalType": "Movement Verb (Past Tense)",
+        "display": "Movement Verb (Past Tense)",
+        "order": 16
+      },
+      {
+        "id": "NN_Concrete1",
+        "internalType": "Concrete (Singular)",
+        "display": "Concrete (Singular)",
+        "order": 17
+      },
+      {
+        "id": "NNS_BodyPart2",
+        "internalType": "Bodypart (Plural)",
+        "display": "Bodypart (Plural)",
+        "order": 18
+      },
+      {
+        "id": "VBD_Onomatopoeia2",
+        "internalType": "Onomatopoeia Verb (Past Tense)",
+        "display": "Onomatopoeia Verb (Past Tense)",
+        "order": 19
+      },
+      {
+        "id": "JJ5",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 20
+      },
+      {
+        "id": "NN_Emotion1",
+        "internalType": "Emotion (Singular)",
+        "display": "Emotion (Singular)",
+        "order": 21
+      },
+      {
+        "id": "JJ6",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 22
+      },
+      {
+        "id": "VBD_Action1",
+        "internalType": "Action Verb (Past Tense)",
+        "display": "Action Verb (Past Tense)",
+        "order": 23
+      },
+      {
+        "id": "RB2",
+        "internalType": "Adverb",
+        "display": "Adverb",
+        "order": 24
+      },
+      {
+        "id": "JJS_Ordinal1",
+        "internalType": "Ordinal Number",
+        "display": "Ordinal Number",
+        "order": 25
+      },
+      {
+        "id": "JJ7",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 26
+      },
+      {
+        "id": "Exclamation2",
+        "internalType": "Exclamation",
+        "display": "Exclamation",
+        "order": 27
+      },
+      {
+        "id": "NN_Concrete2",
+        "internalType": "Concrete (Singular)",
+        "display": "Concrete (Singular)",
+        "order": 28
+      },
+      {
+        "id": "NN_Abstract1",
+        "internalType": "Abstract (Singular)",
+        "display": "Abstract (Singular)",
+        "order": 29
+      },
+      {
+        "id": "NNS_BodyPart3",
+        "internalType": "Bodypart (Plural)",
+        "display": "Bodypart (Plural)",
+        "order": 30
+      },
+      {
+        "id": "JJR1",
+        "internalType": "Comparative Adjective",
+        "display": "Comparative Adjective",
+        "order": 31
+      },
+      {
+        "id": "VBG2",
+        "internalType": "Verb (Present Participle)",
+        "display": "Verb (Present Participle)",
+        "order": 32
+      },
+      {
+        "id": "JJ8",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 33
+      },
+      {
+        "id": "NN_BodyPart3",
+        "internalType": "Bodypart (Singular)",
+        "display": "Bodypart (Singular)",
+        "order": 34
+      },
+      {
+        "id": "VBD_Action2",
+        "internalType": "Action Verb (Past Tense)",
+        "display": "Action Verb (Past Tense)",
+        "order": 35
+      },
+      {
+        "id": "RB3",
+        "internalType": "Adverb",
+        "display": "Adverb",
+        "order": 36
+      },
+      {
+        "id": "NNS_BodyPart4",
+        "internalType": "Bodypart (Plural)",
+        "display": "Bodypart (Plural)",
+        "order": 37
+      },
+      {
+        "id": "JJ9",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 38
+      },
+      {
+        "id": "VBD_Communication1",
+        "internalType": "Communication Verb (Past Tense)",
+        "display": "Communication Verb (Past Tense)",
+        "order": 39
+      },
+      {
+        "id": "VBD_Transitive1",
+        "internalType": "Transitive Verb (Past Tense)",
+        "display": "Transitive Verb (Past Tense)",
+        "order": 40
+      },
+      {
+        "id": "JJ10",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 41
+      }
+    ],
+    "fillValues": {},
+    "pronounGroups": {},
+    "variableCounts": {
+      "JJ": 10,
+      "NN_Furniture": 1,
+      "NNS_BodyPart": 4,
+      "VBG": 2,
+      "NN_BodyPart": 3,
+      "VBG_Stative": 1,
+      "NN_Person": 1,
+      "NNS_Clothing": 1,
+      "Exclamation": 2,
+      "VBD_Onomatopoeia": 2,
+      "VB_Stative": 1,
+      "NNS": 1,
+      "RB": 3,
+      "VBD_Movement": 1,
+      "NN_Concrete": 2,
+      "NN_Emotion": 1,
+      "VBD_Action": 2,
+      "JJS_Ordinal": 1,
+      "NN_Abstract": 1,
+      "JJR": 1,
+      "VBD_Communication": 1,
+      "VBD_Transitive": 1
+    },
+    "pronounGroupCount": 0,
+    "customPlaceholders": [
+      {
+        "type": "NN_ManOrWoman"
+      }
+    ],
+    "savedAt": "2025-02-03T20:46:51.123Z",
+    "overwrite": true
+  },
+  {
+    "storyTitle": "Brain Rot Brawl",
+    "storyAuthor": "Peter Armstrong",
+    "storyText": "Do you think your {NNS_FamilyMember1} are too into Brain rot? Do you {VB_Stative1} the word Skibidi toilet? Then come on down to {NN_Place1}'s Brain rot Brawl, the number {Number1} place to cure your {NNS_FamilyMember1}'s Brain rot! The first thing you need to do is learn your {NNS_FamilyMember1}'s hobbies! Weather its {NN_Job1} or {NN_Job2}, we love all of your hobbies! Next up, {NN_Person1} Has to grab a bar of {NN1} to wipe out the Brian rot. and then you're done! The bill is {Number2} dollars, so if want to do this, come down {NN_Date1}!",
+    "variables": [
+      {
+        "id": "NNS_FamilyMember1",
+        "internalType": "Familymember (Plural)",
+        "display": "Familymember (Plural)",
+        "order": 0
+      },
+      {
+        "id": "VB_Stative1",
+        "internalType": "Stative Verb (Base Form)",
+        "display": "Stative Verb (Base Form)",
+        "order": 1
+      },
+      {
+        "id": "NN_Place1",
+        "internalType": "Place (Singular)",
+        "display": "Place (Singular)",
+        "order": 2
+      },
+      {
+        "id": "Number1",
+        "internalType": "Number",
+        "display": "Number",
+        "order": 3
+      },
+      {
+        "id": "NN_Job1",
+        "internalType": "Job (Singular)",
+        "display": "Job (Singular)",
+        "order": 4
+      },
+      {
+        "id": "NN_Job2",
+        "internalType": "Job (Singular)",
+        "display": "Job (Singular)",
+        "order": 5
+      },
+      {
+        "id": "NN_Person1",
+        "internalType": "Person (Singular)",
+        "display": "Person (Singular)",
+        "order": 6
+      },
+      {
+        "id": "NN1",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 7
+      },
+      {
+        "id": "Number2",
+        "internalType": "Number",
+        "display": "Number",
+        "order": 8
+      },
+      {
+        "id": "NN_Date1",
+        "internalType": "Date (Singular)",
+        "display": "Date (Singular)",
+        "order": 9
+      }
+    ],
+    "fillValues": {},
+    "pronounGroups": {},
+    "variableCounts": {},
+    "pronounGroupCount": 0,
+    "customPlaceholders": [],
+    "savedAt": "2025-02-03T19:21:46.622Z"
+  },
+  {
+    "storyTitle": "Sleepy Night",
+    "storyAuthor": "Peter Armstrong",
+    "storyText": "\"Time to go to {NN7}!\" Spoke Sally. Her brother was in the bathroom getting ready to {VB_Intransitive1}. First, he brushed his {NNS_BodyPart3}. Then he spat out the remains of his {NN_Drink1}. Sally did the same thing, except the flavor was {NN_Food2} instead of {NN_Food3}, which her brother used. Meanwhile, the brother went to the {NN_Place4}, and had to go number {Number7}. Finally, they put on {NNS_Clothing2}. They fell {JJ11} in an instant!",
+    "variables": [
+      {
+        "id": "NN7",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 0
+      },
+      {
+        "id": "VB_Intransitive1",
+        "internalType": "Intransitive Verb (Base Form)",
+        "display": "Intransitive Verb (Base Form)",
+        "order": 1
+      },
+      {
+        "id": "NNS_BodyPart3",
+        "internalType": "Bodypart (Plural)",
+        "display": "Bodypart (Plural)",
+        "order": 2
+      },
+      {
+        "id": "NN_Drink1",
+        "internalType": "Drink (Singular)",
+        "display": "Drink (Singular)",
+        "order": 3
+      },
+      {
+        "id": "NN_Food2",
+        "internalType": "Food (Singular)",
+        "display": "Food (Singular)",
+        "order": 4
+      },
+      {
+        "id": "NN_Food3",
+        "internalType": "Food (Singular)",
+        "display": "Food (Singular)",
+        "order": 5
+      },
+      {
+        "id": "NN_Place4",
+        "internalType": "Place (Singular)",
+        "display": "Place (Singular)",
+        "order": 6
+      },
+      {
+        "id": "Number7",
+        "internalType": "Number",
+        "display": "Number",
+        "order": 7
+      },
+      {
+        "id": "NNS_Clothing2",
+        "internalType": "Clothing (Plural)",
+        "display": "Clothing (Plural)",
+        "order": 8
+      },
+      {
+        "id": "JJ11",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 9
+      }
+    ],
+    "fillValues": {},
+    "pronounGroups": {},
+    "variableCounts": {},
+    "pronounGroupCount": 0,
+    "customPlaceholders": [],
+    "savedAt": "2025-02-03T19:21:55.235Z"
+  },
+  {
+    "storyTitle": "The Master and the {Animal}",
+    "storyAuthor": "Jack Armstrong",
+    "storyText": "This story begins {Number1} {NNS_UnitOfTime1} ago in a faraway land called {NN_Place1}.  A {NN_Animal1} named {NN_Person1} was {VBG_Movement1} through the jungle when he {RB1} came across a pair of {JJ1} {NNS1}. \n     \"{Exclamation1}\" he said to himself as he {VBD_Action1} forward to inspect them.  Suddenly, without warning, he was surrounded by {NNS_Animal1}!  He brandished his {NN1} in a {JJ2} attempt to stay safe, but he was quickly overrun and {VBD_Transitive1} by the savage {NNS_Animal1}.  \n\nHe awoke {Number2} hours later in a dark place. \n     \"Where am I?\" he asked to the darkness. No response. {RB2}, he felt around and grasped something {JJ3}. As his eyes adjusted to the darkness, he suddenly realized he was holding a {NN2}.  Feeling {JJ4} and {JJ5}, he took the {NN2} and looked for a source of {NN_Liquid1} to stay alive.  Suddenly, a sound. \n     \"Relax, friend, for you are in {NN_Place2}!\" Said a {JJ6} {NN_Animal2}.  {NN_Person1} gave a sigh of relief and {VBD_Transitive2} the {NN_Animal2}.\n     \"When I found you, you were completely covered in {NN3},\" she said to him.  \"I brought you here to make you better.  How are you feeling?\"\n     \"{JJ7},\" he replied.\n     \"Excellent! A few more {NNS_UnitOfTime2} and you should be right as {NN4}.  In the meantime, you will be safe here.\"\n     {NN_Person1} was not listening. He was too busy thinking of the {NNS_Animal1} that {VBD_Transitive1} him and what he would have to do about it.\n    \"I need to get back to {NN_Place1}, at once\" he said.\n    \"{Exclamation2}!\" she said. \"You can't go back there, it's not safe!\"\n    \"I must,\" he said.  \"But I need training. Otherwise I'll be like a {NN5} out there.\n     \"Very well,\" the {NN_Animal2} replied.  \"I can teach you the ways of the {NN6}, an ancient fighting technique founded by {NN_Person3}.  It will take you many {NNS_UnitOfTime3} to master it, but it can be done.\"\n     \"Very well,\" said {NN_Person1}.\n     \nSo it began. {NN_Person1} became the {NN_Person2}'s {NN7}, and over those {NNS_UnitOfTime3} he learned to have the {NN_Abstract1} of a {NN8}, the {NN_Abstract2} of a {NN9}, and the {NN_Abstract3} of a {NN10}. \n\n{NN_Person1} the {NN_Animal1} was nearly ready.\n\n     On the day that he left {NN_Place2}, the {NN_Animal2} said to him, \" I have one last lesson to teach you. It is known as the {JJ8} {NN11}. Use this, and you will be unmatched.\"\n     \"Teach me the {JJ8} {NN11} so that I may {VB_Transitive1} those who dare cross me,\" he said.\n     \"Very well. Take this {NN12}.\"\n     \"A {NN12}? Are you serious?\"\n     \"Of course! Now, while {VBG_Transitive1} the {NN12}, {VB1} as {RB3} as you can while shouting, \"{Exclamation3}!\"\n     {NN_Person1} tried as his master taught, and as he did, a sudden {NN13} erupted from his {NN_BodyPart} and {VBD_Movement1} across the room.\n     \"Wow,\" {NN_Person1} said.\n     \"Now,\" said the {NN_Animal2}, \"you are ready.\"\n\nTO BE CONTINUED",
+    "variables": [
+      {
+        "id": "Number1",
+        "internalType": "Number",
+        "display": "Number",
+        "order": 0
+      },
+      {
+        "id": "NNS_UnitOfTime1",
+        "internalType": "Unitoftime (Plural)",
+        "display": "Unitoftime (Plural)",
+        "order": 1
+      },
+      {
+        "id": "NN_Place1",
+        "internalType": "Place (Singular)",
+        "display": "Place (Singular)",
+        "order": 2
+      },
+      {
+        "id": "NN_Animal1",
+        "internalType": "Animal (Singular)",
+        "display": "Animal (Singular)",
+        "order": 3
+      },
+      {
+        "id": "NN_Person1",
+        "internalType": "Person (Singular)",
+        "display": "Person (Singular)",
+        "order": 4
+      },
+      {
+        "id": "VBG_Movement1",
+        "internalType": "Movement Verb (Present Participle)",
+        "display": "Movement Verb (Present Participle)",
+        "order": 5
+      },
+      {
+        "id": "RB1",
+        "internalType": "Adverb",
+        "display": "Adverb",
+        "order": 6
+      },
+      {
+        "id": "JJ1",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 7
+      },
+      {
+        "id": "NNS1",
+        "internalType": "Common noun (Plural)",
+        "display": "Common noun (Plural)",
+        "order": 8
+      },
+      {
+        "id": "Exclamation1",
+        "internalType": "Exclamation",
+        "display": "Exclamation",
+        "order": 9
+      },
+      {
+        "id": "VBD_Action1",
+        "internalType": "Action Verb (Past Tense)",
+        "display": "Action Verb (Past Tense)",
+        "order": 10
+      },
+      {
+        "id": "NNS_Animal1",
+        "internalType": "Animal (Plural)",
+        "display": "Animal (Plural)",
+        "order": 11
+      },
+      {
+        "id": "NN1",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 12
+      },
+      {
+        "id": "JJ2",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 13
+      },
+      {
+        "id": "VBD_Transitive1",
+        "internalType": "Transitive Verb (Past Tense)",
+        "display": "Transitive Verb (Past Tense)",
+        "order": 14
+      },
+      {
+        "id": "Number2",
+        "internalType": "Number",
+        "display": "Number",
+        "order": 15
+      },
+      {
+        "id": "RB2",
+        "internalType": "Adverb",
+        "display": "Adverb",
+        "order": 16
+      },
+      {
+        "id": "JJ3",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 17
+      },
+      {
+        "id": "NN2",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 18
+      },
+      {
+        "id": "JJ4",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 19
+      },
+      {
+        "id": "JJ5",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 20
+      },
+      {
+        "id": "NN_Liquid1",
+        "internalType": "Liquid (Singular)",
+        "display": "Liquid (Singular)",
+        "order": 21
+      },
+      {
+        "id": "NN_Place2",
+        "internalType": "Place (Singular)",
+        "display": "Place (Singular)",
+        "order": 22
+      },
+      {
+        "id": "JJ6",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 23
+      },
+      {
+        "id": "NN_Animal2",
+        "internalType": "Animal (Singular)",
+        "display": "Animal (Singular)",
+        "order": 24
+      },
+      {
+        "id": "VBD_Transitive2",
+        "internalType": "Transitive Verb (Past Tense)",
+        "display": "Transitive Verb (Past Tense)",
+        "order": 25
+      },
+      {
+        "id": "NN3",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 26
+      },
+      {
+        "id": "JJ7",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 27
+      },
+      {
+        "id": "NNS_UnitOfTime2",
+        "internalType": "Unitoftime (Plural)",
+        "display": "Unitoftime (Plural)",
+        "order": 28
+      },
+      {
+        "id": "NN4",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 29
+      },
+      {
+        "id": "Exclamation2",
+        "internalType": "Exclamation",
+        "display": "Exclamation",
+        "order": 30
+      },
+      {
+        "id": "NN5",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 31
+      },
+      {
+        "id": "NN6",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 32
+      },
+      {
+        "id": "NN_Person3",
+        "internalType": "Person (Singular)",
+        "display": "Person (Singular)",
+        "order": 33
+      },
+      {
+        "id": "NNS_UnitOfTime3",
+        "internalType": "Unitoftime (Plural)",
+        "display": "Unitoftime (Plural)",
+        "order": 34
+      },
+      {
+        "id": "NN_Person2",
+        "internalType": "Person (Singular)",
+        "display": "Person (Singular)",
+        "order": 35
+      },
+      {
+        "id": "NN7",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 36
+      },
+      {
+        "id": "NN_Abstract1",
+        "internalType": "Abstract (Singular)",
+        "display": "Abstract (Singular)",
+        "order": 37
+      },
+      {
+        "id": "NN8",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 38
+      },
+      {
+        "id": "NN_Abstract2",
+        "internalType": "Abstract (Singular)",
+        "display": "Abstract (Singular)",
+        "order": 39
+      },
+      {
+        "id": "NN9",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 40
+      },
+      {
+        "id": "NN_Abstract3",
+        "internalType": "Abstract (Singular)",
+        "display": "Abstract (Singular)",
+        "order": 41
+      },
+      {
+        "id": "NN10",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 42
+      },
+      {
+        "id": "JJ8",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 43
+      },
+      {
+        "id": "NN11",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 44
+      },
+      {
+        "id": "VB_Transitive1",
+        "internalType": "Transitive Verb (Base Form)",
+        "display": "Transitive Verb (Base Form)",
+        "order": 45
+      },
+      {
+        "id": "NN12",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 46
+      },
+      {
+        "id": "VBG_Transitive1",
+        "internalType": "Transitive Verb (Present Participle)",
+        "display": "Transitive Verb (Present Participle)",
+        "order": 47
+      },
+      {
+        "id": "VB1",
+        "internalType": "Verb (Base Form)",
+        "display": "Verb (Base Form)",
+        "order": 48
+      },
+      {
+        "id": "RB3",
+        "internalType": "Adverb",
+        "display": "Adverb",
+        "order": 49
+      },
+      {
+        "id": "Exclamation3",
+        "internalType": "Exclamation",
+        "display": "Exclamation",
+        "order": 50
+      },
+      {
+        "id": "NN13",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 51
+      },
+      {
+        "id": "NN_BodyPart",
+        "internalType": "Bodypart (Singular)",
+        "display": "Bodypart (Singular)",
+        "order": 52
+      },
+      {
+        "id": "VBD_Movement1",
+        "internalType": "Movement Verb (Past Tense)",
+        "display": "Movement Verb (Past Tense)",
+        "order": 53
+      }
+    ],
+    "fillValues": {},
+    "pronounGroups": {},
+    "variableCounts": {},
+    "pronounGroupCount": 0,
+    "customPlaceholders": [],
+    "savedAt": "2025-02-03T19:22:00.476Z"
+  },
+  {
+    "storyTitle": "Christopher Columbus Discovers {Place}",
+    "storyAuthor": "Jack Armstrong",
+    "storyText": "CHAPTER 1: \n     \"{Exclamation1}, we finally made it. Land ho!\"\n     Christopher Columbus looked up from his book, \"{BookTitle1}\", and sighed. This was the {JJS_Ordinal1} time he had been told they had reached {NN_Place1} and every time it was just another {JJ1} island.  The Santa {NN_Person1} was growing weaker by the {UnitOfTime1}, and the men were getting {JJ2}.  They needed some good news.\n     \"Give me that,\" he said, taking the {NN1} from the ship hand and peering through it. It was hard to see through the thick {NN2}, but there indeed appeared to be land ahead. \"Well I'll be a {NN_Animal1}'s {FamilyMember1}, you may be right. All hands starboard, {Number7} o'clock!\"\n     \"Do you really think it could be {NN_Place1}\" asked the ship hand.\n     \"I don't know, but my {NN_BodyPart1} tells me that this could finally be our destination.  Let's send out Captain {FirstName1} and {PRP1PSA} team to see what they find. If we succeed at this, we'll be the most lucrative traders of {NN3} in the world!\"\n     The sun set by the time they anchored offshore.  {NNS_Animal1} could be seen {VBG_Action1} along the beach, which was common on the shores of {NN_Place1}.  {FirstName1} and {PRP1PSA} crew of {Number1} rowed ashore and set into the wilderness.  The team immediately felt {JJ3}.\n    \"Captain, I have a {JJ_Emotion1} feeling about this place. The air smells {JJR1} than usual.\"\n     \"Quiet, {FirstName2}\" The captain seethed back.  The captain seemed to know more than {PRP1SUB} let on, but {FirstName2} brushed {PRP2PSA} thoughts aside and continued {VBG_Action2}.\n     They made camp that night and quickly lit a {NN4} to stay warm.  The captain retreated to {PRP1PSA} tent early while the rest of the crew {VBD_Action1} late into the night.       \n     No one seemed to notice the {Number2} eyes peering at them from within the trees.\n\n     Morning came, and as the captain emerged from {PRP1PSA} tent, {FirstName2} approached {PRP1OBJ} {RB1}.\n     \"Captain, we've noticed something... Unusual.  You may want to see this yourself.\"\n     \"Very well,\" said {FirstName1}.\n     {FirstName2} took {FirstName1} across the camp, and immediately the captain knew what {FirstName2} was talking about. On the ground were footprints, too {JJ4} to be theirs, with {Number3} toes on each foot.\n     \"Commander Columbus never said anything about this,\" {FirstName2} said with a hint of {NN_Abstract3}.  \"Do you think that maybe this isn't {NN_Place1} after all?\"\n     \"Go back to your tent,\" said {FirstName1}.  \"Prepare the crew and be ready to continue as planned.\"\n    \"But sir, I-\"\n    \"THAT IS AN ORDER.\"\n    \"Very well, sir, but with all due respect, I think we need to be more {JJ6} about this.  We can be ready in {Number4} {NNS_UnitOfTime2}.\"\n     \"Do it,\" the captain said.\n    {FirstName1} looked down at the footprint as {FirstName2} walked away, and when {PRP1SUB} knew {PRP2SUB} was out of earshot, {PRP1SUB} said quietly:\n    \"You can't stop me. I will {VB_Transitive1} you and I will take what's mine.\" {PRP1SUB} wiped away the footprints and went back to camp, hiding {PRP1PSA} {NN_Emotion1}.\n\nCHAPTER 2\n     Back on the ship, the mood was {JJ7}.  The men on deck waited with {JJ8} breath while the crew below were discussing what they would do when they discovered the source of {NN3}.\n    One said: \"When I get home, I'm gonna {VB_Transitive2} my girl and marry her.\"\n    Another said: \"I'll share the money! What could I possibly do with {Number5} gold anyway?\"\n    \"And what about you, Commander?\" asked one.  \"What will you do when you're richer than even a {NN_Career1}?\"\n     Christopher Columbus stared at his {NN_Food1} and contemplated the question.\n    \"All my life I've considered what I would do with such wealth. When I was a child, I always wanted to be a {NN_Career2}, and that is still a possibility. But I don't know if I could ever leave the sea. It's in my {NN_BodyPart2} now.\"\n     The men sat in {NN_Abstract1}, waiting to hear more.\n     \"Also, I've always wanted to own {NNP1}, so I might do that. And I'd start taking {NN_Activity1} lessons.  That's what I will do when we find our {NN3}.\"\n     Suddenly, there was a thud overhead. Instantly the men stood up and ran to the deck as {RB2} as they could.  What they saw would haunt them to this {NN_UnitofTime3}.\n     The steerman lay dead on the floor. He was pinned to the deck up by a {NN5} which had pierced his body.  His {NN_BodyPart3} had splattered all over the deck and left a {JJ10} odor.\n    \"To your positions, men!\" cried Christopher Columbus as he unsheathed his {NN6}. \"Protect the Santa {NN_Person1}!\"\n     It was too late, however. As he looked around him, he saw it all.  {Number6} {JJ_Color1} men, wearing nothing but {NNS_Clothing1}, completely surrounding him and his crew and brandishing their {NN5} over their heads, a clear look of {NN_Abstract2} in their eyes.\n    Christopher considered the lives of his men, his hopes and their dreams, and said, \"We surrender. Take us to your leader so we may {VB_Transitive3} the situation with them.\"\n    The {JJ_Color1} men tied their {NNS_BodyPart1} behind their {NNS_BodyPart2} and led them to the boats.\n\nTO BE CONTINUED...",
+    "variables": [
+      {
+        "id": "Exclamation1",
+        "internalType": "Exclamation",
+        "display": "Exclamation",
+        "order": 0
+      },
+      {
+        "id": "BookTitle1",
+        "internalType": "BookTitle",
+        "display": "BookTitle",
+        "order": 1
+      },
+      {
+        "id": "JJS_Ordinal1",
+        "internalType": "Ordinal Number",
+        "display": "Ordinal Number",
+        "order": 2
+      },
+      {
+        "id": "NN_Place1",
+        "internalType": "Place (Singular)",
+        "display": "Place (Singular)",
+        "order": 3
+      },
+      {
+        "id": "JJ1",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 4
+      },
+      {
+        "id": "NN_Person1",
+        "internalType": "Person (Singular)",
+        "display": "Person (Singular)",
+        "order": 5
+      },
+      {
+        "id": "UnitOfTime1",
+        "internalType": "UnitOfTime",
+        "display": "UnitOfTime",
+        "order": 6
+      },
+      {
+        "id": "JJ2",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 7
+      },
+      {
+        "id": "NN1",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 8
+      },
+      {
+        "id": "NN2",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 9
+      },
+      {
+        "id": "NN_Animal1",
+        "internalType": "Animal (Singular)",
+        "display": "Animal (Singular)",
+        "order": 10
+      },
+      {
+        "id": "FamilyMember1",
+        "internalType": "FamilyMember",
+        "display": "FamilyMember",
+        "order": 11
+      },
+      {
+        "id": "Number7",
+        "internalType": "Number",
+        "display": "Number",
+        "order": 12
+      },
+      {
+        "id": "NN_BodyPart1",
+        "internalType": "Bodypart (Singular)",
+        "display": "Bodypart (Singular)",
+        "order": 13
+      },
+      {
+        "id": "FirstName1",
+        "internalType": "FirstName",
+        "display": "FirstName",
+        "order": 14
+      },
+      {
+        "id": "PRP1PSA",
+        "internalType": "PRONOUN|PronounGroup1|possAdj",
+        "display": "PRONOUN|PronounGroup1|possAdj",
+        "order": 15
+      },
+      {
+        "id": "NN3",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 16
+      },
+      {
+        "id": "NNS_Animal1",
+        "internalType": "Animal (Plural)",
+        "display": "Animal (Plural)",
+        "order": 17
+      },
+      {
+        "id": "VBG_Action1",
+        "internalType": "Action Verb (Present Participle)",
+        "display": "Action Verb (Present Participle)",
+        "order": 18
+      },
+      {
+        "id": "Number1",
+        "internalType": "Number",
+        "display": "Number",
+        "order": 19
+      },
+      {
+        "id": "JJ3",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 20
+      },
+      {
+        "id": "JJ_Emotion1",
+        "internalType": "Emotion Adjective",
+        "display": "Emotion Adjective",
+        "order": 21
+      },
+      {
+        "id": "JJR1",
+        "internalType": "Comparative Adjective",
+        "display": "Comparative Adjective",
+        "order": 22
+      },
+      {
+        "id": "FirstName2",
+        "internalType": "FirstName",
+        "display": "FirstName",
+        "order": 23
+      },
+      {
+        "id": "PRP1SUB",
+        "internalType": "PRONOUN|PronounGroup1|subject",
+        "display": "PRONOUN|PronounGroup1|subject",
+        "order": 24
+      },
+      {
+        "id": "PRP2PSA",
+        "internalType": "PRONOUN|PronounGroup2|possAdj",
+        "display": "PRONOUN|PronounGroup2|possAdj",
+        "order": 25
+      },
+      {
+        "id": "VBG_Action2",
+        "internalType": "Action Verb (Present Participle)",
+        "display": "Action Verb (Present Participle)",
+        "order": 26
+      },
+      {
+        "id": "NN4",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 27
+      },
+      {
+        "id": "VBD_Action1",
+        "internalType": "Action Verb (Past Tense)",
+        "display": "Action Verb (Past Tense)",
+        "order": 28
+      },
+      {
+        "id": "Number2",
+        "internalType": "Number",
+        "display": "Number",
+        "order": 29
+      },
+      {
+        "id": "PRP1OBJ",
+        "internalType": "PRONOUN|PronounGroup1|object",
+        "display": "PRONOUN|PronounGroup1|object",
+        "order": 30
+      },
+      {
+        "id": "RB1",
+        "internalType": "Adverb",
+        "display": "Adverb",
+        "order": 31
+      },
+      {
+        "id": "JJ4",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 32
+      },
+      {
+        "id": "Number3",
+        "internalType": "Number",
+        "display": "Number",
+        "order": 33
+      },
+      {
+        "id": "NN_Abstract3",
+        "internalType": "Abstract (Singular)",
+        "display": "Abstract (Singular)",
+        "order": 34
+      },
+      {
+        "id": "JJ6",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 35
+      },
+      {
+        "id": "Number4",
+        "internalType": "Number",
+        "display": "Number",
+        "order": 36
+      },
+      {
+        "id": "NNS_UnitOfTime2",
+        "internalType": "Unitoftime (Plural)",
+        "display": "Unitoftime (Plural)",
+        "order": 37
+      },
+      {
+        "id": "PRP2SUB",
+        "internalType": "PRONOUN|PronounGroup2|subject",
+        "display": "PRONOUN|PronounGroup2|subject",
+        "order": 38
+      },
+      {
+        "id": "VB_Transitive1",
+        "internalType": "Transitive Verb (Base Form)",
+        "display": "Transitive Verb (Base Form)",
+        "order": 39
+      },
+      {
+        "id": "NN_Emotion1",
+        "internalType": "Emotion (Singular)",
+        "display": "Emotion (Singular)",
+        "order": 40
+      },
+      {
+        "id": "JJ7",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 41
+      },
+      {
+        "id": "JJ8",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 42
+      },
+      {
+        "id": "VB_Transitive2",
+        "internalType": "Transitive Verb (Base Form)",
+        "display": "Transitive Verb (Base Form)",
+        "order": 43
+      },
+      {
+        "id": "Number5",
+        "internalType": "Number",
+        "display": "Number",
+        "order": 44
+      },
+      {
+        "id": "NN_Career1",
+        "internalType": "Career (Singular)",
+        "display": "Career (Singular)",
+        "order": 45
+      },
+      {
+        "id": "NN_Food1",
+        "internalType": "Food (Singular)",
+        "display": "Food (Singular)",
+        "order": 46
+      },
+      {
+        "id": "NN_Career2",
+        "internalType": "Career (Singular)",
+        "display": "Career (Singular)",
+        "order": 47
+      },
+      {
+        "id": "NN_BodyPart2",
+        "internalType": "Bodypart (Singular)",
+        "display": "Bodypart (Singular)",
+        "order": 48
+      },
+      {
+        "id": "NN_Abstract1",
+        "internalType": "Abstract (Singular)",
+        "display": "Abstract (Singular)",
+        "order": 49
+      },
+      {
+        "id": "NNP1",
+        "internalType": "Proper noun (Singular)",
+        "display": "Proper noun (Singular)",
+        "order": 50
+      },
+      {
+        "id": "NN_Activity1",
+        "internalType": "Activity (Singular)",
+        "display": "Activity (Singular)",
+        "order": 51
+      },
+      {
+        "id": "RB2",
+        "internalType": "Adverb",
+        "display": "Adverb",
+        "order": 52
+      },
+      {
+        "id": "NN_UnitofTime3",
+        "internalType": "Unitoftime (Singular)",
+        "display": "Unitoftime (Singular)",
+        "order": 53
+      },
+      {
+        "id": "NN5",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 54
+      },
+      {
+        "id": "NN_BodyPart3",
+        "internalType": "Bodypart (Singular)",
+        "display": "Bodypart (Singular)",
+        "order": 55
+      },
+      {
+        "id": "JJ10",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 56
+      },
+      {
+        "id": "NN6",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 57
+      },
+      {
+        "id": "Number6",
+        "internalType": "Number",
+        "display": "Number",
+        "order": 58
+      },
+      {
+        "id": "JJ_Color1",
+        "internalType": "Color Adjective",
+        "display": "Color Adjective",
+        "order": 59
+      },
+      {
+        "id": "NNS_Clothing1",
+        "internalType": "Clothing (Plural)",
+        "display": "Clothing (Plural)",
+        "order": 60
+      },
+      {
+        "id": "NN_Abstract2",
+        "internalType": "Abstract (Singular)",
+        "display": "Abstract (Singular)",
+        "order": 61
+      },
+      {
+        "id": "VB_Transitive3",
+        "internalType": "Transitive Verb (Base Form)",
+        "display": "Transitive Verb (Base Form)",
+        "order": 62
+      },
+      {
+        "id": "NNS_BodyPart1",
+        "internalType": "Bodypart (Plural)",
+        "display": "Bodypart (Plural)",
+        "order": 63
+      },
+      {
+        "id": "NNS_BodyPart2",
+        "internalType": "Bodypart (Plural)",
+        "display": "Bodypart (Plural)",
+        "order": 64
+      }
+    ],
+    "fillValues": {},
+    "pronounGroups": {
+      "PronounGroup1": null,
+      "PronounGroup2": null
+    },
+    "variableCounts": {
+      "Exclamation": 1,
+      "BookTitle": 1,
+      "JJS_Ordinal": 1,
+      "NN_Place": 1,
+      "JJ": 10,
+      "NN_Person": 1,
+      "UnitOfTime": 1,
+      "NN": 6,
+      "NN_Animal": 1,
+      "FamilyMember": 1,
+      "Number": 7,
+      "NN_BodyPart": 3,
+      "FirstName": 2,
+      "PRP1PSA": 0,
+      "NNS_Animal": 1,
+      "VBG_Action": 2,
+      "JJ_Emotion": 1,
+      "JJR": 1,
+      "PRP1SUB": 0,
+      "PRP2PSA": 0,
+      "VBD_Action": 1,
+      "PRP1OBJ": 0,
+      "RB": 2,
+      "NN_Abstract": 3,
+      "NNS_UnitOfTime": 2,
+      "PRP2SUB": 0,
+      "VB_Transitive": 3,
+      "NN_Emotion": 1,
+      "NN_Career": 2,
+      "NN_Food": 1,
+      "NNP": 1,
+      "NN_Activity": 1,
+      "NN_UnitofTime": 3,
+      "JJ_Color": 1,
+      "NNS_Clothing": 1,
+      "NNS_BodyPart": 2
+    },
+    "pronounGroupCount": 2,
+    "customPlaceholders": [],
+    "savedAt": "2025-02-03T21:41:32.817Z",
+    "overwrite": true
+  },
+  {
+    "storyTitle": "The Encounter",
+    "storyAuthor": "Jack Armstrong",
+    "storyText": "One {JJ1} afternoon, Sonic the Hedgehog was {VBG_Action1} through the lush hills of {JJ_Color1} Hill Zone, his {JJ2} blue quills cutting through the wind. The air was filled with the scent of fresh {NN1}, and Sonic felt as though nothing could slow him down. He dashed {IN1} loop-de-loops and jumped from springboards, laughing as the world {VBD_Intransitive1} around him.\n\nBut {RB1}, everything changed.\n\nOut of nowhere, a dark figure appeared on a distant hill, standing {JJ3} and silent. Sonic {Onomatopoeia1} to a halt, his heart {VBG_Action2}. Whoever this was, they looked like him—almost exactly like him—but with {SomethingBlack1}-black fur and a {JJ_Emotion1} red gaze. \n\nSonic squinted and crossed his {NNS_BodyPart1}. \"Who are you supposed to be?\" he asked, his voice tinged with {NN_Emotion1}.\n\nThe figure stepped forward, his crimson eyes locked onto Sonic. \"I’m Shadow,\" the mysterious hedgehog replied, his voice as cold as {NN_Concrete1}. \"And I’m the ultimate {NN2}.\"\n\nSonic {VBD_Intransitive2}, his expression shifting from {NN_Emotion2} to a smirk. \"Ultimate {NN2}, huh? We’ll see about that!\"\n\nBefore Sonic could react, Shadow suddenly vanished from sight, leaving only a {JJ4} blur. In the next instant, he reappeared {RB2} in front of Sonic, his movements so fast they were nearly {JJ5}. Sonic barely had time to dodge as Shadow’s {NN_BodyPart1} came hurtling toward him, missing his face by mere {NNP_UnitOfMeasurement1}.\n\nSonic's eyes widened as he {VBD_Action1} backward, skidding to a stop. \"{UH1}! You’re fast!\" he said, his tone no longer playful but now {JJ_Emotion2}. For the {JJS_Ordinal1} time in a long while, Sonic felt something he rarely ever did—{NN_Emotion3}.\n\nShadow didn’t respond. Instead, he stared at Sonic with a {JJ6} intensity, his {NNS_BodyPart2} tense, ready for another strike. \"You don’t {MD_VB1} what’s coming, Sonic. Your speed won’t save you.\"\n\nSonic clenched his {NNS_BodyPart3}, his usual cocky grin replaced by a look of {NN_Emotion4}. \"Maybe not,\" he shot back. \"But it’ll give you a run for your {NN3}!\"\n\nThe two hedgehogs stood there, facing each other, the world around them {JJ7} as the wind {VBD_Action2} through the grass. In that {NN_UnitOfTime}, Sonic knew one thing for sure: this wasn’t just another rival. This was something more. And the {JJ8} battle between them was only beginning.\n\nWith a sudden burst of speed, they both charged at each other, and the sky seemed to darken as the clash of their powers shook the very earth beneath them.\n\nThe ultimate race had begun.",
+    "variables": [
+      {
+        "id": "JJ1",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 0
+      },
+      {
+        "id": "VBG_Action1",
+        "internalType": "Action Verb (Present Participle)",
+        "display": "Action Verb (Present Participle)",
+        "order": 1
+      },
+      {
+        "id": "JJ_Color1",
+        "internalType": "Color Adjective",
+        "display": "Color Adjective",
+        "order": 2
+      },
+      {
+        "id": "JJ2",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 3
+      },
+      {
+        "id": "NN1",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 4
+      },
+      {
+        "id": "IN1",
+        "internalType": "Preposition",
+        "display": "Preposition",
+        "order": 5
+      },
+      {
+        "id": "VBD_Intransitive1",
+        "internalType": "Intransitive Verb (Past Tense)",
+        "display": "Intransitive Verb (Past Tense)",
+        "order": 6
+      },
+      {
+        "id": "RB1",
+        "internalType": "Adverb",
+        "display": "Adverb",
+        "order": 7
+      },
+      {
+        "id": "JJ3",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 8
+      },
+      {
+        "id": "Onomatopoeia1",
+        "internalType": "Onomatopoeia",
+        "display": "Onomatopoeia",
+        "order": 9
+      },
+      {
+        "id": "VBG_Action2",
+        "internalType": "Action Verb (Present Participle)",
+        "display": "Action Verb (Present Participle)",
+        "order": 10
+      },
+      {
+        "id": "SomethingBlack1",
+        "internalType": "SomethingBlack",
+        "display": "SomethingBlack",
+        "order": 11
+      },
+      {
+        "id": "JJ_Emotion1",
+        "internalType": "Emotion Adjective",
+        "display": "Emotion Adjective",
+        "order": 12
+      },
+      {
+        "id": "NNS_BodyPart1",
+        "internalType": "Bodypart (Plural)",
+        "display": "Bodypart (Plural)",
+        "order": 13
+      },
+      {
+        "id": "NN_Emotion1",
+        "internalType": "Emotion (Singular)",
+        "display": "Emotion (Singular)",
+        "order": 14
+      },
+      {
+        "id": "NN_Concrete1",
+        "internalType": "Concrete (Singular)",
+        "display": "Concrete (Singular)",
+        "order": 15
+      },
+      {
+        "id": "NN2",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 16
+      },
+      {
+        "id": "VBD_Intransitive2",
+        "internalType": "Intransitive Verb (Past Tense)",
+        "display": "Intransitive Verb (Past Tense)",
+        "order": 17
+      },
+      {
+        "id": "NN_Emotion2",
+        "internalType": "Emotion (Singular)",
+        "display": "Emotion (Singular)",
+        "order": 18
+      },
+      {
+        "id": "JJ4",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 19
+      },
+      {
+        "id": "RB2",
+        "internalType": "Adverb",
+        "display": "Adverb",
+        "order": 20
+      },
+      {
+        "id": "JJ5",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 21
+      },
+      {
+        "id": "NN_BodyPart1",
+        "internalType": "Bodypart (Singular)",
+        "display": "Bodypart (Singular)",
+        "order": 22
+      },
+      {
+        "id": "NNP_UnitOfMeasurement1",
+        "internalType": "Unitofmeasurement (Singular)",
+        "display": "Unitofmeasurement (Singular)",
+        "order": 23
+      },
+      {
+        "id": "VBD_Action1",
+        "internalType": "Action Verb (Past Tense)",
+        "display": "Action Verb (Past Tense)",
+        "order": 24
+      },
+      {
+        "id": "UH1",
+        "internalType": "Interjection",
+        "display": "Interjection",
+        "order": 25
+      },
+      {
+        "id": "JJ_Emotion2",
+        "internalType": "Emotion Adjective",
+        "display": "Emotion Adjective",
+        "order": 26
+      },
+      {
+        "id": "JJS_Ordinal1",
+        "internalType": "Ordinal Number",
+        "display": "Ordinal Number",
+        "order": 27
+      },
+      {
+        "id": "NN_Emotion3",
+        "internalType": "Emotion (Singular)",
+        "display": "Emotion (Singular)",
+        "order": 28
+      },
+      {
+        "id": "JJ6",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 29
+      },
+      {
+        "id": "NNS_BodyPart2",
+        "internalType": "Bodypart (Plural)",
+        "display": "Bodypart (Plural)",
+        "order": 30
+      },
+      {
+        "id": "MD_VB1",
+        "internalType": "Modal Verb (Base Form)",
+        "display": "Modal Verb (Base Form)",
+        "order": 31
+      },
+      {
+        "id": "NNS_BodyPart3",
+        "internalType": "Bodypart (Plural)",
+        "display": "Bodypart (Plural)",
+        "order": 32
+      },
+      {
+        "id": "NN_Emotion4",
+        "internalType": "Emotion (Singular)",
+        "display": "Emotion (Singular)",
+        "order": 33
+      },
+      {
+        "id": "NN3",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 34
+      },
+      {
+        "id": "JJ7",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 35
+      },
+      {
+        "id": "VBD_Action2",
+        "internalType": "Action Verb (Past Tense)",
+        "display": "Action Verb (Past Tense)",
+        "order": 36
+      },
+      {
+        "id": "NN_UnitOfTime",
+        "internalType": "Unitoftime (Singular)",
+        "display": "Unitoftime (Singular)",
+        "order": 37
+      },
+      {
+        "id": "JJ8",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 38
+      }
+    ],
+    "fillValues": {},
+    "pronounGroups": {},
+    "variableCounts": {},
+    "pronounGroupCount": 0,
+    "customPlaceholders": [],
+    "savedAt": "2025-02-03T19:22:10.093Z"
+  },
+  {
+    "storyTitle": "Hello World",
+    "storyAuthor": "Jack",
+    "storyText": "Let's {VB_Movement1} to {NN_Place2} and be {JJ1}.",
+    "variables": [
+      {
+        "id": "Exclamation1",
+        "internalType": "Exclamation",
+        "display": "Exclamation",
+        "order": 0
+      },
+      {
+        "id": "BookTitle1",
+        "internalType": "BookTitle",
+        "display": "BookTitle",
+        "order": 1
+      },
+      {
+        "id": "JJS_Ordinal1",
+        "internalType": "Ordinal Number",
+        "display": "Ordinal Number",
+        "order": 2
+      },
+      {
+        "id": "NN_Place1",
+        "internalType": "Place (Singular)",
+        "display": "Place (Singular)",
+        "order": 3
+      },
+      {
+        "id": "JJ1",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 4
+      },
+      {
+        "id": "NN_Person1",
+        "internalType": "Person (Singular)",
+        "display": "Person (Singular)",
+        "order": 5
+      },
+      {
+        "id": "UnitOfTime1",
+        "internalType": "UnitOfTime",
+        "display": "UnitOfTime",
+        "order": 6
+      },
+      {
+        "id": "JJ2",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 7
+      },
+      {
+        "id": "NN1",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 8
+      },
+      {
+        "id": "NN2",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 9
+      },
+      {
+        "id": "NN_Animal1",
+        "internalType": "Animal (Singular)",
+        "display": "Animal (Singular)",
+        "order": 10
+      },
+      {
+        "id": "FamilyMember1",
+        "internalType": "FamilyMember",
+        "display": "FamilyMember",
+        "order": 11
+      },
+      {
+        "id": "CD1",
+        "internalType": "CD",
+        "display": "CD",
+        "order": 12
+      },
+      {
+        "id": "NN_BodyPart1",
+        "internalType": "Bodypart (Singular)",
+        "display": "Bodypart (Singular)",
+        "order": 14
+      },
+      {
+        "id": "FirstName1",
+        "internalType": "FirstName",
+        "display": "FirstName",
+        "order": 15
+      },
+      {
+        "id": "PRP1PSA",
+        "internalType": "PRP1PSA",
+        "display": "PRP1PSA",
+        "order": 16
+      },
+      {
+        "id": "NN3",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 17
+      },
+      {
+        "id": "NNS_Animal1",
+        "internalType": "Animal (Plural)",
+        "display": "Animal (Plural)",
+        "order": 18
+      },
+      {
+        "id": "VBG_Action1",
+        "internalType": "Action Verb (Present Participle)",
+        "display": "Action Verb (Present Participle)",
+        "order": 19
+      },
+      {
+        "id": "Number1",
+        "internalType": "Number",
+        "display": "Number",
+        "order": 23
+      },
+      {
+        "id": "JJ3",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 24
+      },
+      {
+        "id": "JJ_Emotion1",
+        "internalType": "Emotion Adjective",
+        "display": "Emotion Adjective",
+        "order": 25
+      },
+      {
+        "id": "JJR1",
+        "internalType": "Comparative Adjective",
+        "display": "Comparative Adjective",
+        "order": 26
+      },
+      {
+        "id": "FirstName2",
+        "internalType": "FirstName",
+        "display": "FirstName",
+        "order": 27
+      },
+      {
+        "id": "PRP1SUB",
+        "internalType": "PRP1SUB",
+        "display": "PRP1SUB",
+        "order": 28
+      },
+      {
+        "id": "PRP2PSA",
+        "internalType": "PRP2PSA",
+        "display": "PRP2PSA",
+        "order": 30
+      },
+      {
+        "id": "VBG_Action2",
+        "internalType": "Action Verb (Present Participle)",
+        "display": "Action Verb (Present Participle)",
+        "order": 31
+      },
+      {
+        "id": "NN4",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 32
+      },
+      {
+        "id": "VBD_Action1",
+        "internalType": "Action Verb (Past Tense)",
+        "display": "Action Verb (Past Tense)",
+        "order": 34
+      },
+      {
+        "id": "Number2",
+        "internalType": "Number",
+        "display": "Number",
+        "order": 35
+      },
+      {
+        "id": "PRP1OBJ",
+        "internalType": "PRP1OBJ",
+        "display": "PRP1OBJ",
+        "order": 38
+      },
+      {
+        "id": "RB1",
+        "internalType": "Adverb",
+        "display": "Adverb",
+        "order": 39
+      },
+      {
+        "id": "JJ4",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 44
+      },
+      {
+        "id": "Number3",
+        "internalType": "Number",
+        "display": "Number",
+        "order": 45
+      },
+      {
+        "id": "NN_Abstract3",
+        "internalType": "Abstract (Singular)",
+        "display": "Abstract (Singular)",
+        "order": 47
+      },
+      {
+        "id": "JJ6",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 50
+      },
+      {
+        "id": "Number4",
+        "internalType": "Number",
+        "display": "Number",
+        "order": 51
+      },
+      {
+        "id": "NNS_UnitOfTime2",
+        "internalType": "Unitoftime (Plural)",
+        "display": "Unitoftime (Plural)",
+        "order": 52
+      },
+      {
+        "id": "PRP2SUB",
+        "internalType": "PRP2SUB",
+        "display": "PRP2SUB",
+        "order": 56
+      },
+      {
+        "id": "VB_Transitive1",
+        "internalType": "Transitive Verb (Base Form)",
+        "display": "Transitive Verb (Base Form)",
+        "order": 58
+      },
+      {
+        "id": "NN_Emotion1",
+        "internalType": "Emotion (Singular)",
+        "display": "Emotion (Singular)",
+        "order": 61
+      },
+      {
+        "id": "JJ7",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 62
+      },
+      {
+        "id": "JJ8",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 63
+      },
+      {
+        "id": "VB_Transitive2",
+        "internalType": "Transitive Verb (Base Form)",
+        "display": "Transitive Verb (Base Form)",
+        "order": 65
+      },
+      {
+        "id": "Number5",
+        "internalType": "Number",
+        "display": "Number",
+        "order": 66
+      },
+      {
+        "id": "NN_Career1",
+        "internalType": "Career (Singular)",
+        "display": "Career (Singular)",
+        "order": 67
+      },
+      {
+        "id": "NN_Food1",
+        "internalType": "Food (Singular)",
+        "display": "Food (Singular)",
+        "order": 68
+      },
+      {
+        "id": "NN_Career2",
+        "internalType": "Career (Singular)",
+        "display": "Career (Singular)",
+        "order": 69
+      },
+      {
+        "id": "NN_BodyPart2",
+        "internalType": "Bodypart (Singular)",
+        "display": "Bodypart (Singular)",
+        "order": 70
+      },
+      {
+        "id": "NN_Abstract1",
+        "internalType": "Abstract (Singular)",
+        "display": "Abstract (Singular)",
+        "order": 71
+      },
+      {
+        "id": "NNP1",
+        "internalType": "Proper noun (Singular)",
+        "display": "Proper noun (Singular)",
+        "order": 72
+      },
+      {
+        "id": "NN_Activity1",
+        "internalType": "Activity (Singular)",
+        "display": "Activity (Singular)",
+        "order": 73
+      },
+      {
+        "id": "RB2",
+        "internalType": "Adverb",
+        "display": "Adverb",
+        "order": 75
+      },
+      {
+        "id": "NN_UnitofTime3",
+        "internalType": "Unitoftime (Singular)",
+        "display": "Unitoftime (Singular)",
+        "order": 76
+      },
+      {
+        "id": "NN5",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 77
+      },
+      {
+        "id": "NN_BodyPart3",
+        "internalType": "Bodypart (Singular)",
+        "display": "Bodypart (Singular)",
+        "order": 78
+      },
+      {
+        "id": "JJ10",
+        "internalType": "Adjective",
+        "display": "Adjective",
+        "order": 79
+      },
+      {
+        "id": "NN6",
+        "internalType": "Common noun (Singular)",
+        "display": "Common noun (Singular)",
+        "order": 80
+      },
+      {
+        "id": "Number6",
+        "internalType": "Number",
+        "display": "Number",
+        "order": 82
+      },
+      {
+        "id": "JJ_Color1",
+        "internalType": "Color Adjective",
+        "display": "Color Adjective",
+        "order": 83
+      },
+      {
+        "id": "NNS_Clothing1",
+        "internalType": "Clothing (Plural)",
+        "display": "Clothing (Plural)",
+        "order": 84
+      },
+      {
+        "id": "NN_Abstract2",
+        "internalType": "Abstract (Singular)",
+        "display": "Abstract (Singular)",
+        "order": 86
+      },
+      {
+        "id": "VB_Transitive3",
+        "internalType": "Transitive Verb (Base Form)",
+        "display": "Transitive Verb (Base Form)",
+        "order": 87
+      },
+      {
+        "id": "NNS_BodyPart1",
+        "internalType": "Bodypart (Plural)",
+        "display": "Bodypart (Plural)",
+        "order": 89
+      },
+      {
+        "id": "NNS_BodyPart2",
+        "internalType": "Bodypart (Plural)",
+        "display": "Bodypart (Plural)",
+        "order": 90
+      },
+      {
+        "id": "VB_Movement1",
+        "internalType": "VB_Movement",
+        "display": "Movement Verb (Base Form (VB) e.g., \"I run\")",
+        "isCustom": false,
+        "order": 0
+      },
+      {
+        "id": "NN_Place2",
+        "internalType": "NN_Place",
+        "display": "Place (Singular)",
+        "isCustom": false,
+        "order": 1
+      }
+    ],
+    "fillValues": {},
+    "pronounGroups": {
+      "PronounGroup1": null,
+      "PronounGroup2": null
+    },
+    "variableCounts": {
+      "Number": 3,
+      "NN_Place": 2,
+      "VB_Movement": 1,
+      "JJ": 1
+    },
+    "pronounGroupCount": 2,
+    "customPlaceholders": [],
+    "savedAt": "2025-02-03T20:23:03.518Z"
+  }
+]

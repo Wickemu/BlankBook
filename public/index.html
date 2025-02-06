@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Ensure proper scaling on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mad Libs Game - Create Your Story</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <!-- jQuery UI CSS -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="mb-4">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <a class="navbar-brand" href="#">Mad Libs Game</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
+              aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <!-- My Saved Stories button -->
+        <div class="ml-auto">
+          <button id="mySavedStoriesBtn" class="btn btn-outline-secondary btn-sm" aria-label="My Saved Stories">
+            <i class="fas fa-bookmark"></i> My Saved Stories
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- Story Editor Section -->
+    <section id="editor">
+      <h2 class="text-center my-4">Create Your Story</h2>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="storyTitle">Story Title</label>
+          <input type="text" class="form-control form-control-sm" id="storyTitle" placeholder="Enter story title" aria-label="Story Title">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="storyAuthor">Author</label>
+          <input type="text" class="form-control form-control-sm" id="storyAuthor" placeholder="Enter author name" aria-label="Author Name">
+        </div>
+      </div>
+      <p>
+        Write your story below. Use placeholders (like <code>{Noun1}</code>) or insert them via the panel/button.
+      </p>
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group position-relative">
+            <textarea id="storyText" class="form-control form-control-sm" placeholder="Start writing your story here..." aria-label="Story Text"></textarea>
+          </div>
+          <div class="my-3">
+            <button class="btn btn-primary btn-sm" id="addPlaceholderBtn" aria-label="Add Placeholder">
+              <i class="fas fa-plus"></i> Add Placeholder
+            </button>
+            <div id="variables" class="mt-3">
+              <label for="existingPlaceholders">Existing Placeholders:</label>
+              <select id="existingPlaceholders" class="form-control form-control-sm" aria-label="Existing Placeholders">
+                <option value="">-- Select Placeholder --</option>
+              </select>
+            </div>
+          </div>
+          <div class="my-3">
+            <input type="file" id="uploadStory" accept=".txt" class="d-none">
+            <button id="uploadStoryBtn" class="btn btn-secondary btn-sm" aria-label="Upload Saved Story">
+              <i class="fas fa-upload"></i> Upload Saved Story
+            </button>
+            <!-- Removed the download button -->
+            <button id="saveStoryToSite" class="btn btn-info btn-sm" aria-label="Save Story to Site">
+              <i class="fas fa-cloud-upload-alt"></i> Save Story to Site
+            </button>
+            <button id="startGame" class="btn btn-success btn-sm" aria-label="Start Game">
+              <i class="fas fa-play"></i> Start Game
+            </button>
+          </div>
+        </div>
+        <!-- Side Placeholder Panel (visible on medium and larger screens) -->
+        <div class="col-md-4 d-none d-md-block" id="sidePlaceholderPanel">
+          <h5>Available Placeholders</h5>
+          <hr>
+          <div class="form-group sticky-search-bar">
+            <input type="text" class="form-control form-control-sm" id="placeholderSearch" placeholder="Search..." aria-label="Search Placeholders">
+          </div>
+          <div id="noResults">
+            <button id="addCustomPlaceholderBtn" class="btn btn-outline-primary btn-sm mb-2" aria-label="Add Custom Placeholder">
+              <i class="fas fa-plus-circle"></i>
+              Add "<span id="searchQueryBtn"></span>"
+            </button>
+            <div id="customPlaceholderOptions" class="mb-2">
+              <label>
+                <input type="radio" name="customPlaceholderType" value="generic" checked> Generic
+              </label>
+              <label>
+                <input type="radio" name="customPlaceholderType" value="noun"> Noun
+              </label>
+              <label>
+                <input type="radio" name="customPlaceholderType" value="verb"> Verb
+              </label>
+            </div>
+            <p>No placeholders found for "<span id="searchQuery"></span>".</p>
+          </div>
+          <div id="placeholderAccordion" class="accordion"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal for picking placeholders on smaller screens -->
+    <div class="modal fade" id="placeholderModal" tabindex="-1" aria-labelledby="placeholderModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="placeholderModalLabel">Add Placeholder</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <input type="text" class="form-control form-control-sm" id="modalPlaceholderSearch" placeholder="Search..." aria-label="Search Placeholders in Modal">
+            </div>
+            <div id="modalNoResults">
+              <button id="modalAddCustomPlaceholderBtn" class="btn btn-outline-primary btn-sm mb-2" aria-label="Add Custom Placeholder in Modal">
+                <i class="fas fa-plus-circle"></i>
+                Add "<span id="modalSearchQueryBtn"></span>"
+              </button>
+              <div id="modalCustomPlaceholderOptions" class="mb-2">
+                <label>
+                  <input type="radio" name="modalCustomPlaceholderType" value="generic" checked> Generic
+                </label>
+                <label>
+                  <input type="radio" name="modalCustomPlaceholderType" value="noun"> Noun
+                </label>
+                <label>
+                  <input type="radio" name="modalCustomPlaceholderType" value="verb"> Verb
+                </label>
+              </div>
+              <p>No placeholders found for "<span id="modalSearchQuery"></span>".</p>
+            </div>
+            <div id="modalPlaceholderAccordion"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- Fill in the Blanks Section -->
+<section id="inputs" class="d-none">
+  <h2 class="text-center my-4">Fill in the Blanks</h2>
+  <form id="inputForm">
+    <!-- The sort dropdown has been removed; the fill-in inputs will be displayed in a random order -->
+  </form>
+  <div class="mt-3">
+    <button id="backToEditor" class="btn btn-secondary btn-sm" aria-label="Edit Story">
+      <i class="fas fa-arrow-left"></i> Edit Story
+    </button>
+    <button id="createNewStory" class="btn btn-danger btn-sm" aria-label="Create New Story">
+      <i class="fas fa-redo-alt"></i> Create New Story
+    </button>
+    <button id="generateStory" class="btn btn-success btn-sm float-right" aria-label="Generate Story">
+      <i class="fas fa-check"></i> Generate Story
+    </button>
+  </div>
+</section>
+
+
+    <!-- Completed Story Section -->
+    <section id="result" class="d-none">
+      <h2 class="text-center my-4">Your Completed Story:</h2>
+      <h3 id="displayTitle" class="text-center"></h3>
+      <p class="text-center"><em>by <span id="displayAuthor"></span></em></p>
+      <div id="finalStory" class="border p-3"></div>
+      <div id="finalButtons" class="mt-3">
+        <button id="editStoryEntries" class="btn btn-warning btn-sm" aria-label="Edit Story Entries">
+          <i class="fas fa-edit"></i> Edit Story Entries
+        </button>
+        <button id="backToEditor2" class="btn btn-secondary btn-sm" aria-label="Edit Story">
+          <i class="fas fa-arrow-left"></i> Edit Story
+        </button>
+        <button id="createNewStory2" class="btn btn-danger btn-sm" aria-label="Create New Story">
+          <i class="fas fa-redo-alt"></i> Create New Story
+        </button>
+        <!-- Save Completed Story to Site -->
+        <button id="saveCompletedStoryToSite" class="btn btn-info float-right btn-sm" aria-label="Save Story to Site">
+          <i class="fas fa-cloud-upload-alt"></i> Save Story to Site
+        </button>
+        <!-- (Download button removed) -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="text-center mt-4">
+    <p>&copy; 2025 Mad Libs Game. All rights reserved.</p>
+  </footer>
+
+  <!-- Saved Stories Modal -->
+  <div class="modal fade" id="savedStoriesModal" tabindex="-1" aria-labelledby="savedStoriesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="savedStoriesModalLabel">My Saved Stories</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="savedStoriesList" class="list-group">
+            <!-- Populated via main.js -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="closeSavedStories" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery, jQuery UI, Bootstrap JS, and SweetAlert2 -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <!-- Custom JavaScript -->
+  <script src="main.js"></script>
+</body>
+</html>
