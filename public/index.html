@@ -48,22 +48,23 @@
         </div>
       </div>
       <p>
-        Write your story below. Use placeholders (like <code>{Noun1}</code>) or insert them via the panel/button.
+        Write your story below. Use placeholders (e.g. select a word and assign a placeholder) or insert them via the panel/button.
       </p>
       <div class="row">
         <div class="col-md-8">
           <div class="form-group position-relative">
-            <textarea id="storyText" class="form-control form-control-sm" placeholder="Start writing your story here..." aria-label="Story Text"></textarea>
+            <!-- Replace textarea with a contenteditable div. -->
+            <div id="storyText" contenteditable="true" class="form-control form-control-sm story-editor" 
+                 aria-label="Story Text" placeholder="Start writing your story here..."></div>
           </div>
           <div class="my-3">
             <button class="btn btn-primary btn-sm" id="addPlaceholderBtn" aria-label="Add Placeholder">
               <i class="fas fa-plus"></i> Add Placeholder
             </button>
             <div id="variables" class="mt-3">
-              <label for="existingPlaceholders">Existing Placeholders:</label>
-              <select id="existingPlaceholders" class="form-control form-control-sm" aria-label="Existing Placeholders">
-                <option value="">-- Select Placeholder --</option>
-              </select>
+              <label>Existing Placeholders:</label>
+              <!-- New responsive container to hold placeholder buttons -->
+              <div id="existingPlaceholdersContainer" class="d-flex flex-wrap"></div>
             </div>
           </div>
           <div class="my-3">
@@ -71,7 +72,6 @@
             <button id="uploadStoryBtn" class="btn btn-secondary btn-sm" aria-label="Upload Saved Story">
               <i class="fas fa-upload"></i> Upload Saved Story
             </button>
-            <!-- Removed the download button -->
             <button id="saveStoryToSite" class="btn btn-info btn-sm" aria-label="Save Story to Site">
               <i class="fas fa-cloud-upload-alt"></i> Save Story to Site
             </button>
@@ -148,25 +148,24 @@
       </div>
     </div>
 
-<!-- Fill in the Blanks Section -->
-<section id="inputs" class="d-none">
-  <h2 class="text-center my-4">Fill in the Blanks</h2>
-  <form id="inputForm">
-    <!-- The sort dropdown has been removed; the fill-in inputs will be displayed in a random order -->
-  </form>
-  <div class="mt-3">
-    <button id="backToEditor" class="btn btn-secondary btn-sm" aria-label="Edit Story">
-      <i class="fas fa-arrow-left"></i> Edit Story
-    </button>
-    <button id="createNewStory" class="btn btn-danger btn-sm" aria-label="Create New Story">
-      <i class="fas fa-redo-alt"></i> Create New Story
-    </button>
-    <button id="generateStory" class="btn btn-success btn-sm float-right" aria-label="Generate Story">
-      <i class="fas fa-check"></i> Generate Story
-    </button>
-  </div>
-</section>
-
+    <!-- Fill in the Blanks Section -->
+    <section id="inputs" class="d-none">
+      <h2 class="text-center my-4">Fill in the Blanks</h2>
+      <form id="inputForm">
+        <!-- The sort dropdown has been removed; the fill-in inputs will be displayed in a random order -->
+      </form>
+      <div class="mt-3">
+        <button id="backToEditor" class="btn btn-secondary btn-sm" aria-label="Edit Story">
+          <i class="fas fa-arrow-left"></i> Edit Story
+        </button>
+        <button id="createNewStory" class="btn btn-danger btn-sm" aria-label="Create New Story">
+          <i class="fas fa-redo-alt"></i> Create New Story
+        </button>
+        <button id="generateStory" class="btn btn-success btn-sm float-right" aria-label="Generate Story">
+          <i class="fas fa-check"></i> Generate Story
+        </button>
+      </div>
+    </section>
 
     <!-- Completed Story Section -->
     <section id="result" class="d-none">
@@ -184,11 +183,10 @@
         <button id="createNewStory2" class="btn btn-danger btn-sm" aria-label="Create New Story">
           <i class="fas fa-redo-alt"></i> Create New Story
         </button>
-        <!-- Save Completed Story to Site -->
-        <button id="saveCompletedStoryToSite" class="btn btn-info float-right btn-sm" aria-label="Save Story to Site">
-          <i class="fas fa-cloud-upload-alt"></i> Save Story to Site
+        <!-- Download Completed Story as a Text File -->
+        <button id="downloadStory" class="btn btn-secondary float-right btn-sm mr-2" aria-label="Download Story">
+          <i class="fas fa-download"></i> Download Story
         </button>
-        <!-- (Download button removed) -->
       </div>
     </section>
   </main>

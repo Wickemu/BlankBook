@@ -368,75 +368,124 @@
   {
     "storyTitle": "Sleepy Night",
     "storyAuthor": "Peter Armstrong",
-    "storyText": "\"Time to go to {NN7}!\" Spoke Sally. Her brother was in the bathroom getting ready to {VB_Intransitive1}. First, he brushed his {NNS_BodyPart3}. Then he spat out the remains of his {NN_Drink1}. Sally did the same thing, except the flavor was {NN_Food2} instead of {NN_Food3}, which her brother used. Meanwhile, the brother went to the {NN_Place4}, and had to go number {Number7}. Finally, they put on {NNS_Clothing2}. They fell {JJ11} in an instant!",
+    "storyText": "\"Time to go to &lt;span class=\"placeholder\" data-id=\"NN1\" title=\"NN1\" contenteditable=\"false\"&gt;bed&lt;/span&gt;!\" spoke &lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\"&gt;Sally&lt;/span&gt;. Her brother was in the bathroom getting ready to &lt;span class=\"placeholder\" data-id=\"VB_Intransitive1\" title=\"VB_Intransitive1\" contenteditable=\"false\"&gt;sleep&lt;/span&gt;. First, he brushed his &lt;span class=\"placeholder\" data-id=\"NNS_BodyPart1\" title=\"NNS_BodyPart1\" contenteditable=\"false\"&gt;teeth&lt;/span&gt;. Then he spat out the remains of his &lt;span class=\"placeholder\" data-id=\"Liquid1\" title=\"Liquid1\" contenteditable=\"false\"&gt;toothpaste&lt;/span&gt;. &lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\"&gt;Sally&lt;/span&gt; did the same thing, except the flavor was &lt;span class=\"placeholder\" data-id=\"NN_Food1\" title=\"NN_Food1\" contenteditable=\"false\"&gt;mint&lt;/span&gt;  instead of &lt;span class=\"placeholder\" data-id=\"NN_Food2\" title=\"NN_Food2\" contenteditable=\"false\"&gt;strawberry&lt;/span&gt;, which her brother used. Meanwhile, the brother went to the &lt;span class=\"placeholder\" data-id=\"NN_RoomInHouse1\" title=\"NN_RoomInHouse1\" contenteditable=\"false\"&gt;bathroom&lt;/span&gt;&nbsp;and had to go number &lt;span class=\"placeholder\" data-id=\"Number1\" title=\"Number1\" contenteditable=\"false\"&gt;two&lt;/span&gt;. Finally, they put on &lt;span class=\"placeholder\" data-id=\"NNS_Clothing1\" title=\"NNS_Clothing1\" contenteditable=\"false\"&gt;pajamas&lt;/span&gt;. They fell &lt;span class=\"placeholder\" data-id=\"JJ1\" title=\"JJ1\" contenteditable=\"false\"&gt;asleep&lt;/span&gt;  in an instant!",
     "variables": [
       {
-        "id": "NN7",
-        "internalType": "Common noun (Singular)",
-        "display": "Common noun (Singular)",
-        "order": 0
+        "id": "NN1",
+        "internalType": "Common Noun (Singular)",
+        "officialDisplay": "Common Noun (Singular)",
+        "display": "Common Noun (Singular)",
+        "order": 0,
+        "displayOverride": "bed"
+      },
+      {
+        "id": "NN_Person1",
+        "internalType": "Person (Singular)",
+        "officialDisplay": "Person (Singular)",
+        "display": "Person (Singular)",
+        "order": 1,
+        "displayOverride": "Sally"
       },
       {
         "id": "VB_Intransitive1",
         "internalType": "Intransitive Verb (Base Form)",
+        "officialDisplay": "Intransitive Verb (Base Form)",
         "display": "Intransitive Verb (Base Form)",
-        "order": 1
+        "order": 2,
+        "displayOverride": "sleep"
       },
       {
-        "id": "NNS_BodyPart3",
-        "internalType": "Bodypart (Plural)",
-        "display": "Bodypart (Plural)",
-        "order": 2
+        "id": "NNS_BodyPart1",
+        "internalType": "Body Part (Plural)",
+        "officialDisplay": "Body Part (Plural)",
+        "display": "Body Part (Plural)",
+        "order": 3,
+        "displayOverride": "teeth"
       },
       {
-        "id": "NN_Drink1",
-        "internalType": "Drink (Singular)",
-        "display": "Drink (Singular)",
-        "order": 3
+        "id": "Liquid1",
+        "internalType": "Liquid",
+        "officialDisplay": "Liquid",
+        "display": "Liquid",
+        "isCustom": true,
+        "order": 4,
+        "displayOverride": "toothpaste"
+      },
+      {
+        "id": "NN_Food1",
+        "internalType": "Food (Singular)",
+        "officialDisplay": "Food (Singular)",
+        "display": "Food (Singular)",
+        "order": 5,
+        "displayOverride": "mint"
       },
       {
         "id": "NN_Food2",
         "internalType": "Food (Singular)",
+        "officialDisplay": "Food (Singular)",
         "display": "Food (Singular)",
-        "order": 4
+        "order": 6,
+        "displayOverride": "strawberry"
       },
       {
-        "id": "NN_Food3",
-        "internalType": "Food (Singular)",
-        "display": "Food (Singular)",
-        "order": 5
+        "id": "NN_RoomInHouse1",
+        "internalType": "NN_RoomInHouse",
+        "officialDisplay": "NN_Room In House",
+        "display": "NN_Room In House",
+        "isCustom": true,
+        "order": 7,
+        "displayOverride": "bathroom"
       },
       {
-        "id": "NN_Place4",
-        "internalType": "Place (Singular)",
-        "display": "Place (Singular)",
-        "order": 6
-      },
-      {
-        "id": "Number7",
+        "id": "Number1",
         "internalType": "Number",
+        "officialDisplay": "Number",
         "display": "Number",
-        "order": 7
+        "order": 8,
+        "displayOverride": "two"
       },
       {
-        "id": "NNS_Clothing2",
+        "id": "NNS_Clothing1",
         "internalType": "Clothing (Plural)",
+        "officialDisplay": "Clothing (Plural)",
         "display": "Clothing (Plural)",
-        "order": 8
+        "order": 9,
+        "displayOverride": "pajamas"
       },
       {
-        "id": "JJ11",
+        "id": "JJ1",
         "internalType": "Adjective",
+        "officialDisplay": "Adjective",
         "display": "Adjective",
-        "order": 9
+        "order": 10,
+        "displayOverride": "asleep"
       }
     ],
-    "fillValues": {},
     "pronounGroups": {},
-    "variableCounts": {},
+    "variableCounts": {
+      "NN": 1,
+      "NN_Person": 1,
+      "VB_Intransitive": 1,
+      "NNS_BodyPart": 1,
+      "Liquid": 1,
+      "NN_Food": 2,
+      "NN_RoomInHouse": 1,
+      "Number": 1,
+      "NNS_Clothing": 1,
+      "JJ": 1
+    },
     "pronounGroupCount": 0,
-    "customPlaceholders": [],
-    "savedAt": "2025-02-03T19:21:55.235Z"
+    "customPlaceholders": [
+      {
+        "type": "NN_RoomInHouse"
+      },
+      {
+        "type": "Liquid"
+      }
+    ],
+    "savedAt": "2025-02-06T23:42:55.010Z",
+    "overwrite": true,
+    "fillValues": {}
   },
   {
     "storyTitle": "The Master and the {Animal}",
@@ -778,446 +827,629 @@
   {
     "storyTitle": "Christopher Columbus Discovers {Place}",
     "storyAuthor": "Jack Armstrong",
-    "storyText": "CHAPTER 1: \n     \"{Exclamation1}, we finally made it. Land ho!\"\n     Christopher Columbus looked up from his book, \"{BookTitle1}\", and sighed. This was the {JJS_Ordinal1} time he had been told they had reached {NN_Place1} and every time it was just another {JJ1} island.  The Santa {NN_Person1} was growing weaker by the {UnitOfTime1}, and the men were getting {JJ2}.  They needed some good news.\n     \"Give me that,\" he said, taking the {NN1} from the ship hand and peering through it. It was hard to see through the thick {NN2}, but there indeed appeared to be land ahead. \"Well I'll be a {NN_Animal1}'s {FamilyMember1}, you may be right. All hands starboard, {Number7} o'clock!\"\n     \"Do you really think it could be {NN_Place1}\" asked the ship hand.\n     \"I don't know, but my {NN_BodyPart1} tells me that this could finally be our destination.  Let's send out Captain {FirstName1} and {PRP1PSA} team to see what they find. If we succeed at this, we'll be the most lucrative traders of {NN3} in the world!\"\n     The sun set by the time they anchored offshore.  {NNS_Animal1} could be seen {VBG_Action1} along the beach, which was common on the shores of {NN_Place1}.  {FirstName1} and {PRP1PSA} crew of {Number1} rowed ashore and set into the wilderness.  The team immediately felt {JJ3}.\n    \"Captain, I have a {JJ_Emotion1} feeling about this place. The air smells {JJR1} than usual.\"\n     \"Quiet, {FirstName2}\" The captain seethed back.  The captain seemed to know more than {PRP1SUB} let on, but {FirstName2} brushed {PRP2PSA} thoughts aside and continued {VBG_Action2}.\n     They made camp that night and quickly lit a {NN4} to stay warm.  The captain retreated to {PRP1PSA} tent early while the rest of the crew {VBD_Action1} late into the night.       \n     No one seemed to notice the {Number2} eyes peering at them from within the trees.\n\n     Morning came, and as the captain emerged from {PRP1PSA} tent, {FirstName2} approached {PRP1OBJ} {RB1}.\n     \"Captain, we've noticed something... Unusual.  You may want to see this yourself.\"\n     \"Very well,\" said {FirstName1}.\n     {FirstName2} took {FirstName1} across the camp, and immediately the captain knew what {FirstName2} was talking about. On the ground were footprints, too {JJ4} to be theirs, with {Number3} toes on each foot.\n     \"Commander Columbus never said anything about this,\" {FirstName2} said with a hint of {NN_Abstract3}.  \"Do you think that maybe this isn't {NN_Place1} after all?\"\n     \"Go back to your tent,\" said {FirstName1}.  \"Prepare the crew and be ready to continue as planned.\"\n    \"But sir, I-\"\n    \"THAT IS AN ORDER.\"\n    \"Very well, sir, but with all due respect, I think we need to be more {JJ6} about this.  We can be ready in {Number4} {NNS_UnitOfTime2}.\"\n     \"Do it,\" the captain said.\n    {FirstName1} looked down at the footprint as {FirstName2} walked away, and when {PRP1SUB} knew {PRP2SUB} was out of earshot, {PRP1SUB} said quietly:\n    \"You can't stop me. I will {VB_Transitive1} you and I will take what's mine.\" {PRP1SUB} wiped away the footprints and went back to camp, hiding {PRP1PSA} {NN_Emotion1}.\n\nCHAPTER 2\n     Back on the ship, the mood was {JJ7}.  The men on deck waited with {JJ8} breath while the crew below were discussing what they would do when they discovered the source of {NN3}.\n    One said: \"When I get home, I'm gonna {VB_Transitive2} my girl and marry her.\"\n    Another said: \"I'll share the money! What could I possibly do with {Number5} gold anyway?\"\n    \"And what about you, Commander?\" asked one.  \"What will you do when you're richer than even a {NN_Career1}?\"\n     Christopher Columbus stared at his {NN_Food1} and contemplated the question.\n    \"All my life I've considered what I would do with such wealth. When I was a child, I always wanted to be a {NN_Career2}, and that is still a possibility. But I don't know if I could ever leave the sea. It's in my {NN_BodyPart2} now.\"\n     The men sat in {NN_Abstract1}, waiting to hear more.\n     \"Also, I've always wanted to own {NNP1}, so I might do that. And I'd start taking {NN_Activity1} lessons.  That's what I will do when we find our {NN3}.\"\n     Suddenly, there was a thud overhead. Instantly the men stood up and ran to the deck as {RB2} as they could.  What they saw would haunt them to this {NN_UnitofTime3}.\n     The steerman lay dead on the floor. He was pinned to the deck up by a {NN5} which had pierced his body.  His {NN_BodyPart3} had splattered all over the deck and left a {JJ10} odor.\n    \"To your positions, men!\" cried Christopher Columbus as he unsheathed his {NN6}. \"Protect the Santa {NN_Person1}!\"\n     It was too late, however. As he looked around him, he saw it all.  {Number6} {JJ_Color1} men, wearing nothing but {NNS_Clothing1}, completely surrounding him and his crew and brandishing their {NN5} over their heads, a clear look of {NN_Abstract2} in their eyes.\n    Christopher considered the lives of his men, his hopes and their dreams, and said, \"We surrender. Take us to your leader so we may {VB_Transitive3} the situation with them.\"\n    The {JJ_Color1} men tied their {NNS_BodyPart1} behind their {NNS_BodyPart2} and led them to the boats.\n\nTO BE CONTINUED...",
+    "storyText": "CHAPTER 1: \n     \"&lt;span class=\"placeholder\" data-id=\"Exclamation1\" title=\"Exclamation1\" contenteditable=\"false\"&gt;I can't believe it&lt;/span&gt;, we finally made it! Land ho!\"&lt;div&gt;Christopher Columbus looked up from his book, \"&lt;span class=\"placeholder\" data-id=\"NN_BookTitle1\" title=\"NN_BookTitle1\" contenteditable=\"false\"&gt;Navigating by stars&lt;/span&gt;\", and sighed. This was the &lt;span class=\"placeholder\" data-id=\"JJS_Ordinal1\" title=\"JJS_Ordinal1\" contenteditable=\"false\"&gt;fourth&lt;/span&gt; time he had been told they had reached &lt;span class=\"placeholder\" data-id=\"NN_Place1\" title=\"NN_Place1\" contenteditable=\"false\"&gt;India&lt;/span&gt;, and every time it was just another &lt;span class=\"placeholder\" data-id=\"JJ4\" title=\"JJ4\" contenteditable=\"false\"&gt;worthless&lt;/span&gt; island.  The Santa &lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\"&gt;Maria&lt;/span&gt; was growing weaker by the &lt;span class=\"placeholder\" data-id=\"NN_UnitOfTime1\" title=\"NN_UnitOfTime1\" contenteditable=\"false\"&gt;day&lt;/span&gt;, and the men were getting &lt;span class=\"placeholder\" data-id=\"JJ3\" title=\"JJ3\" contenteditable=\"false\"&gt;tired&lt;/span&gt;.  They needed some good news.&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Give me that,\" he said, taking the &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN2\" title=\"NN2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;spyglass&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; from the ship hand and peering through it. It was hard to see through the thick &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN3\" title=\"NN3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;fog&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;, but there indeed appeared to be land ahead.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Well I'll be a &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Animal1\" title=\"NN_Animal1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;monkey&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;'s &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_FamilyMember1\" title=\"NN_FamilyMember1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;uncle&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;, you may be right. All hands starboard, &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"Number1\" title=\"Number1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;3&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  o'clock!\"&nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Do you really think it could be &lt;span class=\"placeholder\" data-id=\"NN_Place1\" title=\"NN_Place1\" contenteditable=\"false\"&gt;India&lt;/span&gt;?\" asked the ship hand.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"I don't know, but my &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_BodyPart1\" title=\"NN_BodyPart1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;gut&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  tells me that this could finally be our destination.  Let's send out Captain &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person2\" title=\"NN_Person2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Dennis&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  and &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1PSA\" title=\"PRP1PSA\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;his&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  team to see what they find. If we succeed at this, we'll be the most lucrative traders of &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNS1\" title=\"NNS1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;spice&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  in the world!\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;The sun set by the time they anchored offshore.  &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNS_Animal1\" title=\"NNS_Animal1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;crabs&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; could be seen &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"VBG_Movement1\" title=\"VBG_Movement1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;skittering&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  along the beach, staying just out of their reach.  &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person2\" title=\"NN_Person2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Dennis&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  and &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1PSA\" title=\"PRP1PSA\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;his&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  crew of &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"Number2\" title=\"Number2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;twelve&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; rowed ashore and set into the wilderness.  The team immediately felt &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"JJ5\" title=\"JJ5\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;nervous&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;Captain, I have a &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"JJ_Emotion1\" title=\"JJ_Emotion1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;bad&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; &lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;feeling about this place. The air smells &lt;span class=\"placeholder\" data-id=\"JJR1\" title=\"JJR1\" contenteditable=\"false\"&gt;fouler&lt;/span&gt;&nbsp;than usual.\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Quiet, &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person3\" title=\"NN_Person3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Fred&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;!\" the captain seethed back.  The captain seemed to know more than &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1SUB\" title=\"PRP1SUB\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;he&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  let on, but &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person3\" title=\"NN_Person3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Fred&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; brushed&nbsp;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP2PSA\" title=\"PRP2PSA\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;her&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  thoughts aside and continued &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"VBG2\" title=\"VBG2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;exploring&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.\n     They made camp that night and quickly lit a &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN4\" title=\"NN4\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;fire&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; to stay warm.  The captain retreated to&nbsp;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1PSA\" title=\"PRP1PSA\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;his&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  tent early while the rest of the crew &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"VBD1\" title=\"VBD1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;drank&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  late into the night.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;No one seemed to notice the &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"Number3\" title=\"Number3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;three&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; pairs of eyes reflected from within the trees.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;Morning came, and as the captain emerged from &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1PSA\" title=\"PRP1PSA\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;his&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  tent, &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person3\" title=\"NN_Person3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Fred&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  approached &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1OBJ\" title=\"PRP1OBJ\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;him&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"RB1\" title=\"RB1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;hastily&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Captain, we've noticed something... Unusual.  You may want to see this yourself.\"&nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Very well,\" said &lt;span class=\"placeholder\" data-id=\"NN_Person2\" title=\"NN_Person2\" contenteditable=\"false\"&gt;Dennis&lt;/span&gt; &lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.&nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person3\" title=\"NN_Person3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Fred&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; took &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person2\" title=\"NN_Person2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Dennis&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&nbsp;across the camp, and immediately the captain knew what&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person3\" title=\"NN_Person3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Fred&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  was talking about. On the ground were footprints, too &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"JJ6\" title=\"JJ6\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;large&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  to be theirs, with &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"Number4\" title=\"Number4\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;six&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  toes on each foot.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Commander Columbus never said anything about this,\" &lt;span class=\"placeholder\" data-id=\"NN_Person3\" title=\"NN_Person3\" contenteditable=\"false\"&gt;Fred&lt;/span&gt;  said with a hint of &lt;span class=\"placeholder\" data-id=\"NN_Emotion1\" title=\"NN_Emotion1\" contenteditable=\"false\"&gt;doubt&lt;/span&gt;.&nbsp;&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&nbsp;\"Do you think that maybe this isn't&nbsp;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Place1\" title=\"NN_Place1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;India&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; &lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; after all?\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Go back to your tent,\" said &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person2\" title=\"NN_Person2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Dennis&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.  \"Prepare the crew and be ready to continue as planned.\"&nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"But sir, I-\"&nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"THAT IS AN ORDER.\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Very well, sir, but with all due respect, I think we need to be more &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"JJ7\" title=\"JJ7\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;prudent&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  about this.  We can be ready in &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"Number5\" title=\"Number5\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;ten&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNS_UnitOfTime1\" title=\"NNS_UnitOfTime1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;minutes&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Do it,\" the captain &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"VBD_Communication1\" title=\"VBD_Communication1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;commanded&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person2\" title=\"NN_Person2\" contenteditable=\"false\"&gt;Dennis&lt;/span&gt;&nbsp;looked down at the footprint as &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person3\" title=\"NN_Person3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Fred&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  walked away, and when &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1SUB\" title=\"PRP1SUB\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;he&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  knew &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP2SUB\" title=\"PRP2SUB\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;she&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  was out of earshot, &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1SUB\" title=\"PRP1SUB\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;he&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  said quietly:&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"You can't stop me. I will &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"VBP_Transitive1\" title=\"VBP_Transitive1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;destroy&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  you and I will take what's mine.\"&nbsp;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1SUB\" title=\"PRP1SUB\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;he&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  wiped away the footprints and went back to camp, hiding &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1PSA\" title=\"PRP1PSA\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;his&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&nbsp;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Abstract1\" title=\"NN_Abstract1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;intent&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;Back on the ship, the mood was &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"JJ8\" title=\"JJ8\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;tense&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.  The men on deck waited with &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"JJ9\" title=\"JJ9\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;bated&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  breath while the crew below were discussing what they would do when they discovered the source of &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNS1\" title=\"NNS1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;spice&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;One said: \"When I get home, I'm gonna &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"VB_Transitive1\" title=\"VB_Transitive1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;kiss&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  my girl and marry her.\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;Another said: \"I'll share the money! What could I possibly do with more than &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"Number6\" title=\"Number6\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;a hundred&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  gold anyway?\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"And what about you, Commander?\" asked one.  \"What will you do when you're richer than even a &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Career1\" title=\"NN_Career1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Lord&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;?\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;Christopher Columbus stared at his &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNS_Food1\" title=\"NNS_Food1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;crab meat&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  and contemplated the question.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"All my life I've considered what I would do with such wealth. When I was a child, I always wanted to be an&nbsp;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Career2\" title=\"NN_Career2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;archeologist&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;, and that is still a possibility. But I don't know if I could ever leave the sea. It's in my &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_BodyPart2\" title=\"NN_BodyPart2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;blood&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  now.\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;The men sat in &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Abstract2\" title=\"NN_Abstract2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;silence&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;, waiting to hear more.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Also, I've always wanted to take ownership of&nbsp;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNP1\" title=\"NNP1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;The Isle of Man&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;, so I might do that. And I'd start taking&nbsp;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Activity1\" title=\"NN_Activity1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;archery&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; lessons.  That is what I will do when we find our &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNS1\" title=\"NNS1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;spice&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.\"&nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&nbsp;Suddenly, there was a thud overhead. Instantly the men stood up and ran to the deck as &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"RB2\" title=\"RB2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;quickly&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  as they could.  What they saw would haunt them to this &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_UnitOfTime2\" title=\"NN_UnitOfTime2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;day&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;The steersman lay dead on the floor. He was pinned to the deck up by a &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN5\" title=\"NN5\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;spear&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  which had been pierced straight into him.  His &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_BodyPart3\" title=\"NN_BodyPart3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;spinal fluid&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  had splattered all over the deck and left a &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"JJ10\" title=\"JJ10\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;metallic&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  odor.&nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&nbsp;\"To your positions, men!\" cried Christopher Columbus as he unsheathed his &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN6\" title=\"NN6\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;sword&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;. \"Protect the Santa &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Maria&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;!\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;It was too late, however. As he looked around him, he saw it all.  &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"Number7\" title=\"Number7\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;a dozen&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"JJ_Color1\" title=\"JJ_Color1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;dark&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  men, wearing nothing but &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNS_Clothing1\" title=\"NNS_Clothing1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;loincloths&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;, completely surrounding him and his crew and brandishing their&nbsp;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN5\" title=\"NN5\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;spear&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;s&nbsp; over their heads, a clear look of &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Abstract3\" title=\"NN_Abstract3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;aggression&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; &nbsp;in their eyes.\n    Christopher considered the lives of his men, his hopes and their dreams, and &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"VBD_Communication2\" title=\"VBD_Communication2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;said&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;, \"We surrender. Take us to your leader so we may &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"VB_Transitive2\" title=\"VB_Transitive2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;discuss&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  the situation with them.\"\n    The &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"JJ_Color1\" title=\"JJ_Color1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;dark&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  men tied their &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNS_BodyPart1\" title=\"NNS_BodyPart1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;hands&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  behind their &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNS_BodyPart2\" title=\"NNS_BodyPart2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;backs&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  and led them to the boats.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;TO BE CONTINUED...&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;",
     "variables": [
+      {
+        "id": "NN_Place1",
+        "internalType": "Place (Singular)",
+        "officialDisplay": "Place (Singular)",
+        "display": "Place (Singular)",
+        "order": 3,
+        "displayOverride": "India"
+      },
+      {
+        "id": "NN_FamilyMember1",
+        "internalType": "NN_FamilyMember",
+        "officialDisplay": "Family Member (Singular)",
+        "display": "Family Member (Singular)",
+        "isCustom": true,
+        "order": 11,
+        "displayOverride": "uncle"
+      },
       {
         "id": "Exclamation1",
         "internalType": "Exclamation",
+        "officialDisplay": "Exclamation",
         "display": "Exclamation",
-        "order": 0
+        "order": 0,
+        "displayOverride": "I can't believe it"
       },
       {
-        "id": "BookTitle1",
-        "internalType": "BookTitle",
-        "display": "BookTitle",
-        "order": 1
+        "id": "NN_BookTitle1",
+        "internalType": "NN_BookTitle",
+        "officialDisplay": "Book Title (Singular)",
+        "display": "Book Title (Singular)",
+        "isCustom": true,
+        "order": 1,
+        "displayOverride": "Navigating by stars"
       },
       {
         "id": "JJS_Ordinal1",
         "internalType": "Ordinal Number",
+        "officialDisplay": "Ordinal Number",
         "display": "Ordinal Number",
-        "order": 2
-      },
-      {
-        "id": "NN_Place1",
-        "internalType": "Place (Singular)",
-        "display": "Place (Singular)",
-        "order": 3
-      },
-      {
-        "id": "JJ1",
-        "internalType": "Adjective",
-        "display": "Adjective",
-        "order": 4
-      },
-      {
-        "id": "NN_Person1",
-        "internalType": "Person (Singular)",
-        "display": "Person (Singular)",
-        "order": 5
-      },
-      {
-        "id": "UnitOfTime1",
-        "internalType": "UnitOfTime",
-        "display": "UnitOfTime",
-        "order": 6
-      },
-      {
-        "id": "JJ2",
-        "internalType": "Adjective",
-        "display": "Adjective",
-        "order": 7
-      },
-      {
-        "id": "NN1",
-        "internalType": "Common noun (Singular)",
-        "display": "Common noun (Singular)",
-        "order": 8
-      },
-      {
-        "id": "NN2",
-        "internalType": "Common noun (Singular)",
-        "display": "Common noun (Singular)",
-        "order": 9
-      },
-      {
-        "id": "NN_Animal1",
-        "internalType": "Animal (Singular)",
-        "display": "Animal (Singular)",
-        "order": 10
-      },
-      {
-        "id": "FamilyMember1",
-        "internalType": "FamilyMember",
-        "display": "FamilyMember",
-        "order": 11
-      },
-      {
-        "id": "Number7",
-        "internalType": "Number",
-        "display": "Number",
-        "order": 12
-      },
-      {
-        "id": "NN_BodyPart1",
-        "internalType": "Bodypart (Singular)",
-        "display": "Bodypart (Singular)",
-        "order": 13
-      },
-      {
-        "id": "FirstName1",
-        "internalType": "FirstName",
-        "display": "FirstName",
-        "order": 14
-      },
-      {
-        "id": "PRP1PSA",
-        "internalType": "PRONOUN|PronounGroup1|possAdj",
-        "display": "PRONOUN|PronounGroup1|possAdj",
-        "order": 15
-      },
-      {
-        "id": "NN3",
-        "internalType": "Common noun (Singular)",
-        "display": "Common noun (Singular)",
-        "order": 16
-      },
-      {
-        "id": "NNS_Animal1",
-        "internalType": "Animal (Plural)",
-        "display": "Animal (Plural)",
-        "order": 17
-      },
-      {
-        "id": "VBG_Action1",
-        "internalType": "Action Verb (Present Participle)",
-        "display": "Action Verb (Present Participle)",
-        "order": 18
-      },
-      {
-        "id": "Number1",
-        "internalType": "Number",
-        "display": "Number",
-        "order": 19
-      },
-      {
-        "id": "JJ3",
-        "internalType": "Adjective",
-        "display": "Adjective",
-        "order": 20
-      },
-      {
-        "id": "JJ_Emotion1",
-        "internalType": "Emotion Adjective",
-        "display": "Emotion Adjective",
-        "order": 21
-      },
-      {
-        "id": "JJR1",
-        "internalType": "Comparative Adjective",
-        "display": "Comparative Adjective",
-        "order": 22
-      },
-      {
-        "id": "FirstName2",
-        "internalType": "FirstName",
-        "display": "FirstName",
-        "order": 23
-      },
-      {
-        "id": "PRP1SUB",
-        "internalType": "PRONOUN|PronounGroup1|subject",
-        "display": "PRONOUN|PronounGroup1|subject",
-        "order": 24
-      },
-      {
-        "id": "PRP2PSA",
-        "internalType": "PRONOUN|PronounGroup2|possAdj",
-        "display": "PRONOUN|PronounGroup2|possAdj",
-        "order": 25
-      },
-      {
-        "id": "VBG_Action2",
-        "internalType": "Action Verb (Present Participle)",
-        "display": "Action Verb (Present Participle)",
-        "order": 26
-      },
-      {
-        "id": "NN4",
-        "internalType": "Common noun (Singular)",
-        "display": "Common noun (Singular)",
-        "order": 27
-      },
-      {
-        "id": "VBD_Action1",
-        "internalType": "Action Verb (Past Tense)",
-        "display": "Action Verb (Past Tense)",
-        "order": 28
-      },
-      {
-        "id": "Number2",
-        "internalType": "Number",
-        "display": "Number",
-        "order": 29
-      },
-      {
-        "id": "PRP1OBJ",
-        "internalType": "PRONOUN|PronounGroup1|object",
-        "display": "PRONOUN|PronounGroup1|object",
-        "order": 30
-      },
-      {
-        "id": "RB1",
-        "internalType": "Adverb",
-        "display": "Adverb",
-        "order": 31
+        "order": 2,
+        "displayOverride": "fourth"
       },
       {
         "id": "JJ4",
         "internalType": "Adjective",
+        "officialDisplay": "Adjective",
         "display": "Adjective",
-        "order": 32
+        "order": 4,
+        "displayOverride": "worthless"
+      },
+      {
+        "id": "NN_Person1",
+        "internalType": "Person (Singular)",
+        "officialDisplay": "Person (Singular)",
+        "display": "Person (Singular)",
+        "order": 5,
+        "displayOverride": "Maria"
+      },
+      {
+        "id": "NN_UnitOfTime1",
+        "internalType": "NN_UnitOfTime",
+        "officialDisplay": "Unit Of Time (Singular)",
+        "display": "Unit Of Time (Singular)",
+        "isCustom": true,
+        "order": 6,
+        "displayOverride": "day"
+      },
+      {
+        "id": "JJ3",
+        "internalType": "Adjective",
+        "officialDisplay": "Adjective",
+        "display": "Adjective",
+        "order": 7,
+        "displayOverride": "tired"
+      },
+      {
+        "id": "NN2",
+        "internalType": "Common Noun (Singular)",
+        "officialDisplay": "Common Noun (Singular)",
+        "display": "Common Noun (Singular)",
+        "order": 8,
+        "displayOverride": "spyglass"
+      },
+      {
+        "id": "NN3",
+        "internalType": "Common Noun (Singular)",
+        "officialDisplay": "Common Noun (Singular)",
+        "display": "Common Noun (Singular)",
+        "order": 9,
+        "displayOverride": "fog"
+      },
+      {
+        "id": "NN_Animal1",
+        "internalType": "Animal (Singular)",
+        "officialDisplay": "Animal (Singular)",
+        "display": "Animal (Singular)",
+        "order": 10,
+        "displayOverride": "monkey"
+      },
+      {
+        "id": "Number1",
+        "internalType": "Number",
+        "officialDisplay": "Number",
+        "display": "Number",
+        "order": 12,
+        "displayOverride": "3"
+      },
+      {
+        "id": "NN_BodyPart1",
+        "internalType": "Body Part (Singular)",
+        "officialDisplay": "Body Part (Singular)",
+        "display": "Body Part (Singular)",
+        "order": 13,
+        "displayOverride": "gut"
+      },
+      {
+        "id": "NN_Person2",
+        "internalType": "Person (Singular)",
+        "officialDisplay": "Person (Singular)",
+        "display": "Person (Singular)",
+        "order": 14,
+        "displayOverride": "Dennis"
+      },
+      {
+        "id": "PRP1PSA",
+        "internalType": "PRONOUN|PronounGroup1|possAdj",
+        "officialDisplay": "PRONOUN|PronounGroup1|possAdj",
+        "display": "PRONOUN|PronounGroup1|possAdj",
+        "order": 15,
+        "displayOverride": "his"
+      },
+      {
+        "id": "NNS1",
+        "internalType": "Common Noun (Plural)",
+        "officialDisplay": "Common Noun (Plural)",
+        "display": "Common Noun (Plural)",
+        "order": 16,
+        "displayOverride": "spice"
+      },
+      {
+        "id": "NNS_Animal1",
+        "internalType": "Animal (Plural)",
+        "officialDisplay": "Animal (Plural)",
+        "display": "Animal (Plural)",
+        "order": 17,
+        "displayOverride": "crabs"
+      },
+      {
+        "id": "VBG_Movement1",
+        "internalType": "Movement Verb (Gerund (crying))",
+        "officialDisplay": "Movement Verb (Gerund (crying))",
+        "display": "Movement Verb (Gerund (crying))",
+        "order": 18,
+        "displayOverride": "skittering"
+      },
+      {
+        "id": "Number2",
+        "internalType": "Number",
+        "officialDisplay": "Number",
+        "display": "Number",
+        "order": 19,
+        "displayOverride": "twelve"
+      },
+      {
+        "id": "JJ5",
+        "internalType": "Adjective",
+        "officialDisplay": "Adjective",
+        "display": "Adjective",
+        "order": 20,
+        "displayOverride": "nervous"
+      },
+      {
+        "id": "JJ_Emotion1",
+        "internalType": "Emotion",
+        "officialDisplay": "Emotion",
+        "display": "Emotion",
+        "order": 21,
+        "displayOverride": "bad"
+      },
+      {
+        "id": "JJR1",
+        "internalType": "Comparative Adjective",
+        "officialDisplay": "Comparative Adjective",
+        "display": "Comparative Adjective",
+        "order": 22,
+        "displayOverride": "fouler"
+      },
+      {
+        "id": "NN_Person3",
+        "internalType": "Person (Singular)",
+        "officialDisplay": "Person (Singular)",
+        "display": "Person (Singular)",
+        "order": 23,
+        "displayOverride": "Fred"
+      },
+      {
+        "id": "PRP1SUB",
+        "internalType": "PRONOUN|PronounGroup1|subject",
+        "officialDisplay": "PRONOUN|PronounGroup1|subject",
+        "display": "PRONOUN|PronounGroup1|subject",
+        "order": 24,
+        "displayOverride": "he"
+      },
+      {
+        "id": "PRP2PSA",
+        "internalType": "PRONOUN|PronounGroup2|possAdj",
+        "officialDisplay": "PRONOUN|PronounGroup2|possAdj",
+        "display": "PRONOUN|PronounGroup2|possAdj",
+        "order": 25,
+        "displayOverride": "her"
+      },
+      {
+        "id": "VBG2",
+        "internalType": "Verb (Gerund (crying))",
+        "officialDisplay": "Verb (Gerund (crying))",
+        "display": "Verb (Gerund (crying))",
+        "order": 26,
+        "displayOverride": "exploring"
+      },
+      {
+        "id": "NN4",
+        "internalType": "Common Noun (Singular)",
+        "officialDisplay": "Common Noun (Singular)",
+        "display": "Common Noun (Singular)",
+        "order": 27,
+        "displayOverride": "fire"
+      },
+      {
+        "id": "VBD1",
+        "internalType": "Verb (Past Tense (slept))",
+        "officialDisplay": "Verb (Past Tense (slept))",
+        "display": "Verb (Past Tense (slept))",
+        "order": 28,
+        "displayOverride": "drank"
       },
       {
         "id": "Number3",
         "internalType": "Number",
+        "officialDisplay": "Number",
         "display": "Number",
-        "order": 33
+        "order": 29,
+        "displayOverride": "three"
       },
       {
-        "id": "NN_Abstract3",
-        "internalType": "Abstract (Singular)",
-        "display": "Abstract (Singular)",
-        "order": 34
+        "id": "PRP1OBJ",
+        "internalType": "PRONOUN|PronounGroup1|object",
+        "officialDisplay": "PRONOUN|PronounGroup1|object",
+        "display": "PRONOUN|PronounGroup1|object",
+        "order": 30,
+        "displayOverride": "him"
+      },
+      {
+        "id": "RB1",
+        "internalType": "Adverb",
+        "officialDisplay": "Adverb",
+        "display": "Adverb",
+        "order": 31,
+        "displayOverride": "hastily"
       },
       {
         "id": "JJ6",
         "internalType": "Adjective",
+        "officialDisplay": "Adjective",
         "display": "Adjective",
-        "order": 35
+        "order": 32,
+        "displayOverride": "large"
       },
       {
         "id": "Number4",
         "internalType": "Number",
+        "officialDisplay": "Number",
         "display": "Number",
-        "order": 36
-      },
-      {
-        "id": "NNS_UnitOfTime2",
-        "internalType": "Unitoftime (Plural)",
-        "display": "Unitoftime (Plural)",
-        "order": 37
-      },
-      {
-        "id": "PRP2SUB",
-        "internalType": "PRONOUN|PronounGroup2|subject",
-        "display": "PRONOUN|PronounGroup2|subject",
-        "order": 38
-      },
-      {
-        "id": "VB_Transitive1",
-        "internalType": "Transitive Verb (Base Form)",
-        "display": "Transitive Verb (Base Form)",
-        "order": 39
+        "order": 33,
+        "displayOverride": "six"
       },
       {
         "id": "NN_Emotion1",
         "internalType": "Emotion (Singular)",
+        "officialDisplay": "Emotion (Singular)",
         "display": "Emotion (Singular)",
-        "order": 40
+        "order": 34,
+        "displayOverride": "doubt"
       },
       {
         "id": "JJ7",
         "internalType": "Adjective",
+        "officialDisplay": "Adjective",
         "display": "Adjective",
-        "order": 41
-      },
-      {
-        "id": "JJ8",
-        "internalType": "Adjective",
-        "display": "Adjective",
-        "order": 42
-      },
-      {
-        "id": "VB_Transitive2",
-        "internalType": "Transitive Verb (Base Form)",
-        "display": "Transitive Verb (Base Form)",
-        "order": 43
+        "order": 35,
+        "displayOverride": "prudent"
       },
       {
         "id": "Number5",
         "internalType": "Number",
+        "officialDisplay": "Number",
         "display": "Number",
-        "order": 44
+        "order": 36,
+        "displayOverride": "ten"
       },
       {
-        "id": "NN_Career1",
-        "internalType": "Career (Singular)",
-        "display": "Career (Singular)",
-        "order": 45
+        "id": "NNS_UnitOfTime1",
+        "internalType": "Unit Of Time (Plural)",
+        "officialDisplay": "Unit Of Time (Plural)",
+        "display": "Unit Of Time (Plural)",
+        "order": 37,
+        "displayOverride": "minutes"
       },
       {
-        "id": "NN_Food1",
-        "internalType": "Food (Singular)",
-        "display": "Food (Singular)",
-        "order": 46
+        "id": "VBD_Communication1",
+        "internalType": "Communication Verb (Past Tense (slept))",
+        "officialDisplay": "Communication Verb (Past Tense (slept))",
+        "display": "Communication Verb (Past Tense (slept))",
+        "order": 38,
+        "displayOverride": "commanded"
       },
       {
-        "id": "NN_Career2",
-        "internalType": "Career (Singular)",
-        "display": "Career (Singular)",
-        "order": 47
+        "id": "PRP2SUB",
+        "internalType": "PRONOUN|PronounGroup2|subject",
+        "officialDisplay": "PRONOUN|PronounGroup2|subject",
+        "display": "PRONOUN|PronounGroup2|subject",
+        "order": 39,
+        "displayOverride": "she"
       },
       {
-        "id": "NN_BodyPart2",
-        "internalType": "Bodypart (Singular)",
-        "display": "Bodypart (Singular)",
-        "order": 48
+        "id": "VBP_Transitive1",
+        "internalType": "Transitive Verb (Present (I walk))",
+        "officialDisplay": "Transitive Verb (Present (I walk))",
+        "display": "Transitive Verb (Present (I walk))",
+        "order": 40,
+        "displayOverride": "destroy"
       },
       {
         "id": "NN_Abstract1",
         "internalType": "Abstract (Singular)",
+        "officialDisplay": "Abstract (Singular)",
         "display": "Abstract (Singular)",
-        "order": 49
+        "order": 41,
+        "displayOverride": "intent"
       },
       {
-        "id": "NNP1",
-        "internalType": "Proper noun (Singular)",
-        "display": "Proper noun (Singular)",
-        "order": 50
-      },
-      {
-        "id": "NN_Activity1",
-        "internalType": "Activity (Singular)",
-        "display": "Activity (Singular)",
-        "order": 51
-      },
-      {
-        "id": "RB2",
-        "internalType": "Adverb",
-        "display": "Adverb",
-        "order": 52
-      },
-      {
-        "id": "NN_UnitofTime3",
-        "internalType": "Unitoftime (Singular)",
-        "display": "Unitoftime (Singular)",
-        "order": 53
-      },
-      {
-        "id": "NN5",
-        "internalType": "Common noun (Singular)",
-        "display": "Common noun (Singular)",
-        "order": 54
-      },
-      {
-        "id": "NN_BodyPart3",
-        "internalType": "Bodypart (Singular)",
-        "display": "Bodypart (Singular)",
-        "order": 55
-      },
-      {
-        "id": "JJ10",
+        "id": "JJ8",
         "internalType": "Adjective",
+        "officialDisplay": "Adjective",
         "display": "Adjective",
-        "order": 56
+        "order": 42,
+        "displayOverride": "tense"
       },
       {
-        "id": "NN6",
-        "internalType": "Common noun (Singular)",
-        "display": "Common noun (Singular)",
-        "order": 57
+        "id": "JJ9",
+        "internalType": "Adjective",
+        "officialDisplay": "Adjective",
+        "display": "Adjective",
+        "order": 43,
+        "displayOverride": "bated"
+      },
+      {
+        "id": "VB_Transitive1",
+        "internalType": "Transitive Verb (Base Form)",
+        "officialDisplay": "Transitive Verb (Base Form)",
+        "display": "Transitive Verb (Base Form)",
+        "order": 44,
+        "displayOverride": "kiss"
       },
       {
         "id": "Number6",
         "internalType": "Number",
+        "officialDisplay": "Number",
         "display": "Number",
-        "order": 58
+        "order": 45,
+        "displayOverride": "a hundred"
       },
       {
-        "id": "JJ_Color1",
-        "internalType": "Color Adjective",
-        "display": "Color Adjective",
-        "order": 59
+        "id": "NN_Career1",
+        "internalType": "NN_Career",
+        "officialDisplay": "Career (Singular)",
+        "display": "Career (Singular)",
+        "isCustom": true,
+        "order": 46,
+        "displayOverride": "Lord"
       },
       {
-        "id": "NNS_Clothing1",
-        "internalType": "Clothing (Plural)",
-        "display": "Clothing (Plural)",
-        "order": 60
+        "id": "NNS_Food1",
+        "internalType": "Food (Plural)",
+        "officialDisplay": "Food (Plural)",
+        "display": "Food (Plural)",
+        "order": 47,
+        "displayOverride": "crab meat"
+      },
+      {
+        "id": "NN_Career2",
+        "internalType": "NN_Career",
+        "officialDisplay": "Career (Singular)",
+        "display": "Career (Singular)",
+        "isCustom": true,
+        "order": 48,
+        "displayOverride": "archeologist"
+      },
+      {
+        "id": "NN_BodyPart2",
+        "internalType": "Body Part (Singular)",
+        "officialDisplay": "Body Part (Singular)",
+        "display": "Body Part (Singular)",
+        "order": 49,
+        "displayOverride": "blood"
       },
       {
         "id": "NN_Abstract2",
         "internalType": "Abstract (Singular)",
+        "officialDisplay": "Abstract (Singular)",
         "display": "Abstract (Singular)",
-        "order": 61
+        "order": 50,
+        "displayOverride": "silence"
       },
       {
-        "id": "VB_Transitive3",
+        "id": "NNP1",
+        "internalType": "Proper Noun (Singular)",
+        "officialDisplay": "Proper Noun (Singular)",
+        "display": "Proper Noun (Singular)",
+        "order": 51,
+        "displayOverride": "The Isle of Man"
+      },
+      {
+        "id": "NN_Activity1",
+        "internalType": "NN_Activity",
+        "officialDisplay": "Activity (Singular)",
+        "display": "Activity (Singular)",
+        "isCustom": true,
+        "order": 52,
+        "displayOverride": "archery"
+      },
+      {
+        "id": "RB2",
+        "internalType": "Adverb",
+        "officialDisplay": "Adverb",
+        "display": "Adverb",
+        "order": 53,
+        "displayOverride": "quickly"
+      },
+      {
+        "id": "NN_UnitOfTime2",
+        "internalType": "NN_UnitOfTime",
+        "officialDisplay": "Unit Of Time (Singular)",
+        "display": "Unit Of Time (Singular)",
+        "isCustom": true,
+        "order": 54,
+        "displayOverride": "day"
+      },
+      {
+        "id": "NN5",
+        "internalType": "Common Noun (Singular)",
+        "officialDisplay": "Common Noun (Singular)",
+        "display": "Common Noun (Singular)",
+        "order": 55,
+        "displayOverride": "spear"
+      },
+      {
+        "id": "NN_BodyPart3",
+        "internalType": "Body Part (Singular)",
+        "officialDisplay": "Body Part (Singular)",
+        "display": "Body Part (Singular)",
+        "order": 56,
+        "displayOverride": "spinal fluid"
+      },
+      {
+        "id": "JJ10",
+        "internalType": "Adjective",
+        "officialDisplay": "Adjective",
+        "display": "Adjective",
+        "order": 57,
+        "displayOverride": "metallic"
+      },
+      {
+        "id": "NN6",
+        "internalType": "Common Noun (Singular)",
+        "officialDisplay": "Common Noun (Singular)",
+        "display": "Common Noun (Singular)",
+        "order": 58,
+        "displayOverride": "sword"
+      },
+      {
+        "id": "Number7",
+        "internalType": "Number",
+        "officialDisplay": "Number",
+        "display": "Number",
+        "order": 59,
+        "displayOverride": "a dozen"
+      },
+      {
+        "id": "JJ_Color1",
+        "internalType": "Color",
+        "officialDisplay": "Color",
+        "display": "Color",
+        "order": 60,
+        "displayOverride": "dark"
+      },
+      {
+        "id": "NNS_Clothing1",
+        "internalType": "Clothing (Plural)",
+        "officialDisplay": "Clothing (Plural)",
+        "display": "Clothing (Plural)",
+        "order": 61,
+        "displayOverride": "loincloths"
+      },
+      {
+        "id": "NN_Abstract3",
+        "internalType": "Abstract (Singular)",
+        "officialDisplay": "Abstract (Singular)",
+        "display": "Abstract (Singular)",
+        "order": 62,
+        "displayOverride": "aggression"
+      },
+      {
+        "id": "VBD_Communication2",
+        "internalType": "Communication Verb (Past Tense (slept))",
+        "officialDisplay": "Communication Verb (Past Tense (slept))",
+        "display": "Communication Verb (Past Tense (slept))",
+        "order": 63,
+        "displayOverride": "said"
+      },
+      {
+        "id": "VB_Transitive2",
         "internalType": "Transitive Verb (Base Form)",
+        "officialDisplay": "Transitive Verb (Base Form)",
         "display": "Transitive Verb (Base Form)",
-        "order": 62
+        "order": 64,
+        "displayOverride": "discuss"
       },
       {
         "id": "NNS_BodyPart1",
-        "internalType": "Bodypart (Plural)",
-        "display": "Bodypart (Plural)",
-        "order": 63
+        "internalType": "Body Part (Plural)",
+        "officialDisplay": "Body Part (Plural)",
+        "display": "Body Part (Plural)",
+        "order": 65,
+        "displayOverride": "hands"
       },
       {
         "id": "NNS_BodyPart2",
-        "internalType": "Bodypart (Plural)",
-        "display": "Bodypart (Plural)",
-        "order": 64
+        "internalType": "Body Part (Plural)",
+        "officialDisplay": "Body Part (Plural)",
+        "display": "Body Part (Plural)",
+        "order": 66,
+        "displayOverride": "backs"
       }
     ],
-    "fillValues": {},
     "pronounGroups": {
-      "PronounGroup1": null,
-      "PronounGroup2": null
+      "PronounGroup1": {
+        "subject": "he",
+        "object": "him",
+        "possAdj": "his",
+        "possPron": "his",
+        "reflexive": "himself"
+      },
+      "PronounGroup2": {
+        "subject": "she",
+        "object": "her",
+        "possAdj": "her",
+        "possPron": "hers",
+        "reflexive": "herself"
+      }
     },
     "variableCounts": {
       "Exclamation": 1,
-      "BookTitle": 1,
+      "NN_BookTitle": 1,
       "JJS_Ordinal": 1,
       "NN_Place": 1,
       "JJ": 10,
-      "NN_Person": 1,
-      "UnitOfTime": 1,
+      "NN_Person": 3,
+      "NN_UnitOfTime": 2,
       "NN": 6,
       "NN_Animal": 1,
-      "FamilyMember": 1,
+      "NN_FamilyMember": 1,
       "Number": 7,
       "NN_BodyPart": 3,
-      "FirstName": 2,
       "PRP1PSA": 0,
+      "NNS": 1,
       "NNS_Animal": 1,
-      "VBG_Action": 2,
+      "VBG_Movement": 1,
       "JJ_Emotion": 1,
       "JJR": 1,
       "PRP1SUB": 0,
       "PRP2PSA": 0,
-      "VBD_Action": 1,
+      "VBG": 2,
+      "VBD": 1,
       "PRP1OBJ": 0,
       "RB": 2,
-      "NN_Abstract": 3,
-      "NNS_UnitOfTime": 2,
-      "PRP2SUB": 0,
-      "VB_Transitive": 3,
       "NN_Emotion": 1,
+      "NNS_UnitOfTime": 1,
+      "VBD_Communication": 2,
+      "PRP2SUB": 0,
+      "VBP_Transitive": 1,
+      "NN_Abstract": 3,
+      "VB_Transitive": 2,
       "NN_Career": 2,
-      "NN_Food": 1,
+      "NNS_Food": 1,
       "NNP": 1,
       "NN_Activity": 1,
-      "NN_UnitofTime": 3,
       "JJ_Color": 1,
       "NNS_Clothing": 1,
       "NNS_BodyPart": 2
     },
     "pronounGroupCount": 2,
-    "customPlaceholders": [],
-    "savedAt": "2025-02-03T21:41:32.817Z",
-    "overwrite": true
+    "customPlaceholders": [
+      {
+        "type": "NN_BookTitle"
+      },
+      {
+        "type": "NN_UnitOfTime"
+      },
+      {
+        "type": "NN_FamilyMember"
+      },
+      {
+        "type": "NN_Career"
+      },
+      {
+        "type": "NN_Activity"
+      }
+    ],
+    "savedAt": "2025-02-07T20:17:36.688Z",
+    "overwrite": true,
+    "fillValues": {}
   },
   {
     "storyTitle": "The Encounter",
@@ -1467,428 +1699,193 @@
     "savedAt": "2025-02-03T19:22:10.093Z"
   },
   {
-    "storyTitle": "Hello World",
-    "storyAuthor": "Jack",
-    "storyText": "Let's {VB_Movement1} to {NN_Place2} and be {JJ1}.",
+    "storyTitle": "Tower Heroes: The Inferno Showdown",
+    "storyAuthor": "Jack and Peter (and ChatGPT)",
+    "storyText": "&lt;p&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;In the  heart of &lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;Volcano &lt;span class=\"placeholder\" data-id=\"NN_Place1\" title=\"NN_Place1\" contenteditable=\"false\"&gt;Valley&lt;/span&gt; &lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;, the ground trembled as fiery fissures snaked across the terrain. The air &lt;span class=\"placeholder\" data-id=\"JJ1\" title=\"JJ1\" contenteditable=\"false\"&gt;shimmered&lt;/span&gt; with heat, and the distant roar of molten lava set an ominous tone. The &lt;span class=\"placeholder\" data-id=\"NNS_Person1\" title=\"NNS_Person1\" contenteditable=\"false\"&gt;heroes&lt;/span&gt; knew that today would be no ordinary battle.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=\"font-size: 0.875rem; -webkit-tap-highlight-color: transparent; -webkit-text-size-adjust: 100%;\"&gt;Leading the defense was &lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\"&gt;Spectre&lt;/span&gt; , his ghostly form hovering &lt;/span&gt;&lt;span style=\"font-size: 0.875rem; -webkit-tap-highlight-color: transparent; -webkit-text-size-adjust: 100%;\"&gt;as he orchestrated a haunting melody, empowering his allies. Beside him, &lt;span class=\"placeholder\" data-id=\"NN_Concrete1\" title=\"NN_Concrete1\" contenteditable=\"false\"&gt;Dumpster&lt;/span&gt; &lt;span class=\"placeholder\" data-id=\"NN_Person2\" title=\"NN_Person2\" contenteditable=\"false\"&gt;Child&lt;/span&gt; gleefully hurled flaming debris, the trash igniting into brilliant bursts upon impact. &lt;span class=\"placeholder\" data-id=\"NN_Person3\" title=\"NN_Person3\" contenteditable=\"false\"&gt;Bite&lt;/span&gt; scurried around, his mechanical &lt;span class=\"placeholder\" data-id=\"NNS_BodyPart1\" title=\"NNS_BodyPart1\" contenteditable=\"false\"&gt;jaws&lt;/span&gt; chomping at any foe that dared approach.&lt;/span&gt;&lt;br&gt;&lt;/p&gt;\n&lt;p&gt;Suddenly, the ground quaked &lt;span class=\"placeholder\" data-id=\"RB1\" title=\"RB1\" contenteditable=\"false\"&gt;violently&lt;/span&gt; . Emerging from the molten depths was the colossal Inferno &lt;span class=\"placeholder\" data-id=\"NN_Animal1\" title=\"NN_Animal1\" contenteditable=\"false\"&gt;Slime&lt;/span&gt; King, his molten form radiating intense heat.&lt;/p&gt;\n&lt;p&gt;\"Heroes, brace yourselves!\" &lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\"&gt;Spectre&lt;/span&gt;&nbsp;‘s voice echoed. \"This is our &lt;span class=\"placeholder\" data-id=\"Difficulty1\" title=\"Difficulty1\" contenteditable=\"false\"&gt;toughest&lt;/span&gt; challenge yet!\"&lt;/p&gt;\n&lt;p&gt;The Inferno Slime King bellowed, summoning smaller Inferno Slimes to his aid.&lt;/p&gt;\n&lt;p&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person4\" title=\"NN_Person4\" contenteditable=\"false\"&gt;Wizard&lt;/span&gt; stepped forward, casting torrents of water to douse the fiery foes. &lt;span class=\"placeholder\" data-id=\"NN_Person5\" title=\"NN_Person5\" contenteditable=\"false\"&gt;Jester&lt;/span&gt; tossed his enchanted &lt;span class=\"placeholder\" data-id=\"NN_Concrete2\" title=\"NN_Concrete2\" contenteditable=\"false\"&gt;dice&lt;/span&gt; , causing unpredictable bursts of magic that sent enemies &lt;span class=\"placeholder\" data-id=\"JJ2\" title=\"JJ2\" contenteditable=\"false\"&gt;sprawling&lt;/span&gt; . Even the &lt;span class=\"placeholder\" data-id=\"NN_Animal1\" title=\"NN_Animal1\" contenteditable=\"false\"&gt;Slime&lt;/span&gt; King, usually a rival, joined forces, his gelatinous minions absorbing the heat and retaliating with cooling attacks.&lt;/p&gt;\n&lt;p&gt;As the battle raged, &lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\"&gt;Spectre&lt;/span&gt;’s melody reached a fever pitch. The heroes, invigorated by the haunting tune, unleashed their most potent abilities. &lt;span class=\"placeholder\" data-id=\"NN_Concrete1\" title=\"NN_Concrete1\" contenteditable=\"false\"&gt;Dumpster&lt;/span&gt; &lt;span class=\"placeholder\" data-id=\"NN_Person2\" title=\"NN_Person2\" contenteditable=\"false\"&gt;Child&lt;/span&gt; fiery projectiles intensified, &lt;span class=\"placeholder\" data-id=\"NN_Person3\" title=\"NN_Person3\" contenteditable=\"false\"&gt;Bite&lt;/span&gt; chomps became fiercer, and Wizard's spells surged with power.&lt;/p&gt;\n&lt;p&gt;With a final, unified assault, the heroes targeted the Inferno &lt;span class=\"placeholder\" data-id=\"NN_Animal1\" title=\"NN_Animal1\" contenteditable=\"false\"&gt;Slime&lt;/span&gt; King. The &lt;span class=\"placeholder\" data-id=\"Size1\" title=\"Size1\" contenteditable=\"false\"&gt;colossal&lt;/span&gt; foe let out a deafening &lt;span class=\"placeholder\" data-id=\"NN_Onomatopoeia1\" title=\"NN_Onomatopoeia1\" contenteditable=\"false\"&gt;roar&lt;/span&gt; before collapsing into a pool of molten lava, extinguished at last.&lt;/p&gt;\n&lt;p&gt;Cheers erupted from the heroes. They had triumphed against the fiery onslaught of Volcano &lt;span class=\"placeholder\" data-id=\"NN_Place1\" title=\"NN_Place1\" contenteditable=\"false\"&gt;Valley&lt;/span&gt; .&lt;/p&gt;\n&lt;p&gt;But in the world of Tower Heroes, new challenges always awaited on the &lt;span class=\"placeholder\" data-id=\"TimeOfDay1\" title=\"TimeOfDay1\" contenteditable=\"false\"&gt;horizon&lt;/span&gt; .&lt;/p&gt;\n&lt;p&gt;THE END... FOR NOW&nbsp;.&lt;/p&gt;",
     "variables": [
-      {
-        "id": "Exclamation1",
-        "internalType": "Exclamation",
-        "display": "Exclamation",
-        "order": 0
-      },
-      {
-        "id": "BookTitle1",
-        "internalType": "BookTitle",
-        "display": "BookTitle",
-        "order": 1
-      },
-      {
-        "id": "JJS_Ordinal1",
-        "internalType": "Ordinal Number",
-        "display": "Ordinal Number",
-        "order": 2
-      },
-      {
-        "id": "NN_Place1",
-        "internalType": "Place (Singular)",
-        "display": "Place (Singular)",
-        "order": 3
-      },
-      {
-        "id": "JJ1",
-        "internalType": "Adjective",
-        "display": "Adjective",
-        "order": 4
-      },
       {
         "id": "NN_Person1",
         "internalType": "Person (Singular)",
+        "officialDisplay": "Person (Singular)",
         "display": "Person (Singular)",
-        "order": 5
-      },
-      {
-        "id": "UnitOfTime1",
-        "internalType": "UnitOfTime",
-        "display": "UnitOfTime",
-        "order": 6
-      },
-      {
-        "id": "JJ2",
-        "internalType": "Adjective",
-        "display": "Adjective",
-        "order": 7
-      },
-      {
-        "id": "NN1",
-        "internalType": "Common noun (Singular)",
-        "display": "Common noun (Singular)",
-        "order": 8
-      },
-      {
-        "id": "NN2",
-        "internalType": "Common noun (Singular)",
-        "display": "Common noun (Singular)",
-        "order": 9
+        "order": 3,
+        "displayOverride": "Spectre"
       },
       {
         "id": "NN_Animal1",
         "internalType": "Animal (Singular)",
+        "officialDisplay": "Animal (Singular)",
         "display": "Animal (Singular)",
-        "order": 10
+        "order": 9,
+        "displayOverride": "Slime"
       },
       {
-        "id": "FamilyMember1",
-        "internalType": "FamilyMember",
-        "display": "FamilyMember",
-        "order": 11
+        "id": "NN_Place1",
+        "internalType": "Place (Singular)",
+        "officialDisplay": "Place (Singular)",
+        "display": "Place (Singular)",
+        "order": 0,
+        "displayOverride": "Valley"
       },
       {
-        "id": "CD1",
-        "internalType": "CD",
-        "display": "CD",
-        "order": 12
+        "id": "NN_Concrete1",
+        "internalType": "Concrete (Singular)",
+        "officialDisplay": "Concrete (Singular)",
+        "display": "Concrete (Singular)",
+        "order": 4,
+        "displayOverride": "Dumpster"
       },
       {
-        "id": "NN_BodyPart1",
-        "internalType": "Bodypart (Singular)",
-        "display": "Bodypart (Singular)",
-        "order": 14
+        "id": "NN_Person2",
+        "internalType": "Person (Singular)",
+        "officialDisplay": "Person (Singular)",
+        "display": "Person (Singular)",
+        "order": 5,
+        "displayOverride": "Child"
       },
       {
-        "id": "FirstName1",
-        "internalType": "FirstName",
-        "display": "FirstName",
-        "order": 15
+        "id": "NN_Person3",
+        "internalType": "Person (Singular)",
+        "officialDisplay": "Person (Singular)",
+        "display": "Person (Singular)",
+        "order": 6,
+        "displayOverride": "Bite"
       },
       {
-        "id": "PRP1PSA",
-        "internalType": "PRP1PSA",
-        "display": "PRP1PSA",
-        "order": 16
-      },
-      {
-        "id": "NN3",
-        "internalType": "Common noun (Singular)",
-        "display": "Common noun (Singular)",
-        "order": 17
-      },
-      {
-        "id": "NNS_Animal1",
-        "internalType": "Animal (Plural)",
-        "display": "Animal (Plural)",
-        "order": 18
-      },
-      {
-        "id": "VBG_Action1",
-        "internalType": "Action Verb (Present Participle)",
-        "display": "Action Verb (Present Participle)",
-        "order": 19
-      },
-      {
-        "id": "Number1",
-        "internalType": "Number",
-        "display": "Number",
-        "order": 23
-      },
-      {
-        "id": "JJ3",
+        "id": "JJ1",
         "internalType": "Adjective",
+        "officialDisplay": "Adjective",
         "display": "Adjective",
-        "order": 24
+        "order": 1,
+        "displayOverride": "shimmered"
       },
       {
-        "id": "JJ_Emotion1",
-        "internalType": "Emotion Adjective",
-        "display": "Emotion Adjective",
-        "order": 25
+        "id": "NNS_Person1",
+        "internalType": "Person (Plural)",
+        "officialDisplay": "Person (Plural)",
+        "display": "Person (Plural)",
+        "order": 2,
+        "displayOverride": "heroes"
       },
       {
-        "id": "JJR1",
-        "internalType": "Comparative Adjective",
-        "display": "Comparative Adjective",
-        "order": 26
-      },
-      {
-        "id": "FirstName2",
-        "internalType": "FirstName",
-        "display": "FirstName",
-        "order": 27
-      },
-      {
-        "id": "PRP1SUB",
-        "internalType": "PRP1SUB",
-        "display": "PRP1SUB",
-        "order": 28
-      },
-      {
-        "id": "PRP2PSA",
-        "internalType": "PRP2PSA",
-        "display": "PRP2PSA",
-        "order": 30
-      },
-      {
-        "id": "VBG_Action2",
-        "internalType": "Action Verb (Present Participle)",
-        "display": "Action Verb (Present Participle)",
-        "order": 31
-      },
-      {
-        "id": "NN4",
-        "internalType": "Common noun (Singular)",
-        "display": "Common noun (Singular)",
-        "order": 32
-      },
-      {
-        "id": "VBD_Action1",
-        "internalType": "Action Verb (Past Tense)",
-        "display": "Action Verb (Past Tense)",
-        "order": 34
-      },
-      {
-        "id": "Number2",
-        "internalType": "Number",
-        "display": "Number",
-        "order": 35
-      },
-      {
-        "id": "PRP1OBJ",
-        "internalType": "PRP1OBJ",
-        "display": "PRP1OBJ",
-        "order": 38
+        "id": "NNS_BodyPart1",
+        "internalType": "Body Part (Plural)",
+        "officialDisplay": "Body Part (Plural)",
+        "display": "Body Part (Plural)",
+        "order": 7,
+        "displayOverride": "jaws"
       },
       {
         "id": "RB1",
         "internalType": "Adverb",
+        "officialDisplay": "Adverb",
         "display": "Adverb",
-        "order": 39
+        "order": 8,
+        "displayOverride": "violently"
       },
       {
-        "id": "JJ4",
+        "id": "Difficulty1",
+        "internalType": "Difficulty",
+        "officialDisplay": "Difficulty",
+        "display": "Difficulty",
+        "isCustom": true,
+        "order": 10,
+        "displayOverride": "toughest"
+      },
+      {
+        "id": "NN_Person4",
+        "internalType": "Person (Singular)",
+        "officialDisplay": "Person (Singular)",
+        "display": "Person (Singular)",
+        "order": 11,
+        "displayOverride": "Wizard"
+      },
+      {
+        "id": "NN_Person5",
+        "internalType": "Person (Singular)",
+        "officialDisplay": "Person (Singular)",
+        "display": "Person (Singular)",
+        "order": 12,
+        "displayOverride": "Jester"
+      },
+      {
+        "id": "NN_Concrete2",
+        "internalType": "Concrete (Singular)",
+        "officialDisplay": "Concrete (Singular)",
+        "display": "Concrete (Singular)",
+        "order": 13,
+        "displayOverride": "dice"
+      },
+      {
+        "id": "JJ2",
         "internalType": "Adjective",
+        "officialDisplay": "Adjective",
         "display": "Adjective",
-        "order": 44
+        "order": 14,
+        "displayOverride": "sprawling"
       },
       {
-        "id": "Number3",
-        "internalType": "Number",
-        "display": "Number",
-        "order": 45
+        "id": "Size1",
+        "internalType": "Size",
+        "officialDisplay": "Size",
+        "display": "Size",
+        "isCustom": true,
+        "order": 15,
+        "displayOverride": "colossal"
       },
       {
-        "id": "NN_Abstract3",
-        "internalType": "Abstract (Singular)",
-        "display": "Abstract (Singular)",
-        "order": 47
+        "id": "NN_Onomatopoeia1",
+        "internalType": "Onomatopoeia (Singular)",
+        "officialDisplay": "Onomatopoeia (Singular)",
+        "display": "Onomatopoeia (Singular)",
+        "order": 16,
+        "displayOverride": "roar"
       },
       {
-        "id": "JJ6",
-        "internalType": "Adjective",
-        "display": "Adjective",
-        "order": 50
-      },
-      {
-        "id": "Number4",
-        "internalType": "Number",
-        "display": "Number",
-        "order": 51
-      },
-      {
-        "id": "NNS_UnitOfTime2",
-        "internalType": "Unitoftime (Plural)",
-        "display": "Unitoftime (Plural)",
-        "order": 52
-      },
-      {
-        "id": "PRP2SUB",
-        "internalType": "PRP2SUB",
-        "display": "PRP2SUB",
-        "order": 56
-      },
-      {
-        "id": "VB_Transitive1",
-        "internalType": "Transitive Verb (Base Form)",
-        "display": "Transitive Verb (Base Form)",
-        "order": 58
-      },
-      {
-        "id": "NN_Emotion1",
-        "internalType": "Emotion (Singular)",
-        "display": "Emotion (Singular)",
-        "order": 61
-      },
-      {
-        "id": "JJ7",
-        "internalType": "Adjective",
-        "display": "Adjective",
-        "order": 62
-      },
-      {
-        "id": "JJ8",
-        "internalType": "Adjective",
-        "display": "Adjective",
-        "order": 63
-      },
-      {
-        "id": "VB_Transitive2",
-        "internalType": "Transitive Verb (Base Form)",
-        "display": "Transitive Verb (Base Form)",
-        "order": 65
-      },
-      {
-        "id": "Number5",
-        "internalType": "Number",
-        "display": "Number",
-        "order": 66
-      },
-      {
-        "id": "NN_Career1",
-        "internalType": "Career (Singular)",
-        "display": "Career (Singular)",
-        "order": 67
-      },
-      {
-        "id": "NN_Food1",
-        "internalType": "Food (Singular)",
-        "display": "Food (Singular)",
-        "order": 68
-      },
-      {
-        "id": "NN_Career2",
-        "internalType": "Career (Singular)",
-        "display": "Career (Singular)",
-        "order": 69
-      },
-      {
-        "id": "NN_BodyPart2",
-        "internalType": "Bodypart (Singular)",
-        "display": "Bodypart (Singular)",
-        "order": 70
-      },
-      {
-        "id": "NN_Abstract1",
-        "internalType": "Abstract (Singular)",
-        "display": "Abstract (Singular)",
-        "order": 71
-      },
-      {
-        "id": "NNP1",
-        "internalType": "Proper noun (Singular)",
-        "display": "Proper noun (Singular)",
-        "order": 72
-      },
-      {
-        "id": "NN_Activity1",
-        "internalType": "Activity (Singular)",
-        "display": "Activity (Singular)",
-        "order": 73
-      },
-      {
-        "id": "RB2",
-        "internalType": "Adverb",
-        "display": "Adverb",
-        "order": 75
-      },
-      {
-        "id": "NN_UnitofTime3",
-        "internalType": "Unitoftime (Singular)",
-        "display": "Unitoftime (Singular)",
-        "order": 76
-      },
-      {
-        "id": "NN5",
-        "internalType": "Common noun (Singular)",
-        "display": "Common noun (Singular)",
-        "order": 77
-      },
-      {
-        "id": "NN_BodyPart3",
-        "internalType": "Bodypart (Singular)",
-        "display": "Bodypart (Singular)",
-        "order": 78
-      },
-      {
-        "id": "JJ10",
-        "internalType": "Adjective",
-        "display": "Adjective",
-        "order": 79
-      },
-      {
-        "id": "NN6",
-        "internalType": "Common noun (Singular)",
-        "display": "Common noun (Singular)",
-        "order": 80
-      },
-      {
-        "id": "Number6",
-        "internalType": "Number",
-        "display": "Number",
-        "order": 82
-      },
-      {
-        "id": "JJ_Color1",
-        "internalType": "Color Adjective",
-        "display": "Color Adjective",
-        "order": 83
-      },
-      {
-        "id": "NNS_Clothing1",
-        "internalType": "Clothing (Plural)",
-        "display": "Clothing (Plural)",
-        "order": 84
-      },
-      {
-        "id": "NN_Abstract2",
-        "internalType": "Abstract (Singular)",
-        "display": "Abstract (Singular)",
-        "order": 86
-      },
-      {
-        "id": "VB_Transitive3",
-        "internalType": "Transitive Verb (Base Form)",
-        "display": "Transitive Verb (Base Form)",
-        "order": 87
-      },
-      {
-        "id": "NNS_BodyPart1",
-        "internalType": "Bodypart (Plural)",
-        "display": "Bodypart (Plural)",
-        "order": 89
-      },
-      {
-        "id": "NNS_BodyPart2",
-        "internalType": "Bodypart (Plural)",
-        "display": "Bodypart (Plural)",
-        "order": 90
-      },
-      {
-        "id": "VB_Movement1",
-        "internalType": "VB_Movement",
-        "display": "Movement Verb (Base Form (VB) e.g., \"I run\")",
-        "isCustom": false,
-        "order": 0
-      },
-      {
-        "id": "NN_Place2",
-        "internalType": "NN_Place",
-        "display": "Place (Singular)",
-        "isCustom": false,
-        "order": 1
+        "id": "TimeOfDay1",
+        "internalType": "TimeOfDay",
+        "officialDisplay": "TimeOfDay",
+        "display": "TimeOfDay",
+        "isCustom": true,
+        "order": 17,
+        "displayOverride": "horizon"
       }
     ],
-    "fillValues": {},
-    "pronounGroups": {
-      "PronounGroup1": null,
-      "PronounGroup2": null
-    },
+    "pronounGroups": {},
     "variableCounts": {
-      "Number": 3,
-      "NN_Place": 2,
-      "VB_Movement": 1,
-      "JJ": 1
+      "NN_Place": 1,
+      "JJ": 2,
+      "NNS_Person": 1,
+      "NN_Person": 5,
+      "NN_Concrete": 2,
+      "NNS_BodyPart": 1,
+      "RB": 1,
+      "NN_Animal": 1,
+      "Difficulty": 1,
+      "Size": 1,
+      "NN_Onomatopoeia": 1,
+      "TimeOfDay": 1
     },
-    "pronounGroupCount": 2,
-    "customPlaceholders": [],
-    "savedAt": "2025-02-03T20:23:03.518Z"
+    "pronounGroupCount": 0,
+    "customPlaceholders": [
+      {
+        "type": "NN_UnitOfTime"
+      },
+      {
+        "type": "NounStartingWithV"
+      },
+      {
+        "type": "Difficulty"
+      },
+      {
+        "type": "Size"
+      },
+      {
+        "type": "TimeOfDay"
+      }
+    ],
+    "savedAt": "2025-02-07T21:51:48.834Z",
+    "overwrite": true,
+    "fillValues": {}
   }
 ]
