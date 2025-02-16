@@ -2,295 +2,356 @@
   {
     "storyTitle": "Bowser, the Hopeless Romantic",
     "storyAuthor": "Jack Armstrong (with ChatGPT)",
-    "storyText": "Bowser stood atop his {JJ1}, lava-surrounded castle, gazing at the framed portrait of Princess Peach he kept on his bedside {NN_Furniture1}. His massive {NNS_BodyPart1} traced the edges of the frame as he sighed, steam {VBG1} from his nostrils.\n\n“She’s just… perfect,” he muttered to himself, tail swishing behind him. “Her smile, her hair, her {NN_BodyPart1}, her—”\n\nA loud, {JJ2} cough interrupted his {VBG_Stative1}. {NN_Person1} hovered nearby, adjusting his {NNS_Clothing1}. “Your Majesty, {Exclamation1}! Might I remind you that the princess has rejected every {JJ3} romantic gesture you’ve ever attempted?”\n\nBowser {VBD_Onomatopoeia1}. “That’s just because I haven’t found the right one yet. This time, she’ll see how much I {VB_Stative1}!”\n\nLater that evening, Bowser arrived at Peach’s castle in a {JJ4}, flower-covered airship, flanked by legions of Koopa Troopas and {NNS1}. The ship descended {RB1} onto the palace grounds, and Bowser {VBD_Movement1} forward, holding a bouquet the size of a {NN_Concrete1}.\n\nPeach, standing at the entrance with her {NNS_BodyPart2} crossed, {VBD_Onomatopoeia2}. “Bowser, what is this?”\n\n“A {JJ5} declaration of {NN_Emotion1}!” Bowser boomed, spreading his arms wide. “I’ve written you a poem, forged a {JJ6} statue in your honor, and I even—”\n\n“Bowser.” Peach {VBD_Action1} the bridge of her nose. “I’m flattered. {RB2}. But for the {JJS_Ordinal1} time… no.”\n\nBowser’s grin faltered. “But why? I’m strong, I'm {JJ7}, I have my own kingdom, I—”\n\n“{Exclamation2}, you kidnapped me again last week.”\n\n“That was a misunderstanding!”\n\n“You locked me in a {NN_Concrete2}.”\n\n“For {NN_Abstract1}!”\n\nPeach sighed, rubbing her {NNS_BodyPart3}. “Bowser, you’re just not my type. I don’t know how to make this {JJR1}.”\n\nBowser deflated slightly, shoulders {VBG2}. “Not even a little {JJ8} bit?”\n\n“No.”\n\n{NN_Person1} floated up beside Bowser, patting him on the {NN_BodyPart3}. “Come on, Your Majesy. Let’s go home.”\n\nBowser {VBD_Action2} back to the airship, tossing the bouquet over the side. A Chain Chomp {RB3} caught it in its {NNS_BodyPart4}. As the airship ascended, he cast one last, {JJ9} look at the princess below.\n\n“Maybe next time…” he {VBD_Communication1}.\n\nPeach {VBD_Transitive1} her eyes and walked back inside, already forgetting the {JJ10} ordeal.",
+    "storyText": "&lt;p&gt;Bowser stood atop his &lt;span class=\"placeholder\" data-id=\"JJ1\" title=\"JJ1\" contenteditable=\"false\"&gt;grand&lt;/span&gt;, lava-surrounded castle, gazing at the framed portrait of Princess Peach he kept on his bedside &lt;span class=\"placeholder\" data-id=\"NN_Furniture1\" title=\"NN_Furniture1\" contenteditable=\"false\"&gt;table&lt;/span&gt;. His massive &lt;span class=\"placeholder\" data-id=\"NNS_BodyPart1\" title=\"NNS_BodyPart1\" contenteditable=\"false\"&gt;claws&lt;/span&gt; traced the edges of the frame as he sighed, steam &lt;span class=\"placeholder\" data-id=\"VBG1\" title=\"VBG1\" contenteditable=\"false\"&gt;puffing&lt;/span&gt; from his nostrils.&lt;/p&gt;&lt;p&gt;“She’s just… &lt;span class=\"placeholder\" data-id=\"JJ2\" title=\"JJ2\" contenteditable=\"false\"&gt;perfect&lt;/span&gt;,” he muttered to himself, tail &lt;span class=\"placeholder\" data-id=\"VBG_Intransitive1\" title=\"VBG_Intransitive1\" contenteditable=\"false\"&gt;swishing&lt;/span&gt; behind him. “Her smile, her hair, her&nbsp;&lt;span class=\"placeholder\" data-id=\"NN_Clothing1\" title=\"NN_Clothing1\" contenteditable=\"false\"&gt;dress&lt;/span&gt;, her—”&lt;/p&gt;&lt;p&gt;A loud, &lt;span class=\"placeholder\" data-id=\"JJ3\" title=\"JJ3\" contenteditable=\"false\"&gt;deliberate&lt;/span&gt; cough interrupted his musings. Kamek hovered nearby, adjusting his &lt;span class=\"placeholder\" data-id=\"NNS_Clothing1\" title=\"NNS_Clothing1\" contenteditable=\"false\"&gt;spectacles&lt;/span&gt;. “Your Majesty, might I remind you that the princess has rejected every &lt;span class=\"placeholder\" data-id=\"JJ4\" title=\"JJ4\" contenteditable=\"false\"&gt;grand&lt;/span&gt; romantic gesture you’ve ever attempted?”&lt;/p&gt;&lt;p&gt;Bowser &lt;span class=\"placeholder\" data-id=\"VBD_Onomatopoeia1\" title=\"VBD_Onomatopoeia1\" contenteditable=\"false\"&gt;huffed&lt;/span&gt;. “That’s just because I haven’t found the &lt;em&gt;right&lt;/em&gt; one yet. This time, she’ll see how much I &lt;span class=\"placeholder\" data-id=\"VB_Stative1\" title=\"VB_Stative1\" contenteditable=\"false\"&gt;care&lt;/span&gt;!”&lt;/p&gt;&lt;p&gt;Later that &lt;span class=\"placeholder\" data-id=\"NN_TimeOfDay1\" title=\"NN_TimeOfDay1\" contenteditable=\"false\"&gt;evening&lt;/span&gt;, Bowser arrived at Peach’s castle in a &lt;span class=\"placeholder\" data-id=\"JJ5\" title=\"JJ5\" contenteditable=\"false\"&gt;massive&lt;/span&gt;, flower-covered airship, flanked by legions of Koopa Troopas and &lt;span class=\"placeholder\" data-id=\"NNS2\" title=\"NNS2\" contenteditable=\"false\"&gt;Goombas&lt;/span&gt; . The ship descended &lt;span class=\"placeholder\" data-id=\"RB1\" title=\"RB1\" contenteditable=\"false\"&gt;gracefully&lt;/span&gt; onto the palace grounds, and Bowser stepped forward, holding a bouquet the size of a &lt;span class=\"placeholder\" data-id=\"NN3\" title=\"NN3\" contenteditable=\"false\"&gt;Thwomp&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Peach, standing at the entrance with her &lt;span class=\"placeholder\" data-id=\"NNS_BodyPart2\" title=\"NNS_BodyPart2\" contenteditable=\"false\"&gt;arms&lt;/span&gt; crossed, sighed. “Bowser, what &lt;em&gt;is&lt;/em&gt; this?”&lt;/p&gt;&lt;p&gt;“A &lt;span class=\"placeholder\" data-id=\"JJ6\" title=\"JJ6\" contenteditable=\"false\"&gt;grand&lt;/span&gt; declaration of love!” Bowser boomed, spreading his arms wide. “I’ve written you a poem, forged a &lt;span class=\"placeholder\" data-id=\"JJ7\" title=\"JJ7\" contenteditable=\"false\"&gt;golden&lt;/span&gt; statue in your honor, and I even—”&lt;/p&gt;&lt;p&gt;“Bowser.” Peach &lt;span class=\"placeholder\" data-id=\"VBD_Transitive1\" title=\"VBD_Transitive1\" contenteditable=\"false\"&gt;pinched&lt;/span&gt; the bridge of her nose. “I’m flattered. &lt;span class=\"placeholder\" data-id=\"RB2\" title=\"RB2\" contenteditable=\"false\"&gt;Really&lt;/span&gt;. But for the &lt;span class=\"placeholder\" data-id=\"JJ_Number1\" title=\"JJ_Number1\" contenteditable=\"false\"&gt;hundredth&lt;/span&gt; time… no.”&lt;/p&gt;&lt;p&gt;Bowser’s grin faltered. “But why? I’m strong, I'm &lt;span class=\"placeholder\" data-id=\"JJ8\" title=\"JJ8\" contenteditable=\"false\"&gt;brave&lt;/span&gt;, I have my own kingdom, I—”&lt;/p&gt;&lt;p&gt;“&lt;span class=\"placeholder\" data-id=\"Exclamation1\" title=\"Exclamation1\" contenteditable=\"false\"&gt;Exclamation&lt;/span&gt;, you kidnapped me &lt;em&gt;again&lt;/em&gt; last week.”&lt;/p&gt;&lt;p&gt;“That was a misunderstanding!”&lt;/p&gt;&lt;p&gt;“You locked me in a &lt;span class=\"placeholder\" data-id=\"NN4\" title=\"NN4\" contenteditable=\"false\"&gt;cage&lt;/span&gt;.”&lt;/p&gt;&lt;p&gt;“For &lt;em&gt;&lt;span class=\"placeholder\" data-id=\"NN_Abstract1\" title=\"NN_Abstract1\" contenteditable=\"false\"&gt;safety&lt;/span&gt;!&lt;/em&gt;”&lt;/p&gt;&lt;p&gt;Peach sighed, rubbing her &lt;span class=\"placeholder\" data-id=\"NNS_BodyPart3\" title=\"NNS_BodyPart3\" contenteditable=\"false\"&gt;temples&lt;/span&gt;. “Bowser, you’re just &lt;em&gt;not&lt;/em&gt; my type. I don’t know how to make this &lt;span class=\"placeholder\" data-id=\"JJR1\" title=\"JJR1\" contenteditable=\"false\"&gt;clearer&lt;/span&gt;.”&lt;/p&gt;&lt;p&gt;Bowser deflated &lt;span class=\"placeholder\" data-id=\"RB3\" title=\"RB3\" contenteditable=\"false\"&gt;slightly&lt;/span&gt;, shoulders slumping. “Not even a &lt;em&gt;little&lt;/em&gt; bit?”&lt;/p&gt;&lt;p&gt;“No.”&lt;/p&gt;&lt;p&gt;Kamek floated up &lt;span class=\"placeholder\" data-id=\"IN1\" title=\"IN1\" contenteditable=\"false\"&gt;beside&lt;/span&gt; Bowser, patting him on the &lt;span class=\"placeholder\" data-id=\"NN_BodyPart1\" title=\"NN_BodyPart1\" contenteditable=\"false\"&gt;shoulder&lt;/span&gt;. “Come on, Your Majesty. Let’s go home.”&lt;/p&gt;&lt;p&gt;Bowser &lt;span class=\"placeholder\" data-id=\"VBD_Movement1\" title=\"VBD_Movement1\" contenteditable=\"false\"&gt;shuffled&lt;/span&gt; back to the airship, tossing the bouquet over the side. A Chain Chomp &lt;span class=\"placeholder\" data-id=\"RB4\" title=\"RB4\" contenteditable=\"false\"&gt;happily&lt;/span&gt; caught it in its jaws. As the airship ascended, he cast one &lt;span class=\"placeholder\" data-id=\"JJ9\" title=\"JJ9\" contenteditable=\"false\"&gt;last&lt;/span&gt; , longing look at the princess below.&lt;/p&gt;&lt;p&gt;“Maybe next time…” he &lt;span class=\"placeholder\" data-id=\"VBD_Communication1\" title=\"VBD_Communication1\" contenteditable=\"false\"&gt;murmured&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Peach &lt;span class=\"placeholder\" data-id=\"VBD_Transitive2\" title=\"VBD_Transitive2\" contenteditable=\"false\"&gt;rolled&lt;/span&gt; her eyes and walked back inside, already forgetting the &lt;span class=\"placeholder\" data-id=\"JJ10\" title=\"JJ10\" contenteditable=\"false\"&gt;whole&lt;/span&gt; ordeal.&lt;/p&gt;",
     "variables": [
       {
         "id": "JJ1",
         "internalType": "Adjective",
+        "officialDisplay": "Adjective",
         "display": "Adjective",
-        "order": 0
+        "order": 0,
+        "displayOverride": "grand"
       },
       {
         "id": "NN_Furniture1",
-        "internalType": "Furniture (Singular)",
+        "internalType": "NN_Furniture",
+        "officialDisplay": "Furniture (Singular)",
         "display": "Furniture (Singular)",
-        "order": 1
+        "isCustom": true,
+        "order": 1,
+        "displayOverride": "table"
       },
       {
         "id": "NNS_BodyPart1",
-        "internalType": "Bodypart (Plural)",
-        "display": "Bodypart (Plural)",
-        "order": 2
+        "internalType": "Body Part (Plural)",
+        "officialDisplay": "Body Part (Plural)",
+        "display": "Body Part (Plural)",
+        "order": 2,
+        "displayOverride": "claws"
       },
       {
         "id": "VBG1",
-        "internalType": "Verb (Present Participle)",
-        "display": "Verb (Present Participle)",
-        "order": 3
-      },
-      {
-        "id": "NN_BodyPart1",
-        "internalType": "Bodypart (Singular)",
-        "display": "Bodypart (Singular)",
-        "order": 4
+        "internalType": "Verb (Gerund (crying))",
+        "officialDisplay": "Verb (Gerund (crying))",
+        "display": "Verb (Gerund (crying))",
+        "order": 3,
+        "displayOverride": "puffing"
       },
       {
         "id": "JJ2",
         "internalType": "Adjective",
+        "officialDisplay": "Adjective",
         "display": "Adjective",
-        "order": 5
+        "order": 4,
+        "displayOverride": "perfect"
       },
       {
-        "id": "VBG_Stative1",
-        "internalType": "Stative Verb (Present Participle)",
-        "display": "Stative Verb (Present Participle)",
-        "order": 6
+        "id": "VBG_Intransitive1",
+        "internalType": "Intransitive Verb (Gerund (crying))",
+        "officialDisplay": "Intransitive Verb (Gerund (crying))",
+        "display": "Intransitive Verb (Gerund (crying))",
+        "order": 5,
+        "displayOverride": "swishing"
       },
       {
-        "id": "NN_Person1",
-        "internalType": "Person (Singular)",
-        "display": "Person (Singular)",
-        "order": 7
-      },
-      {
-        "id": "NNS_Clothing1",
-        "internalType": "Clothing (Plural)",
-        "display": "Clothing (Plural)",
-        "order": 8
-      },
-      {
-        "id": "Exclamation1",
-        "internalType": "Exclamation",
-        "display": "Exclamation",
-        "order": 9
+        "id": "NN_Clothing1",
+        "internalType": "Clothing (Singular)",
+        "officialDisplay": "Clothing (Singular)",
+        "display": "Clothing (Singular)",
+        "order": 6,
+        "displayOverride": "dress"
       },
       {
         "id": "JJ3",
         "internalType": "Adjective",
+        "officialDisplay": "Adjective",
         "display": "Adjective",
-        "order": 10
+        "order": 7,
+        "displayOverride": "deliberate"
       },
       {
-        "id": "VBD_Onomatopoeia1",
-        "internalType": "Onomatopoeia Verb (Past Tense)",
-        "display": "Onomatopoeia Verb (Past Tense)",
-        "order": 11
-      },
-      {
-        "id": "VB_Stative1",
-        "internalType": "Stative Verb (Base Form)",
-        "display": "Stative Verb (Base Form)",
-        "order": 12
+        "id": "NNS_Clothing1",
+        "internalType": "Clothing (Plural)",
+        "officialDisplay": "Clothing (Plural)",
+        "display": "Clothing (Plural)",
+        "order": 8,
+        "displayOverride": "spectacles"
       },
       {
         "id": "JJ4",
         "internalType": "Adjective",
+        "officialDisplay": "Adjective",
         "display": "Adjective",
-        "order": 13
+        "order": 9,
+        "displayOverride": "grand"
       },
       {
-        "id": "NNS1",
-        "internalType": "Common noun (Plural)",
-        "display": "Common noun (Plural)",
-        "order": 14
+        "id": "VBD_Onomatopoeia1",
+        "internalType": "Onomatopoeia Verb (Past Tense (slept))",
+        "officialDisplay": "Onomatopoeia Verb (Past Tense (slept))",
+        "display": "Onomatopoeia Verb (Past Tense (slept))",
+        "order": 10,
+        "displayOverride": "huffed"
       },
       {
-        "id": "RB1",
-        "internalType": "Adverb",
-        "display": "Adverb",
-        "order": 15
+        "id": "VB_Stative1",
+        "internalType": "Stative Verb (Base Form)",
+        "officialDisplay": "Stative Verb (Base Form)",
+        "display": "Stative Verb (Base Form)",
+        "order": 11,
+        "displayOverride": "care"
       },
       {
-        "id": "VBD_Movement1",
-        "internalType": "Movement Verb (Past Tense)",
-        "display": "Movement Verb (Past Tense)",
-        "order": 16
-      },
-      {
-        "id": "NN_Concrete1",
-        "internalType": "Concrete (Singular)",
-        "display": "Concrete (Singular)",
-        "order": 17
-      },
-      {
-        "id": "NNS_BodyPart2",
-        "internalType": "Bodypart (Plural)",
-        "display": "Bodypart (Plural)",
-        "order": 18
-      },
-      {
-        "id": "VBD_Onomatopoeia2",
-        "internalType": "Onomatopoeia Verb (Past Tense)",
-        "display": "Onomatopoeia Verb (Past Tense)",
-        "order": 19
+        "id": "NN_TimeOfDay1",
+        "internalType": "NN_TimeOfDay",
+        "officialDisplay": "Time Of Day (Singular)",
+        "display": "Time Of Day (Singular)",
+        "isCustom": true,
+        "order": 12,
+        "displayOverride": "evening"
       },
       {
         "id": "JJ5",
         "internalType": "Adjective",
+        "officialDisplay": "Adjective",
         "display": "Adjective",
-        "order": 20
+        "order": 13,
+        "displayOverride": "massive"
       },
       {
-        "id": "NN_Emotion1",
-        "internalType": "Emotion (Singular)",
-        "display": "Emotion (Singular)",
-        "order": 21
+        "id": "NNS2",
+        "internalType": "Common Noun (Plural)",
+        "officialDisplay": "Common Noun (Plural)",
+        "display": "Common Noun (Plural)",
+        "order": 14,
+        "displayOverride": "Goombas"
+      },
+      {
+        "id": "RB1",
+        "internalType": "Adverb",
+        "officialDisplay": "Adverb",
+        "display": "Adverb",
+        "order": 15,
+        "displayOverride": "gracefully"
+      },
+      {
+        "id": "NN3",
+        "internalType": "Common Noun (Singular)",
+        "officialDisplay": "Common Noun (Singular)",
+        "display": "Common Noun (Singular)",
+        "order": 16,
+        "displayOverride": "Thwomp"
+      },
+      {
+        "id": "NNS_BodyPart2",
+        "internalType": "Body Part (Plural)",
+        "officialDisplay": "Body Part (Plural)",
+        "display": "Body Part (Plural)",
+        "order": 17,
+        "displayOverride": "arms"
       },
       {
         "id": "JJ6",
         "internalType": "Adjective",
+        "officialDisplay": "Adjective",
         "display": "Adjective",
-        "order": 22
-      },
-      {
-        "id": "VBD_Action1",
-        "internalType": "Action Verb (Past Tense)",
-        "display": "Action Verb (Past Tense)",
-        "order": 23
-      },
-      {
-        "id": "RB2",
-        "internalType": "Adverb",
-        "display": "Adverb",
-        "order": 24
-      },
-      {
-        "id": "JJS_Ordinal1",
-        "internalType": "Ordinal Number",
-        "display": "Ordinal Number",
-        "order": 25
+        "order": 18,
+        "displayOverride": "grand"
       },
       {
         "id": "JJ7",
         "internalType": "Adjective",
+        "officialDisplay": "Adjective",
         "display": "Adjective",
-        "order": 26
+        "order": 19,
+        "displayOverride": "golden"
       },
       {
-        "id": "Exclamation2",
-        "internalType": "Exclamation",
-        "display": "Exclamation",
-        "order": 27
+        "id": "VBD_Transitive1",
+        "internalType": "Transitive Verb (Past Tense (slept))",
+        "officialDisplay": "Transitive Verb (Past Tense (slept))",
+        "display": "Transitive Verb (Past Tense (slept))",
+        "order": 20,
+        "displayOverride": "pinched"
       },
       {
-        "id": "NN_Concrete2",
-        "internalType": "Concrete (Singular)",
-        "display": "Concrete (Singular)",
-        "order": 28
+        "id": "RB2",
+        "internalType": "Adverb",
+        "officialDisplay": "Adverb",
+        "display": "Adverb",
+        "order": 21,
+        "displayOverride": "Really"
       },
       {
-        "id": "NN_Abstract1",
-        "internalType": "Abstract (Singular)",
-        "display": "Abstract (Singular)",
-        "order": 29
-      },
-      {
-        "id": "NNS_BodyPart3",
-        "internalType": "Bodypart (Plural)",
-        "display": "Bodypart (Plural)",
-        "order": 30
-      },
-      {
-        "id": "JJR1",
-        "internalType": "Comparative Adjective",
-        "display": "Comparative Adjective",
-        "order": 31
-      },
-      {
-        "id": "VBG2",
-        "internalType": "Verb (Present Participle)",
-        "display": "Verb (Present Participle)",
-        "order": 32
+        "id": "JJ_Number1",
+        "internalType": "Number",
+        "officialDisplay": "Number",
+        "display": "Number",
+        "order": 22,
+        "displayOverride": "hundredth"
       },
       {
         "id": "JJ8",
         "internalType": "Adjective",
+        "officialDisplay": "Adjective",
         "display": "Adjective",
-        "order": 33
+        "order": 23,
+        "displayOverride": "brave"
       },
       {
-        "id": "NN_BodyPart3",
-        "internalType": "Bodypart (Singular)",
-        "display": "Bodypart (Singular)",
-        "order": 34
+        "id": "Exclamation1",
+        "internalType": "Exclamation",
+        "officialDisplay": "Exclamation",
+        "display": "Exclamation",
+        "order": 24,
+        "displayOverride": "Exclamation"
       },
       {
-        "id": "VBD_Action2",
-        "internalType": "Action Verb (Past Tense)",
-        "display": "Action Verb (Past Tense)",
-        "order": 35
+        "id": "NN4",
+        "internalType": "Common Noun (Singular)",
+        "officialDisplay": "Common Noun (Singular)",
+        "display": "Common Noun (Singular)",
+        "order": 25,
+        "displayOverride": "cage"
+      },
+      {
+        "id": "NN_Abstract1",
+        "internalType": "Abstract (Singular)",
+        "officialDisplay": "Abstract (Singular)",
+        "display": "Abstract (Singular)",
+        "order": 26,
+        "displayOverride": "safety"
+      },
+      {
+        "id": "NNS_BodyPart3",
+        "internalType": "Body Part (Plural)",
+        "officialDisplay": "Body Part (Plural)",
+        "display": "Body Part (Plural)",
+        "order": 27,
+        "displayOverride": "temples"
+      },
+      {
+        "id": "JJR1",
+        "internalType": "Comparative Adjective",
+        "officialDisplay": "Comparative Adjective",
+        "display": "Comparative Adjective",
+        "order": 28,
+        "displayOverride": "clearer"
       },
       {
         "id": "RB3",
         "internalType": "Adverb",
+        "officialDisplay": "Adverb",
         "display": "Adverb",
-        "order": 36
+        "order": 29,
+        "displayOverride": "slightly"
       },
       {
-        "id": "NNS_BodyPart4",
-        "internalType": "Bodypart (Plural)",
-        "display": "Bodypart (Plural)",
-        "order": 37
+        "id": "IN1",
+        "internalType": "IN",
+        "officialDisplay": "Preposition",
+        "display": "Preposition",
+        "order": 30,
+        "displayOverride": "beside"
+      },
+      {
+        "id": "NN_BodyPart1",
+        "internalType": "Body Part (Singular)",
+        "officialDisplay": "Body Part (Singular)",
+        "display": "Body Part (Singular)",
+        "order": 31,
+        "displayOverride": "shoulder"
+      },
+      {
+        "id": "VBD_Movement1",
+        "internalType": "Movement Verb (Past Tense (slept))",
+        "officialDisplay": "Movement Verb (Past Tense (slept))",
+        "display": "Movement Verb (Past Tense (slept))",
+        "order": 32,
+        "displayOverride": "shuffled"
+      },
+      {
+        "id": "RB4",
+        "internalType": "Adverb",
+        "officialDisplay": "Adverb",
+        "display": "Adverb",
+        "order": 33,
+        "displayOverride": "happily"
       },
       {
         "id": "JJ9",
         "internalType": "Adjective",
+        "officialDisplay": "Adjective",
         "display": "Adjective",
-        "order": 38
+        "order": 34,
+        "displayOverride": "last"
       },
       {
         "id": "VBD_Communication1",
-        "internalType": "Communication Verb (Past Tense)",
-        "display": "Communication Verb (Past Tense)",
-        "order": 39
+        "internalType": "Communication Verb (Past Tense (slept))",
+        "officialDisplay": "Communication Verb (Past Tense (slept))",
+        "display": "Communication Verb (Past Tense (slept))",
+        "order": 35,
+        "displayOverride": "murmured"
       },
       {
-        "id": "VBD_Transitive1",
-        "internalType": "Transitive Verb (Past Tense)",
-        "display": "Transitive Verb (Past Tense)",
-        "order": 40
+        "id": "VBD_Transitive2",
+        "internalType": "Transitive Verb (Past Tense (slept))",
+        "officialDisplay": "Transitive Verb (Past Tense (slept))",
+        "display": "Transitive Verb (Past Tense (slept))",
+        "order": 36,
+        "displayOverride": "rolled"
       },
       {
         "id": "JJ10",
-        "internalType": "Adjective",
+        "internalType": "JJ",
+        "officialDisplay": "Adjective",
         "display": "Adjective",
-        "order": 41
+        "isCustom": false,
+        "order": 37,
+        "displayOverride": "whole"
       }
     ],
-    "fillValues": {},
     "pronounGroups": {},
     "variableCounts": {
       "JJ": 10,
       "NN_Furniture": 1,
-      "NNS_BodyPart": 4,
-      "VBG": 2,
-      "NN_BodyPart": 3,
-      "VBG_Stative": 1,
-      "NN_Person": 1,
+      "NNS_BodyPart": 3,
+      "VBG": 1,
+      "VBG_Intransitive": 1,
+      "NN_Clothing": 1,
       "NNS_Clothing": 1,
-      "Exclamation": 2,
-      "VBD_Onomatopoeia": 2,
+      "VBD_Onomatopoeia": 1,
       "VB_Stative": 1,
-      "NNS": 1,
-      "RB": 3,
-      "VBD_Movement": 1,
-      "NN_Concrete": 2,
-      "NN_Emotion": 1,
-      "VBD_Action": 2,
-      "JJS_Ordinal": 1,
+      "NN_TimeOfDay": 1,
+      "NNS": 2,
+      "RB": 4,
+      "NN": 4,
+      "VBD_Transitive": 2,
+      "JJ_Number": 1,
+      "Exclamation": 1,
       "NN_Abstract": 1,
       "JJR": 1,
-      "VBD_Communication": 1,
-      "VBD_Transitive": 1
+      "IN": 1,
+      "NN_BodyPart": 1,
+      "VBD_Movement": 1,
+      "VBD_Communication": 1
     },
     "pronounGroupCount": 0,
     "customPlaceholders": [
       {
         "type": "NN_ManOrWoman"
+      },
+      {
+        "type": "NN_Furniture"
+      },
+      {
+        "type": "NN_TimeOfDay"
       }
     ],
-    "savedAt": "2025-02-03T20:46:51.123Z",
-    "overwrite": true
+    "savedAt": "2025-02-08T03:10:33.893Z",
+    "overwrite": true,
+    "fillValues": {}
   },
   {
     "storyTitle": "Brain Rot Brawl",
@@ -368,8 +429,16 @@
   {
     "storyTitle": "Sleepy Night",
     "storyAuthor": "Peter Armstrong",
-    "storyText": "\"Time to go to &lt;span class=\"placeholder\" data-id=\"NN1\" title=\"NN1\" contenteditable=\"false\"&gt;bed&lt;/span&gt;!\" spoke &lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\"&gt;Sally&lt;/span&gt;. Her brother was in the bathroom getting ready to &lt;span class=\"placeholder\" data-id=\"VB_Intransitive1\" title=\"VB_Intransitive1\" contenteditable=\"false\"&gt;sleep&lt;/span&gt;. First, he brushed his &lt;span class=\"placeholder\" data-id=\"NNS_BodyPart1\" title=\"NNS_BodyPart1\" contenteditable=\"false\"&gt;teeth&lt;/span&gt;. Then he spat out the remains of his &lt;span class=\"placeholder\" data-id=\"Liquid1\" title=\"Liquid1\" contenteditable=\"false\"&gt;toothpaste&lt;/span&gt;. &lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\"&gt;Sally&lt;/span&gt; did the same thing, except the flavor was &lt;span class=\"placeholder\" data-id=\"NN_Food1\" title=\"NN_Food1\" contenteditable=\"false\"&gt;mint&lt;/span&gt;  instead of &lt;span class=\"placeholder\" data-id=\"NN_Food2\" title=\"NN_Food2\" contenteditable=\"false\"&gt;strawberry&lt;/span&gt;, which her brother used. Meanwhile, the brother went to the &lt;span class=\"placeholder\" data-id=\"NN_RoomInHouse1\" title=\"NN_RoomInHouse1\" contenteditable=\"false\"&gt;bathroom&lt;/span&gt;&nbsp;and had to go number &lt;span class=\"placeholder\" data-id=\"Number1\" title=\"Number1\" contenteditable=\"false\"&gt;two&lt;/span&gt;. Finally, they put on &lt;span class=\"placeholder\" data-id=\"NNS_Clothing1\" title=\"NNS_Clothing1\" contenteditable=\"false\"&gt;pajamas&lt;/span&gt;. They fell &lt;span class=\"placeholder\" data-id=\"JJ1\" title=\"JJ1\" contenteditable=\"false\"&gt;asleep&lt;/span&gt;  in an instant!",
+    "storyText": "\"Time to go to &lt;span class=\"placeholder\" data-id=\"NN1\" title=\"NN1\" contenteditable=\"false\"&gt;bed&lt;/span&gt;!\" spoke &lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\"&gt;Sally&lt;/span&gt;. &lt;span class=\"placeholder\" data-id=\"PRP1PSA\" title=\"PRP1PSA\" contenteditable=\"false\"&gt;her&lt;/span&gt; brother was in the bathroom getting ready to &lt;span class=\"placeholder\" data-id=\"VB_Intransitive1\" title=\"VB_Intransitive1\" contenteditable=\"false\"&gt;sleep&lt;/span&gt;. First, he brushed his &lt;span class=\"placeholder\" data-id=\"NNS_BodyPart1\" title=\"NNS_BodyPart1\" contenteditable=\"false\"&gt;teeth&lt;/span&gt;. Then he spat out the remains of his &lt;span class=\"placeholder\" data-id=\"Liquid1\" title=\"Liquid1\" contenteditable=\"false\"&gt;toothpaste&lt;/span&gt;. &lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\"&gt;Sally&lt;/span&gt; did the same thing, except &lt;span class=\"placeholder\" data-id=\"PRP1PSA\" title=\"PRP1PSA\" contenteditable=\"false\"&gt;her&lt;/span&gt; flavor was &lt;span class=\"placeholder\" data-id=\"NN_Food1\" title=\"NN_Food1\" contenteditable=\"false\"&gt;mint&lt;/span&gt;  instead of &lt;span class=\"placeholder\" data-id=\"NN_Food2\" title=\"NN_Food2\" contenteditable=\"false\"&gt;strawberry&lt;/span&gt;, which &lt;span class=\"placeholder\" data-id=\"PRP1PSA\" title=\"PRP1PSA\" contenteditable=\"false\"&gt;her&lt;/span&gt; brother used. Meanwhile, the brother went to the &lt;span class=\"placeholder\" data-id=\"NN_RoomInHouse1\" title=\"NN_RoomInHouse1\" contenteditable=\"false\"&gt;bathroom&lt;/span&gt;&nbsp;and had to go number &lt;span class=\"placeholder\" data-id=\"Number1\" title=\"Number1\" contenteditable=\"false\"&gt;two&lt;/span&gt;. Finally, they put on &lt;span class=\"placeholder\" data-id=\"NNS_Clothing1\" title=\"NNS_Clothing1\" contenteditable=\"false\"&gt;pajamas&lt;/span&gt;. They fell &lt;span class=\"placeholder\" data-id=\"JJ1\" title=\"JJ1\" contenteditable=\"false\"&gt;asleep&lt;/span&gt;  in an instant!",
     "variables": [
+      {
+        "id": "PRP1PSA",
+        "internalType": "PRONOUN|PronounGroup1|possAdj",
+        "officialDisplay": "PRONOUN|PronounGroup1|possAdj",
+        "display": "PRONOUN|PronounGroup1|possAdj",
+        "order": 2,
+        "displayOverride": "her"
+      },
       {
         "id": "NN1",
         "internalType": "Common Noun (Singular)",
@@ -391,7 +460,7 @@
         "internalType": "Intransitive Verb (Base Form)",
         "officialDisplay": "Intransitive Verb (Base Form)",
         "display": "Intransitive Verb (Base Form)",
-        "order": 2,
+        "order": 3,
         "displayOverride": "sleep"
       },
       {
@@ -399,7 +468,7 @@
         "internalType": "Body Part (Plural)",
         "officialDisplay": "Body Part (Plural)",
         "display": "Body Part (Plural)",
-        "order": 3,
+        "order": 4,
         "displayOverride": "teeth"
       },
       {
@@ -408,7 +477,7 @@
         "officialDisplay": "Liquid",
         "display": "Liquid",
         "isCustom": true,
-        "order": 4,
+        "order": 5,
         "displayOverride": "toothpaste"
       },
       {
@@ -416,7 +485,7 @@
         "internalType": "Food (Singular)",
         "officialDisplay": "Food (Singular)",
         "display": "Food (Singular)",
-        "order": 5,
+        "order": 6,
         "displayOverride": "mint"
       },
       {
@@ -424,16 +493,16 @@
         "internalType": "Food (Singular)",
         "officialDisplay": "Food (Singular)",
         "display": "Food (Singular)",
-        "order": 6,
+        "order": 7,
         "displayOverride": "strawberry"
       },
       {
         "id": "NN_RoomInHouse1",
         "internalType": "NN_RoomInHouse",
-        "officialDisplay": "NN_Room In House",
-        "display": "NN_Room In House",
+        "officialDisplay": "Room In House (Singular)",
+        "display": "Room In House (Singular)",
         "isCustom": true,
-        "order": 7,
+        "order": 8,
         "displayOverride": "bathroom"
       },
       {
@@ -441,7 +510,7 @@
         "internalType": "Number",
         "officialDisplay": "Number",
         "display": "Number",
-        "order": 8,
+        "order": 9,
         "displayOverride": "two"
       },
       {
@@ -449,7 +518,7 @@
         "internalType": "Clothing (Plural)",
         "officialDisplay": "Clothing (Plural)",
         "display": "Clothing (Plural)",
-        "order": 9,
+        "order": 10,
         "displayOverride": "pajamas"
       },
       {
@@ -457,14 +526,23 @@
         "internalType": "Adjective",
         "officialDisplay": "Adjective",
         "display": "Adjective",
-        "order": 10,
+        "order": 11,
         "displayOverride": "asleep"
       }
     ],
-    "pronounGroups": {},
+    "pronounGroups": {
+      "PronounGroup1": {
+        "subject": "she",
+        "object": "her",
+        "possAdj": "her",
+        "possPron": "hers",
+        "reflexive": "herself"
+      }
+    },
     "variableCounts": {
       "NN": 1,
       "NN_Person": 1,
+      "PRP1PSA": 0,
       "VB_Intransitive": 1,
       "NNS_BodyPart": 1,
       "Liquid": 1,
@@ -474,7 +552,7 @@
       "NNS_Clothing": 1,
       "JJ": 1
     },
-    "pronounGroupCount": 0,
+    "pronounGroupCount": 1,
     "customPlaceholders": [
       {
         "type": "NN_RoomInHouse"
@@ -483,7 +561,7 @@
         "type": "Liquid"
       }
     ],
-    "savedAt": "2025-02-06T23:42:55.010Z",
+    "savedAt": "2025-02-08T03:20:17.228Z",
     "overwrite": true,
     "fillValues": {}
   },
@@ -1885,6 +1963,19 @@
       }
     ],
     "savedAt": "2025-02-07T21:51:48.834Z",
+    "overwrite": true,
+    "fillValues": {}
+  },
+  {
+    "storyTitle": "A Tower Heroes Christmas Carol",
+    "storyAuthor": "Peter",
+    "storyText": "&nbsp; &nbsp; Once upon a time there was a girl named Carol. She was a greedy girl that was always into money and cookies. She owned her own business to get money and payed little of it to her employee, who was Soda Pop&lt;span style=\"font-size: 0.875rem; -webkit-tap-highlight-color: transparent; -webkit-text-size-adjust: 100%;\"&gt;.&lt;/span&gt;&lt;div&gt;&lt;div&gt;&nbsp; &nbsp; Suddenly, the door busted open and Scientist came in, saying “Merry Christmas!”&nbsp;&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; Carol was angry by her disruptive behavior and said, “Would you be quiet while my employee works!?” She got down from her stool and said, “Such Disobedient Behavior! You should feel bad young lady!”&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; Scientist shrugged and said, “Okay, but have a merry Christmas and happy new year!” She closed the door behind her.&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; Carol yawned and said, “well, glad we got that out of the way,” Soda pop was seeming like she wanted to say something. Carol rolled her eyes and said, “what do you want!?”&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; Soda pop gulped and said, “Carol, since tomarrow is Christmas, can I have the day off?” Carol muttered something about “bah humbug” under her breath. Soda pop was worried.&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; Carol said, “fine, but only half of the day off! And this will come into your paycheck!” Soda pop didn’t seem to mind. “You remember that fateful day when I gave you 20 coins a week instead of ten?\"&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; \"Yes! I also had to do your laundry!\"&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; \"Opp, time for you to go. Have a,\" she shuddered at the thought, then gritted her teeth and said, \"Merry Christmas.\"&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; &nbsp;Soda pop gleefully left, leaving Carol to say, \"Good riddance.\" She looked at the sign at the top of the shop, wish said, \"Carol and Rien's Writing Workshop!\" There were scribbled out words that originally said, \"Happy Holidays!\"&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; &nbsp;Carol went home in her luxury mansion. It was late, and she was tired. She was going to fall asleep when suddenly, \"ooooh!!!!\" Carol got scared and hid under a blanket. \"Who's there?\" Then someone said, \"It's me, Rien!\" A ghost appeared which looked like Rein, Carol's sister. \"I was stuck in this ghostly form for years, and now I can talk to you! I do not like what you've become, Carol, so tonight, three ghosts will show you what you were, what you are, and what you will be!\"&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; &nbsp;Carol said, \"okay! Just Please leave me alone!&lt;/div&gt;",
+    "variables": [],
+    "pronounGroups": {},
+    "variableCounts": {},
+    "pronounGroupCount": 0,
+    "customPlaceholders": [],
+    "savedAt": "2025-02-07T22:13:02.641Z",
     "overwrite": true,
     "fillValues": {}
   }

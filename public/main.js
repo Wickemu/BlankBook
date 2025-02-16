@@ -58,6 +58,11 @@
   let lastRange = null;
   // Tracks how often each placeholder (by its id) is used.
   let usageTracker = {};
+  let placeholderInsertionInProgress = false;
+  let storyHasUnsavedChanges = false;
+  let fillOrder = 'alphabetical'; // default order is alphabetical
+
+
 
   // Predefined mapping for temporary pronoun values.
   const pronounMapping = {
@@ -572,16 +577,16 @@
       { internalType: "RB", display: "Adverb", tooltip: "Modifies verb (quickly, often)", icon: "fas fa-feather-alt", isPrimary: true },
       { internalType: "JJR", display: "Comparative", tooltip: "Comparison (faster, smaller)", icon: "fas fa-level-up-alt", isPrimary: false },
       { internalType: "JJS", display: "Superlative", tooltip: "Highest degree (best, tallest)", icon: "fas fa-medal", isPrimary: false },
-      { internalType: "RBR", display: "Comparative Adv.", tooltip: "Compares actions (faster, harder)", icon: "fas fa-level-up-alt", isPrimary: false },
-      { internalType: "RBS", display: "Superlative Adv.", tooltip: "Highest degree (most, least)", icon: "fas fa-medal", isPrimary: false }
+      { internalType: "JJ_Number", display: "Ordered Number", tooltip: "A ranked number (1st, seventh)", icon: "fas fa-hashtag", isPrimary: true },
+
     ],
     "Other": [
-      { internalType: "IN", display: "Preposition", tooltip: "Shows relation (in, under)", icon: "fas fa-arrows-alt", isPrimary: true },
-      { internalType: "DT", display: "Determiner", tooltip: "Specifier (a, the)", icon: "fas fa-bookmark", isPrimary: true },
+      { internalType: "IN", display: "Preposition", tooltip: "Shows relation (in, under)", icon: "fas fa-arrows-alt", isPrimary: false },
+      { internalType: "DT", display: "Determiner", tooltip: "Specifier (a, the)", icon: "fas fa-bookmark", isPrimary: false },
       { internalType: "CC", display: "Conjunction", tooltip: "Joins clauses (and, or)", icon: "fas fa-link", isPrimary: false },
       { internalType: "FW", display: "Foreign Word", tooltip: "Non-English (bonjour, sushi)", icon: "fas fa-globe", isPrimary: false },
-      { internalType: "Number", display: "Number", tooltip: "Numerical (five, twenty)", icon: "fas fa-hashtag", isPrimary: false },
-      { internalType: "Exclamation", display: "Exclamation", tooltip: "Interjection (wow, oops)", icon: "fas fa-bullhorn", isPrimary: false }
+      { internalType: "Number", display: "Number", tooltip: "Numerical (five, twenty)", icon: "fas fa-hashtag", isPrimary: true },
+      { internalType: "Exclamation", display: "Exclamation", tooltip: "Interjection (wow, oops)", icon: "fas fa-bullhorn", isPrimary: true }
     ]
   };
 
@@ -774,6 +779,8 @@
     lastRange = null;
   }
 
+  // (Note: The duplicate choosePronounTempValue definition from earlier has been removed.
+  // The following definition (with two parameters) is used throughout.)
   function choosePronounTempValue(form, groupId) {
     return Swal.fire({
       title: 'Select Temporary Pronoun',
@@ -1174,95 +1181,112 @@
     updatePlaceholderAccordion('#modalPlaceholderAccordion', '#modalNoResults');
   });
   
-// --- Modal-specific handler for new placeholder selection ---
-$(document).on('click', '#modalPlaceholderAccordion .placeholder-btn', function (e) {
-  // Prevent the event from bubbling further so that only this handler runs.
-  e.stopImmediatePropagation();
-  e.stopPropagation();
-  e.preventDefault();
+  // --- Modal-specific handler for new placeholder selection ---
+  $(document).on('click', '#modalPlaceholderAccordion .placeholder-btn', function (e) {
+    // Prevent the event from bubbling further so that only this handler runs.
+    e.stopImmediatePropagation();
+    e.stopPropagation();
+    e.preventDefault();
 
-  if ($('#placeholderModal').hasClass('show')) {
-    $('#placeholderModal').modal('hide');
-  }
-  const internalType = $(this).data('internal');
-  const displayName = $(this).data('display');
-
-  // Handle special cases that require an extra selection step.
-  if (internalType === "PRONOUN") {
-    pickPronounFormAndGroup();
-    $('#placeholderSearch').val('');
-    updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
-    return;
-  }
-  if (internalType.indexOf("NN") === 0) {
-    showNounNumberSelection(internalType, displayName);
-    $('#placeholderSearch').val('');
-    updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
-    return;
-  }
-  if (internalType.indexOf("VB") === 0 || internalType === "MD") {
-    showVerbTenseSelection(internalType, displayName);
-    $('#placeholderSearch').val('');
-    updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
-    return;
-  }
-  // For other types, if we are in edit mode, update the existing placeholder.
-  if (window.isEditingPlaceholder && currentEditingVariable) {
-    updateExistingPlaceholder(currentEditingVariable, internalType, displayName);
-    window.isEditingPlaceholder = false;
-    currentEditingVariable = null;
-  } else {
-    // Otherwise, insert the placeholder normally.
-    insertPlaceholder(internalType, displayName, false);
-  }
-  $('#placeholderSearch').val('');
-  updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
-});
-
-
-
-  
-  
-  // --- Global handler for .placeholder-btn clicks outside the modal ---
-  $(document).on('click', '.placeholder-btn', function () {
-    // If the clicked element is inside the modal accordion, let the modal-specific handler handle it.
-    if ($(this).closest('#modalPlaceholderAccordion').length > 0) {
-      return;
+    if ($('#placeholderModal').hasClass('show')) {
+      $('#placeholderModal').modal('hide');
     }
     const internalType = $(this).data('internal');
     const displayName = $(this).data('display');
+
+    // Handle special cases that require an extra selection step.
+    if (internalType === "PRONOUN") {
+      pickPronounFormAndGroup();
+      $('#placeholderSearch').val('');
+      updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
+      return;
+    }
+    if (internalType.indexOf("NN") === 0) {
+      showNounNumberSelection(internalType, displayName);
+      $('#placeholderSearch').val('');
+      updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
+      return;
+    }
+    if (internalType.indexOf("VB") === 0 || internalType === "MD") {
+      showVerbTenseSelection(internalType, displayName);
+      $('#placeholderSearch').val('');
+      updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
+      return;
+    }
+    // For other types, if we are in edit mode, update the existing placeholder.
     if (window.isEditingPlaceholder && currentEditingVariable) {
-      // Instead of inserting a new placeholder, update the existing one.
+      updateExistingPlaceholder(currentEditingVariable, internalType, displayName);
+      window.isEditingPlaceholder = false;
+      currentEditingVariable = null;
+    } else {
+      // Otherwise, insert the placeholder normally.
+      insertPlaceholder(internalType, displayName, false);
+    }
+    $('#placeholderSearch').val('');
+    updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
+  });
+
+  // --- Global handler for .placeholder-btn clicks outside the modal ---
+  $(document).on('click', '.placeholder-btn', function (e) {
+    // Prevent duplicate processing using the lock flag.
+    if (placeholderInsertionInProgress) {
+      return;
+    }
+    placeholderInsertionInProgress = true;
+
+    // If the clicked element is inside the modal accordion, let the modal-specific handler handle it.
+    if ($(this).closest('#modalPlaceholderAccordion').length > 0) {
+      placeholderInsertionInProgress = false;
+      return;
+    }
+
+    e.stopPropagation();
+    e.preventDefault();
+
+    const internalType = $(this).data('internal');
+    const displayName = $(this).data('display');
+
+    if (window.isEditingPlaceholder && currentEditingVariable) {
+      // Update an existing placeholder if in edit mode.
       updateExistingPlaceholder(currentEditingVariable, internalType, displayName);
       window.isEditingPlaceholder = false;
       currentEditingVariable = null;
       $('#placeholderModal').modal('hide');
     } else {
-      // Normal behavior for inserting a new placeholder.
+      // Normal insertion behavior.
       if (internalType === "PRONOUN") {
         pickPronounFormAndGroup();
         $('#placeholderSearch').val('');
         updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
+        placeholderInsertionInProgress = false;
         return;
       }
       if (internalType.indexOf("NN") === 0) {
         showNounNumberSelection(internalType, displayName);
         $('#placeholderSearch').val('');
         updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
+        placeholderInsertionInProgress = false;
         return;
       }
       if (internalType.indexOf("VB") === 0 || internalType === "MD") {
         showVerbTenseSelection(internalType, displayName);
         $('#placeholderSearch').val('');
         updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
+        placeholderInsertionInProgress = false;
         return;
       }
+      // Insert the placeholder normally.
       insertPlaceholder(internalType, displayName, false);
       $('#placeholderSearch').val('');
       updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
     }
+    
+    // Release the lock after a short delay.
+    setTimeout(() => {
+      placeholderInsertionInProgress = false;
+    }, 50);
   });
-  
+
   // ====================================================
   // 10. VERB & NOUN SELECTION MODALS
   // ====================================================
@@ -1338,7 +1362,6 @@ $(document).on('click', '#modalPlaceholderAccordion .placeholder-btn', function 
       }
     });
   }
-  
 
   // ====================================================
   // 11. PRONOUN HANDLERS
@@ -1422,36 +1445,8 @@ $(document).on('click', '#modalPlaceholderAccordion .placeholder-btn', function 
       }
     });
   }
-  function choosePronounTempValue(form, groupId) {
-    return Swal.fire({
-      title: 'Select Temporary Pronoun',
-      input: 'radio',
-      inputOptions: {
-        'He/Him': 'He/Him',
-        'She/Her': 'She/Her',
-        'They/Them': 'They/Them',
-        'Custom': 'Custom'
-      },
-      inputValidator: (value) => {
-        if (!value) {
-          return 'You need to choose an option!';
-        }
-      }
-    }).then(result => {
-      if (result.value === 'Custom') {
-        return Swal.fire({
-          title: 'Enter custom temporary pronoun',
-          input: 'text',
-          inputLabel: 'Temporary pronoun',
-          inputValue: form,
-          showCancelButton: true
-        }).then(res => res.value || form);
-      } else {
-        return result.value;
-      }
-    });
-  }
-
+  // (The choosePronounTempValue function has already been defined above.)
+  
   // ====================================================
   // 12. BUILD THE FILL-IN-THE-BLANK FORM
   // ====================================================
@@ -1533,18 +1528,17 @@ $(document).on('click', '#modalPlaceholderAccordion .placeholder-btn', function 
 
   function appendNonPronounVariablesToForm(form) {
     let nonPronounVars = variables.filter(v => !v.internalType.startsWith('PRONOUN|'));
-    const sortMode = 'alphabetical';
-    if (sortMode === 'alphabetical') {
+    if (fillOrder === 'alphabetical') {
       nonPronounVars.sort((a, b) => a.officialDisplay.localeCompare(b.officialDisplay));
-    } else if (sortMode === 'random') {
+    } else if (fillOrder === 'random') {
       nonPronounVars.sort(() => Math.random() - 0.5);
     }
-
     nonPronounVars.forEach(variable => {
       const groupRow = createInputRow(variable);
       form.append(groupRow);
     });
   }
+  
 
   function createInputRow(variable) {
     const groupRow = $(`
@@ -1577,6 +1571,67 @@ $(document).on('click', '#modalPlaceholderAccordion .placeholder-btn', function 
     updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
     updatePlaceholderAccordion('#modalPlaceholderAccordion', '#modalNoResults');
 
+    // Share button functionality
+    $('#shareStory').on('click', function () {
+      // Gather the final story content
+      const finalText = $('#finalStory').text();
+      const title = $('#displayTitle').text();
+      const author = $('#displayAuthor').text();
+      const content = `Title: ${title}\nAuthor: ${author}\n\n${finalText}`;
+
+      // Use the Clipboard API if available
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(content)
+          .then(() => {
+            Swal.fire({
+              toast: true,
+              position: 'top-end',
+              icon: 'success',
+              title: 'Story copied to clipboard!',
+              showConfirmButton: false,
+              timer: 1500
+            });
+          })
+          .catch(err => {
+            console.error('Error copying text: ', err);
+            fallbackCopyTextToClipboard(content);
+          });
+      } else {
+        // Fallback for older browsers
+        fallbackCopyTextToClipboard(content);
+      }
+    });
+
+    // Fallback function using a temporary textarea
+    function fallbackCopyTextToClipboard(text) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      // Place the textarea off-screen
+      textarea.style.position = 'fixed';
+      textarea.style.top = '-9999px';
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
+      try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+          Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: 'Story copied to clipboard!',
+            showConfirmButton: false,
+            timer: 1500
+          });
+        } else {
+          Swal.fire('Error', 'Failed to copy story. Please copy manually.', 'error');
+        }
+      } catch (err) {
+        Swal.fire('Error', 'Failed to copy story. Please copy manually.', 'error');
+      }
+      document.body.removeChild(textarea);
+    }
+
     document.getElementById('existingPlaceholdersContainer').addEventListener('click', function(e) {
       const btn = e.target.closest('.placeholder-item');
       if (!btn) return;
@@ -1599,9 +1654,9 @@ $(document).on('click', '#modalPlaceholderAccordion .placeholder-btn', function 
       $('#modalAddCustomPlaceholderBtn').text('Add "' + searchVal + '"');
     });
     
-
     $('#storyText').on('input', function () {
       updateVariablesFromEditor();
+      storyHasUnsavedChanges = true;
     });
 
     $('#uploadStoryBtn').on('click', function () {
@@ -1747,19 +1802,58 @@ $(document).on('click', '#modalPlaceholderAccordion .placeholder-btn', function 
     });
     $('#createNewStory2, #createNewStory').on('click', function (e) {
       e.preventDefault();
-      Swal.fire({
-        title: 'Are you sure?',
-        text: 'This will discard your current story.',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Yes, start new',
-        cancelButtonText: 'Cancel'
-      }).then((res) => {
-        if (res.isConfirmed) {
-          createNewStory();
-        }
-      });
+      
+      if (storyHasUnsavedChanges) {
+        // Ask if the user wants to save before discarding unsaved changes.
+        Swal.fire({
+          title: 'Unsaved changes',
+          text: 'Your story has unsaved changes. Would you like to save it to the site before starting a new one?',
+          icon: 'warning',
+          showDenyButton: true,
+          showCancelButton: true,
+          confirmButtonText: 'Save and start new',
+          denyButtonText: 'Discard changes'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Save the current story and then start a new one.
+            Storage.addCurrentStoryToSavedStories();
+            // (Optionally, wait for the save to complete before starting a new story.)
+            // For example, you could delay or chain the new story creation in the success callback.
+            setTimeout(createNewStory, 1000);
+          } else if (result.isDenied) {
+            // Confirm discarding unsaved changes.
+            Swal.fire({
+              title: 'Are you sure?',
+              text: 'This will discard your current unsaved story.',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonText: 'Yes, start new',
+              cancelButtonText: 'Cancel'
+            }).then((res) => {
+              if (res.isConfirmed) {
+                createNewStory();
+              }
+            });
+          }
+          // If the user cancels the first dialog, do nothing.
+        });
+      } else {
+        // No unsaved changes; just confirm discarding the current story.
+        Swal.fire({
+          title: 'Are you sure?',
+          text: 'This will discard your current story.',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, start new',
+          cancelButtonText: 'Cancel'
+        }).then((res) => {
+          if (res.isConfirmed) {
+            createNewStory();
+          }
+        });
+      }
     });
+    
     function createNewStory() {
       $('#storyTitle').val('');
       $('#storyAuthor').val('');
@@ -1771,6 +1865,7 @@ $(document).on('click', '#modalPlaceholderAccordion .placeholder-btn', function 
       fillValues = {};
       pronounGroups = {};
       pronounGroupCount = 0;
+      storyHasUnsavedChanges = false;
       updateVariablesList();
       updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
       updatePlaceholderAccordion('#modalPlaceholderAccordion', '#modalNoResults');
@@ -1788,8 +1883,10 @@ $(document).on('click', '#modalPlaceholderAccordion .placeholder-btn', function 
     });
     $('#saveCompletedStoryToSite').on('click', function () {
       Storage.addCompletedStoryToSavedStories();
+      storyHasUnsavedChanges = false;
     });
     
+
     // NEW: Download Completed Story as a Text File
     $('#downloadStory').on('click', function () {
       // Get the final story text and the title/author
@@ -1849,7 +1946,9 @@ $(document).on('click', '#modalPlaceholderAccordion .placeholder-btn', function 
     });
     $('#saveStoryToSite').on('click', function () {
       Storage.addCurrentStoryToSavedStories();
+      storyHasUnsavedChanges = false;
     });
+
 
     $('#storyText').on('keydown', function (e) {
       const sel = window.getSelection();
@@ -1890,14 +1989,13 @@ $(document).on('click', '#modalPlaceholderAccordion .placeholder-btn', function 
   });
   
   // ====================================================
-  // NEW: GLOBALS & HELPER FUNCTIONS FOR THE NEW FEATURES
+  // 14. GLOBALS & HELPER FUNCTIONS FOR THE NEW FEATURES
   // ====================================================
   
   // Global for “editing” a placeholder (when tapped)
   let currentEditingVariable = null;
   let currentPlaceholderElement = null;
 
-  
   // --- Floating Menu Helper Functions ---
   // This helper positions a given menu (talk-bubble style) above and centered to a target element.
   function positionMenu(menu, rect) {
@@ -1931,7 +2029,6 @@ $(document).on('click', '#modalPlaceholderAccordion .placeholder-btn', function 
     menu.style.top = desiredTop + 'px';
     menu.style.left = desiredLeft + 'px';
   }
-  
   
   function hideMenu(menu) {
     menu.style.display = 'none';
@@ -1983,7 +2080,7 @@ $(document).on('click', '#modalPlaceholderAccordion .placeholder-btn', function 
   document.body.appendChild(placeholderEditMenu);
   
   // ====================================================
-  // 1. SELECTION MENU FOR HIGHLIGHTED TEXT (Updated)
+  // 15. SELECTION MENU FOR HIGHLIGHTED TEXT (Updated)
   // ====================================================
   document.getElementById('storyText').addEventListener('mouseup', function (e) {
     setTimeout(function () {
@@ -2001,8 +2098,6 @@ $(document).on('click', '#modalPlaceholderAccordion .placeholder-btn', function 
       }
     }, 0);
   });
-  
-  
   
   // Hide the selection menu if clicking elsewhere.
   document.addEventListener('click', function (e) {
@@ -2071,7 +2166,7 @@ $(document).on('click', '#modalPlaceholderAccordion .placeholder-btn', function 
   });
   
   // ====================================================
-  // 2. EDITING A PLACEHOLDER WHEN IT IS TAPPED (Updated)
+  // 16. EDITING A PLACEHOLDER WHEN IT IS TAPPED (Updated)
   // ====================================================
   // When a placeholder pill (the span with class "placeholder") is clicked,
   // offer three options: change its placeholder, change its override, or delete it.
@@ -2093,7 +2188,6 @@ $(document).on('click', '#modalPlaceholderAccordion .placeholder-btn', function 
     });
   });
   
-  
   // Delegate the “Change Placeholder” button click.
   $(document).on('click', '#editPlaceholderBtn', function () {
     Swal.close();
@@ -2106,7 +2200,6 @@ $(document).on('click', '#modalPlaceholderAccordion .placeholder-btn', function 
     window.isEditingPlaceholder = true;
     $('#placeholderModal').modal('show');
   });
-  
   
   // Delegate the “Change Override” button click.
   $(document).on('click', '#editOverrideBtn', function () {
@@ -2128,13 +2221,31 @@ $(document).on('click', '#modalPlaceholderAccordion .placeholder-btn', function 
         variable.displayOverride = result.value;
         // Update all occurrences of this placeholder in the editor.
         document.querySelectorAll('.placeholder[data-id="'+variable.id+'"]').forEach(el => {
-          el.textContent = result.value;
+          el.setAttribute("data-id", variable.id);
+          el.setAttribute("title", variable.id);
+          // Use the preserved override as the text content.
+          el.textContent = variable.displayOverride;
         });
         updateVariablesList();
       }
     });
   });
-  
+
+  $('#alphabeticalOrderBtn').on('click', function(){
+    fillOrder = 'alphabetical';
+    // Optionally, update button styles to indicate the active order:
+    $(this).addClass('active');
+    $('#randomOrderBtn').removeClass('active');
+    buildFillForm();
+});
+
+$('#randomOrderBtn').on('click', function(){
+    fillOrder = 'random';
+    $(this).addClass('active');
+    $('#alphabeticalOrderBtn').removeClass('active');
+    buildFillForm();
+});
+
   
   // Delegate the “Delete” button click.
   $(document).on('click', '#deletePlaceholderBtn', function () {
@@ -2145,51 +2256,9 @@ $(document).on('click', '#modalPlaceholderAccordion .placeholder-btn', function 
     }
   });
   
-  
   // ====================================================
-  // 3. MODIFYING THE PLACEHOLDER MODAL HANDLER FOR “EDIT MODE”
+  // 17. MODIFYING THE PLACEHOLDER MODAL HANDLER FOR “EDIT MODE”
   // ====================================================
-  // When a user clicks on a placeholder option in the side panel (".placeholder-btn"),
-  // check if we are in edit mode.
-  $(document).on('click', '.placeholder-btn', function () {
-    // *** New check: if this click is coming from within the modal, do nothing here.
-    if ($(this).closest('#modalPlaceholderAccordion').length > 0) {
-      return;
-    }
-    const internalType = $(this).data('internal');
-    const displayName = $(this).data('display');
-    if (window.isEditingPlaceholder && currentEditingVariable) {
-      // Instead of inserting a new placeholder, update the existing one.
-      updateExistingPlaceholder(currentEditingVariable, internalType, displayName);
-      window.isEditingPlaceholder = false;
-      currentEditingVariable = null;
-      $('#placeholderModal').modal('hide');
-    } else {
-      // Normal behavior for inserting a new placeholder.
-      if (internalType === "PRONOUN") {
-        pickPronounFormAndGroup();
-        $('#placeholderSearch').val('');
-        updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
-        return;
-      }
-      if (internalType.indexOf("NN") === 0) {
-        showNounNumberSelection(internalType, displayName);
-        $('#placeholderSearch').val('');
-        updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
-        return;
-      }
-      if (internalType.indexOf("VB") === 0 || internalType === "MD") {
-        showVerbTenseSelection(internalType, displayName);
-        $('#placeholderSearch').val('');
-        updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
-        return;
-      }
-      insertPlaceholder(internalType, displayName, false);
-      $('#placeholderSearch').val('');
-      updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
-    }
-  });
-  
   // Helper function to update an existing placeholder’s type and official display while preserving its display override.
   function updateExistingPlaceholder(variable, newInternalType, newOfficialDisplay) {
     let oldId = variable.id;
@@ -2225,10 +2294,8 @@ $(document).on('click', '#modalPlaceholderAccordion .placeholder-btn', function 
     updateVariablesList();
   }
   
-  
   // ====================================================
-  // NEW: Floating Menu Elements Creation
-  // (These are created only once and appended to document.body)
+  // 18. FLOATING MENU ELEMENTS CREATION (if not already present)
   // ====================================================
   // Floating selection menu (for highlighted text) – already created in the HTML above if desired,
   // but here we create it dynamically if not present.
