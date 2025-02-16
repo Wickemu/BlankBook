@@ -1,14 +1,26 @@
 {
     "name": "blankbook",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "A simple Mad Libs style game for family fun.",
     "main": "server.js",
     "scripts": {
-        "start": "node server.js"
+      "start": "node server.js",
+      "dev": "nodemon server.js"
     },
     "dependencies": {
-        "body-parser": "^1.20.3",
-        "express": "^4.21.2",
-        "express-validator": "^7.2.1"
-    }
-}
+      "body-parser": "^1.20.3",
+      "cors": "^2.8.5",
+      "express": "^4.21.2",
+      "express-validator": "^7.2.1",
+      "helmet": "^6.0.0",
+      "morgan": "^1.10.0"
+    },
+    "devDependencies": {
+      "nodemon": "^2.0.20"
+    },
+    "engines": {
+      "node": ">=14.0.0"
+    },
+    "license": "MIT"
+  }
+  

@@ -1,145 +1,151 @@
-// server.js
 const express = require('express');
 const fs = require('fs');
+const fsPromises = fs.promises;
 const path = require('path');
+const helmet = require('helmet');
+const morgan = require('morgan');
+const cors = require('cors');
+const { body, validationResult } = require('express-validator');
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const STORIES_FILE = path.join(__dirname, 'stories.json');
-const { sanitize } = require('express-validator'); // Import express-validator's sanitize function
 
-// Use built-in JSON parser (Express 4.16+)
+// --- Security & Logging Middleware ---
+app.use(helmet());
+app.use(cors());
 app.use(express.json());
-
-// Serve static files from the "public" folder
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(morgan('combined'));
 
-// --- New Utility Function: Sanitize Input ---
+// --- Basic HTML escaping (improved sanitation) ---
 function sanitizeInput(text) {
-  if (typeof text !== 'string') {
-    return text; // Return non-string inputs as-is (or handle differently if needed)
-  }
-  return text.replace(/</g, '&lt;').replace(/>/g, '&gt;'); // Basic HTML escaping
-  // For more robust sanitization, consider using a library like 'sanitize-html'
+  if (typeof text !== 'string') return text;
+  return text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-// Helper function to read saved stories from disk
-function readStories() {
+// --- Asynchronous Helpers to Read/Write Stories ---
+async function readStories() {
   try {
-    if (fs.existsSync(STORIES_FILE)) {
-      const data = fs.readFileSync(STORIES_FILE, 'utf8');
-      console.log(`${new Date().toISOString()} - Reading stories.json. Data length: ${data.length}`); // Added timestamp to log
-      return JSON.parse(data);
+    await fsPromises.access(STORIES_FILE);
+    const data = await fsPromises.readFile(STORIES_FILE, 'utf8');
+    console.log(`${new Date().toISOString()} - Read stories.json, length: ${data.length}`);
+    return JSON.parse(data);
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      console.log(`${new Date().toISOString()} - stories.json not found; returning empty array.`);
+      return [];
     }
-    console.log(`${new Date().toISOString()} - stories.json not found; returning empty array.`); // Added timestamp to log
-    return [];
-  } catch (err) {
-    console.error(`${new Date().toISOString()} - Error reading stories.json:`, err); // Added timestamp to log
+    console.error(`${new Date().toISOString()} - Error reading stories.json:`, err);
     return [];
   }
 }
 
-// Helper function to write stories to disk
-function saveStories(stories) {
+async function saveStories(stories) {
   try {
-    fs.writeFileSync(STORIES_FILE, JSON.stringify(stories, null, 2), 'utf8');
-    console.log(`${new Date().toISOString()} - Stories saved successfully.`); // Added timestamp to log
+    await fsPromises.writeFile(STORIES_FILE, JSON.stringify(stories, null, 2), 'utf8');
+    console.log(`${new Date().toISOString()} - Stories saved successfully.`);
   } catch (err) {
-    console.error(`${new Date().toISOString()} - Error writing stories.json:`, err); // Added timestamp to log
+    console.error(`${new Date().toISOString()} - Error writing stories.json:`, err);
+    throw err;
   }
 }
 
-// Endpoint to save (or overwrite) a story
-app.post('/api/savestory', (req, res) => {
-  const newStory = req.body;
-  console.log(`${new Date().toISOString()} - Received story for saving:`, newStory.storyTitle); // Added timestamp and story title to log
+// --- Endpoint to Save (or Overwrite) a Story ---
+app.post(
+  '/api/savestory',
+  [
+    body('storyTitle').notEmpty().withMessage('storyTitle is required'),
+    body('storyAuthor').notEmpty().withMessage('storyAuthor is required'),
+    body('storyText').notEmpty().withMessage('storyText is required')
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      console.error(`${new Date().toISOString()} - Validation errors:`, errors.array());
+      return res.status(400).json({ errors: errors.array() });
+    }
+    try {
+      const newStory = req.body;
+      console.log(`${new Date().toISOString()} - Received story for saving:`, newStory.storyTitle);
 
-  // --- Input Validation and Sanitization ---
-  const missingFields = [];
-  if (!newStory.storyTitle) missingFields.push("storyTitle");
-  if (!newStory.storyAuthor) missingFields.push("storyAuthor");
-  if (!newStory.storyText) missingFields.push("storyText");
-
-  if (missingFields.length > 0) {
-    const errorMessage = "Missing required fields: " + missingFields.join(", ");
-    console.error(`${new Date().toISOString()} - ${errorMessage}`); // Added timestamp to log
-    return res
-      .status(400)
-      .json({ error: errorMessage });
-  }
-
-  // Sanitize story data to prevent XSS (Cross-Site Scripting)
-  newStory.storyTitle = sanitizeInput(newStory.storyTitle);
-  newStory.storyAuthor = sanitizeInput(newStory.storyAuthor);
-  newStory.storyText = sanitizeInput(newStory.storyText);
-  // Sanitize variables displayOverride if present - important for user-provided text in placeholders
-  if (newStory.variables && Array.isArray(newStory.variables)) {
-    newStory.variables.forEach(variable => {
-      if (variable.displayOverride) {
-        variable.displayOverride = sanitizeInput(variable.displayOverride);
+      // --- Sanitize Inputs ---
+      newStory.storyTitle = sanitizeInput(newStory.storyTitle);
+      newStory.storyAuthor = sanitizeInput(newStory.storyAuthor);
+      newStory.storyText = sanitizeInput(newStory.storyText);
+      if (newStory.variables && Array.isArray(newStory.variables)) {
+        newStory.variables.forEach(variable => {
+          if (variable.displayOverride) {
+            variable.displayOverride = sanitizeInput(variable.displayOverride);
+          }
+        });
       }
-    });
-  }
 
+      // --- Normalize Optional Fields ---
+      newStory.variables = newStory.variables || [];
+      newStory.fillValues = newStory.fillValues || {};
+      newStory.pronounGroups = newStory.pronounGroups || {};
+      newStory.variableCounts = newStory.variableCounts || {};
+      newStory.customPlaceholders = newStory.customPlaceholders || [];
+      newStory.pronounGroupCount = newStory.pronounGroupCount || 0;
 
-  // Normalize optional fields
-  newStory.variables = newStory.variables || [];
-  newStory.fillValues = newStory.fillValues || {};
-  newStory.pronounGroups = newStory.pronounGroups || {};
-  newStory.variableCounts = newStory.variableCounts || {};
-  newStory.customPlaceholders = newStory.customPlaceholders || [];
-  newStory.pronounGroupCount = newStory.pronounGroupCount || 0;
-
-  let stories = readStories();
-  const existingIndex = stories.findIndex(s => s.storyTitle === newStory.storyTitle);
-  if (existingIndex !== -1) {
-    if (!newStory.overwrite) {
-      console.log(`${new Date().toISOString()} - Story exists and overwrite not requested: ${newStory.storyTitle}`); // Added timestamp and story title to log
-      return res.status(409).json({ error: "Story with this title already exists." });
+      const stories = await readStories();
+      const existingIndex = stories.findIndex(s => s.storyTitle === newStory.storyTitle);
+      if (existingIndex !== -1) {
+        if (!newStory.overwrite) {
+          console.log(`${new Date().toISOString()} - Story exists and overwrite not requested: ${newStory.storyTitle}`);
+          return res.status(409).json({ error: "Story with this title already exists." });
+        }
+        console.log(`${new Date().toISOString()} - Overwriting existing story: ${newStory.storyTitle}`);
+        stories[existingIndex] = newStory;
+      } else {
+        console.log(`${new Date().toISOString()} - Adding new story: ${newStory.storyTitle}`);
+        stories.push(newStory);
+      }
+      await saveStories(stories);
+      res.json({ success: true });
+    } catch (error) {
+      console.error(`${new Date().toISOString()} - Error in /api/savestory:`, error);
+      res.status(500).json({ error: "Internal Server Error" });
     }
-    console.log(`${new Date().toISOString()} - Overwriting existing story: ${newStory.storyTitle}`); // Added timestamp and story title to log
-    stories[existingIndex] = newStory;
-  } else {
-    console.log(`${new Date().toISOString()} - Adding new story: ${newStory.storyTitle}`); // Added timestamp and story title to log
-    stories.push(newStory);
   }
-  saveStories(stories);
-  res.json({ success: true });
-});
+);
 
-// Endpoint to get all saved stories
-app.get('/api/getstories', (req, res) => {
+// --- Endpoint to Get All Saved Stories ---
+app.get('/api/getstories', async (req, res) => {
   try {
-    const stories = readStories();
+    const stories = await readStories();
     res.json(stories);
   } catch (error) {
-    const errorMessage = "Error retrieving saved stories.";
-    console.error(`${new Date().toISOString()} - ${errorMessage}`, error); // Added timestamp and error details to log
-    res.status(500).json({ error: errorMessage }); // Respond with 500 and error message
+    console.error(`${new Date().toISOString()} - Error retrieving saved stories:`, error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
-// Endpoint to delete a story by title
-app.delete('/api/deletestory', (req, res) => {
-  const { storyTitle } = req.body;
-  if (!storyTitle) {
-    const errorMessage = "Missing storyTitle in request body.";
-    console.error(`${new Date().toISOString()} - ${errorMessage}`); // Added timestamp to log
-    return res.status(400).json({ error: errorMessage });
-  }
-
+// --- Endpoint to Delete a Story by Title ---
+app.delete('/api/deletestory', async (req, res) => {
   try {
-    let stories = readStories();
+    const { storyTitle } = req.body;
+    if (!storyTitle) {
+      console.error(`${new Date().toISOString()} - Missing storyTitle in request body.`);
+      return res.status(400).json({ error: "Missing storyTitle in request body." });
+    }
+    let stories = await readStories();
     const newStories = stories.filter(s => s.storyTitle !== storyTitle);
-    saveStories(newStories);
+    await saveStories(newStories);
     res.json({ success: true });
   } catch (error) {
-    const errorMessage = "Error deleting story.";
-    console.error(`${new Date().toISOString()} - ${errorMessage} Title: ${storyTitle}`, error); // Added timestamp, title, and error details to log
-    res.status(500).json({ error: errorMessage }); // Respond with 500 and error message
+    console.error(`${new Date().toISOString()} - Error deleting story:`, error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
-// Bind to all interfaces (0.0.0.0) so that it's available on your LAN.
+// --- Global Error-Handling Middleware ---
+app.use((err, req, res, next) => {
+  console.error(`${new Date().toISOString()} - Unhandled error:`, err);
+  res.status(500).json({ error: "Internal Server Error" });
+});
+
+// --- Start the Server ---
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`${new Date().toISOString()} - Server is running on http://<your-local-IP>:${PORT}`); // Added timestamp to log
+  console.log(`${new Date().toISOString()} - Server is running on port ${PORT}`);
 });
