@@ -356,75 +356,117 @@
   {
     "storyTitle": "Brain Rot Brawl",
     "storyAuthor": "Peter Armstrong",
-    "storyText": "Do you think your {NNS_FamilyMember1} are too into Brain rot? Do you {VB_Stative1} the word Skibidi toilet? Then come on down to {NN_Place1}'s Brain rot Brawl, the number {Number1} place to cure your {NNS_FamilyMember1}'s Brain rot! The first thing you need to do is learn your {NNS_FamilyMember1}'s hobbies! Weather its {NN_Job1} or {NN_Job2}, we love all of your hobbies! Next up, {NN_Person1} Has to grab a bar of {NN1} to wipe out the Brian rot. and then you're done! The bill is {Number2} dollars, so if want to do this, come down {NN_Date1}!",
+    "storyText": "Do you think your &lt;span class=\"placeholder\" data-id=\"NNS_FamilyMember1\" title=\"NNS_FamilyMember1\" contenteditable=\"false\"&gt;children&lt;/span&gt; are too into Brain rot? Do you &lt;span class=\"placeholder\" data-id=\"VB_Stative1\" title=\"VB_Stative1\" contenteditable=\"false\"&gt;hate&lt;/span&gt; the word Skibidi toilet? Then come on down to &lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\"&gt;Peter&lt;/span&gt;'s Brain rot Brawl, the number &lt;span class=\"placeholder\" data-id=\"Number1\" title=\"Number1\" contenteditable=\"false\"&gt;1&lt;/span&gt; place to cure your &lt;span class=\"placeholder\" data-id=\"NNS_FamilyMember1\" title=\"NNS_FamilyMember1\" contenteditable=\"false\"&gt;children&lt;/span&gt;'s Brain rot! The first thing you need to do is learn your &lt;span class=\"placeholder\" data-id=\"NNS_FamilyMember1\" title=\"NNS_FamilyMember1\" contenteditable=\"false\"&gt;children&lt;/span&gt;'s hobbies! Weather its &lt;span class=\"placeholder\" data-id=\"NN_Job1\" title=\"NN_Job1\" contenteditable=\"false\"&gt;YouTube&lt;/span&gt; or &lt;span class=\"placeholder\" data-id=\"NN_Job2\" title=\"NN_Job2\" contenteditable=\"false\"&gt;Roblox&lt;/span&gt;, we love all of your hobbies! Next up, &lt;span class=\"placeholder\" data-id=\"NN_Person2\" title=\"NN_Person2\" contenteditable=\"false\"&gt;Mr Beast&lt;/span&gt; Has to grab a bar of &lt;span class=\"placeholder\" data-id=\"NN3\" title=\"NN3\" contenteditable=\"false\"&gt;soap&lt;/span&gt; to wipe out the Brian rot. and then you're done! The bill is &lt;span class=\"placeholder\" data-id=\"Number2\" title=\"Number2\" contenteditable=\"false\"&gt;300&lt;/span&gt; dollars, so if want to do this, come down &lt;span class=\"placeholder\" data-id=\"Date1\" title=\"Date1\" contenteditable=\"false\"&gt;this weekend&lt;/span&gt;!",
     "variables": [
       {
         "id": "NNS_FamilyMember1",
-        "internalType": "Familymember (Plural)",
-        "display": "Familymember (Plural)",
-        "order": 0
+        "internalType": "Family Member (Plural)",
+        "officialDisplay": "Family Member (Plural)",
+        "display": "Family Member (Plural)",
+        "order": 0,
+        "displayOverride": "children"
       },
       {
         "id": "VB_Stative1",
         "internalType": "Stative Verb (Base Form)",
+        "officialDisplay": "Stative Verb (Base Form)",
         "display": "Stative Verb (Base Form)",
-        "order": 1
-      },
-      {
-        "id": "NN_Place1",
-        "internalType": "Place (Singular)",
-        "display": "Place (Singular)",
-        "order": 2
-      },
-      {
-        "id": "Number1",
-        "internalType": "Number",
-        "display": "Number",
-        "order": 3
-      },
-      {
-        "id": "NN_Job1",
-        "internalType": "Job (Singular)",
-        "display": "Job (Singular)",
-        "order": 4
-      },
-      {
-        "id": "NN_Job2",
-        "internalType": "Job (Singular)",
-        "display": "Job (Singular)",
-        "order": 5
+        "order": 1,
+        "displayOverride": "hate"
       },
       {
         "id": "NN_Person1",
         "internalType": "Person (Singular)",
+        "officialDisplay": "Person (Singular)",
         "display": "Person (Singular)",
-        "order": 6
+        "order": 2,
+        "displayOverride": "Peter"
       },
       {
-        "id": "NN1",
-        "internalType": "Common noun (Singular)",
-        "display": "Common noun (Singular)",
-        "order": 7
+        "id": "Number1",
+        "internalType": "Number",
+        "officialDisplay": "Number",
+        "display": "Number",
+        "order": 3,
+        "displayOverride": "1"
+      },
+      {
+        "id": "NN_Job1",
+        "internalType": "NN_Job",
+        "officialDisplay": "Job (Singular)",
+        "display": "Job (Singular)",
+        "isCustom": true,
+        "order": 4,
+        "displayOverride": "YouTube"
+      },
+      {
+        "id": "NN_Job2",
+        "internalType": "NN_Job",
+        "officialDisplay": "Job (Singular)",
+        "display": "Job (Singular)",
+        "isCustom": true,
+        "order": 5,
+        "displayOverride": "Roblox"
+      },
+      {
+        "id": "NN_Person2",
+        "internalType": "Person (Singular)",
+        "officialDisplay": "Person (Singular)",
+        "display": "Person (Singular)",
+        "order": 6,
+        "displayOverride": "Mr Beast"
+      },
+      {
+        "id": "NN3",
+        "internalType": "Common Noun (Singular)",
+        "officialDisplay": "Common Noun (Singular)",
+        "display": "Common Noun (Singular)",
+        "order": 7,
+        "displayOverride": "soap"
       },
       {
         "id": "Number2",
         "internalType": "Number",
+        "officialDisplay": "Number",
         "display": "Number",
-        "order": 8
+        "order": 8,
+        "displayOverride": "300"
       },
       {
-        "id": "NN_Date1",
-        "internalType": "Date (Singular)",
-        "display": "Date (Singular)",
-        "order": 9
+        "id": "Date1",
+        "internalType": "Date",
+        "officialDisplay": "Date",
+        "display": "Date",
+        "isCustom": true,
+        "order": 9,
+        "displayOverride": "this weekend"
       }
     ],
-    "fillValues": {},
     "pronounGroups": {},
-    "variableCounts": {},
+    "variableCounts": {
+      "NNS_FamilyMember": 1,
+      "VB_Stative": 1,
+      "NN_Person": 2,
+      "Number": 2,
+      "NN_Job": 2,
+      "NN": 3,
+      "Date": 1
+    },
     "pronounGroupCount": 0,
-    "customPlaceholders": [],
-    "savedAt": "2025-02-03T19:21:46.622Z"
+    "customPlaceholders": [
+      {
+        "type": "NN_FamilyMember"
+      },
+      {
+        "type": "NN_Job"
+      },
+      {
+        "type": "Date"
+      }
+    ],
+    "savedAt": "2025-02-08T15:32:37.459Z",
+    "overwrite": true,
+    "fillValues": {}
   },
   {
     "storyTitle": "Sleepy Night",
@@ -905,25 +947,8 @@
   {
     "storyTitle": "Christopher Columbus Discovers {Place}",
     "storyAuthor": "Jack Armstrong",
-    "storyText": "CHAPTER 1: \n     \"&lt;span class=\"placeholder\" data-id=\"Exclamation1\" title=\"Exclamation1\" contenteditable=\"false\"&gt;I can't believe it&lt;/span&gt;, we finally made it! Land ho!\"&lt;div&gt;Christopher Columbus looked up from his book, \"&lt;span class=\"placeholder\" data-id=\"NN_BookTitle1\" title=\"NN_BookTitle1\" contenteditable=\"false\"&gt;Navigating by stars&lt;/span&gt;\", and sighed. This was the &lt;span class=\"placeholder\" data-id=\"JJS_Ordinal1\" title=\"JJS_Ordinal1\" contenteditable=\"false\"&gt;fourth&lt;/span&gt; time he had been told they had reached &lt;span class=\"placeholder\" data-id=\"NN_Place1\" title=\"NN_Place1\" contenteditable=\"false\"&gt;India&lt;/span&gt;, and every time it was just another &lt;span class=\"placeholder\" data-id=\"JJ4\" title=\"JJ4\" contenteditable=\"false\"&gt;worthless&lt;/span&gt; island.  The Santa &lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\"&gt;Maria&lt;/span&gt; was growing weaker by the &lt;span class=\"placeholder\" data-id=\"NN_UnitOfTime1\" title=\"NN_UnitOfTime1\" contenteditable=\"false\"&gt;day&lt;/span&gt;, and the men were getting &lt;span class=\"placeholder\" data-id=\"JJ3\" title=\"JJ3\" contenteditable=\"false\"&gt;tired&lt;/span&gt;.  They needed some good news.&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Give me that,\" he said, taking the &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN2\" title=\"NN2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;spyglass&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; from the ship hand and peering through it. It was hard to see through the thick &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN3\" title=\"NN3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;fog&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;, but there indeed appeared to be land ahead.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Well I'll be a &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Animal1\" title=\"NN_Animal1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;monkey&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;'s &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_FamilyMember1\" title=\"NN_FamilyMember1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;uncle&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;, you may be right. All hands starboard, &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"Number1\" title=\"Number1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;3&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  o'clock!\"&nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Do you really think it could be &lt;span class=\"placeholder\" data-id=\"NN_Place1\" title=\"NN_Place1\" contenteditable=\"false\"&gt;India&lt;/span&gt;?\" asked the ship hand.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"I don't know, but my &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_BodyPart1\" title=\"NN_BodyPart1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;gut&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  tells me that this could finally be our destination.  Let's send out Captain &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person2\" title=\"NN_Person2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Dennis&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  and &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1PSA\" title=\"PRP1PSA\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;his&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  team to see what they find. If we succeed at this, we'll be the most lucrative traders of &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNS1\" title=\"NNS1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;spice&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  in the world!\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;The sun set by the time they anchored offshore.  &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNS_Animal1\" title=\"NNS_Animal1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;crabs&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; could be seen &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"VBG_Movement1\" title=\"VBG_Movement1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;skittering&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  along the beach, staying just out of their reach.  &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person2\" title=\"NN_Person2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Dennis&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  and &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1PSA\" title=\"PRP1PSA\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;his&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  crew of &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"Number2\" title=\"Number2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;twelve&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; rowed ashore and set into the wilderness.  The team immediately felt &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"JJ5\" title=\"JJ5\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;nervous&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;Captain, I have a &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"JJ_Emotion1\" title=\"JJ_Emotion1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;bad&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; &lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;feeling about this place. The air smells &lt;span class=\"placeholder\" data-id=\"JJR1\" title=\"JJR1\" contenteditable=\"false\"&gt;fouler&lt;/span&gt;&nbsp;than usual.\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Quiet, &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person3\" title=\"NN_Person3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Fred&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;!\" the captain seethed back.  The captain seemed to know more than &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1SUB\" title=\"PRP1SUB\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;he&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  let on, but &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person3\" title=\"NN_Person3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Fred&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; brushed&nbsp;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP2PSA\" title=\"PRP2PSA\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;her&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  thoughts aside and continued &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"VBG2\" title=\"VBG2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;exploring&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.\n     They made camp that night and quickly lit a &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN4\" title=\"NN4\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;fire&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; to stay warm.  The captain retreated to&nbsp;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1PSA\" title=\"PRP1PSA\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;his&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  tent early while the rest of the crew &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"VBD1\" title=\"VBD1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;drank&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  late into the night.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;No one seemed to notice the &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"Number3\" title=\"Number3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;three&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; pairs of eyes reflected from within the trees.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;Morning came, and as the captain emerged from &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1PSA\" title=\"PRP1PSA\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;his&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  tent, &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person3\" title=\"NN_Person3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Fred&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  approached &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1OBJ\" title=\"PRP1OBJ\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;him&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"RB1\" title=\"RB1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;hastily&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Captain, we've noticed something... Unusual.  You may want to see this yourself.\"&nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Very well,\" said &lt;span class=\"placeholder\" data-id=\"NN_Person2\" title=\"NN_Person2\" contenteditable=\"false\"&gt;Dennis&lt;/span&gt; &lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.&nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person3\" title=\"NN_Person3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Fred&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; took &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person2\" title=\"NN_Person2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Dennis&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&nbsp;across the camp, and immediately the captain knew what&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person3\" title=\"NN_Person3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Fred&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  was talking about. On the ground were footprints, too &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"JJ6\" title=\"JJ6\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;large&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  to be theirs, with &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"Number4\" title=\"Number4\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;six&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  toes on each foot.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Commander Columbus never said anything about this,\" &lt;span class=\"placeholder\" data-id=\"NN_Person3\" title=\"NN_Person3\" contenteditable=\"false\"&gt;Fred&lt;/span&gt;  said with a hint of &lt;span class=\"placeholder\" data-id=\"NN_Emotion1\" title=\"NN_Emotion1\" contenteditable=\"false\"&gt;doubt&lt;/span&gt;.&nbsp;&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&nbsp;\"Do you think that maybe this isn't&nbsp;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Place1\" title=\"NN_Place1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;India&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; &lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; after all?\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Go back to your tent,\" said &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person2\" title=\"NN_Person2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Dennis&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.  \"Prepare the crew and be ready to continue as planned.\"&nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"But sir, I-\"&nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"THAT IS AN ORDER.\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Very well, sir, but with all due respect, I think we need to be more &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"JJ7\" title=\"JJ7\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;prudent&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  about this.  We can be ready in &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"Number5\" title=\"Number5\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;ten&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNS_UnitOfTime1\" title=\"NNS_UnitOfTime1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;minutes&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Do it,\" the captain &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"VBD_Communication1\" title=\"VBD_Communication1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;commanded&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person2\" title=\"NN_Person2\" contenteditable=\"false\"&gt;Dennis&lt;/span&gt;&nbsp;looked down at the footprint as &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person3\" title=\"NN_Person3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Fred&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  walked away, and when &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1SUB\" title=\"PRP1SUB\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;he&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  knew &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP2SUB\" title=\"PRP2SUB\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;she&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  was out of earshot, &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1SUB\" title=\"PRP1SUB\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;he&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  said quietly:&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"You can't stop me. I will &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"VBP_Transitive1\" title=\"VBP_Transitive1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;destroy&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  you and I will take what's mine.\"&nbsp;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1SUB\" title=\"PRP1SUB\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;he&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  wiped away the footprints and went back to camp, hiding &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1PSA\" title=\"PRP1PSA\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;his&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&nbsp;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Abstract1\" title=\"NN_Abstract1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;intent&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;Back on the ship, the mood was &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"JJ8\" title=\"JJ8\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;tense&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.  The men on deck waited with &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"JJ9\" title=\"JJ9\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;bated&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  breath while the crew below were discussing what they would do when they discovered the source of &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNS1\" title=\"NNS1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;spice&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;One said: \"When I get home, I'm gonna &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"VB_Transitive1\" title=\"VB_Transitive1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;kiss&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  my girl and marry her.\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;Another said: \"I'll share the money! What could I possibly do with more than &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"Number6\" title=\"Number6\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;a hundred&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  gold anyway?\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"And what about you, Commander?\" asked one.  \"What will you do when you're richer than even a &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Career1\" title=\"NN_Career1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Lord&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;?\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;Christopher Columbus stared at his &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNS_Food1\" title=\"NNS_Food1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;crab meat&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  and contemplated the question.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"All my life I've considered what I would do with such wealth. When I was a child, I always wanted to be an&nbsp;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Career2\" title=\"NN_Career2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;archeologist&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;, and that is still a possibility. But I don't know if I could ever leave the sea. It's in my &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_BodyPart2\" title=\"NN_BodyPart2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;blood&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  now.\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;The men sat in &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Abstract2\" title=\"NN_Abstract2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;silence&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;, waiting to hear more.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Also, I've always wanted to take ownership of&nbsp;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNP1\" title=\"NNP1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;The Isle of Man&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;, so I might do that. And I'd start taking&nbsp;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Activity1\" title=\"NN_Activity1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;archery&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; lessons.  That is what I will do when we find our &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNS1\" title=\"NNS1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;spice&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.\"&nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&nbsp;Suddenly, there was a thud overhead. Instantly the men stood up and ran to the deck as &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"RB2\" title=\"RB2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;quickly&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  as they could.  What they saw would haunt them to this &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_UnitOfTime2\" title=\"NN_UnitOfTime2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;day&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;The steersman lay dead on the floor. He was pinned to the deck up by a &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN5\" title=\"NN5\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;spear&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  which had been pierced straight into him.  His &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_BodyPart3\" title=\"NN_BodyPart3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;spinal fluid&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  had splattered all over the deck and left a &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"JJ10\" title=\"JJ10\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;metallic&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  odor.&nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&nbsp;\"To your positions, men!\" cried Christopher Columbus as he unsheathed his &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN6\" title=\"NN6\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;sword&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;. \"Protect the Santa &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Maria&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;!\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;It was too late, however. As he looked around him, he saw it all.  &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"Number7\" title=\"Number7\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;a dozen&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"JJ_Color1\" title=\"JJ_Color1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;dark&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  men, wearing nothing but &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNS_Clothing1\" title=\"NNS_Clothing1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;loincloths&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;, completely surrounding him and his crew and brandishing their&nbsp;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN5\" title=\"NN5\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;spear&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;s&nbsp; over their heads, a clear look of &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Abstract3\" title=\"NN_Abstract3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;aggression&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; &nbsp;in their eyes.\n    Christopher considered the lives of his men, his hopes and their dreams, and &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"VBD_Communication2\" title=\"VBD_Communication2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;said&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;, \"We surrender. Take us to your leader so we may &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"VB_Transitive2\" title=\"VB_Transitive2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;discuss&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  the situation with them.\"\n    The &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"JJ_Color1\" title=\"JJ_Color1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;dark&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  men tied their &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNS_BodyPart1\" title=\"NNS_BodyPart1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;hands&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  behind their &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNS_BodyPart2\" title=\"NNS_BodyPart2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;backs&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  and led them to the boats.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;TO BE CONTINUED...&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;",
+    "storyText": "CHAPTER 1: \n     \"&lt;span class=\"placeholder\" data-id=\"Exclamation1\" title=\"Exclamation1\" contenteditable=\"false\"&gt;I can't believe it&lt;/span&gt;, we finally made it! Land ho!\"&lt;div&gt;Christopher Columbus looked up from his book, \"&lt;span class=\"placeholder\" data-id=\"NN_BookTitle1\" title=\"NN_BookTitle1\" contenteditable=\"false\"&gt;Star Navigation For Dummies&lt;/span&gt;\", and sighed. This was the &lt;span class=\"placeholder\" data-id=\"JJS_Ordinal1\" title=\"JJS_Ordinal1\" contenteditable=\"false\"&gt;fourth&lt;/span&gt; time he had been told they had reached &lt;span class=\"placeholder\" data-id=\"NN_Place1\" title=\"NN_Place1\" contenteditable=\"false\"&gt;India&lt;/span&gt;, and every time it was just another &lt;span class=\"placeholder\" data-id=\"JJ4\" title=\"JJ4\" contenteditable=\"false\"&gt;worthless&lt;/span&gt; island.  The Santa &lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\"&gt;Maria&lt;/span&gt; was growing weaker by the &lt;span class=\"placeholder\" data-id=\"NN_UnitOfTime1\" title=\"NN_UnitOfTime1\" contenteditable=\"false\"&gt;day&lt;/span&gt;, and the men were getting &lt;span class=\"placeholder\" data-id=\"JJ3\" title=\"JJ3\" contenteditable=\"false\"&gt;tired&lt;/span&gt;.  They needed some good news.&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Give me that,\" he said, taking the &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN2\" title=\"NN2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;spyglass&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; from the ship hand and peering through it. It was hard to see through the thick &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN3\" title=\"NN3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;fog&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;, but there indeed appeared to be land ahead.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Well I'll be a &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Animal1\" title=\"NN_Animal1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;monkey&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;'s &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_FamilyMember1\" title=\"NN_FamilyMember1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;uncle&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;, you may be right. All hands starboard, &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"Number1\" title=\"Number1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;3&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  o'clock!\"&nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Do you really think it could be &lt;span class=\"placeholder\" data-id=\"NN_Place1\" title=\"NN_Place1\" contenteditable=\"false\"&gt;India&lt;/span&gt;?\" asked the ship hand.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"I don't know, but my &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_BodyPart1\" title=\"NN_BodyPart1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;gut&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  tells me that this could finally be our destination.  Let's send out Captain &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person2\" title=\"NN_Person2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Dennis&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  and &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1PSA\" title=\"PRP1PSA\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;his&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  team to see what they find. If we succeed at this, we'll be the most lucrative traders of &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNS1\" title=\"NNS1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;spice&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  in the world!\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;The sun set by the time they anchored offshore.  &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNS_Animal1\" title=\"NNS_Animal1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;crabs&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; could be seen &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"VBG_Movement1\" title=\"VBG_Movement1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;skittering&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  along the beach, staying just out of their reach.  &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person2\" title=\"NN_Person2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Dennis&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  and &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1PSA\" title=\"PRP1PSA\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;his&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  crew of &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"Number2\" title=\"Number2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;twelve&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; rowed ashore and set into the wilderness.  The team immediately felt &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"JJ5\" title=\"JJ5\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;nervous&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;Captain, I have a &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"JJ_Emotion1\" title=\"JJ_Emotion1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;bad&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; &lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;feeling about this place. The air smells &lt;span class=\"placeholder\" data-id=\"JJR1\" title=\"JJR1\" contenteditable=\"false\"&gt;fouler&lt;/span&gt;&nbsp;than usual.\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Quiet, &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person3\" title=\"NN_Person3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Fred&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;!\" the captain seethed back.  The captain seemed to know more than &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1SUB\" title=\"PRP1SUB\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;he&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  let on, but &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person3\" title=\"NN_Person3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Fred&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; brushed&nbsp;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP2PSA\" title=\"PRP2PSA\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;her&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  thoughts aside and continued &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"VBG2\" title=\"VBG2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;exploring&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.\n     They made camp that night and quickly lit a &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN4\" title=\"NN4\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;fire&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; to stay warm.  The captain retreated to&nbsp;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1PSA\" title=\"PRP1PSA\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;his&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  tent early while the rest of the crew &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"VBD1\" title=\"VBD1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;drank&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  late into the night.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;No one seemed to notice the &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"Number3\" title=\"Number3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;three&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; pairs of eyes reflected from within the trees.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;Morning came, and as the captain emerged from &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1PSA\" title=\"PRP1PSA\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;his&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  tent, &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person3\" title=\"NN_Person3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Fred&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  approached &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1OBJ\" title=\"PRP1OBJ\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;him&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"RB1\" title=\"RB1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;hastily&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Captain, we've noticed something... Unusual.  You may want to see this yourself.\"&nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Very well,\" said &lt;span class=\"placeholder\" data-id=\"NN_Person2\" title=\"NN_Person2\" contenteditable=\"false\"&gt;Dennis&lt;/span&gt; &lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.&nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person3\" title=\"NN_Person3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Fred&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; took &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person2\" title=\"NN_Person2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Dennis&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&nbsp;across the camp, and immediately the captain knew what&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person3\" title=\"NN_Person3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Fred&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  was talking about. On the ground were footprints, too &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"JJ6\" title=\"JJ6\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;large&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  to be theirs, with &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"Number4\" title=\"Number4\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;six&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  toes on each foot.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Commander Columbus never said anything about this,\" &lt;span class=\"placeholder\" data-id=\"NN_Person3\" title=\"NN_Person3\" contenteditable=\"false\"&gt;Fred&lt;/span&gt;  said with a hint of &lt;span class=\"placeholder\" data-id=\"NN_Emotion1\" title=\"NN_Emotion1\" contenteditable=\"false\"&gt;doubt&lt;/span&gt;.&nbsp;&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&nbsp;\"Do you think that maybe this isn't&nbsp;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Place1\" title=\"NN_Place1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;India&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; &lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; after all?\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Go back to your tent,\" said &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person2\" title=\"NN_Person2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Dennis&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.  \"Prepare the crew and be ready to continue as planned.\"&nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"But sir, I-\"&nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"THAT IS AN ORDER.\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Very well, sir, but with all due respect, I think we need to be more &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"JJ7\" title=\"JJ7\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;prudent&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  about this.  We can be ready in &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"Number5\" title=\"Number5\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;ten&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNS_UnitOfTime1\" title=\"NNS_UnitOfTime1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;minutes&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Do it,\" the captain &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"VBD_Communication1\" title=\"VBD_Communication1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;commanded&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person2\" title=\"NN_Person2\" contenteditable=\"false\"&gt;Dennis&lt;/span&gt;&nbsp;looked down at the footprint as &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person3\" title=\"NN_Person3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Fred&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  walked away, and when &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1SUB\" title=\"PRP1SUB\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;he&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  knew &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP2SUB\" title=\"PRP2SUB\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;she&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  was out of earshot, &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1SUB\" title=\"PRP1SUB\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;he&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  said quietly:&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"You can't stop me. I will &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"VBP_Transitive1\" title=\"VBP_Transitive1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;destroy&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  you and I will take what's mine.\"&nbsp;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1SUB\" title=\"PRP1SUB\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;he&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  wiped away the footprints and went back to camp, hiding &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"PRP1PSA\" title=\"PRP1PSA\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;his&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&nbsp;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Abstract1\" title=\"NN_Abstract1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;intent&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;Back on the ship, the mood was &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"JJ8\" title=\"JJ8\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;tense&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.  The men on deck waited with &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"JJ9\" title=\"JJ9\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;bated&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  breath while the crew below were discussing what they would do when they discovered the source of &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNS1\" title=\"NNS1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;spice&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;One said: \"When I get home, I'm gonna &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"VB_Transitive1\" title=\"VB_Transitive1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;kiss&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  my girl and marry her.\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;Another said: \"I'll share the money! What could I possibly do with more than &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"Number6\" title=\"Number6\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;a hundred&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  gold anyway?\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"And what about you, Commander?\" asked one.  \"What will you do when you're richer than even a &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Career1\" title=\"NN_Career1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Lord&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;?\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;Christopher Columbus stared at his &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNS_Food1\" title=\"NNS_Food1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;crab meat&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  and contemplated the question.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"All my life I've considered what I would do with such wealth. When I was a child, I always wanted to be an&nbsp;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Career2\" title=\"NN_Career2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;archeologist&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;, and that is still a possibility. But I don't know if I could ever leave the sea. It's in my &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_BodyPart2\" title=\"NN_BodyPart2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;blood&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  now.\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;The men sat in &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Abstract2\" title=\"NN_Abstract2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;silence&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;, waiting to hear more.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;\"Also, I've always wanted to take ownership of&nbsp;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNP1\" title=\"NNP1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;The Isle of Man&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;, so I might do that. And I'd start taking&nbsp;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Activity1\" title=\"NN_Activity1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;archery&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; lessons.  That is what I will do when we find our &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNS1\" title=\"NNS1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;spice&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.\"&nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&nbsp;Suddenly, there was a thud overhead. Instantly the men stood up and ran to the deck as &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"RB2\" title=\"RB2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;quickly&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  as they could.  What they saw would haunt them to this &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_UnitOfTime2\" title=\"NN_UnitOfTime2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;day&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;The steersman lay dead on the floor. He was pinned to the deck up by a &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN5\" title=\"NN5\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;spear&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  which had been pierced straight into him.  His &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_BodyPart3\" title=\"NN_BodyPart3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;spinal fluid&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  had splattered all over the deck and left a &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"JJ10\" title=\"JJ10\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;metallic&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  odor.&nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&nbsp;\"To your positions, men!\" cried Christopher Columbus as he unsheathed his &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN6\" title=\"NN6\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;sword&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;. \"Protect the Santa &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;Maria&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;!\"&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;It was too late, however. As he looked around him, he saw it all.  &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"Number7\" title=\"Number7\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;a dozen&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"JJ_Color1\" title=\"JJ_Color1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;dark&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  men, wearing nothing but &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNS_Clothing1\" title=\"NNS_Clothing1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;loincloths&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;, completely surrounding him and his crew and brandishing their&nbsp;&lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN5\" title=\"NN5\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;spear&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;s&nbsp; over their heads, a clear look of &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NN_Abstract3\" title=\"NN_Abstract3\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;aggression&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt; &nbsp;in their eyes.\n    Christopher considered the lives of his men, his hopes and their dreams, and &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"VBD_Communication2\" title=\"VBD_Communication2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;said&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;, \"We surrender. Take us to your leader so we may &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"VB_Transitive2\" title=\"VB_Transitive2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;discuss&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  the situation with them.\"\n    The &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"JJ_Color1\" title=\"JJ_Color1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;dark&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  men tied their &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNS_BodyPart1\" title=\"NNS_BodyPart1\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;hands&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  behind their &lt;/span&gt;&lt;span class=\"placeholder\" data-id=\"NNS_BodyPart2\" title=\"NNS_BodyPart2\" contenteditable=\"false\" style=\"font-size: 0.875rem;\"&gt;backs&lt;/span&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;  and led them to the boats.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=\"font-size: 0.875rem;\"&gt;TO BE CONTINUED...&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;",
     "variables": [
-      {
-        "id": "NN_Place1",
-        "internalType": "Place (Singular)",
-        "officialDisplay": "Place (Singular)",
-        "display": "Place (Singular)",
-        "order": 3,
-        "displayOverride": "India"
-      },
-      {
-        "id": "NN_FamilyMember1",
-        "internalType": "NN_FamilyMember",
-        "officialDisplay": "Family Member (Singular)",
-        "display": "Family Member (Singular)",
-        "isCustom": true,
-        "order": 11,
-        "displayOverride": "uncle"
-      },
       {
         "id": "Exclamation1",
         "internalType": "Exclamation",
@@ -939,7 +964,7 @@
         "display": "Book Title (Singular)",
         "isCustom": true,
         "order": 1,
-        "displayOverride": "Navigating by stars"
+        "displayOverride": "Star Navigation For Dummies"
       },
       {
         "id": "JJS_Ordinal1",
@@ -948,6 +973,14 @@
         "display": "Ordinal Number",
         "order": 2,
         "displayOverride": "fourth"
+      },
+      {
+        "id": "NN_Place1",
+        "internalType": "Place (Singular)",
+        "officialDisplay": "Place (Singular)",
+        "display": "Place (Singular)",
+        "order": 3,
+        "displayOverride": "India"
       },
       {
         "id": "JJ4",
@@ -1005,6 +1038,15 @@
         "display": "Animal (Singular)",
         "order": 10,
         "displayOverride": "monkey"
+      },
+      {
+        "id": "NN_FamilyMember1",
+        "internalType": "NN_FamilyMember",
+        "officialDisplay": "Family Member (Singular)",
+        "display": "Family Member (Singular)",
+        "isCustom": true,
+        "order": 11,
+        "displayOverride": "uncle"
       },
       {
         "id": "Number1",
@@ -1525,256 +1567,294 @@
         "type": "NN_Activity"
       }
     ],
-    "savedAt": "2025-02-07T20:17:36.688Z",
+    "savedAt": "2025-02-08T17:18:10.339Z",
     "overwrite": true,
     "fillValues": {}
   },
   {
     "storyTitle": "The Encounter",
     "storyAuthor": "Jack Armstrong",
-    "storyText": "One {JJ1} afternoon, Sonic the Hedgehog was {VBG_Action1} through the lush hills of {JJ_Color1} Hill Zone, his {JJ2} blue quills cutting through the wind. The air was filled with the scent of fresh {NN1}, and Sonic felt as though nothing could slow him down. He dashed {IN1} loop-de-loops and jumped from springboards, laughing as the world {VBD_Intransitive1} around him.\n\nBut {RB1}, everything changed.\n\nOut of nowhere, a dark figure appeared on a distant hill, standing {JJ3} and silent. Sonic {Onomatopoeia1} to a halt, his heart {VBG_Action2}. Whoever this was, they looked like him—almost exactly like him—but with {SomethingBlack1}-black fur and a {JJ_Emotion1} red gaze. \n\nSonic squinted and crossed his {NNS_BodyPart1}. \"Who are you supposed to be?\" he asked, his voice tinged with {NN_Emotion1}.\n\nThe figure stepped forward, his crimson eyes locked onto Sonic. \"I’m Shadow,\" the mysterious hedgehog replied, his voice as cold as {NN_Concrete1}. \"And I’m the ultimate {NN2}.\"\n\nSonic {VBD_Intransitive2}, his expression shifting from {NN_Emotion2} to a smirk. \"Ultimate {NN2}, huh? We’ll see about that!\"\n\nBefore Sonic could react, Shadow suddenly vanished from sight, leaving only a {JJ4} blur. In the next instant, he reappeared {RB2} in front of Sonic, his movements so fast they were nearly {JJ5}. Sonic barely had time to dodge as Shadow’s {NN_BodyPart1} came hurtling toward him, missing his face by mere {NNP_UnitOfMeasurement1}.\n\nSonic's eyes widened as he {VBD_Action1} backward, skidding to a stop. \"{UH1}! You’re fast!\" he said, his tone no longer playful but now {JJ_Emotion2}. For the {JJS_Ordinal1} time in a long while, Sonic felt something he rarely ever did—{NN_Emotion3}.\n\nShadow didn’t respond. Instead, he stared at Sonic with a {JJ6} intensity, his {NNS_BodyPart2} tense, ready for another strike. \"You don’t {MD_VB1} what’s coming, Sonic. Your speed won’t save you.\"\n\nSonic clenched his {NNS_BodyPart3}, his usual cocky grin replaced by a look of {NN_Emotion4}. \"Maybe not,\" he shot back. \"But it’ll give you a run for your {NN3}!\"\n\nThe two hedgehogs stood there, facing each other, the world around them {JJ7} as the wind {VBD_Action2} through the grass. In that {NN_UnitOfTime}, Sonic knew one thing for sure: this wasn’t just another rival. This was something more. And the {JJ8} battle between them was only beginning.\n\nWith a sudden burst of speed, they both charged at each other, and the sky seemed to darken as the clash of their powers shook the very earth beneath them.\n\nThe ultimate race had begun.",
+    "storyText": "&lt;p&gt;&lt;strong&gt;The Encounter&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;One &lt;strong&gt;&lt;/strong&gt;&lt;span class=\"placeholder\" data-id=\"JJ1\" title=\"JJ1\" contenteditable=\"false\"&gt;bright&lt;/span&gt; afternoon, Sonic the Hedgehog was &lt;span class=\"placeholder\" data-id=\"VBG_Movement1\" title=\"VBG_Movement1\" contenteditable=\"false\"&gt;speeding&lt;/span&gt; through the &lt;strong&gt;lush&lt;/strong&gt; hills of &lt;span class=\"placeholder\" data-id=\"Color1\" title=\"Color1\" contenteditable=\"false\"&gt;Green&lt;/span&gt; Hill Zone, his &lt;strong&gt;&lt;span class=\"placeholder\" data-id=\"JJ2\" title=\"JJ2\" contenteditable=\"false\"&gt;sharp&lt;/span&gt; blue quills&lt;/strong&gt; cutting through the wind. The air was filled with the scent of &lt;strong&gt;fresh &lt;span class=\"placeholder\" data-id=\"NNS1\" title=\"NNS1\" contenteditable=\"false\"&gt;grass&lt;/span&gt;&lt;/strong&gt;, and Sonic felt as though nothing could &lt;strong&gt;slow him down&lt;/strong&gt;. He dashed &lt;span class=\"placeholder\" data-id=\"IN1\" title=\"IN1\" contenteditable=\"false\"&gt;over&lt;/span&gt; &lt;strong&gt;loop-de-loops&lt;/strong&gt; and jumped from &lt;strong&gt;springboards&lt;/strong&gt;, laughing as the world &lt;span class=\"placeholder\" data-id=\"VBD_Intransitive1\" title=\"VBD_Intransitive1\" contenteditable=\"false\"&gt;blurred&lt;/span&gt; around him.&lt;/p&gt;\n&lt;p&gt;But &lt;span class=\"placeholder\" data-id=\"RB1\" title=\"RB1\" contenteditable=\"false\"&gt;suddenly&lt;/span&gt;, everything changed.&lt;/p&gt;\n&lt;p&gt;Out of nowhere, a &lt;strong&gt;dark figure&lt;/strong&gt; appeared on a distant hill, standing &lt;strong&gt;&lt;/strong&gt;&lt;span class=\"placeholder\" data-id=\"JJ3\" title=\"JJ3\" contenteditable=\"false\"&gt;still&lt;/span&gt; and &lt;strong&gt;silent&lt;/strong&gt;. Sonic &lt;span class=\"placeholder\" data-id=\"VBD_Onomatopoeia1\" title=\"VBD_Onomatopoeia1\" contenteditable=\"false\"&gt;screeched&lt;/span&gt; to a halt, his &lt;strong&gt;heart &lt;span class=\"placeholder\" data-id=\"VBG_Action1\" title=\"VBG_Action1\" contenteditable=\"false\"&gt;pounding&lt;/span&gt;&lt;/strong&gt;. Whoever this was, they looked like him—almost exactly like him—but with &lt;strong&gt;&lt;span class=\"placeholder\" data-id=\"NN_NounThatsBlack1\" title=\"NN_NounThatsBlack1\" contenteditable=\"false\"&gt;jet&lt;/span&gt;-black fur&lt;/strong&gt; and a &lt;strong&gt;&lt;span class=\"placeholder\" data-id=\"JJ4\" title=\"JJ4\" contenteditable=\"false\"&gt;menacing&lt;/span&gt; red gaze&lt;/strong&gt;.&lt;/p&gt;\n&lt;p&gt;Sonic squinted and crossed his &lt;span class=\"placeholder\" data-id=\"NNS_BodyPart1\" title=\"NNS_BodyPart1\" contenteditable=\"false\"&gt;arms&lt;/span&gt;. \"Who are you supposed to be?\" he asked, his voice tinged with &lt;span class=\"placeholder\" data-id=\"NN_Emotion1\" title=\"NN_Emotion1\" contenteditable=\"false\"&gt;curiosity&lt;/span&gt;.&lt;/p&gt;\n&lt;p&gt;The figure stepped forward, his &lt;strong&gt;crimson eyes&lt;/strong&gt; locked onto Sonic. \"I’m Shadow,\" the mysterious hedgehog replied, his voice as cold as &lt;strong&gt;&lt;span class=\"placeholder\" data-id=\"NN2\" title=\"NN2\" contenteditable=\"false\"&gt;steel&lt;/span&gt;&lt;/strong&gt;. \"And I’m the ultimate &lt;span class=\"placeholder\" data-id=\"NN3\" title=\"NN3\" contenteditable=\"false\"&gt;lifeform&lt;/span&gt;.\"&lt;/p&gt;\n&lt;p&gt;Sonic &lt;span class=\"placeholder\" data-id=\"VBD_Intransitive2\" title=\"VBD_Intransitive2\" contenteditable=\"false\"&gt;blinked&lt;/span&gt;, his expression shifting from &lt;span class=\"placeholder\" data-id=\"NN_Emotion2\" title=\"NN_Emotion2\" contenteditable=\"false\"&gt;confusion&lt;/span&gt; to a smirk. \"Ultimate &lt;span class=\"placeholder\" data-id=\"NN3\" title=\"NN3\" contenteditable=\"false\"&gt;lifeform&lt;/span&gt;, huh? We’ll see about that!\"&lt;/p&gt;\n&lt;p&gt;Before Sonic could react, Shadow suddenly vanished from sight, leaving only a &lt;span class=\"placeholder\" data-id=\"JJ5\" title=\"JJ5\" contenteditable=\"false\"&gt;faint&lt;/span&gt; blur. In the next instant, he reappeared &lt;span class=\"placeholder\" data-id=\"RB2\" title=\"RB2\" contenteditable=\"false\"&gt;directly&lt;/span&gt; in front of Sonic, his movements so fast they were nearly &lt;span class=\"placeholder\" data-id=\"JJ6\" title=\"JJ6\" contenteditable=\"false\"&gt;invisible&lt;/span&gt;. Sonic barely had time to dodge as Shadow’s &lt;span class=\"placeholder\" data-id=\"NN_BodyPart1\" title=\"NN_BodyPart1\" contenteditable=\"false\"&gt;fist&lt;/span&gt; came hurtling toward him, missing his face by mere &lt;span class=\"placeholder\" data-id=\"NNS_UnitOfMeasurement1\" title=\"NNS_UnitOfMeasurement1\" contenteditable=\"false\"&gt;inches&lt;/span&gt;.&lt;/p&gt;\n&lt;p&gt;Sonic's eyes widened as he &lt;span class=\"placeholder\" data-id=\"VBD_Movement1\" title=\"VBD_Movement1\" contenteditable=\"false\"&gt;leapt&lt;/span&gt; backward, skidding to a stop. \"&lt;span class=\"placeholder\" data-id=\"Exclamation1\" title=\"Exclamation1\" contenteditable=\"false\"&gt;Whoa&lt;/span&gt;! You’re fast!\" he said, his tone no longer playful but &lt;span class=\"placeholder\" data-id=\"JJ7\" title=\"JJ7\" contenteditable=\"false\"&gt;serious&lt;/span&gt;. For the &lt;span class=\"placeholder\" data-id=\"JJ_Number1\" title=\"JJ_Number1\" contenteditable=\"false\"&gt;first&lt;/span&gt; time in a long while, Sonic felt something he rarely ever did—&lt;strong&gt;&lt;span class=\"placeholder\" data-id=\"NN_Emotion3\" title=\"NN_Emotion3\" contenteditable=\"false\"&gt;uncertainty&lt;/span&gt;&lt;/strong&gt;.&lt;/p&gt;\n&lt;p&gt;Shadow didn’t respond. Instead, he stared at Sonic with a &lt;strong&gt;&lt;span class=\"placeholder\" data-id=\"JJ8\" title=\"JJ8\" contenteditable=\"false\"&gt;cold&lt;/span&gt; intensity&lt;/strong&gt;, his muscles tense, ready for another strike. \"You don’t understand what’s coming, Sonic. Your speed won’t save you.\"&lt;/p&gt;\n&lt;p&gt;Sonic clenched his fists, his usual &lt;strong&gt;cocky grin&lt;/strong&gt; replaced by a look of determination. \"Maybe not,\" he shot back. \"But it’ll give you a run for your money!\"&lt;/p&gt;\n&lt;p&gt;The two hedgehogs stood there, facing each other, the world around them &lt;strong&gt;silent&lt;/strong&gt; as the wind whispered through the grass. In that moment, Sonic knew one thing for sure: this wasn’t just another rival. This was &lt;strong&gt;something more&lt;/strong&gt;. And the battle between them was only beginning.&lt;/p&gt;\n&lt;p&gt;With a sudden burst of speed, they both charged at each other, and the sky seemed to darken as the clash of their powers shook the very earth beneath them.&lt;/p&gt;\n&lt;p&gt;The &lt;strong&gt;ultimate race&lt;/strong&gt; had begun.&lt;/p&gt;",
     "variables": [
+      {
+        "id": "NN3",
+        "internalType": "Common Noun (Singular)",
+        "officialDisplay": "Common Noun (Singular)",
+        "display": "Common Noun (Singular)",
+        "order": 16,
+        "displayOverride": "lifeform"
+      },
       {
         "id": "JJ1",
         "internalType": "Adjective",
+        "officialDisplay": "Adjective",
         "display": "Adjective",
-        "order": 0
+        "order": 0,
+        "displayOverride": "bright"
       },
       {
-        "id": "VBG_Action1",
-        "internalType": "Action Verb (Present Participle)",
-        "display": "Action Verb (Present Participle)",
-        "order": 1
+        "id": "VBG_Movement1",
+        "internalType": "Movement Verb (Gerund (crying))",
+        "officialDisplay": "Movement Verb (Gerund (crying))",
+        "display": "Movement Verb (Gerund (crying))",
+        "order": 1,
+        "displayOverride": "speeding"
       },
       {
-        "id": "JJ_Color1",
-        "internalType": "Color Adjective",
-        "display": "Color Adjective",
-        "order": 2
+        "id": "Color1",
+        "internalType": "Color",
+        "officialDisplay": "Color",
+        "display": "Color",
+        "isCustom": true,
+        "order": 2,
+        "displayOverride": "Green"
       },
       {
         "id": "JJ2",
         "internalType": "Adjective",
+        "officialDisplay": "Adjective",
         "display": "Adjective",
-        "order": 3
+        "order": 3,
+        "displayOverride": "sharp"
       },
       {
-        "id": "NN1",
-        "internalType": "Common noun (Singular)",
-        "display": "Common noun (Singular)",
-        "order": 4
+        "id": "NNS1",
+        "internalType": "Common Noun (Plural)",
+        "officialDisplay": "Common Noun (Plural)",
+        "display": "Common Noun (Plural)",
+        "order": 4,
+        "displayOverride": "grass"
       },
       {
         "id": "IN1",
-        "internalType": "Preposition",
+        "internalType": "IN",
+        "officialDisplay": "Preposition",
         "display": "Preposition",
-        "order": 5
+        "order": 5,
+        "displayOverride": "over"
       },
       {
         "id": "VBD_Intransitive1",
-        "internalType": "Intransitive Verb (Past Tense)",
-        "display": "Intransitive Verb (Past Tense)",
-        "order": 6
+        "internalType": "Intransitive Verb (Past Tense (slept))",
+        "officialDisplay": "Intransitive Verb (Past Tense (slept))",
+        "display": "Intransitive Verb (Past Tense (slept))",
+        "order": 6,
+        "displayOverride": "blurred"
       },
       {
         "id": "RB1",
         "internalType": "Adverb",
+        "officialDisplay": "Adverb",
         "display": "Adverb",
-        "order": 7
+        "order": 7,
+        "displayOverride": "suddenly"
       },
       {
         "id": "JJ3",
         "internalType": "Adjective",
+        "officialDisplay": "Adjective",
         "display": "Adjective",
-        "order": 8
+        "order": 8,
+        "displayOverride": "still"
       },
       {
-        "id": "Onomatopoeia1",
-        "internalType": "Onomatopoeia",
-        "display": "Onomatopoeia",
-        "order": 9
+        "id": "VBD_Onomatopoeia1",
+        "internalType": "Onomatopoeia Verb (Past Tense (slept))",
+        "officialDisplay": "Onomatopoeia Verb (Past Tense (slept))",
+        "display": "Onomatopoeia Verb (Past Tense (slept))",
+        "order": 9,
+        "displayOverride": "screeched"
       },
       {
-        "id": "VBG_Action2",
-        "internalType": "Action Verb (Present Participle)",
-        "display": "Action Verb (Present Participle)",
-        "order": 10
+        "id": "VBG_Action1",
+        "internalType": "Action Verb (Gerund (crying))",
+        "officialDisplay": "Action Verb (Gerund (crying))",
+        "display": "Action Verb (Gerund (crying))",
+        "order": 10,
+        "displayOverride": "pounding"
       },
       {
-        "id": "SomethingBlack1",
-        "internalType": "SomethingBlack",
-        "display": "SomethingBlack",
-        "order": 11
-      },
-      {
-        "id": "JJ_Emotion1",
-        "internalType": "Emotion Adjective",
-        "display": "Emotion Adjective",
-        "order": 12
-      },
-      {
-        "id": "NNS_BodyPart1",
-        "internalType": "Bodypart (Plural)",
-        "display": "Bodypart (Plural)",
-        "order": 13
-      },
-      {
-        "id": "NN_Emotion1",
-        "internalType": "Emotion (Singular)",
-        "display": "Emotion (Singular)",
-        "order": 14
-      },
-      {
-        "id": "NN_Concrete1",
-        "internalType": "Concrete (Singular)",
-        "display": "Concrete (Singular)",
-        "order": 15
-      },
-      {
-        "id": "NN2",
-        "internalType": "Common noun (Singular)",
-        "display": "Common noun (Singular)",
-        "order": 16
-      },
-      {
-        "id": "VBD_Intransitive2",
-        "internalType": "Intransitive Verb (Past Tense)",
-        "display": "Intransitive Verb (Past Tense)",
-        "order": 17
-      },
-      {
-        "id": "NN_Emotion2",
-        "internalType": "Emotion (Singular)",
-        "display": "Emotion (Singular)",
-        "order": 18
+        "id": "NN_NounThatsBlack1",
+        "internalType": "Noun Thats Black (Singular)",
+        "officialDisplay": "Noun Thats Black (Singular)",
+        "display": "Noun Thats Black (Singular)",
+        "order": 11,
+        "displayOverride": "jet"
       },
       {
         "id": "JJ4",
         "internalType": "Adjective",
+        "officialDisplay": "Adjective",
         "display": "Adjective",
-        "order": 19
+        "order": 12,
+        "displayOverride": "menacing"
       },
       {
-        "id": "RB2",
-        "internalType": "Adverb",
-        "display": "Adverb",
-        "order": 20
+        "id": "NNS_BodyPart1",
+        "internalType": "Body Part (Plural)",
+        "officialDisplay": "Body Part (Plural)",
+        "display": "Body Part (Plural)",
+        "order": 13,
+        "displayOverride": "arms"
+      },
+      {
+        "id": "NN_Emotion1",
+        "internalType": "Emotion (Singular)",
+        "officialDisplay": "Emotion (Singular)",
+        "display": "Emotion (Singular)",
+        "order": 14,
+        "displayOverride": "curiosity"
+      },
+      {
+        "id": "NN2",
+        "internalType": "Common Noun (Singular)",
+        "officialDisplay": "Common Noun (Singular)",
+        "display": "Common Noun (Singular)",
+        "order": 15,
+        "displayOverride": "steel"
+      },
+      {
+        "id": "VBD_Intransitive2",
+        "internalType": "Intransitive Verb (Past Tense (slept))",
+        "officialDisplay": "Intransitive Verb (Past Tense (slept))",
+        "display": "Intransitive Verb (Past Tense (slept))",
+        "order": 17,
+        "displayOverride": "blinked"
+      },
+      {
+        "id": "NN_Emotion2",
+        "internalType": "Emotion (Singular)",
+        "officialDisplay": "Emotion (Singular)",
+        "display": "Emotion (Singular)",
+        "order": 18,
+        "displayOverride": "confusion"
       },
       {
         "id": "JJ5",
         "internalType": "Adjective",
+        "officialDisplay": "Adjective",
         "display": "Adjective",
-        "order": 21
+        "order": 19,
+        "displayOverride": "faint"
       },
       {
-        "id": "NN_BodyPart1",
-        "internalType": "Bodypart (Singular)",
-        "display": "Bodypart (Singular)",
-        "order": 22
-      },
-      {
-        "id": "NNP_UnitOfMeasurement1",
-        "internalType": "Unitofmeasurement (Singular)",
-        "display": "Unitofmeasurement (Singular)",
-        "order": 23
-      },
-      {
-        "id": "VBD_Action1",
-        "internalType": "Action Verb (Past Tense)",
-        "display": "Action Verb (Past Tense)",
-        "order": 24
-      },
-      {
-        "id": "UH1",
-        "internalType": "Interjection",
-        "display": "Interjection",
-        "order": 25
-      },
-      {
-        "id": "JJ_Emotion2",
-        "internalType": "Emotion Adjective",
-        "display": "Emotion Adjective",
-        "order": 26
-      },
-      {
-        "id": "JJS_Ordinal1",
-        "internalType": "Ordinal Number",
-        "display": "Ordinal Number",
-        "order": 27
-      },
-      {
-        "id": "NN_Emotion3",
-        "internalType": "Emotion (Singular)",
-        "display": "Emotion (Singular)",
-        "order": 28
+        "id": "RB2",
+        "internalType": "Adverb",
+        "officialDisplay": "Adverb",
+        "display": "Adverb",
+        "order": 20,
+        "displayOverride": "directly"
       },
       {
         "id": "JJ6",
         "internalType": "Adjective",
+        "officialDisplay": "Adjective",
         "display": "Adjective",
-        "order": 29
+        "order": 21,
+        "displayOverride": "invisible"
       },
       {
-        "id": "NNS_BodyPart2",
-        "internalType": "Bodypart (Plural)",
-        "display": "Bodypart (Plural)",
-        "order": 30
+        "id": "NN_BodyPart1",
+        "internalType": "Body Part (Singular)",
+        "officialDisplay": "Body Part (Singular)",
+        "display": "Body Part (Singular)",
+        "order": 22,
+        "displayOverride": "fist"
       },
       {
-        "id": "MD_VB1",
-        "internalType": "Modal Verb (Base Form)",
-        "display": "Modal Verb (Base Form)",
-        "order": 31
+        "id": "NNS_UnitOfMeasurement1",
+        "internalType": "Unit Of Measurement (Plural)",
+        "officialDisplay": "Unit Of Measurement (Plural)",
+        "display": "Unit Of Measurement (Plural)",
+        "order": 23,
+        "displayOverride": "inches"
       },
       {
-        "id": "NNS_BodyPart3",
-        "internalType": "Bodypart (Plural)",
-        "display": "Bodypart (Plural)",
-        "order": 32
+        "id": "VBD_Movement1",
+        "internalType": "Movement Verb (Past Tense (slept))",
+        "officialDisplay": "Movement Verb (Past Tense (slept))",
+        "display": "Movement Verb (Past Tense (slept))",
+        "order": 24,
+        "displayOverride": "leapt"
       },
       {
-        "id": "NN_Emotion4",
-        "internalType": "Emotion (Singular)",
-        "display": "Emotion (Singular)",
-        "order": 33
-      },
-      {
-        "id": "NN3",
-        "internalType": "Common noun (Singular)",
-        "display": "Common noun (Singular)",
-        "order": 34
+        "id": "Exclamation1",
+        "internalType": "Exclamation",
+        "officialDisplay": "Exclamation",
+        "display": "Exclamation",
+        "order": 25,
+        "displayOverride": "Whoa"
       },
       {
         "id": "JJ7",
         "internalType": "Adjective",
+        "officialDisplay": "Adjective",
         "display": "Adjective",
-        "order": 35
+        "order": 26,
+        "displayOverride": "serious"
       },
       {
-        "id": "VBD_Action2",
-        "internalType": "Action Verb (Past Tense)",
-        "display": "Action Verb (Past Tense)",
-        "order": 36
+        "id": "JJ_Number1",
+        "internalType": "Number",
+        "officialDisplay": "Number",
+        "display": "Number",
+        "order": 27,
+        "displayOverride": "first"
       },
       {
-        "id": "NN_UnitOfTime",
-        "internalType": "Unitoftime (Singular)",
-        "display": "Unitoftime (Singular)",
-        "order": 37
+        "id": "NN_Emotion3",
+        "internalType": "Emotion (Singular)",
+        "officialDisplay": "Emotion (Singular)",
+        "display": "Emotion (Singular)",
+        "order": 28,
+        "displayOverride": "uncertainty"
       },
       {
         "id": "JJ8",
-        "internalType": "Adjective",
+        "internalType": "JJ",
+        "officialDisplay": "Adjective",
         "display": "Adjective",
-        "order": 38
+        "isCustom": false,
+        "order": 29,
+        "displayOverride": "cold"
       }
     ],
-    "fillValues": {},
     "pronounGroups": {},
-    "variableCounts": {},
+    "variableCounts": {
+      "JJ": 8,
+      "VBG_Movement": 1,
+      "Color": 1,
+      "NNS": 1,
+      "IN": 1,
+      "VBD_Intransitive": 2,
+      "RB": 2,
+      "VBD_Onomatopoeia": 1,
+      "VBG_Action": 1,
+      "NN_NounThatsBlack": 1,
+      "NNS_BodyPart": 1,
+      "NN_Emotion": 3,
+      "NN": 3,
+      "NN_BodyPart": 1,
+      "NNS_UnitOfMeasurement": 1,
+      "VBD_Movement": 1,
+      "Exclamation": 1,
+      "JJ_Number": 1
+    },
     "pronounGroupCount": 0,
-    "customPlaceholders": [],
-    "savedAt": "2025-02-03T19:22:10.093Z"
+    "customPlaceholders": [
+      {
+        "type": "Color"
+      },
+      {
+        "type": "NN_NounThat'sBlack"
+      },
+      {
+        "type": "NN_UnitOfMeasurement"
+      }
+    ],
+    "savedAt": "2025-02-08T16:59:34.098Z",
+    "overwrite": true,
+    "fillValues": {}
   },
   {
     "storyTitle": "Tower Heroes: The Inferno Showdown",
@@ -1976,6 +2056,258 @@
     "pronounGroupCount": 0,
     "customPlaceholders": [],
     "savedAt": "2025-02-07T22:13:02.641Z",
+    "overwrite": true,
+    "fillValues": {}
+  },
+  {
+    "storyTitle": "A Maybe Tower Heroes Christmas Carol",
+    "storyAuthor": "Peter",
+    "storyText": "&nbsp; &nbsp; Once upon a time there was a girl named &lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\"&gt;Carol&lt;/span&gt; . She was a greedy girl that was always into money and cookies. She owned her own business to get money and played little of it to her employee, who was&lt;span class=\"placeholder\" data-id=\"NN_Person3\" title=\"NN_Person3\" contenteditable=\"false\"&gt;Soda Pop&lt;/span&gt; &lt;span style=\"font-size: 0.875rem; -webkit-tap-highlight-color: transparent; -webkit-text-size-adjust: 100%;\"&gt;.&lt;/span&gt;&lt;div&gt;&lt;div&gt;&nbsp; &nbsp; Suddenly, the door busted open, and &lt;span class=\"placeholder\" data-id=\"NN_Person2\" title=\"NN_Person2\" contenteditable=\"false\"&gt;Scientist&lt;/span&gt; came in, saying “Merry &lt;span class=\"placeholder\" data-id=\"Holiday1\" title=\"Holiday1\" contenteditable=\"false\"&gt;Christmas&lt;/span&gt; !”&nbsp;&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; &lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\"&gt;Carol&lt;/span&gt; was angry by her disruptive behavior and said, “Would you be quiet while my employee works!?” She got down from her&lt;span class=\"placeholder\" data-id=\"NN_Concrete2\" title=\"NN_Concrete2\" contenteditable=\"false\"&gt;stool&lt;/span&gt; and said, “Such Disobedient Behavior! You should feel bad young lady!”&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; &lt;span class=\"placeholder\" data-id=\"NN_Person2\" title=\"NN_Person2\" contenteditable=\"false\"&gt;Scientist&lt;/span&gt; shrugged and said, “Okay, but have a merry &lt;span class=\"placeholder\" data-id=\"Holiday1\" title=\"Holiday1\" contenteditable=\"false\"&gt;Christmas&lt;/span&gt; and happy new year!” She closed the &lt;span class=\"placeholder\" data-id=\"NN_Concrete1\" title=\"NN_Concrete1\" contenteditable=\"false\"&gt;door&lt;/span&gt; behind her.&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; &lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\"&gt;Carol&lt;/span&gt; &lt;span class=\"placeholder\" data-id=\"VBD1\" title=\"VBD1\" contenteditable=\"false\"&gt;yawned&lt;/span&gt; and said, “well, glad we got that out of the way,” &lt;span class=\"placeholder\" data-id=\"NN_Person3\" title=\"NN_Person3\" contenteditable=\"false\"&gt;Soda Pop&lt;/span&gt; was seeming like she wanted to say something. Carol rolled her &lt;span class=\"placeholder\" data-id=\"NNS_BodyPart1\" title=\"NNS_BodyPart1\" contenteditable=\"false\"&gt;eyes&lt;/span&gt; and said, “what do you want!?”&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp;&lt;span class=\"placeholder\" data-id=\"NN_Person3\" title=\"NN_Person3\" contenteditable=\"false\"&gt;Soda Pop&lt;/span&gt; &lt;span class=\"placeholder\" data-id=\"VBD2\" title=\"VBD2\" contenteditable=\"false\"&gt;gulped&lt;/span&gt; and said, “Carol, since tomorrow is &lt;span class=\"placeholder\" data-id=\"Holiday1\" title=\"Holiday1\" contenteditable=\"false\"&gt;Christmas&lt;/span&gt; , can I have the day off?” &lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\"&gt;Carol&lt;/span&gt; muttered something about “&lt;span class=\"placeholder\" data-id=\"Exclamation1\" title=\"Exclamation1\" contenteditable=\"false\"&gt;bah humbug&lt;/span&gt; ” under her breath. &lt;span class=\"placeholder\" data-id=\"NN_Person3\" title=\"NN_Person3\" contenteditable=\"false\"&gt;Soda Pop&lt;/span&gt; was worried.&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; &lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\"&gt;Carol&lt;/span&gt; said, “fine, but only half of the day off! And this will come into your paycheck!” &lt;span class=\"placeholder\" data-id=\"NN_Person3\" title=\"NN_Person3\" contenteditable=\"false\"&gt;Soda Pop&lt;/span&gt; didn’t seem to mind. “You remember that fateful day when I gave you &lt;span class=\"placeholder\" data-id=\"Number1\" title=\"Number1\" contenteditable=\"false\"&gt;20&lt;/span&gt; coins a week instead of &lt;span class=\"placeholder\" data-id=\"Number2\" title=\"Number2\" contenteditable=\"false\"&gt;10&lt;/span&gt; ?\"&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; \"Yes! I also had to do your &lt;span class=\"placeholder\" data-id=\"NNS_Concrete1\" title=\"NNS_Concrete1\" contenteditable=\"false\"&gt;laundry&lt;/span&gt; !\"&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; \"Opp, time for you to go. Have a,\" she shuddered at the thought, then gritted her&lt;span class=\"placeholder\" data-id=\"NNS_BodyPart2\" title=\"NNS_BodyPart2\" contenteditable=\"false\"&gt;teeth&lt;/span&gt; and said, \"Merry &lt;span class=\"placeholder\" data-id=\"Holiday1\" title=\"Holiday1\" contenteditable=\"false\"&gt;Christmas&lt;/span&gt; .\"&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; &nbsp;&lt;span class=\"placeholder\" data-id=\"NN_Person3\" title=\"NN_Person3\" contenteditable=\"false\"&gt;Soda Pop&lt;/span&gt; &lt;span class=\"placeholder\" data-id=\"RB1\" title=\"RB1\" contenteditable=\"false\"&gt;gleefully&lt;/span&gt;&nbsp;left, leaving &lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\"&gt;Carol&lt;/span&gt; to say, \"Good riddance.\" She looked at the sign at the top of the shop, wish said, \"&lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\"&gt;Carol&lt;/span&gt; and &lt;span class=\"placeholder\" data-id=\"NN_Person4\" title=\"NN_Person4\" contenteditable=\"false\"&gt;Rien&lt;/span&gt; 's Writing Workshop!\" There were scribbled out words that originally said, \"&lt;span class=\"placeholder\" data-id=\"HolidayExclamation1\" title=\"HolidayExclamation1\" contenteditable=\"false\"&gt;Happy Holidays&lt;/span&gt; !\"&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; &nbsp;&lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\"&gt;Carol&lt;/span&gt; went home in her luxury mansion. It was late, and she was tired. She was going to fall asleep when suddenly, \"&lt;span class=\"placeholder\" data-id=\"NN_Onomatopoeia1\" title=\"NN_Onomatopoeia1\" contenteditable=\"false\"&gt;ooooh&lt;/span&gt; !!!!\" &lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\"&gt;Carol&lt;/span&gt;&nbsp;got scared and hid under a &lt;span class=\"placeholder\" data-id=\"NN_Concrete3\" title=\"NN_Concrete3\" contenteditable=\"false\"&gt;blanket&lt;/span&gt; . \"Who's there?\" Then someone said, \"It's me, &lt;span class=\"placeholder\" data-id=\"NN_Person4\" title=\"NN_Person4\" contenteditable=\"false\"&gt;Rien&lt;/span&gt; !\" A ghost appeared which looked like&lt;span class=\"placeholder\" data-id=\"NN_Person4\" title=\"NN_Person4\" contenteditable=\"false\"&gt;Rien&lt;/span&gt; , &lt;span class=\"placeholder\" data-id=\"NN_Place1\" title=\"NN_Place1\" contenteditable=\"false\"&gt;Carol's&lt;/span&gt;'s sister. \"I was stuck in this ghostly form for years, and now I can &lt;span class=\"placeholder\" data-id=\"VBP_Communication1\" title=\"VBP_Communication1\" contenteditable=\"false\"&gt;talk&lt;/span&gt; to you! I do not like what you've become, &lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\"&gt;Carol&lt;/span&gt; , so tonight, &lt;span class=\"placeholder\" data-id=\"Number3\" title=\"Number3\" contenteditable=\"false\"&gt;3&lt;/span&gt; ghosts will show you what you were, what you are, and what you will be!\"&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; &nbsp;&lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\"&gt;Carol&lt;/span&gt; said, \"okay! Just Please leave me alone!\"&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; &nbsp;The ghost vanished in thin air.&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; &nbsp;Carol sighed and said, \"okay, three ghosts, I just hope they aren't too bad.\"&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; &nbsp;There suddenly was a &lt;span class=\"placeholder\" data-id=\"NNS_Onomatopoeia1\" title=\"NNS_Onomatopoeia1\" contenteditable=\"false\"&gt;whoosh&lt;/span&gt; noise and &lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\"&gt;Carol&lt;/span&gt; looked to see a &lt;span class=\"placeholder\" data-id=\"NN_Person5\" title=\"NN_Person5\" contenteditable=\"false\"&gt;wizard&lt;/span&gt; of some kind. \"Hello there, &lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\"&gt;Carol&lt;/span&gt; ,\" The &lt;span class=\"placeholder\" data-id=\"NN_Person5\" title=\"NN_Person5\" contenteditable=\"false\"&gt;wizard&lt;/span&gt; said. \"I am the ghost of the past and I will show what you were.\" Suddenly, the &lt;span class=\"placeholder\" data-id=\"NN_Concrete4\" title=\"NN_Concrete4\" contenteditable=\"false\"&gt;floor&lt;/span&gt; fell, and &lt;span class=\"placeholder\" data-id=\"NN_Person1\" title=\"NN_Person1\" contenteditable=\"false\"&gt;Carol&lt;/span&gt; landed outside, and through the window was her with &lt;span class=\"placeholder\" data-id=\"NN_Person4\" title=\"NN_Person4\" contenteditable=\"false\"&gt;Rien&lt;/span&gt; , &lt;span class=\"placeholder\" data-id=\"VBG_Action1\" title=\"VBG_Action1\" contenteditable=\"false\"&gt;dancing&lt;/span&gt; . Carol smiled and said, \"good times!\"&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; &nbsp;The &lt;span class=\"placeholder\" data-id=\"NN_Person5\" title=\"NN_Person5\" contenteditable=\"false\"&gt;wizard&lt;/span&gt; was not happy though, and she said, \"when you got your job in collecting cookies and coins, she left you,\" and they teleported to Carol's workshop from the past. The younger Carol was counting her coins when Rien said, \"my love, when are we going to go on our honeymoon? It's been years, and you have saved up money!\" But carol shooed her away and said, \"maybe another time.\"&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; &nbsp;Wizard glared at the real Carol and said, \"You had sent her to jail because you framed her for crimes you committed! I am done with you for now, but the ghost of present will arrive in 1 hour.\"&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; &nbsp;Wizard disappeared, and Carol was in shock. But for now, she got a little bit of sleep, waiting for the ghost of present to come.&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; &nbsp;Suddenly, A door banged! She went downstairs and saw Branch, who was so tall that she reached the roof! Branch said, \"Today, we will look at what is happening at your worker's house, you know, soda pop.\"&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; &nbsp;They traveled to soda pop house, which looked tiny compared to the other house. Branch said, \"Now tell me what you see?\"&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; &nbsp;Carol looked in and soda pop and Yasuke, cooking a small dinner. There was barely enough food for everyone. Carol pointed out, \"Hey! Theres more stuff cooking over there! In the pot above the fire!\" But branch shook her head and said, \"Thats your laundry.\"&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; &nbsp;Carol said, \"oh.\" Then suddenly she started getting lifted into the air, where she ended up in a graveyard. There was another ghost, what she assumed was the ghost of the future, but it looked way different. She was creepy, and noticed that her name was, Maitake. \"Hello?\" said Carol, but she didn't respond. Suddenly, she noticed that there was a grave for someone named, yellow yasuke. She realized it was one of their kids! Carol pleaded to the ghost, \"Please, I'm sorry! Please! I'll turn my life around!\" Miatake started to grab a potion from her pocket and threw it at her. It made carol dizzy.&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; &nbsp;She suddenly woke up, to find it was Christmas day! She jumped with joy and got her money bag! She went over to Soda pop's house and pretended to be rough and tough. She knocked at the door and soda pop said, \"CAROL!! I mean, uhhhh, what are you doing here?\" Then Carol said, \"I'm here to give you a raise! You will live happily ever after! And that is what happened.&lt;/div&gt;&lt;div&gt;&nbsp; &nbsp; &nbsp; THE END... FOR NOW&lt;/div&gt;",
+    "variables": [
+      {
+        "id": "NN_Person1",
+        "internalType": "Person (Singular)",
+        "officialDisplay": "Person (Singular)",
+        "display": "Person (Singular)",
+        "order": 0,
+        "displayOverride": "Carol"
+      },
+      {
+        "id": "NN_Person3",
+        "internalType": "Person (Singular)",
+        "officialDisplay": "Person (Singular)",
+        "display": "Person (Singular)",
+        "order": 1,
+        "displayOverride": "Soda Pop"
+      },
+      {
+        "id": "Holiday1",
+        "internalType": "Holiday",
+        "officialDisplay": "Holiday",
+        "display": "Holiday",
+        "isCustom": true,
+        "order": 3,
+        "displayOverride": "Christmas"
+      },
+      {
+        "id": "NN_Person4",
+        "internalType": "Person (Singular)",
+        "officialDisplay": "Person (Singular)",
+        "display": "Person (Singular)",
+        "order": 15,
+        "displayOverride": "Rien"
+      },
+      {
+        "id": "NN_Person2",
+        "internalType": "Person (Singular)",
+        "officialDisplay": "Person (Singular)",
+        "display": "Person (Singular)",
+        "order": 2,
+        "displayOverride": "Scientist"
+      },
+      {
+        "id": "NN_Person5",
+        "internalType": "NN_Person",
+        "officialDisplay": "Person (Singular)",
+        "display": "Person (Singular)",
+        "isCustom": false,
+        "order": 23,
+        "displayOverride": "wizard"
+      },
+      {
+        "id": "NN_Concrete2",
+        "internalType": "Concrete (Singular)",
+        "officialDisplay": "Concrete (Singular)",
+        "display": "Concrete (Singular)",
+        "order": 4,
+        "displayOverride": "stool"
+      },
+      {
+        "id": "NN_Concrete1",
+        "internalType": "Concrete (Singular)",
+        "officialDisplay": "Concrete (Singular)",
+        "display": "Concrete (Singular)",
+        "order": 5,
+        "displayOverride": "door"
+      },
+      {
+        "id": "VBD1",
+        "internalType": "Verb (Past Tense (slept))",
+        "officialDisplay": "Verb (Past Tense (slept))",
+        "display": "Verb (Past Tense (slept))",
+        "order": 6,
+        "displayOverride": "yawned"
+      },
+      {
+        "id": "NNS_BodyPart1",
+        "internalType": "Body Part (Plural)",
+        "officialDisplay": "Body Part (Plural)",
+        "display": "Body Part (Plural)",
+        "order": 7,
+        "displayOverride": "eyes"
+      },
+      {
+        "id": "VBD2",
+        "internalType": "Verb (Past Tense (slept))",
+        "officialDisplay": "Verb (Past Tense (slept))",
+        "display": "Verb (Past Tense (slept))",
+        "order": 8,
+        "displayOverride": "gulped"
+      },
+      {
+        "id": "Exclamation1",
+        "internalType": "Exclamation",
+        "officialDisplay": "Exclamation",
+        "display": "Exclamation",
+        "order": 9,
+        "displayOverride": "bah humbug"
+      },
+      {
+        "id": "Number1",
+        "internalType": "Number",
+        "officialDisplay": "Number",
+        "display": "Number",
+        "order": 10,
+        "displayOverride": "20"
+      },
+      {
+        "id": "Number2",
+        "internalType": "Number",
+        "officialDisplay": "Number",
+        "display": "Number",
+        "order": 11,
+        "displayOverride": "10"
+      },
+      {
+        "id": "NNS_Concrete1",
+        "internalType": "Concrete (Plural)",
+        "officialDisplay": "Concrete (Plural)",
+        "display": "Concrete (Plural)",
+        "order": 12,
+        "displayOverride": "laundry"
+      },
+      {
+        "id": "NNS_BodyPart2",
+        "internalType": "Body Part (Plural)",
+        "officialDisplay": "Body Part (Plural)",
+        "display": "Body Part (Plural)",
+        "order": 13,
+        "displayOverride": "teeth"
+      },
+      {
+        "id": "RB1",
+        "internalType": "Adverb",
+        "officialDisplay": "Adverb",
+        "display": "Adverb",
+        "order": 14,
+        "displayOverride": "gleefully"
+      },
+      {
+        "id": "HolidayExclamation1",
+        "internalType": "HolidayExclamation",
+        "officialDisplay": "HolidayExclamation",
+        "display": "HolidayExclamation",
+        "isCustom": true,
+        "order": 16,
+        "displayOverride": "Happy Holidays"
+      },
+      {
+        "id": "NN_Onomatopoeia1",
+        "internalType": "Onomatopoeia (Singular)",
+        "officialDisplay": "Onomatopoeia (Singular)",
+        "display": "Onomatopoeia (Singular)",
+        "order": 17,
+        "displayOverride": "ooooh"
+      },
+      {
+        "id": "NN_Concrete3",
+        "internalType": "Concrete (Singular)",
+        "officialDisplay": "Concrete (Singular)",
+        "display": "Concrete (Singular)",
+        "order": 18,
+        "displayOverride": "blanket"
+      },
+      {
+        "id": "NN_Place1",
+        "internalType": "Place (Singular)",
+        "officialDisplay": "Place (Singular)",
+        "display": "Place (Singular)",
+        "order": 19,
+        "displayOverride": "Carol's"
+      },
+      {
+        "id": "VBP_Communication1",
+        "internalType": "Communication Verb (Present (I walk))",
+        "officialDisplay": "Communication Verb (Present (I walk))",
+        "display": "Communication Verb (Present (I walk))",
+        "order": 20,
+        "displayOverride": "talk"
+      },
+      {
+        "id": "Number3",
+        "internalType": "Number",
+        "officialDisplay": "Number",
+        "display": "Number",
+        "isCustom": false,
+        "order": 21,
+        "displayOverride": "3"
+      },
+      {
+        "id": "NNS_Onomatopoeia1",
+        "internalType": "NNS_Onomatopoeia",
+        "officialDisplay": "Sound/Onomatopoeia (Plural)",
+        "display": "Sound/Onomatopoeia (Plural)",
+        "isCustom": false,
+        "order": 22,
+        "displayOverride": "whoosh"
+      },
+      {
+        "id": "NN_Concrete4",
+        "internalType": "NN_Concrete",
+        "officialDisplay": "Concrete (Singular)",
+        "display": "Concrete (Singular)",
+        "isCustom": false,
+        "order": 24,
+        "displayOverride": "floor"
+      },
+      {
+        "id": "VBG_Action1",
+        "internalType": "VBG_Action",
+        "officialDisplay": "Action (Gerund (crying))",
+        "display": "Action (Gerund (crying))",
+        "isCustom": false,
+        "order": 25,
+        "displayOverride": "dancing"
+      }
+    ],
+    "pronounGroups": {},
+    "variableCounts": {
+      "NN_Person": 5,
+      "Holiday": 1,
+      "NN_Concrete": 4,
+      "VBD": 2,
+      "NNS_BodyPart": 2,
+      "Exclamation": 1,
+      "Number": 3,
+      "NNS_Concrete": 1,
+      "RB": 1,
+      "HolidayExclamation": 1,
+      "NN_Onomatopoeia": 1,
+      "NN_Place": 1,
+      "VBP_Communication": 1,
+      "NNS_Onomatopoeia": 1,
+      "VBG_Action": 1
+    },
+    "pronounGroupCount": 0,
+    "customPlaceholders": [
+      {
+        "type": "Holiday"
+      },
+      {
+        "type": "HolidayExclamation"
+      }
+    ],
+    "savedAt": "2025-02-08T16:26:15.468Z",
     "overwrite": true,
     "fillValues": {}
   }

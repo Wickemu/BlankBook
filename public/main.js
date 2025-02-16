@@ -685,7 +685,7 @@
   async function insertPlaceholder(internalType, displayName, isCustom) {
     const sanitized = Utils.sanitizeString(internalType);
     const editor = document.getElementById("storyText");
-
+  
     const spans = editor.querySelectorAll(".placeholder");
     let max = 0;
     spans.forEach(function (span) {
@@ -701,7 +701,7 @@
     const newCount = max + 1;
     variableCounts[sanitized] = newCount;
     const id = sanitized + newCount;
-
+  
     let rangeToUse = null;
     if (lastRange && editor.contains(lastRange.commonAncestorContainer)) {
       rangeToUse = lastRange;
@@ -743,7 +743,25 @@
     }
     updateVariablesList();
     lastRange = null;
+  
+    // --- NEW FEATURE: If a noun placeholder was inserted on a highlighted word,
+    // ask if the user wants to replace all other occurrences of that word.
+    if (internalType.startsWith("NN") && selectedText) {
+      Swal.fire({
+        title: 'Apply placeholder to all occurrences?',
+        text: `Replace all instances of "${selectedText}" with this placeholder?`,
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, apply',
+        cancelButtonText: 'No'
+      }).then(result => {
+        if (result.isConfirmed) {
+          applyPlaceholderToAllOccurrences(selectedText, id, displayText);
+        }
+      });
+    }
   }
+  
 
   function insertPronounPlaceholderSimple(groupId, form, tempValue) {
     const editor = document.getElementById("storyText");
