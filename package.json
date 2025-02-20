@@ -1,7 +1,7 @@
 {
   "name": "blankbook",
   "version": "1.1.0",
-  "description": "A simple Mad Libs style game for family fun.",
+  "description": "An advanced fill-in-the-blank story maker for creative fun for all ages.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
