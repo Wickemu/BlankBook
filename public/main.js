@@ -51,6 +51,9 @@
     "They/Them": { subject: "they", object: "them", possAdj: "their", possPron: "theirs", reflexive: "themselves" }
   };
 
+  // NEW: Global to store the current story's database ID when loaded.
+  let currentStoryId = null;
+
   // ====================================================
   // 2a. Capture Selection Changes
   // ====================================================
@@ -88,6 +91,7 @@
         variableCounts,
         pronounGroupCount,
         customPlaceholders,
+        tags: $('#storyTags').val() ? $('#storyTags').val().split(',').map(s => s.trim()) : [], // NEW: tags input (if available)
         savedAt: new Date().toISOString()
       };
       $.ajax({
@@ -154,6 +158,7 @@
         variableCounts,
         pronounGroupCount,
         customPlaceholders,
+        tags: $('#displayTags').text() ? $('#displayTags').text().split(',').map(s => s.trim()) : [], // NEW: Display tags if any
         savedAt: new Date().toISOString()
       };
       $.ajax({
@@ -211,8 +216,11 @@
       });
     },
     loadSavedStoriesList: () => {
+      // NEW: Read filter values (tag filter and sort option)
+      const tag = $('#filterTag').val();
+      const sort = $('#sortOption').val();
       $.ajax({
-        url: '/api/getstories',
+        url: `/api/getstories?tag=${encodeURIComponent(tag || '')}&sort=${encodeURIComponent(sort || 'date_desc')}`,
         method: 'GET',
         success: (stories) => {
           const $listContainer = $('#savedStoriesList').empty();
@@ -223,7 +231,30 @@
           stories.forEach((story, index) => {
             const dateObj = new Date(story.savedAt);
             const dateStr = dateObj.toLocaleDateString() + " " + dateObj.toLocaleTimeString();
-            const item = Storage.createSavedStoryListItem(story, index, dateStr);
+            const tags = story.tags && story.tags.length ? story.tags.join(', ') : 'No tags';
+            const ratingDisplay = story.ratingCount ? `Rating: ${story.rating.toFixed(1)} (${story.ratingCount} votes)` : 'No ratings';
+            const item = $(`
+              <div class="list-group-item p-2">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div>
+                    <strong>${story.storyTitle || 'Untitled'}</strong><br>
+                    <small>${story.storyAuthor || 'Unknown'} | ${dateStr}</small><br>
+                    <small>${tags} | ${ratingDisplay}</small>
+                  </div>
+                  <div>
+                    <button class="btn btn-sm btn-secondary editSavedStoryBtn" data-index="${index}" aria-label="Edit Story">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn btn-sm btn-success loadSavedStoryBtn" data-index="${index}" aria-label="Play Story">
+                      <i class="fas fa-play"></i>
+                    </button>
+                    <button class="btn btn-sm btn-danger deleteSavedStoryBtn" data-title="${story.storyTitle}" aria-label="Delete Story">
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            `);
             $listContainer.append(item);
           });
         },
@@ -263,6 +294,10 @@
           const story = stories[index];
           if (!story) return;
           Storage.populateEditorWithStory(story, mode);
+          // NEW: Store the current story's ID for rating purposes.
+          currentStoryId = story._id || null;
+          // Also update a hidden element (if used) for the story ID
+          $('#displayStoryId').text(currentStoryId);
           Swal.fire({
             toast: true,
             position: 'top-end',
@@ -281,6 +316,16 @@
       $('#storyTitle').val(story.storyTitle);
       $('#storyAuthor').val(story.storyAuthor);
       $('#storyText').html(decodeHTMLEntities(story.storyText));
+      // NEW: Populate tags input if editing a story.
+      if (story.tags && story.tags.length) {
+        $('#storyTags').val(story.tags.join(', '));
+      }
+      // Also store rating info in a display area (if desired)
+      if (mode === "play" && story.ratingCount) {
+        $('#ratingSection').show();
+      } else {
+        $('#ratingSection').hide();
+      }
       variables = [];
       variableCounts = {};
       insertionCounter = 0;
@@ -1428,6 +1473,11 @@
     updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
     updatePlaceholderAccordion('#modalPlaceholderAccordion', '#modalNoResults');
 
+    // NEW: Event handler for applying filters in the saved stories modal.
+    $('#applyFilters').on('click', () => {
+      Storage.loadSavedStoriesList();
+    });
+
     $('#shareStory').on('click', () => {
       const finalText = $('#finalStory').text();
       const title = $('#displayTitle').text();
@@ -1631,6 +1681,8 @@
       $('#finalStory').text(final);
       $('#displayTitle').text($('#storyTitle').val());
       $('#displayAuthor').text($('#storyAuthor').val());
+      // NEW: Display tags in the result (if any)
+      $('#displayTags').text($('#storyTags').val());
       $('#result').removeClass('d-none');
       $('#inputs').addClass('d-none');
     });
@@ -1681,6 +1733,7 @@
       $('#storyTitle').val('');
       $('#storyAuthor').val('');
       $('#storyText').html('');
+      $('#storyTags').val(''); // NEW: clear tags field
       variables = [];
       variableCounts = {};
       insertionCounter = 0;
@@ -1749,6 +1802,34 @@
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.isConfirmed) Storage.deleteSavedStory(title);
+      });
+    });
+
+    // NEW: Rating submission for completed story.
+    $('#submitRating').on('click', () => {
+      const rating = parseInt($('#storyRating').val(), 10);
+      if (!currentStoryId) {
+        Swal.fire('Error', 'Story ID not found.', 'error');
+        return;
+      }
+      $.ajax({
+        url: '/api/rateStory',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ storyId: currentStoryId, rating }),
+        success: (data) => {
+          Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: `Thank you for rating! New average: ${data.rating.toFixed(1)} (${data.ratingCount} votes)`,
+            showConfirmButton: false,
+            timer: 1500
+          });
+        },
+        error: (xhr, statusText, errorThrown) => {
+          Storage.handleAjaxError(xhr, statusText, errorThrown, 'Failed to rate story');
+        }
       });
     });
 

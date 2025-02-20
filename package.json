@@ -1,6 +1,6 @@
 {
   "name": "blankbook",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "An advanced fill-in-the-blank story maker for creative fun for all ages.",
   "main": "server.js",
   "scripts": {
@@ -16,7 +16,8 @@
     "morgan": "^1.10.0",
     "compression": "^1.7.4",
     "express-rate-limit": "^6.7.0",
-    "dotenv": "^16.0.0"
+    "dotenv": "^16.0.0",
+    "mongoose": "^7.2.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"

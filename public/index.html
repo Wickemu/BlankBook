@@ -175,7 +175,21 @@
       <h2 class="text-center my-4">Your Completed Story:</h2>
       <h3 id="displayTitle" class="text-center"></h3>
       <p class="text-center"><em>by <span id="displayAuthor"></span></em></p>
+      <!-- Hidden element to store the story's database ID -->
+      <div id="displayStoryId" class="d-none"></div>
       <div id="finalStory" class="border p-3"></div>
+      <!-- Rating Section -->
+      <div id="ratingSection" class="mt-2 text-center">
+        <span>Rate this story:</span>
+        <select id="storyRating" class="form-control form-control-sm d-inline-block" style="width: auto;">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3" selected>3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <button id="submitRating" class="btn btn-sm btn-primary ml-2">Submit Rating</button>
+      </div>
       <div id="finalButtons" class="mt-3">
         <button id="editStoryEntries" class="btn btn-warning btn-sm" aria-label="Edit Story Entries">
           <i class="fas fa-edit"></i> Edit Story Entries
@@ -211,6 +225,17 @@
           </button>
         </div>
         <div class="modal-body">
+          <!-- Filter and Sorting Controls -->
+          <div class="form-inline mb-2">
+            <input type="text" id="filterTag" class="form-control form-control-sm mr-2" placeholder="Filter by tag">
+            <select id="sortOption" class="form-control form-control-sm">
+              <option value="date_desc">Newest</option>
+              <option value="date_asc">Oldest</option>
+              <option value="rating_desc">Highest Rated</option>
+              <option value="rating_asc">Lowest Rated</option>
+            </select>
+            <button id="applyFilters" class="btn btn-sm btn-primary ml-2">Apply</button>
+          </div>
           <div id="savedStoriesList" class="list-group"></div>
         </div>
         <div class="modal-footer">
