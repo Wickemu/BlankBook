@@ -1,3 +1,5 @@
+require('dotenv').config(); // Load configuration from .env
+
 const express = require('express');
 const fs = require('fs');
 const fsPromises = fs.promises;
@@ -5,17 +7,32 @@ const path = require('path');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const cors = require('cors');
+const compression = require('compression'); // Added for response compression
+const rateLimit = require('express-rate-limit'); // Added for rate limiting
 const { body, validationResult } = require('express-validator');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 const STORIES_FILE = path.join(__dirname, 'stories.json');
 
 // --- Security & Logging Middleware ---
 app.use(helmet());
+app.use(compression());
 app.use(cors());
-app.use(express.json());
+// Limit JSON payloads to 10KB to help prevent abuse
+app.use(express.json({ limit: '10kb' }));
+
+// Serve static files from public folder
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(morgan('combined'));
+
+// --- Rate Limiting Middleware for API endpoints ---
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes window
+  max: 100, // limit each IP to 100 requests per windowMs
+  message: "Too many requests from this IP, please try again after 15 minutes."
+});
+app.use('/api/', apiLimiter);
 
 // --- Basic HTML escaping (improved sanitation) ---
 function sanitizeInput(text) {
