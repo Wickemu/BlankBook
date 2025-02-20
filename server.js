@@ -16,7 +16,22 @@ const PORT = process.env.PORT || 3000;
 const STORIES_FILE = path.join(__dirname, 'stories.json');
 
 // --- Security & Logging Middleware ---
-app.use(helmet());
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: [
+        "'self'",
+        "https://code.jquery.com",
+        "https://code.jquery.com/ui",
+        "https://cdn.jsdelivr.net",
+        "https://maxcdn.bootstrapcdn.com",
+        "https://cdn.jsdelivr.net/npm/sweetalert2@10"
+      ],
+      // You can add additional directives for styles, images, etc. if needed.
+    }
+  })
+);
 app.use(compression());
 app.use(cors());
 // Limit JSON payloads to 10KB to help prevent abuse
