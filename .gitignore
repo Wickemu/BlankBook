@@ -25,3 +25,6 @@ pids
 
 # Mac system files
 .DS_Store
+
+# Migration file
+migrate.js
