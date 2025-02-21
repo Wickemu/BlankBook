@@ -91,7 +91,7 @@
         variableCounts,
         pronounGroupCount,
         customPlaceholders,
-        tags: $('#storyTags').val() ? $('#storyTags').val().split(',').map(s => s.trim()) : [], // NEW: tags input (if available)
+        tags: $('#storyTags').val() ? $('#storyTags').val().split(',').map(s => s.trim()) : [],
         savedAt: new Date().toISOString()
       };
       $.ajax({
@@ -158,7 +158,7 @@
         variableCounts,
         pronounGroupCount,
         customPlaceholders,
-        tags: $('#displayTags').text() ? $('#displayTags').text().split(',').map(s => s.trim()) : [], // NEW: Display tags if any
+        tags: $('#displayTags').text() ? $('#displayTags').text().split(',').map(s => s.trim()) : [],
         savedAt: new Date().toISOString()
       };
       $.ajax({
@@ -263,7 +263,7 @@
           Storage.handleAjaxError(xhr, statusText, errorThrown, 'Failed to load saved stories list');
         }
       });
-    },    
+    },
     createSavedStoryListItem: (story, index, dateStr) => {
       return $(`
         <div class="list-group-item p-2">
@@ -1468,6 +1468,26 @@
     updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
     updatePlaceholderAccordion('#modalPlaceholderAccordion', '#modalNoResults');
 
+    // NEW: Attach autocomplete to the tag filter input in the saved stories modal.
+    $.ajax({
+      url: '/api/gettags',
+      method: 'GET',
+      success: function(tags) {
+        $("#filterTag").autocomplete({
+          source: tags,
+          minLength: 1,
+          select: function(event, ui) {
+            $("#filterTag").val(ui.item.value);
+            $("#applyFilters").click();
+            return false;
+          }
+        });
+      },
+      error: function(err) {
+        console.error('Failed to load tags for autocomplete', err);
+      }
+    });
+
     // NEW: Event handler for applying filters in the saved stories modal.
     $('#applyFilters').on('click', () => {
       Storage.loadSavedStoriesList();
@@ -1753,10 +1773,71 @@
       $('#result, #inputs').addClass('d-none');
       $('#editor').removeClass('d-none');
     });
+    function loadPreexistingTags() {
+      $.ajax({
+        url: '/api/gettags',
+        method: 'GET',
+        success: (tags) => {
+          let container = $('#preexistingTagsContainer');
+          container.empty();
+          if (tags.length > 0) {
+            container.append('<p>Select a tag:</p>');
+            tags.forEach(tag => {
+              const btn = $('<button type="button" class="btn btn-sm btn-outline-secondary m-1 preexisting-tag-btn"></button>');
+              btn.text(tag);
+              btn.on('click', () => {
+                let current = $('#swalTags').val();
+                let tagsArr = current ? current.split(',').map(t => t.trim()).filter(Boolean) : [];
+                if (!tagsArr.includes(tag)) {
+                  tagsArr.push(tag);
+                  $('#swalTags').val(tagsArr.join(', '));
+                }
+              });
+              container.append(btn);
+            });
+          }
+        },
+        error: (err) => {
+          console.error('Failed to load preexisting tags', err);
+        }
+      });
+    }    
     $('#saveStoryToSite').on('click', () => {
-      Storage.addCurrentStoryToSavedStories();
-      storyHasUnsavedChanges = false;
-    });
+      Swal.fire({
+        title: 'Save Story',
+        html: `<input type="text" id="swalTitle" class="swal2-input" placeholder="Story Title" value="${$('#storyTitle').val()}">
+               <input type="text" id="swalAuthor" class="swal2-input" placeholder="Author" value="${$('#storyAuthor').val()}">
+               <input type="text" id="swalTags" class="swal2-input" placeholder="Tags (comma separated)">
+               <div id="preexistingTagsContainer" style="text-align:left; margin-top:10px;"></div>`,
+        didOpen: () => {
+          loadPreexistingTags();
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Save',
+        preConfirm: () => {
+          return {
+            title: document.getElementById('swalTitle').value,
+            author: document.getElementById('swalAuthor').value,
+            tags: document.getElementById('swalTags').value
+          };
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const data = result.value;
+          // Update the editor inputs with new values
+          $('#storyTitle').val(data.title);
+          $('#storyAuthor').val(data.author);
+          // Make sure a hidden field for tags exists and update it
+          if ($('#storyTags').length === 0) {
+            $('<input>').attr({ type: 'hidden', id: 'storyTags' }).appendTo('body');
+          }
+          $('#storyTags').val(data.tags);
+          // Now proceed with the original save function
+          Storage.addCurrentStoryToSavedStories();
+          storyHasUnsavedChanges = false;
+        }
+      });
+    });     
     $('#downloadStory').on('click', () => {
       const finalText = $('#finalStory').text();
       const title = $('#displayTitle').text();
@@ -1923,212 +2004,6 @@
     <button id="deletePlaceholderBtn" class="btn btn-sm btn-danger">Delete</button>
   `;
   document.body.appendChild(placeholderEditMenu);
-
-  document.getElementById('storyText').addEventListener('mouseup', () => {
-    setTimeout(() => {
-      const sel = window.getSelection();
-      if (sel && sel.toString().trim().length > 0) {
-        if (sel.anchorNode && sel.anchorNode.parentNode &&
-            !sel.anchorNode.parentNode.classList.contains('placeholder')) {
-          lastRange = sel.getRangeAt(0);
-          const rect = lastRange.getBoundingClientRect();
-          positionMenu(selectionMenu, rect);
-        }
-      } else {
-        hideMenu(selectionMenu);
-      }
-    }, 0);
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!selectionMenu.contains(e.target) && !placeholderEditMenu.contains(e.target)) {
-      hideAllMenus();
-    }
-  });
-
-  document.getElementById('newPlaceholderBtn').addEventListener('click', () => {
-    hideMenu(selectionMenu);
-    $('#placeholderModal').modal('show');
-  });
-
-  document.getElementById('reusePlaceholderBtn').addEventListener('click', () => {
-    hideMenu(selectionMenu);
-    if (variables.length === 0) {
-      Swal.fire('No existing placeholders', 'There are no placeholders to reuse yet.', 'info');
-      return;
-    }
-    const sortedVariables = [...variables].sort((a, b) =>
-      (usageTracker[b.id] || 0) - (usageTracker[a.id] || 0) || a.order - b.order
-    );
-    let html = `<div id="reusePlaceholderContainer" style="display: flex; flex-wrap: wrap;">`;
-    sortedVariables.forEach(v => {
-      const displayText = v.displayOverride || v.officialDisplay;
-      html += `<button type="button" 
-                       class="btn btn-outline-secondary btn-sm m-1 reuse-placeholder-btn" 
-                       data-id="${v.id}" 
-                       title="${v.id}">
-                 ${displayText}
-               </button>`;
-    });
-    html += `</div>`;
-    Swal.fire({
-      title: 'Select a placeholder to reuse',
-      html,
-      showCancelButton: true,
-      showConfirmButton: false,
-      didOpen: () => {
-        const container = Swal.getHtmlContainer();
-        const btns = container.querySelectorAll('.reuse-placeholder-btn');
-        btns.forEach(button => {
-          button.addEventListener('click', () => {
-            const id = button.getAttribute('data-id');
-            const variable = variables.find(v => v.id === id);
-            if (variable) duplicatePlaceholder(variable);
-            Swal.close();
-          });
-        });
-      }
-    });
-  });
-
-  $(document).on('click', '#storyText .placeholder', (e) => {
-    e.stopPropagation();
-    currentPlaceholderElement = e.currentTarget;
-    const placeholderId = currentPlaceholderElement.getAttribute('data-id');
-    const variable = variables.find(v => v.id === placeholderId);
-    if (!variable) return;
-    Swal.fire({
-      title: 'Edit Placeholder',
-      html: `<div class="btn-group-vertical" style="width:100%;">
-               <button id="editPlaceholderBtn" class="btn btn-primary btn-sm">Change Placeholder</button>
-               <button id="editOverrideBtn" class="btn btn-secondary btn-sm">Change Override</button>
-               <button id="deletePlaceholderBtn" class="btn btn-danger btn-sm">Delete</button>
-             </div>`,
-      showConfirmButton: false
-    });
-  });
-
-  $(document).on('click', '#editPlaceholderBtn', () => {
-    Swal.close();
-    if (!currentPlaceholderElement) return;
-    const placeholderId = currentPlaceholderElement.getAttribute('data-id');
-    const variable = variables.find(v => v.id === placeholderId);
-    if (!variable) return;
-    currentEditingVariable = variable;
-    window.isEditingPlaceholder = true;
-    $('#placeholderModal').modal('show');
-  });
-
-  $(document).on('click', '#editOverrideBtn', () => {
-    Swal.close();
-    if (!currentPlaceholderElement) return;
-    const placeholderId = currentPlaceholderElement.getAttribute('data-id');
-    const variable = variables.find(v => v.id === placeholderId);
-    if (!variable) return;
-    Swal.fire({
-      title: 'Change Display Override',
-      input: 'text',
-      inputValue: variable.displayOverride,
-      showCancelButton: true,
-      inputValidator: (value) => {
-        if (!value) return 'Display override cannot be empty';
-      }
-    }).then(result => {
-      if (result.value) {
-        variable.displayOverride = result.value;
-        document.querySelectorAll(`.placeholder[data-id="${variable.id}"]`).forEach(el => {
-          el.setAttribute("data-id", variable.id);
-          el.setAttribute("title", variable.id);
-          el.textContent = variable.displayOverride;
-        });
-        updateVariablesList();
-      }
-    });
-  });
-
-  $(document).on('click', '#deletePlaceholderBtn', () => {
-    Swal.close();
-    if (currentPlaceholderElement) {
-      currentPlaceholderElement.remove();
-      updateVariablesFromEditor();
-    }
-  });
-
-  $('#alphabeticalOrderBtn').on('click', () => {
-    fillOrder = 'alphabetical';
-    $('#alphabeticalOrderBtn').addClass('active');
-    $('#randomOrderBtn').removeClass('active');
-    buildFillForm();
-  });
-
-  $('#randomOrderBtn').on('click', () => {
-    fillOrder = 'random';
-    $('#randomOrderBtn').addClass('active');
-    $('#alphabeticalOrderBtn').removeClass('active');
-    buildFillForm();
-  });
-
-  $(document).on('click', '#deletePlaceholderBtn', () => {
-    Swal.close();
-    if (currentPlaceholderElement) {
-      currentPlaceholderElement.remove();
-      updateVariablesFromEditor();
-    }
-  });
-
-  const updateExistingPlaceholder = (variable, newInternalType, newOfficialDisplay) => {
-    const oldId = variable.id;
-    const sanitized = Utils.sanitizeString(newInternalType);
-    const editor = document.getElementById("storyText");
-    let max = 0;
-    editor.querySelectorAll(".placeholder").forEach(span => {
-      const id = span.getAttribute("data-id");
-      if (id.startsWith(sanitized)) {
-        const match = id.match(/(\d+)$/);
-        if (match) {
-          const num = parseInt(match[1], 10);
-          if (num > max) max = num;
-        }
-      }
-    });
-    const newCount = max + 1;
-    const newId = sanitized + newCount;
-    variable.id = newId;
-    variable.internalType = newInternalType;
-    variable.officialDisplay = newOfficialDisplay;
-    if (!variable.displayOverride) variable.displayOverride = newOfficialDisplay;
-    document.querySelectorAll(`.placeholder[data-id="${oldId}"]`).forEach(el => {
-      el.setAttribute("data-id", newId);
-      el.setAttribute("title", newId);
-      el.textContent = variable.displayOverride;
-    });
-    updateVariablesList();
-  };
-
-  // ====================================================
-  // 14. FLOATING MENU ELEMENTS CREATION
-  // ====================================================
-  if (!document.getElementById('textSelectionMenu')) {
-    const selMenu = document.createElement('div');
-    selMenu.id = 'textSelectionMenu';
-    selMenu.className = 'floating-menu';
-    selMenu.innerHTML = `
-      <button id="newPlaceholderBtn" class="btn btn-sm btn-primary">New Placeholder</button>
-      <button id="reusePlaceholderBtn" class="btn btn-sm btn-secondary">Reuse Placeholder</button>
-    `;
-    document.body.appendChild(selMenu);
-  }
-  if (!document.getElementById('placeholderEditMenu')) {
-    const editMenu = document.createElement('div');
-    editMenu.id = 'placeholderEditMenu';
-    editMenu.className = 'floating-menu';
-    editMenu.innerHTML = `
-      <button id="editPlaceholderBtn" class="btn btn-sm btn-primary">Change Placeholder</button>
-      <button id="editOverrideBtn" class="btn btn-sm btn-secondary">Change Override</button>
-      <button id="deletePlaceholderBtn" class="btn btn-sm btn-danger">Delete</button>
-    `;
-    document.body.appendChild(editMenu);
-  }
 
   document.getElementById('storyText').addEventListener('mouseup', () => {
     setTimeout(() => {

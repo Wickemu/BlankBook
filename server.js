@@ -56,7 +56,7 @@ app.use(
 );
 app.use(compression());
 app.use(cors());
-app.use(express.json({ limit: '10kb' })); // Limit JSON payloads
+app.use(express.json({ limit: '100kb' })); // Limit JSON payloads
 app.use(express.static(require('path').join(__dirname, 'public')));
 app.use(morgan('combined'));
 
@@ -169,6 +169,18 @@ app.get('/api/getstories', async (req, res) => {
   }
 });
 
+// ====================================================
+// Endpoint: Get All Distinct Tags
+// ====================================================
+app.get('/api/gettags', async (req, res) => {
+  try {
+    const tags = await Story.distinct('tags');
+    res.json(tags);
+  } catch (error) {
+    console.error(`${new Date().toISOString()} - Error retrieving tags:`, error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 
 // ====================================================
 // Endpoint: Delete a Story by Title
