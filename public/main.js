@@ -216,13 +216,14 @@
       });
     },
     loadSavedStoriesList: () => {
-      // NEW: Read filter values (tag filter and sort option)
       const tag = $('#filterTag').val();
       const sort = $('#sortOption').val();
       $.ajax({
         url: `/api/getstories?tag=${encodeURIComponent(tag || '')}&sort=${encodeURIComponent(sort || 'date_desc')}`,
         method: 'GET',
         success: (stories) => {
+          // Store the fetched stories globally for later reference
+          window.savedStories = stories;
           const $listContainer = $('#savedStoriesList').empty();
           if (!stories.length) {
             $listContainer.append('<p>No stories saved yet.</p>');
@@ -262,7 +263,7 @@
           Storage.handleAjaxError(xhr, statusText, errorThrown, 'Failed to load saved stories list');
         }
       });
-    },
+    },    
     createSavedStoryListItem: (story, index, dateStr) => {
       return $(`
         <div class="list-group-item p-2">
@@ -287,31 +288,25 @@
       `);
     },
     loadSavedStory: (index, mode = "edit") => {
-      $.ajax({
-        url: '/api/getstories',
-        method: 'GET',
-        success: (stories) => {
-          const story = stories[index];
-          if (!story) return;
-          Storage.populateEditorWithStory(story, mode);
-          // NEW: Store the current story's ID for rating purposes.
-          currentStoryId = story._id || null;
-          // Also update a hidden element (if used) for the story ID
-          $('#displayStoryId').text(currentStoryId);
-          Swal.fire({
-            toast: true,
-            position: 'top-end',
-            icon: 'success',
-            title: 'Story loaded!',
-            showConfirmButton: false,
-            timer: 1500
-          });
-        },
-        error: (xhr, statusText, errorThrown) => {
-          Storage.handleAjaxError(xhr, statusText, errorThrown, 'Failed to load saved story');
-        }
+      const stories = window.savedStories || [];
+      const story = stories[index];
+      if (!story) {
+        Swal.fire('Error', 'Story not found.', 'error');
+        return;
+      }
+      Storage.populateEditorWithStory(story, mode);
+      currentStoryId = story._id || null;
+      $('#displayStoryId').text(currentStoryId);
+      Swal.fire({
+        toast: true,
+        position: 'top-end',
+        icon: 'success',
+        title: 'Story loaded!',
+        showConfirmButton: false,
+        timer: 1500
       });
     },
+    
     populateEditorWithStory: (story, mode) => {
       $('#storyTitle').val(story.storyTitle);
       $('#storyAuthor').val(story.storyAuthor);

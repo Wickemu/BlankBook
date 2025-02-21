@@ -140,8 +140,12 @@ app.get('/api/getstories', async (req, res) => {
     const { tag, sort } = req.query;
     let query = {};
     if (tag) {
-      // Find stories that have the specified tag (exact match)
-      query.tags = tag;
+      // Search in storyTitle, storyText, or tags (exact match for tags)
+      query.$or = [
+        { storyTitle: { $regex: tag, $options: 'i' } },
+        { storyText: { $regex: tag, $options: 'i' } },
+        { tags: tag }
+      ];
     }
     let sortOptions = {};
     if (sort === 'date_asc') {
@@ -152,6 +156,10 @@ app.get('/api/getstories', async (req, res) => {
       sortOptions.rating = 1;
     } else if (sort === 'rating_desc') {
       sortOptions.rating = -1;
+    } else if (sort === 'alpha_asc') {
+      sortOptions.storyTitle = 1;
+    } else if (sort === 'alpha_desc') {
+      sortOptions.storyTitle = -1;
     }
     const stories = await Story.find(query).sort(sortOptions).exec();
     res.json(stories);
@@ -160,6 +168,7 @@ app.get('/api/getstories', async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
 
 // ====================================================
 // Endpoint: Delete a Story by Title
