@@ -1467,24 +1467,36 @@
   $(document).ready(() => {
     updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
     updatePlaceholderAccordion('#modalPlaceholderAccordion', '#modalNoResults');
+    $('#filterTag').on('input', Utils.debounce(() => {
+      Storage.loadSavedStoriesList();
+    }, 300));
+
+    $('#sortOption').on('change', () => {
+      Storage.loadSavedStoriesList();
+    });
 
     // NEW: Attach autocomplete to the tag filter input in the saved stories modal.
-    $.ajax({
-      url: '/api/gettags',
-      method: 'GET',
-      success: function(tags) {
-        $("#filterTag").autocomplete({
-          source: tags,
-          minLength: 1,
-          select: function(event, ui) {
-            $("#filterTag").val(ui.item.value);
-            $("#applyFilters").click();
-            return false;
+    $("#filterTag").autocomplete({
+      source: function(request, response) {
+        $.ajax({
+          url: '/api/gettags',
+          method: 'GET',
+          dataType: 'json',
+          success: (tags) => {
+            const filteredTags = $.ui.autocomplete.filter(tags, request.term);
+            response(filteredTags);
+          },
+          error: (err) => {
+            console.error('Failed to load tags for autocomplete', err);
+            response([]);
           }
         });
       },
-      error: function(err) {
-        console.error('Failed to load tags for autocomplete', err);
+      minLength: 1,
+      select: (event, ui) => {
+        $("#filterTag").val(ui.item.value);
+        $("#applyFilters").click();
+        return false;
       }
     });
 
