@@ -1422,6 +1422,27 @@
       Storage.loadSavedStoriesList();
     });
 
+    // Attach event handlers for the ordering buttons
+$('#alphabeticalOrderBtn').on('click', function () {
+  // Set the fill order to alphabetical
+  fillOrder = 'alphabetical';
+  // Update button styling (optional)
+  $(this).removeClass('btn-outline-secondary').addClass('btn-outline-primary');
+  $('#randomOrderBtn').removeClass('btn-outline-primary').addClass('btn-outline-secondary');
+  // Rebuild the fill form to reflect the new order
+  buildFillForm();
+});
+
+$('#randomOrderBtn').on('click', function () {
+  // Set the fill order to random
+  fillOrder = 'random';
+  // Update button styling (optional)
+  $(this).removeClass('btn-outline-secondary').addClass('btn-outline-primary');
+  $('#alphabeticalOrderBtn').removeClass('btn-outline-primary').addClass('btn-outline-secondary');
+  // Rebuild the fill form to reflect the new order
+  buildFillForm();
+});
+
     // NEW: Attach autocomplete to the tag filter input in the saved stories modal.
     $("#filterTag").autocomplete({
       source: function(request, response) {
