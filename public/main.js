@@ -1647,7 +1647,8 @@ $('#randomOrderBtn').on('click', function () {
           };
         }
       });
-      let final = storyText;
+      // FIX: Regenerate the legacy story text from the editor here
+      let final = generateLegacyText();
       for (const v of variables) {
         const phRegex = new RegExp(`\\{${v.id}\\}`, 'g');
         if (v.internalType.startsWith('PRONOUN|')) {
@@ -1669,6 +1670,7 @@ $('#randomOrderBtn').on('click', function () {
       $('#result').removeClass('d-none');
       $('#inputs').addClass('d-none');
     });
+    
 
     $('#createNewStory2, #createNewStory').on('click', (e) => {
       e.preventDefault();
