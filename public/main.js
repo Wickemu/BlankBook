@@ -1856,7 +1856,7 @@ $('#randomOrderBtn').on('click', function () {
         title: 'Save Story',
         html: `<input type="text" id="swalTitle" class="swal2-input" placeholder="Story Title" value="${$('#storyTitle').val()}">
                <input type="text" id="swalAuthor" class="swal2-input" placeholder="Author" value="${$('#storyAuthor').val()}">
-               <input type="text" id="swalTags" class="swal2-input" placeholder="Tags (comma separated)">
+               <input type="text" id="swalTags" class="swal2-input" placeholder="Tags (comma separated)" value="${$('#storyTags').val()}">
                <div id="preexistingTagsContainer" style="text-align:left; margin-top:10px;"></div>`,
         didOpen: () => {
           loadPreexistingTags();
@@ -1876,17 +1876,18 @@ $('#randomOrderBtn').on('click', function () {
           // Update the editor inputs with new values
           $('#storyTitle').val(data.title);
           $('#storyAuthor').val(data.author);
-          // Make sure a hidden field for tags exists and update it
+          // Ensure the hidden field for tags exists and update it
           if ($('#storyTags').length === 0) {
             $('<input>').attr({ type: 'hidden', id: 'storyTags' }).appendTo('body');
           }
           $('#storyTags').val(data.tags);
-          // Now proceed with the original save function
+          // Proceed with saving the story
           Storage.addCurrentStoryToSavedStories();
           storyHasUnsavedChanges = false;
         }
       });
-    });     
+    });
+        
     $('#downloadStory').on('click', () => {
       const finalText = $('#finalStory').text();
       const title = $('#displayTitle').text();
@@ -2229,6 +2230,9 @@ $('#randomOrderBtn').on('click', function () {
   
     const currentModalSearch = $('#modalPlaceholderSearch').val() || '';
     updatePlaceholderAccordion('#modalPlaceholderAccordion', '#modalNoResults', currentModalSearch);
+
+    updateVariablesList();
+
   };
   
 

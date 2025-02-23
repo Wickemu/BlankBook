@@ -50,6 +50,11 @@
           <input type="text" class="form-control form-control-sm" id="storyAuthor" placeholder="Enter author name" aria-label="Author Name">
         </div>
       </div>
+      <!-- NEW: Tags input bar added below title and author -->
+      <div class="form-group">
+        <label for="storyTags">Tags</label>
+        <input type="text" class="form-control form-control-sm" id="storyTags" placeholder="Enter tags (comma separated)" aria-label="Story Tags">
+      </div>
       <p>
         Write your story below. Use placeholders (e.g., select a word and assign a placeholder) or insert them via the panel/button.
       </p>
@@ -175,6 +180,8 @@
       <h2 class="text-center my-4">Your Completed Story:</h2>
       <h3 id="displayTitle" class="text-center"></h3>
       <p class="text-center"><em>by <span id="displayAuthor"></span></em></p>
+      <!-- NEW: Display tags below the title and author -->
+      <p id="displayTags" class="text-center"></p>
       <!-- Hidden element to store the story's database ID -->
       <div id="displayStoryId" class="d-none"></div>
       <div id="finalStory" class="border p-3"></div>
