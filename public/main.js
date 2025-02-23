@@ -6,9 +6,10 @@
   const Utils = {
     debounce: (func, delay) => {
       let timeout;
-      return (...args) => {
+      return function(...args) {
+        const context = this;
         clearTimeout(timeout);
-        timeout = setTimeout(() => func(...args), delay);
+        timeout = setTimeout(() => func.apply(context, args), delay);
       };
     },
     toTitleCase: (str) =>
@@ -53,6 +54,10 @@
 
   // NEW: Global to store the current story's database ID when loaded.
   let currentStoryId = null;
+
+  // NEW: Global variables to persist the current search values
+  let currentPlaceholderSearch = '';
+  let currentModalPlaceholderSearch = '';
 
   // ====================================================
   // 2a. Capture Selection Changes
@@ -812,77 +817,6 @@
     });
   };
 
-  const updateVariablesFromEditor = () => {
-    variables = [];
-    variableCounts = {};
-    insertionCounter = 0;
-    const editor = document.getElementById('storyText');
-    const placeholderElements = editor.querySelectorAll('.placeholder');
-    placeholderElements.forEach(el => {
-      const id = el.getAttribute('data-id');
-      const base = id.replace(/\d+$/, '');
-      const numMatch = id.match(/(\d+)$/);
-      const num = numMatch ? parseInt(numMatch[1], 10) : 0;
-      if (!variableCounts[base] || num > variableCounts[base]) {
-        variableCounts[base] = num;
-      }
-      if (!variables.some(v => v.id === id)) {
-        let variableEntry;
-        const custom = customPlaceholders.find(p => p.type === base);
-        if (custom) {
-          variableEntry = {
-            id,
-            internalType: custom.type,
-            officialDisplay: TypeHelpers.naturalizeType(custom.type),
-            display: TypeHelpers.naturalizeType(custom.type),
-            isCustom: true,
-            order: insertionCounter++,
-            displayOverride: el.textContent
-          };
-        } else {
-          const guessed = TypeHelpers.guessTypeFromId(id);
-          const originalDisplay = TypeHelpers.getOriginalDisplayForType(guessed) || guessed;
-          variableEntry = {
-            id,
-            internalType: guessed,
-            officialDisplay: originalDisplay,
-            display: originalDisplay,
-            order: insertionCounter++,
-            displayOverride: el.textContent
-          };
-        }
-        variables.push(variableEntry);
-      }
-    });
-    updateVariablesList();
-    updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
-    updatePlaceholderAccordion('#modalPlaceholderAccordion', '#modalNoResults');
-  };
-
-  const generateLegacyText = () => {
-    const editor = document.getElementById("storyText");
-    const traverse = (node) => {
-      let result = "";
-      node.childNodes.forEach(child => {
-        if (child.nodeType === Node.TEXT_NODE) {
-          result += child.textContent;
-        } else if (child.nodeType === Node.ELEMENT_NODE) {
-          if (child.tagName.toLowerCase() === "br") {
-            result += "\n";
-          } else if (child.classList.contains("placeholder")) {
-            result += "{" + child.getAttribute("data-id") + "}";
-          } else {
-            result += traverse(child);
-            const tag = child.tagName.toLowerCase();
-            if (tag === "div" || tag === "p") result += "\n";
-          }
-        }
-      });
-      return result;
-    };
-    return traverse(editor);
-  };
-
   // ====================================================
   // 7. UPDATE PLACEHOLDER ACCORDION
   // ====================================================
@@ -1095,7 +1029,7 @@
       insertPlaceholderFromCustom(raw);
     }
     $('#placeholderSearch').val('');
-    updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
+    updatePlaceholderAccordion('#placeholderAccordion', '#noResults', currentPlaceholderSearch);
   });
   $('#modalAddCustomPlaceholderBtn').on('click', () => {
     const raw = $('#modalPlaceholderSearch').val();
@@ -1110,10 +1044,10 @@
       addNewCustomPlaceholder(raw);
       insertPlaceholderFromCustom(raw);
     }
-    updatePlaceholderAccordion('#modalPlaceholderAccordion', '#modalNoResults');
+    updatePlaceholderAccordion('#modalPlaceholderAccordion', '#modalNoResults', currentModalPlaceholderSearch);
     $('#placeholderModal').modal('hide');
     $('#modalPlaceholderSearch').val('');
-    updatePlaceholderAccordion('#modalPlaceholderAccordion', '#modalNoResults');
+    updatePlaceholderAccordion('#modalPlaceholderAccordion', '#modalNoResults', currentModalPlaceholderSearch);
   });
   
   $(document).on('click', '#modalPlaceholderAccordion .placeholder-btn', (e) => {
@@ -1128,19 +1062,19 @@
     if (internalType === "PRONOUN") {
       pickPronounFormAndGroup();
       $('#placeholderSearch').val('');
-      updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
+      updatePlaceholderAccordion('#placeholderAccordion', '#noResults', currentPlaceholderSearch);
       return;
     }
     if (internalType.indexOf("NN") === 0) {
       showNounNumberSelection(internalType, displayName);
       $('#placeholderSearch').val('');
-      updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
+      updatePlaceholderAccordion('#placeholderAccordion', '#noResults', currentPlaceholderSearch);
       return;
     }
     if (internalType.indexOf("VB") === 0 || internalType === "MD") {
       showVerbTenseSelection(internalType, displayName);
       $('#placeholderSearch').val('');
-      updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
+      updatePlaceholderAccordion('#placeholderAccordion', '#noResults', currentPlaceholderSearch);
       return;
     }
     if (window.isEditingPlaceholder && currentEditingVariable) {
@@ -1151,7 +1085,7 @@
       insertPlaceholder(internalType, displayName, false);
     }
     $('#placeholderSearch').val('');
-    updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
+    updatePlaceholderAccordion('#placeholderAccordion', '#noResults', currentPlaceholderSearch);
   });
 
   $(document).on('click', '.placeholder-btn', (e) => {
@@ -1174,27 +1108,27 @@
       if (internalType === "PRONOUN") {
         pickPronounFormAndGroup();
         $('#placeholderSearch').val('');
-        updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
+        updatePlaceholderAccordion('#placeholderAccordion', '#noResults', currentPlaceholderSearch);
         placeholderInsertionInProgress = false;
         return;
       }
       if (internalType.indexOf("NN") === 0) {
         showNounNumberSelection(internalType, displayName);
         $('#placeholderSearch').val('');
-        updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
+        updatePlaceholderAccordion('#placeholderAccordion', '#noResults', currentPlaceholderSearch);
         placeholderInsertionInProgress = false;
         return;
       }
       if (internalType.indexOf("VB") === 0 || internalType === "MD") {
         showVerbTenseSelection(internalType, displayName);
         $('#placeholderSearch').val('');
-        updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
+        updatePlaceholderAccordion('#placeholderAccordion', '#noResults', currentPlaceholderSearch);
         placeholderInsertionInProgress = false;
         return;
       }
       insertPlaceholder(internalType, displayName, false);
       $('#placeholderSearch').val('');
-      updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
+      updatePlaceholderAccordion('#placeholderAccordion', '#noResults', currentPlaceholderSearch);
     }
     setTimeout(() => { placeholderInsertionInProgress = false; }, 50);
   });
@@ -1465,8 +1399,21 @@
   // 13. EVENT HANDLERS & DOCUMENT READY
   // ====================================================
   $(document).ready(() => {
-    updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
-    updatePlaceholderAccordion('#modalPlaceholderAccordion', '#modalNoResults');
+    // Attach search handlers with a reduced debounce delay (50ms)
+    $('#placeholderSearch').on('input', Utils.debounce(function () {
+      const searchVal = $(this).val();
+      updatePlaceholderAccordion('#placeholderAccordion', '#noResults', searchVal);
+      $('#addCustomPlaceholderBtn').text('Add "' + searchVal + '"');
+    }, 50));
+
+    $('#modalPlaceholderSearch').on('input', Utils.debounce(function () {
+      const searchVal = $(this).val();
+      updatePlaceholderAccordion('#modalPlaceholderAccordion', '#modalNoResults', searchVal);
+      $('#modalAddCustomPlaceholderBtn').text('Add "' + searchVal + '"');
+    }, 50));
+
+    updatePlaceholderAccordion('#placeholderAccordion', '#noResults', currentPlaceholderSearch);
+    updatePlaceholderAccordion('#modalPlaceholderAccordion', '#modalNoResults', currentModalPlaceholderSearch);
     $('#filterTag').on('input', Utils.debounce(() => {
       Storage.loadSavedStoriesList();
     }, 300));
@@ -1566,18 +1513,6 @@
       const variable = variables.find(v => v.id === id);
       if (variable) duplicatePlaceholder(variable);
     });
-
-    $('#placeholderSearch').on('input', Utils.debounce(function () {
-      const searchVal = $(this).val();
-      updatePlaceholderAccordion('#placeholderAccordion', '#noResults', searchVal);
-      $('#addCustomPlaceholderBtn').text('Add "' + searchVal + '"');
-    }, 300));
-
-    $('#modalPlaceholderSearch').on('input', Utils.debounce(function () {
-      const searchVal = $(this).val();
-      updatePlaceholderAccordion('#modalPlaceholderAccordion', '#modalNoResults', searchVal);
-      $('#modalAddCustomPlaceholderBtn').text('Add "' + searchVal + '"');
-    }, 300));
 
     $('#storyText').on('input', () => {
       updateVariablesFromEditor();
@@ -1770,8 +1705,8 @@
       pronounGroupCount = 0;
       storyHasUnsavedChanges = false;
       updateVariablesList();
-      updatePlaceholderAccordion('#placeholderAccordion', '#noResults');
-      updatePlaceholderAccordion('#modalPlaceholderAccordion', '#modalNoResults');
+      updatePlaceholderAccordion('#placeholderAccordion', '#noResults', currentPlaceholderSearch);
+      updatePlaceholderAccordion('#modalPlaceholderAccordion', '#modalNoResults', currentModalPlaceholderSearch);
       $('#editor').removeClass('d-none');
       $('#inputs, #result').addClass('d-none');
     };
@@ -2017,6 +1952,63 @@
   `;
   document.body.appendChild(placeholderEditMenu);
 
+  // After the creation of placeholderEditMenu and before the end of the IIFE,
+  // add a click event listener on the story text to detect clicks on placeholder spans
+  document.getElementById('storyText').addEventListener('click', function(e) {
+    if (e.target.classList.contains('placeholder')) {
+      // Stop propagation so that other handlers (e.g. selection menu) do not interfere
+      e.stopPropagation();
+      // Find the corresponding variable using the data-id attribute
+      currentEditingVariable = variables.find(v => v.id === e.target.getAttribute('data-id'));
+      currentPlaceholderElement = e.target;
+      // Position the placeholder edit menu near the clicked element
+      positionMenu(placeholderEditMenu, e.target.getBoundingClientRect());
+    }
+  });
+
+  // Now attach event listeners to the buttons in the placeholderEditMenu
+  document.getElementById('editPlaceholderBtn').addEventListener('click', () => {
+    hideMenu(placeholderEditMenu);
+    window.isEditingPlaceholder = true;
+    // Open the modal so the user can select a new placeholder type.
+    // (The modal’s click handler will check window.isEditingPlaceholder and update the existing placeholder.)
+    $('#placeholderModal').modal('show');
+    // Clear the current editing variable after the action is initiated
+    currentEditingVariable = null;
+    currentPlaceholderElement = null;
+  });
+
+  document.getElementById('editOverrideBtn').addEventListener('click', async () => {
+    hideMenu(placeholderEditMenu);
+    const { value: newOverride } = await Swal.fire({
+      title: 'Change Override',
+      input: 'text',
+      inputLabel: 'Enter new override text',
+      inputValue: currentPlaceholderElement ? currentPlaceholderElement.textContent : ''
+    });
+    if (newOverride !== undefined) {
+      if (currentPlaceholderElement) {
+        currentPlaceholderElement.textContent = newOverride;
+      }
+      if (currentEditingVariable) {
+        currentEditingVariable.displayOverride = newOverride;
+      }
+      updateVariablesList();
+    }
+    currentEditingVariable = null;
+    currentPlaceholderElement = null;
+  });
+
+  document.getElementById('deletePlaceholderBtn').addEventListener('click', () => {
+    hideMenu(placeholderEditMenu);
+    if (currentPlaceholderElement) {
+      currentPlaceholderElement.remove();
+    }
+    updateVariablesFromEditor();
+    currentEditingVariable = null;
+    currentPlaceholderElement = null;
+  });
+
   document.getElementById('storyText').addEventListener('mouseup', () => {
     setTimeout(() => {
       const sel = window.getSelection();
@@ -2083,4 +2075,83 @@
       }
     });
   });
+
+  // ====================================================
+  // 15. CRITICAL: UPDATE VARIABLES FROM EDITOR (MODIFIED)
+  // ====================================================
+  const updateVariablesFromEditor = () => {
+    variables = [];
+    variableCounts = {};
+    insertionCounter = 0;
+    const editor = document.getElementById('storyText');
+    const placeholderElements = editor.querySelectorAll('.placeholder');
+    placeholderElements.forEach(el => {
+      const id = el.getAttribute('data-id');
+      const base = id.replace(/\d+$/, '');
+      const numMatch = id.match(/(\d+)$/);
+      const num = numMatch ? parseInt(numMatch[1], 10) : 0;
+      if (!variableCounts[base] || num > variableCounts[base]) {
+        variableCounts[base] = num;
+      }
+      if (!variables.some(v => v.id === id)) {
+        let variableEntry;
+        const custom = customPlaceholders.find(p => p.type === base);
+        if (custom) {
+          variableEntry = {
+            id,
+            internalType: custom.type,
+            officialDisplay: TypeHelpers.naturalizeType(custom.type),
+            display: TypeHelpers.naturalizeType(custom.type),
+            isCustom: true,
+            order: insertionCounter++,
+            displayOverride: el.textContent
+          };
+        } else {
+          const guessed = TypeHelpers.guessTypeFromId(id);
+          const originalDisplay = TypeHelpers.getOriginalDisplayForType(guessed) || guessed;
+          variableEntry = {
+            id,
+            internalType: guessed,
+            officialDisplay: originalDisplay,
+            display: originalDisplay,
+            order: insertionCounter++,
+            displayOverride: el.textContent
+          };
+        }
+        variables.push(variableEntry);
+      }
+    });
+  
+    const currentSearch = $('#placeholderSearch').val() || '';
+    updatePlaceholderAccordion('#placeholderAccordion', '#noResults', currentSearch);
+  
+    const currentModalSearch = $('#modalPlaceholderSearch').val() || '';
+    updatePlaceholderAccordion('#modalPlaceholderAccordion', '#modalNoResults', currentModalSearch);
+  };
+  
+
+  const generateLegacyText = () => {
+    const editor = document.getElementById("storyText");
+    const traverse = (node) => {
+      let result = "";
+      node.childNodes.forEach(child => {
+        if (child.nodeType === Node.TEXT_NODE) {
+          result += child.textContent;
+        } else if (child.nodeType === Node.ELEMENT_NODE) {
+          if (child.tagName.toLowerCase() === "br") {
+            result += "\n";
+          } else if (child.classList.contains("placeholder")) {
+            result += "{" + child.getAttribute("data-id") + "}";
+          } else {
+            result += traverse(child);
+            const tag = child.tagName.toLowerCase();
+            if (tag === "div" || tag === "p") result += "\n";
+          }
+        }
+      });
+      return result;
+    };
+    return traverse(editor);
+  };
+
 })();
