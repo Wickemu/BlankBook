@@ -376,13 +376,37 @@
         let sub = type.substring(4);
         if (sub.startsWith("_")) sub = sub.substring(1);
         sub = sub.replace(/\d+$/, '');
+        if(sub.toLowerCase() === "person") {
+          return "Person (proper, plural)";
+        }
         return Utils.toTitleCase(Utils.naturalDisplay(sub || "Proper Noun")) + " (Plural)";
       }
       if (type.startsWith("NNP")) {
         let sub = type.substring(3);
         if (sub.startsWith("_")) sub = sub.substring(1);
         sub = sub.replace(/\d+$/, '');
+        if(sub.toLowerCase() === "person") {
+          return "Person (proper, singular)";
+        }
         return Utils.toTitleCase(Utils.naturalDisplay(sub || "Proper Noun")) + " (Singular)";
+      }
+      if (type.startsWith("NNS")) {
+        let sub = type.substring(3);
+        if (sub.startsWith("_")) sub = sub.substring(1);
+        sub = sub.replace(/\d+$/, '');
+        if(sub.toLowerCase() === "person") {
+          return "Person (common, plural)";
+        }
+        return Utils.toTitleCase(Utils.naturalDisplay(sub || "Common Noun")) + " (Plural)";
+      }
+      if (type.startsWith("NN")) {
+        let sub = type.substring(2);
+        if (sub.startsWith("_")) sub = sub.substring(1);
+        sub = sub.replace(/\d+$/, '');
+        if(sub.toLowerCase() === "person") {
+          return "Person (common, singular)";
+        }
+        return Utils.toTitleCase(Utils.naturalDisplay(sub || "Common Noun")) + " (Singular)";
       }
       if (type.startsWith("NNS")) {
         let sub = type.substring(3);
@@ -1066,11 +1090,19 @@
       return;
     }
     if (internalType.indexOf("NN") === 0) {
+      if (internalType === "NN_Person") {
+        // New step for person placeholders
+        showPersonTypeSelection(internalType, displayName);
+        $('#placeholderSearch').val('');
+        updatePlaceholderAccordion('#placeholderAccordion', '#noResults', currentPlaceholderSearch);
+        return;
+      }
+      // Otherwise, proceed as usual with number selection
       showNounNumberSelection(internalType, displayName);
       $('#placeholderSearch').val('');
       updatePlaceholderAccordion('#placeholderAccordion', '#noResults', currentPlaceholderSearch);
       return;
-    }
+    }  
     if (internalType.indexOf("VB") === 0 || internalType === "MD") {
       showVerbTenseSelection(internalType, displayName);
       $('#placeholderSearch').val('');
@@ -1113,12 +1145,20 @@
         return;
       }
       if (internalType.indexOf("NN") === 0) {
+        if (internalType === "NN_Person") {
+          showPersonTypeSelection(internalType, displayName);
+          $('#placeholderSearch').val('');
+          updatePlaceholderAccordion('#placeholderAccordion', '#noResults', currentPlaceholderSearch);
+          placeholderInsertionInProgress = false;
+          return;
+        }
         showNounNumberSelection(internalType, displayName);
         $('#placeholderSearch').val('');
         updatePlaceholderAccordion('#placeholderAccordion', '#noResults', currentPlaceholderSearch);
         placeholderInsertionInProgress = false;
         return;
       }
+  
       if (internalType.indexOf("VB") === 0 || internalType === "MD") {
         showVerbTenseSelection(internalType, displayName);
         $('#placeholderSearch').val('');
@@ -1136,6 +1176,45 @@
   // ====================================================
   // 10. VERB & NOUN SELECTION MODALS
   // ====================================================
+  const showPersonTypeSelection = (baseInternal, baseDisplay) => {
+    let html = `<div class='list-group'>
+      <button class='list-group-item list-group-item-action person-type-btn' data-type='common'>
+        Common (e.g., doctor)
+      </button>
+      <button class='list-group-item list-group-item-action person-type-btn' data-type='proper'>
+        Proper (e.g., Donald Trump)
+      </button>
+    </div>`;
+    Swal.fire({
+      title: 'Select Person Type',
+      html,
+      showCancelButton: true,
+      showConfirmButton: false,
+      allowOutsideClick: false,
+      didOpen: () => {
+        const container = Swal.getHtmlContainer();
+        $(container).find('.person-type-btn').on('click', function () {
+          const selectedType = $(this).data('type'); // "common" or "proper"
+          let updatedBaseInternal, updatedBaseDisplay;
+          if (selectedType === "proper") {
+            updatedBaseInternal = "NNP_Person";
+            updatedBaseDisplay = "Proper " + baseDisplay;
+          } else {
+            updatedBaseInternal = "NN_Person";
+            updatedBaseDisplay = "Common " + baseDisplay;
+          }
+          // Close the current modal...
+          Swal.close();
+          // ...and use a small timeout to ensure it’s fully closed before showing the next modal.
+          setTimeout(() => {
+            showNounNumberSelection(updatedBaseInternal, updatedBaseDisplay);
+          }, 100);
+        });
+      }
+    });
+  };
+  
+  
   const showNounNumberSelection = (baseInternal, baseDisplay) => {
     let html = `<div class='list-group'>`;
     ['Singular', 'Plural'].forEach(f => {
