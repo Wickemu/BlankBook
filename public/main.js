@@ -45,7 +45,7 @@
   let placeholderInsertionInProgress = false;
   let storyHasUnsavedChanges = false;
   let fillOrder = 'alphabetical';
-
+  
   const pronounMapping = {
     "He/Him": { subject: "he", object: "him", possAdj: "his", possPron: "his", reflexive: "himself" },
     "She/Her": { subject: "she", object: "her", possAdj: "her", possPron: "hers", reflexive: "herself" },
@@ -116,43 +116,58 @@
             timer: 1500
           });
         },
-        error: (xhr, statusText, errorThrown) => {
-          if (xhr.status === 409) {
+error: (xhr, statusText, errorThrown) => {
+  if (xhr.status === 409) {
+    Swal.fire({
+      title: 'Story exists',
+      text: 'A story with this title already exists. Overwrite?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, overwrite',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Create a new story object with the overwrite flag
+        let storyWithOverwrite = {
+          storyTitle: data.title,
+          storyAuthor: data.author,
+          storyText: $('#storyText').html(),
+          variables,
+          pronounGroups,
+          variableCounts,
+          pronounGroupCount,
+          customPlaceholders,
+          tags: data.tags ? data.tags.split(',').map(s => s.trim()) : [],
+          savedAt: new Date().toISOString(),
+          password: data.password || null,
+          overwrite: true  // Add the overwrite flag
+        };
+        
+        $.ajax({
+          url: '/api/savestory',
+          method: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify(storyWithOverwrite),
+          success: () => {
             Swal.fire({
-              title: 'Story exists',
-              text: 'A story with this title already exists. Overwrite?',
-              icon: 'warning',
-              showCancelButton: true,
-              confirmButtonText: 'Yes, overwrite',
-              cancelButtonText: 'No'
-            }).then((result) => {
-              if (result.isConfirmed) {
-                story.overwrite = true;
-                $.ajax({
-                  url: '/api/savestory',
-                  method: 'POST',
-                  contentType: 'application/json',
-                  data: JSON.stringify(story),
-                  success: () => {
-                    Swal.fire({
-                      toast: true,
-                      position: 'top-end',
-                      icon: 'success',
-                      title: 'Story overwritten!',
-                      showConfirmButton: false,
-                      timer: 1500
-                    });
-                  },
-                  error: (xhrOverwrite, statusTextOverwrite, errorThrownOverwrite) => {
-                    Storage.handleAjaxError(xhrOverwrite, statusTextOverwrite, errorThrownOverwrite, 'Failed to overwrite story');
-                  }
-                });
-              }
+              toast: true,
+              position: 'top-end',
+              icon: 'success',
+              title: 'Story overwritten!',
+              showConfirmButton: false,
+              timer: 1500
             });
-          } else {
-            Storage.handleAjaxError(xhr, statusText, errorThrown, 'Failed to save story');
+          },
+          error: (xhrOverwrite, statusTextOverwrite, errorThrownOverwrite) => {
+            Storage.handleAjaxError(xhrOverwrite, statusTextOverwrite, errorThrownOverwrite, 'Failed to overwrite story');
           }
-        }
+        });
+      }
+    });
+  } else {
+    Storage.handleAjaxError(xhr, statusText, errorThrown, 'Failed to save story');
+  }
+}
       });
     },
     addCompletedStoryToSavedStories: () => {
@@ -248,7 +263,7 @@
               <div class="list-group-item p-2">
                 <div class="d-flex justify-content-between align-items-center">
                   <div>
-                    <strong>${story.storyTitle || 'Untitled'}</strong><br>
+                    <strong>${lockIndicator}${story.storyTitle || 'Untitled'}</strong><br>
                     <small>${story.storyAuthor || 'Unknown'} | ${dateStr}</small><br>
                     <small>${tags} | ${ratingDisplay}</small>
                   </div>
@@ -1921,7 +1936,7 @@ $('#randomOrderBtn').on('click', function () {
             customPlaceholders,
             tags: data.tags ? data.tags.split(',').map(s => s.trim()) : [],
             savedAt: new Date().toISOString(),
-            password: data.password || null  // Store password if provided
+            password: null
           };
           
           $.ajax({

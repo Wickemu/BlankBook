@@ -203,8 +203,8 @@ app.get('/api/getstories', async (req, res) => {
           }
           return s;
         });
-    res.json(stories);
-  } catch (error) {
+        res.json(modifiedStories);
+        } catch (error) {
     console.error(`${new Date().toISOString()} - Error retrieving stories:`, error);
     res.status(500).json({ error: "Internal Server Error" });
   }
