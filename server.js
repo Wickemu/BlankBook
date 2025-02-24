@@ -41,19 +41,41 @@ const PORT = process.env.PORT || 3000;
 // --- Security & Logging Middleware ---
 app.use(
   helmet.contentSecurityPolicy({
+    useDefaults: false,
     directives: {
       defaultSrc: ["'self'"],
       scriptSrc: [
         "'self'",
         "https://code.jquery.com",
-        "https://code.jquery.com/ui",
         "https://cdn.jsdelivr.net",
         "https://maxcdn.bootstrapcdn.com",
         "https://cdn.jsdelivr.net/npm/sweetalert2@10"
+      ],
+      styleSrc: [
+        "'self'",
+        "'unsafe-inline'",
+        "https://maxcdn.bootstrapcdn.com",
+        "https://cdnjs.cloudflare.com",
+        "https://code.jquery.com"
+      ],
+      styleSrcElem: [
+        "'self'",
+        "'unsafe-inline'",
+        "https://maxcdn.bootstrapcdn.com",
+        "https://cdnjs.cloudflare.com",
+        "https://code.jquery.com"
+      ],
+      fontSrc: [
+        "'self'",
+        "https://cdnjs.cloudflare.com"
       ]
     }
   })
 );
+
+
+
+
 app.use(compression());
 app.use(cors());
 app.use(express.json({ limit: '100kb' })); // Limit JSON payloads
