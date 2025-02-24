@@ -97,7 +97,9 @@
         pronounGroupCount,
         customPlaceholders,
         tags: $('#storyTags').val() ? $('#storyTags').val().split(',').map(s => s.trim()) : [],
-        savedAt: new Date().toISOString()
+        savedAt: new Date().toISOString(),
+        password: data.password || null
+
       };
       $.ajax({
         url: '/api/savestory',
@@ -164,7 +166,9 @@
         pronounGroupCount,
         customPlaceholders,
         tags: $('#displayTags').text() ? $('#displayTags').text().split(',').map(s => s.trim()) : [],
-        savedAt: new Date().toISOString()
+        savedAt: new Date().toISOString(),
+        password: data.password || null
+
       };
       $.ajax({
         url: '/api/savestory',
@@ -239,6 +243,7 @@
             const dateStr = dateObj.toLocaleDateString() + " " + dateObj.toLocaleTimeString();
             const tags = story.tags && story.tags.length ? story.tags.join(', ') : 'No tags';
             const ratingDisplay = story.ratingCount ? `Rating: ${story.rating.toFixed(1)} (${story.ratingCount} votes)` : 'No ratings';
+            const lockIndicator = story.locked ? `<i class="fas fa-lock" title="Password Protected"></i> ` : '';
             const item = $(`
               <div class="list-group-item p-2">
                 <div class="d-flex justify-content-between align-items-center">
@@ -299,18 +304,41 @@
         Swal.fire('Error', 'Story not found.', 'error');
         return;
       }
-      Storage.populateEditorWithStory(story, mode);
-      currentStoryId = story._id || null;
-      $('#displayStoryId').text(currentStoryId);
-      Swal.fire({
-        toast: true,
-        position: 'top-end',
-        icon: 'success',
-        title: 'Story loaded!',
-        showConfirmButton: false,
-        timer: 1500
-      });
-    },
+  // NEW: If the story is locked, prompt for the password.
+  if (story.locked) {
+    Swal.fire({
+      title: 'Enter Password',
+      input: 'password',
+      inputPlaceholder: 'Password',
+      showCancelButton: true,
+      inputAttributes: { autocapitalize: 'off', autocorrect: 'off' }
+    }).then(result => {
+      if (result.value) {
+        $.ajax({
+          url: '/api/unlockstory',
+          method: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify({ storyId: story._id, password: result.value }),
+          success: (unlockedStory) => {
+            Storage.populateEditorWithStory(unlockedStory, mode);
+            currentStoryId = unlockedStory._id || null;
+            $('#displayStoryId').text(currentStoryId);
+            Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: 'Story loaded!', showConfirmButton: false, timer: 1500 });
+          },
+          error: (xhr, statusText, errorThrown) => {
+            Storage.handleAjaxError(xhr, statusText, errorThrown, 'Incorrect password or failed to unlock story');
+          }
+        });
+      }
+    });
+  } else {
+    Storage.populateEditorWithStory(story, mode);
+    currentStoryId = story._id || null;
+    $('#displayStoryId').text(currentStoryId);
+    Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: 'Story loaded!', showConfirmButton: false, timer: 1500 });
+  }
+},
+
     
     populateEditorWithStory: (story, mode) => {
       $('#storyTitle').val(story.storyTitle);
@@ -1854,10 +1882,13 @@ $('#randomOrderBtn').on('click', function () {
     $('#saveStoryToSite').on('click', () => {
       Swal.fire({
         title: 'Save Story',
-        html: `<input type="text" id="swalTitle" class="swal2-input" placeholder="Story Title" value="${$('#storyTitle').val()}">
-               <input type="text" id="swalAuthor" class="swal2-input" placeholder="Author" value="${$('#storyAuthor').val()}">
-               <input type="text" id="swalTags" class="swal2-input" placeholder="Tags (comma separated)" value="${$('#storyTags').val()}">
-               <div id="preexistingTagsContainer" style="text-align:left; margin-top:10px;"></div>`,
+        html: `
+          <input type="text" id="swalTitle" class="swal2-input" placeholder="Story Title" value="${$('#storyTitle').val()}">
+          <input type="text" id="swalAuthor" class="swal2-input" placeholder="Author" value="${$('#storyAuthor').val()}">
+          <input type="text" id="swalTags" class="swal2-input" placeholder="Tags (comma separated)" value="${$('#storyTags').val()}">
+          <input type="password" id="swalPassword" class="swal2-input" placeholder="Password (optional)">
+          <div id="preexistingTagsContainer" style="text-align:left; margin-top:10px;"></div>
+        `,
         didOpen: () => {
           loadPreexistingTags();
         },
@@ -1867,26 +1898,56 @@ $('#randomOrderBtn').on('click', function () {
           return {
             title: document.getElementById('swalTitle').value,
             author: document.getElementById('swalAuthor').value,
-            tags: document.getElementById('swalTags').value
+            tags: document.getElementById('swalTags').value,
+            password: document.getElementById('swalPassword').value
           };
         }
       }).then((result) => {
         if (result.isConfirmed) {
           const data = result.value;
-          // Update the editor inputs with new values
+          // Update fields in the editor
           $('#storyTitle').val(data.title);
           $('#storyAuthor').val(data.author);
-          // Ensure the hidden field for tags exists and update it
-          if ($('#storyTags').length === 0) {
-            $('<input>').attr({ type: 'hidden', id: 'storyTags' }).appendTo('body');
-          }
           $('#storyTags').val(data.tags);
-          // Proceed with saving the story
-          Storage.addCurrentStoryToSavedStories();
-          storyHasUnsavedChanges = false;
+          
+          let story = {
+            storyTitle: data.title,
+            storyAuthor: data.author,
+            storyText: $('#storyText').html(),
+            variables,
+            pronounGroups,
+            variableCounts,
+            pronounGroupCount,
+            customPlaceholders,
+            tags: data.tags ? data.tags.split(',').map(s => s.trim()) : [],
+            savedAt: new Date().toISOString(),
+            password: data.password || null  // Store password if provided
+          };
+          
+          $.ajax({
+            url: '/api/savestory',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(story),
+            success: () => {
+              Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'success',
+                title: 'Story saved to site!',
+                showConfirmButton: false,
+                timer: 1500
+              });
+            },
+            error: (xhr, statusText, errorThrown) => {
+              Storage.handleAjaxError(xhr, statusText, errorThrown, 'Failed to save story');
+            }
+          });
         }
       });
     });
+    
+    
         
     $('#downloadStory').on('click', () => {
       const finalText = $('#finalStory').text();

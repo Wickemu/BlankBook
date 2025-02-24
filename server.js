@@ -27,10 +27,11 @@ const storySchema = new mongoose.Schema({
   variableCounts: { type: Object, default: {} },
   customPlaceholders: { type: Array, default: [] },
   pronounGroupCount: { type: Number, default: 0 },
-  tags: { type: [String], default: [] },              // NEW: Tags for filtering stories
-  rating: { type: Number, default: 0 },                 // NEW: Average rating
-  ratingCount: { type: Number, default: 0 },            // NEW: Number of ratings received
-  savedAt: { type: Date, default: Date.now }
+  tags: { type: [String], default: [] },              // Tags for filtering stories
+  rating: { type: Number, default: 0 },                 // Average rating
+  ratingCount: { type: Number, default: 0 },            // Number of ratings received
+  savedAt: { type: Date, default: Date.now },
+  password: { type: String, default: null }            // Password for private stories
 });
 const Story = mongoose.model('Story', storySchema);
 
@@ -129,9 +130,15 @@ app.post(
       newStory.variableCounts = newStory.variableCounts || {};
       newStory.customPlaceholders = newStory.customPlaceholders || [];
       newStory.pronounGroupCount = newStory.pronounGroupCount || 0;
-      newStory.tags = newStory.tags || []; // NEW: Tags
-      // Overwrite flag support
+      newStory.tags = newStory.tags || [];
+      if (newStory.password && newStory.password.trim() === "") {
+        newStory.password = null;
+      }
+            // Overwrite flag support
+
       const overwrite = newStory.overwrite;
+
+      
 
       // --- Check for Existing Story if Not Overwriting ---
       if (!overwrite) {
@@ -184,6 +191,18 @@ app.get('/api/getstories', async (req, res) => {
       sortOptions.storyTitle = -1;
     }
     const stories = await Story.find(query).sort(sortOptions).exec();
+        // For locked stories, remove sensitive fields and add a "locked" flag.
+        const modifiedStories = stories.map(story => {
+          const s = story.toObject();
+          if (s.password) {
+            s.locked = true;
+            delete s.storyText;
+            delete s.password;
+          } else {
+            s.locked = false;
+          }
+          return s;
+        });
     res.json(stories);
   } catch (error) {
     console.error(`${new Date().toISOString()} - Error retrieving stories:`, error);
@@ -194,6 +213,27 @@ app.get('/api/getstories', async (req, res) => {
 // ====================================================
 // Endpoint: Get All Distinct Tags
 // ====================================================
+
+app.post('/api/unlockstory', async (req, res) => {
+  const { storyId, password } = req.body;
+  if (!storyId) {
+    return res.status(400).json({ error: "Missing storyId" });
+  }
+  try {
+    const story = await Story.findById(storyId);
+    if (!story) return res.status(404).json({ error: "Story not found" });
+    if (!story.password) {
+      return res.status(400).json({ error: "Story is not password protected" });
+    }
+    if (story.password !== password) {
+      return res.status(401).json({ error: "Incorrect password" });
+    }
+    res.json(story);
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 app.get('/api/gettags', async (req, res) => {
   try {
     const tags = await Story.distinct('tags');
