@@ -2,6 +2,8 @@
 import { Utils, decodeHTMLEntities } from './utils.js';
 import { variables, variableCounts, insertionCounter, lastRange } from './state.js';
 
+
+
 export const categoryOrder = ["Nouns", "Verbs", "Descriptors", "Other"];
 
 export const allPlaceholders = {

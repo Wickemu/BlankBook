@@ -1,11 +1,9 @@
 "use strict";
-import $ from 'jquery';
-import Swal from 'sweetalert2';
 import { Utils, decodeHTMLEntities } from './utils.js';
 import { Storage } from './storage.js';
 import {
   updatePlaceholderAccordion, duplicatePlaceholder, insertPlaceholder,
-  updateVariablesList, ensureEditorFocus, applyPlaceholderToAllOccurrences
+  updateVariablesList
 } from './placeholders.js';
 import { buildFillForm } from './formbuilder.js';
 import { showNounNumberSelection, showVerbTenseSelection, showPersonTypeSelection, pickPronounFormAndGroup } from './modals.js';
@@ -14,6 +12,7 @@ import {
   pronounGroupCount, lastRange, usageTracker, placeholderInsertionInProgress, storyHasUnsavedChanges, fillOrder,
   currentStoryPassword, currentStoryLocked, currentStoryId, currentPlaceholderSearch, currentModalPlaceholderSearch
 } from './state.js';
+
 
 // Global variables for editing menus
 let currentEditingVariable = null;

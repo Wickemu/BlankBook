@@ -1,7 +1,5 @@
 // storage.js
 "use strict";
-import $ from 'jquery';
-import Swal from 'sweetalert2';
 import { decodeHTMLEntities } from './utils.js';
 import { variables, customPlaceholders, pronounGroups, variableCounts, pronounGroupCount, insertionCounter } from './state.js';
 

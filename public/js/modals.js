@@ -1,6 +1,5 @@
 // modals.js
 "use strict";
-import Swal from 'sweetalert2';
 import { TypeHelpers } from './typeHelpers.js';
 import { insertPlaceholder } from './placeholders.js';
 

@@ -27,11 +27,11 @@ const storySchema = new mongoose.Schema({
   variableCounts: { type: Object, default: {} },
   customPlaceholders: { type: Array, default: [] },
   pronounGroupCount: { type: Number, default: 0 },
-  tags: { type: [String], default: [] },              // Tags for filtering stories
-  rating: { type: Number, default: 0 },                 // Average rating
-  ratingCount: { type: Number, default: 0 },            // Number of ratings received
+  tags: { type: [String], default: [] },
+  rating: { type: Number, default: 0 },
+  ratingCount: { type: Number, default: 0 },
   savedAt: { type: Date, default: Date.now },
-  password: { type: String, default: null }            // Password for private stories
+  password: { type: String, default: null }
 });
 const Story = mongoose.model('Story', storySchema);
 
@@ -47,10 +47,11 @@ app.use(
       defaultSrc: ["'self'"],
       scriptSrc: [
         "'self'",
-        "https://code.jquery.com",
-        "https://cdn.jsdelivr.net",
+        "https://cdn.skypack.dev",
+        "https://cdn.jsdelivr.net/npm/sweetalert2@11",
         "https://maxcdn.bootstrapcdn.com",
-        "https://cdn.jsdelivr.net/npm/sweetalert2@10"
+        "https://code.jquery.com",
+        "https://cdnjs.cloudflare.com"  // Allow Popper.js (and others) from cdnjs.cloudflare.com
       ],
       styleSrc: [
         "'self'",
@@ -73,8 +74,6 @@ app.use(
     }
   })
 );
-
-
 
 
 app.use(compression());
@@ -121,9 +120,7 @@ app.post(
       newStory.storyTitle = sanitizeInput(newStory.storyTitle);
       newStory.storyAuthor = sanitizeInput(newStory.storyAuthor);
       newStory.storyText = sanitizeInput(newStory.storyText);
-      // (Assume other nested sanitization as needed)
 
-      // --- Normalize Optional Fields & Add New Fields ---
       newStory.variables = newStory.variables || [];
       newStory.fillValues = newStory.fillValues || {};
       newStory.pronounGroups = newStory.pronounGroups || {};
@@ -134,13 +131,8 @@ app.post(
       if (newStory.password && newStory.password.trim() === "") {
         newStory.password = null;
       }
-            // Overwrite flag support
-
       const overwrite = newStory.overwrite;
 
-      
-
-      // --- Check for Existing Story if Not Overwriting ---
       if (!overwrite) {
         const existing = await Story.findOne({ storyTitle: newStory.storyTitle });
         if (existing) {
@@ -149,7 +141,6 @@ app.post(
         }
       }
 
-      // --- Upsert Story into Database ---
       const options = { new: true, upsert: true, runValidators: true };
       await Story.findOneAndUpdate({ storyTitle: newStory.storyTitle }, newStory, options);
       console.log(`${new Date().toISOString()} - Story saved/updated: ${newStory.storyTitle}`);
@@ -169,7 +160,6 @@ app.get('/api/getstories', async (req, res) => {
     const { tag, sort } = req.query;
     let query = {};
     if (tag) {
-      // Search in storyTitle, storyText, or tags (exact match for tags)
       query.$or = [
         { storyTitle: { $regex: tag, $options: 'i' } },
         { storyText: { $regex: tag, $options: 'i' } },
@@ -191,29 +181,27 @@ app.get('/api/getstories', async (req, res) => {
       sortOptions.storyTitle = -1;
     }
     const stories = await Story.find(query).sort(sortOptions).exec();
-        // For locked stories, remove sensitive fields and add a "locked" flag.
-        const modifiedStories = stories.map(story => {
-          const s = story.toObject();
-          if (s.password) {
-            s.locked = true;
-            delete s.storyText;
-            delete s.password;
-          } else {
-            s.locked = false;
-          }
-          return s;
-        });
-        res.json(modifiedStories);
-        } catch (error) {
+    const modifiedStories = stories.map(story => {
+      const s = story.toObject();
+      if (s.password) {
+        s.locked = true;
+        delete s.storyText;
+        delete s.password;
+      } else {
+        s.locked = false;
+      }
+      return s;
+    });
+    res.json(modifiedStories);
+  } catch (error) {
     console.error(`${new Date().toISOString()} - Error retrieving stories:`, error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
 // ====================================================
-// Endpoint: Get All Distinct Tags
+// Endpoint: Unlock a Story
 // ====================================================
-
 app.post('/api/unlockstory', async (req, res) => {
   const { storyId, password } = req.body;
   if (!storyId) {
@@ -266,7 +254,7 @@ app.delete('/api/deletestory', async (req, res) => {
 });
 
 // ====================================================
-// NEW Endpoint: Rate a Story
+// Endpoint: Rate a Story
 // ====================================================
 app.post('/api/rateStory', async (req, res) => {
   const { storyId, rating } = req.body;
@@ -276,7 +264,6 @@ app.post('/api/rateStory', async (req, res) => {
   try {
     const story = await Story.findById(storyId);
     if (!story) return res.status(404).json({ error: "Story not found" });
-    // Update rating as an average
     const newRatingCount = story.ratingCount + 1;
     const newRating = ((story.rating * story.ratingCount) + rating) / newRatingCount;
     story.rating = newRating;

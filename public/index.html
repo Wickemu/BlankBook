@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <!-- Added compatibility and theme meta tags -->
+  <!-- Compatibility and theme meta tags -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="theme-color" content="#ffffff">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <!-- Custom CSS -->
   <link rel="stylesheet" href="styles.css">
+  <!-- External Import Map (for sweetalert2 and jQuery) -->
+  <script type="importmap" src="import-map.json"></script>
 </head>
 <body>
   <header class="mb-4">
@@ -222,50 +224,19 @@
   <footer class="text-center mt-4">
     <p>&copy; 2025 Blank Books. All rights reserved.</p>
   </footer>
-
-  <!-- Saved Stories Modal -->
-  <div class="modal fade" id="savedStoriesModal" tabindex="-1" aria-labelledby="savedStoriesModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="savedStoriesModalLabel">My Saved Stories</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <!-- Filter and Sorting Controls -->
-          <div class="form-inline mb-2">
-            <input type="text" id="filterTag" class="form-control form-control-sm mr-2" placeholder="Filter by tag">
-            <select id="sortOption" class="form-control form-control-sm">
-              <option value="date_desc">Newest</option>
-              <option value="date_asc">Oldest</option>
-              <option value="rating_desc">Highest Rated</option>
-              <option value="rating_asc">Lowest Rated</option>
-              <option value="alpha_asc">Alphabetical (A-Z)</option>
-              <option value="alpha_desc">Alphabetical (Z-A)</option>
-            </select>
-            <button id="applyFilters" class="btn btn-sm btn-primary ml-2">Apply</button>
-          </div>
-          <div id="savedStoriesList">
-            <!-- Saved stories will be dynamically inserted here -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Scripts -->
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Load Libraries in the correct order -->
+  <!-- 1. First, load jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+  <!-- 2. Now that jQuery is available, load jQuery-dependent libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+  <!-- 3. Load SweetAlert2 -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <!-- <script src="main.js"></script> -->
-  <script>
-    $(function() {
-      $('[data-toggle="tooltip"]').tooltip();
-    });
-  </script>
+
+  <!-- 4. Now load your custom script modules -->
   <script type="module" src="js/utils.js"></script>
   <script type="module" src="js/state.js"></script>
   <script type="module" src="js/storage.js"></script>
@@ -274,5 +245,8 @@
   <script type="module" src="js/modals.js"></script>
   <script type="module" src="js/formBuilder.js"></script>
   <script type="module" src="js/eventHandlers.js"></script>
+  
+  <!-- 5. Load the init script last since it depends on everything else -->
+  <script type="module" src="js/init.js"></script>
 </body>
 </html>

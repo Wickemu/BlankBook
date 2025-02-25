@@ -1,6 +1,5 @@
 // formBuilder.js
 "use strict";
-import $ from 'jquery';
 import { variables, fillValues } from './state.js';
 
 export const buildFillForm = () => {
