@@ -8,8 +8,8 @@ import {
 import { buildFillForm } from './formbuilder.js';
 import { showNounNumberSelection, showVerbTenseSelection, showPersonTypeSelection, pickPronounFormAndGroup } from './modals.js';
 import {
-  variables, variableCounts, insertionCounter, storyText, customPlaceholders, fillValues, pronounGroups,
-  pronounGroupCount, lastRange, usageTracker, placeholderInsertionInProgress, storyHasUnsavedChanges, fillOrder,
+  variables, variableCounts, customPlaceholders, fillValues, pronounGroups,
+  pronounGroupCount, lastRange, usageTracker, placeholderInsertionInProgress, storyHasUnsavedChanges,
   currentStoryPassword, currentStoryLocked, currentStoryId, currentPlaceholderSearch, currentModalPlaceholderSearch
 } from './state.js';
 

@@ -1,6 +1,6 @@
 "use strict";
 import { Utils, decodeHTMLEntities } from './utils.js';
-import { variables, variableCounts, insertionCounter, lastRange } from './state.js';
+import { variables, variableCounts, insertionCounter, lastRange, customPlaceholders } from './state.js';
 
 
 
