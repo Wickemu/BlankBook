@@ -254,8 +254,11 @@
     </div>
   </div>
 
-  <!-- jQuery, jQuery UI, Bootstrap JS, and SweetAlert2 (loaded with defer) -->
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js" defer></script>
+  <!-- jQuery first without defer, then other scripts -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <!-- Debug JavaScript right after jQuery -->
+  <script src="./debug.js"></script>
+  <!-- Other scripts with defer -->
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10" defer></script>

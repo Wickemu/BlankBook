@@ -1,5 +1,3 @@
-server.js
-// Start of Selection
 require('dotenv').config(); // Load configuration from .env
 
 const express = require('express');
@@ -87,7 +85,11 @@ app.use((req, res, next) => {
 });
 
 app.use(compression());
-app.use(cors());
+app.use(cors({
+  origin: '*',  // Allow requests from any origin
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json({ limit: '100kb' })); // Limit JSON payloads
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(morgan('combined'));
@@ -173,6 +175,9 @@ app.post(
 // ====================================================
 app.get('/api/getstories', async (req, res) => {
   try {
+    console.log(`${new Date().toISOString()} - GET /api/getstories request received from: ${req.ip}`);
+    console.log(`${new Date().toISOString()} - Query params:`, req.query);
+    
     const { tag, sort } = req.query;
     let query = {};
     if (tag) {
@@ -197,7 +202,12 @@ app.get('/api/getstories', async (req, res) => {
     } else if (sort === 'alpha_desc') {
       sortOptions.storyTitle = -1;
     }
+    console.log(`${new Date().toISOString()} - DB Query:`, query);
+    console.log(`${new Date().toISOString()} - Sort options:`, sortOptions);
+    
     const stories = await Story.find(query).sort(sortOptions).exec();
+    console.log(`${new Date().toISOString()} - Found ${stories.length} stories`);
+    
     // For locked stories, remove sensitive fields and add a "locked" flag.
     const modifiedStories = stories.map(story => {
       const s = story.toObject();
@@ -210,6 +220,8 @@ app.get('/api/getstories', async (req, res) => {
       }
       return s;
     });
+    
+    console.log(`${new Date().toISOString()} - Sending response with ${modifiedStories.length} stories`);
     res.json(modifiedStories);
   } catch (error) {
     console.error(`${new Date().toISOString()} - Error retrieving stories:`, error);

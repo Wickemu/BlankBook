@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORS Test</title>
+</head>
+<body>
+    <h1>CORS Test</h1>
+    <p>This is a simple test to verify that CORS is properly configured between your frontend and API.</p>
+    <button id="testCorsBtn">Test CORS</button>
+    <div id="result" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;"></div>
+
+    <script>
+        document.getElementById('testCorsBtn').addEventListener('click', function() {
+            document.getElementById('result').textContent = 'Testing CORS...';
+            
+            // Create a fetch request to the API
+            fetch('http://localhost:3000/api/getstories')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById('result').innerHTML = 
+                        `<div style="color: green;">SUCCESS: CORS is working properly! ✅</div>
+                         <p>Retrieved ${data.length} stories from API.</p>
+                         <p>This proves that your browser can successfully make cross-origin requests from 
+                         port 8080 to port 3000.</p>`;
+                })
+                .catch(error => {
+                    document.getElementById('result').innerHTML = 
+                        `<div style="color: red;">ERROR: CORS test failed! ❌</div>
+                         <p>Error message: ${error.message}</p>
+                         <p>This suggests there may be a CORS issue preventing your browser from 
+                         making cross-origin requests from port 8080 to port 3000.</p>
+                         <p>Check your browser's console for more details.</p>`;
+                });
+        });
+    </script>
+</body>
+</html> 

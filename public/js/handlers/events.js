@@ -220,6 +220,13 @@ const loadPreexistingTags = () => {
 
 // Attach all event handlers
 export const initEvents = () => {
+    // Placeholder button click handler
+    $(document).on('click', '.placeholder-btn', function() {
+        const internalType = $(this).data('internal');
+        const displayName = $(this).data('display');
+        handlePlaceholderClick(internalType, displayName);
+    });
+    
     // Fill info icon click handler
     $(document).on('click', '.fill-info-icon', (e) => {
         e.stopPropagation();

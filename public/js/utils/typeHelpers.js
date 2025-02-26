@@ -1,6 +1,8 @@
 // public/js/utils/typeHelpers.js
 import state from '../core/state.js';
 import { pronounMapping } from '../core/state.js';
+import { allPlaceholders } from '../core/placeholders.js';
+import { Utils } from './utils.js';
 
 export const TypeHelpers = {
     naturalizeType: (type) => {

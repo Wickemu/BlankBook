@@ -1,7 +1,7 @@
     // Start of Selection
     // public/js/ui/menu.js
     import state from '../core/state.js';
-    import { duplicatePlaceholder, insertPlaceholder } from '../core/placeholders.js';
+    import { duplicatePlaceholder, insertPlaceholder, updateVariablesList, updateVariablesFromEditor } from '../core/placeholders.js';
     
     // Menu element references
     let selectionMenu;

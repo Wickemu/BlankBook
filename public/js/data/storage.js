@@ -1,5 +1,19 @@
 // public/js/data/storage.js
 import state from '../core/state.js';
+import { updateVariablesFromEditor } from '../core/placeholders.js';
+import { buildFillForm } from '../ui/forms.js';
+
+// Define the base URL for all API calls - UPDATED to be dynamic
+const API_BASE_URL = (() => {
+    // If we're running on localhost with a specific port, use it with port 3000
+    if (window.location.hostname === 'localhost') {
+        return 'http://localhost:3000';
+    }
+    // For all other cases (production), use the same origin with correct port
+    return `${window.location.protocol}//${window.location.hostname}:3000`;
+})();
+
+console.log(`Using API base URL: ${API_BASE_URL}`);
 
 export const Storage = {
     handleAjaxError: (xhr, statusText, errorThrown, customErrorMessage) => {
@@ -31,7 +45,7 @@ export const Storage = {
         };
         
         $.ajax({
-            url: '/api/savestory',
+            url: `${API_BASE_URL}/api/savestory`,
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(story),
@@ -73,7 +87,7 @@ export const Storage = {
                             };
 
                             $.ajax({
-                                url: '/api/savestory',
+                                url: `${API_BASE_URL}/api/savestory`,
                                 method: 'POST',
                                 contentType: 'application/json',
                                 data: JSON.stringify(storyWithOverwrite),
@@ -116,7 +130,7 @@ export const Storage = {
         };
         
         $.ajax({
-            url: '/api/savestory',
+            url: `${API_BASE_URL}/api/savestory`,
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(story),
@@ -143,7 +157,7 @@ export const Storage = {
                         if (result.isConfirmed) {
                             story.overwrite = true;
                             $.ajax({
-                                url: '/api/savestory',
+                                url: `${API_BASE_URL}/api/savestory`,
                                 method: 'POST',
                                 contentType: 'application/json',
                                 data: JSON.stringify(story),
@@ -174,7 +188,7 @@ export const Storage = {
         const tag = $('#filterTag').val();
         const sort = $('#sortOption').val();
         $.ajax({
-            url: `/api/getstories?tag=${encodeURIComponent(tag || '')}&sort=${encodeURIComponent(sort || 'date_desc')}`,
+            url: `${API_BASE_URL}/api/getstories?tag=${encodeURIComponent(tag || '')}&sort=${encodeURIComponent(sort || 'date_desc')}`,
             method: 'GET',
             success: (stories) => {
                 // Store the fetched stories globally for later reference
@@ -263,7 +277,7 @@ export const Storage = {
             }).then(result => {
                 if (result.value) {
                     $.ajax({
-                        url: '/api/unlockstory',
+                        url: `${API_BASE_URL}/api/unlockstory`,
                         method: 'POST',
                         contentType: 'application/json',
                         data: JSON.stringify({ storyId: story._id, password: result.value }),
@@ -321,7 +335,7 @@ export const Storage = {
     
     deleteSavedStory: (title) => {
         $.ajax({
-            url: '/api/deletestory',
+            url: `${API_BASE_URL}/api/deletestory`,
             method: 'DELETE',
             contentType: 'application/json',
             data: JSON.stringify({ storyTitle: title }),
