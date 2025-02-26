@@ -1,5 +1,6 @@
-// state.js
+// public/js/core/state.js
 
+// Create state singleton object
 const state = {
   variables: [],
   variableCounts: {},
@@ -22,14 +23,17 @@ const state = {
   isEditingPlaceholder: false,
 };
 
+// Export the state object as default export
 export default state;
 
+// Predefined pronoun mappings
 export const pronounMapping = {
   "He/Him": { subject: "he", object: "him", possAdj: "his", possPron: "his", reflexive: "himself" },
   "She/Her": { subject: "she", object: "her", possAdj: "her", possPron: "hers", reflexive: "herself" },
   "They/Them": { subject: "they", object: "them", possAdj: "their", possPron: "theirs", reflexive: "themselves" }
 };
 
+// Function to reset state to initial values
 export function resetState() {
   state.variables = [];
   state.variableCounts = {};
@@ -43,4 +47,11 @@ export function resetState() {
   state.usageTracker = {};
   state.placeholderInsertionInProgress = false;
   state.storyHasUnsavedChanges = false;
+  state.fillOrder = 'alphabetical';
+  state.currentStoryId = null;
+  state.currentPlaceholderSearch = '';
+  state.currentModalPlaceholderSearch = '';
+  state.currentEditingVariable = null;
+  state.currentPlaceholderElement = null;
+  state.isEditingPlaceholder = false;
 }

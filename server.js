@@ -1,3 +1,5 @@
+server.js
+// Start of Selection
 require('dotenv').config(); // Load configuration from .env
 
 const express = require('express');
@@ -7,14 +9,16 @@ const cors = require('cors');
 const compression = require('compression');
 const rateLimit = require('express-rate-limit');
 const { body, validationResult } = require('express-validator');
+const mongoose = require('mongoose');
+const path = require('path');
 
 // --- Connect to MongoDB via Mongoose ---
-const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/blankbook', {
   useNewUrlParser: true,
   useUnifiedTopology: true
-}).then(() => console.log(`${new Date().toISOString()} - Connected to MongoDB`))
-  .catch(err => console.error(`${new Date().toISOString()} - MongoDB connection error:`, err));
+})
+.then(() => console.log(`${new Date().toISOString()} - Connected to MongoDB`))
+.catch(err => console.error(`${new Date().toISOString()} - MongoDB connection error:`, err));
 
 // --- Define the Story Schema & Model ---
 const storySchema = new mongoose.Schema({
@@ -28,10 +32,10 @@ const storySchema = new mongoose.Schema({
   customPlaceholders: { type: Array, default: [] },
   pronounGroupCount: { type: Number, default: 0 },
   tags: { type: [String], default: [] },              // Tags for filtering stories
-  rating: { type: Number, default: 0 },                 // Average rating
-  ratingCount: { type: Number, default: 0 },            // Number of ratings received
+  rating: { type: Number, default: 0 },              // Average rating
+  ratingCount: { type: Number, default: 0 },         // Number of ratings received
   savedAt: { type: Date, default: Date.now },
-  password: { type: String, default: null }            // Password for private stories
+  password: { type: String, default: null }          // Password for private stories
 });
 const Story = mongoose.model('Story', storySchema);
 
@@ -75,13 +79,17 @@ app.use(
   })
 );
 
-
-
+app.use((req, res, next) => {
+  if (req.path.endsWith('.js')) {
+    res.type('application/javascript');
+  }
+  next();
+});
 
 app.use(compression());
 app.use(cors());
 app.use(express.json({ limit: '100kb' })); // Limit JSON payloads
-app.use(express.static(require('path').join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(morgan('combined'));
 
 // --- Rate Limiting Middleware for API endpoints ---
@@ -135,11 +143,9 @@ app.post(
       if (newStory.password && newStory.password.trim() === "") {
         newStory.password = null;
       }
-            // Overwrite flag support
+      // Overwrite flag support
 
       const overwrite = newStory.overwrite;
-
-      
 
       // --- Check for Existing Story if Not Overwriting ---
       if (!overwrite) {
@@ -192,20 +198,20 @@ app.get('/api/getstories', async (req, res) => {
       sortOptions.storyTitle = -1;
     }
     const stories = await Story.find(query).sort(sortOptions).exec();
-        // For locked stories, remove sensitive fields and add a "locked" flag.
-        const modifiedStories = stories.map(story => {
-          const s = story.toObject();
-          if (s.password) {
-            s.locked = true;
-            delete s.storyText;
-            delete s.password;
-          } else {
-            s.locked = false;
-          }
-          return s;
-        });
-        res.json(modifiedStories);
-        } catch (error) {
+    // For locked stories, remove sensitive fields and add a "locked" flag.
+    const modifiedStories = stories.map(story => {
+      const s = story.toObject();
+      if (s.password) {
+        s.locked = true;
+        delete s.storyText;
+        delete s.password;
+      } else {
+        s.locked = false;
+      }
+      return s;
+    });
+    res.json(modifiedStories);
+  } catch (error) {
     console.error(`${new Date().toISOString()} - Error retrieving stories:`, error);
     res.status(500).json({ error: "Internal Server Error" });
   }
@@ -214,7 +220,19 @@ app.get('/api/getstories', async (req, res) => {
 // ====================================================
 // Endpoint: Get All Distinct Tags
 // ====================================================
+app.get('/api/gettags', async (req, res) => {
+  try {
+    const tags = await Story.distinct('tags');
+    res.json(tags);
+  } catch (error) {
+    console.error(`${new Date().toISOString()} - Error retrieving tags:`, error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 
+// ====================================================
+// Endpoint: Unlock a Story
+// ====================================================
 app.post('/api/unlockstory', async (req, res) => {
   const { storyId, password } = req.body;
   if (!storyId) {
@@ -231,16 +249,6 @@ app.post('/api/unlockstory', async (req, res) => {
     }
     res.json(story);
   } catch (error) {
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-});
-
-app.get('/api/gettags', async (req, res) => {
-  try {
-    const tags = await Story.distinct('tags');
-    res.json(tags);
-  } catch (error) {
-    console.error(`${new Date().toISOString()} - Error retrieving tags:`, error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
