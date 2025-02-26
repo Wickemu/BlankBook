@@ -69,7 +69,8 @@ app.use(
       fontSrc: [
         "'self'",
         "https://cdnjs.cloudflare.com"
-      ]
+      ],
+      imgSrc: ["'self'", "data:"]
     }
   })
 );
