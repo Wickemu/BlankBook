@@ -2,11 +2,12 @@
 const path = require('path');
 
 module.exports = {
-  mode: 'development',
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   entry: './public/js/main.js',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'public/dist'),
+    clean: true,
   },
   module: {
     rules: [
@@ -22,7 +23,7 @@ module.exports = {
       }
     ]
   },
-  devtool: 'source-map',
+  devtool: process.env.NODE_ENV === 'production' ? 'source-map' : 'eval-source-map',
   devServer: {
     static: {
       directory: path.join(__dirname, 'public'),

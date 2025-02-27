@@ -1,0 +1,15 @@
+{
+  "name": "BlankBook",
+  "short_name": "BlankBook",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#4361ee",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/"
+} 

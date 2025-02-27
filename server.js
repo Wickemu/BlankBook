@@ -49,28 +49,35 @@ app.use(
       defaultSrc: ["'self'"],
       scriptSrc: [
         "'self'",
+        "'unsafe-inline'",  // Allow inline scripts
+        "'unsafe-eval'",    // Allow eval for webpack development
         "https://code.jquery.com",
         "https://cdn.jsdelivr.net",
         "https://maxcdn.bootstrapcdn.com",
-        "https://cdn.jsdelivr.net/npm/sweetalert2@10"
+        "https://cdn.jsdelivr.net/npm/sweetalert2@11"
       ],
       styleSrc: [
         "'self'",
         "'unsafe-inline'",
         "https://maxcdn.bootstrapcdn.com",
         "https://cdnjs.cloudflare.com",
-        "https://code.jquery.com"
+        "https://code.jquery.com",
+        "https://cdn.jsdelivr.net",
+        "https://fonts.googleapis.com"
       ],
       styleSrcElem: [
         "'self'",
         "'unsafe-inline'",
         "https://maxcdn.bootstrapcdn.com",
         "https://cdnjs.cloudflare.com",
-        "https://code.jquery.com"
+        "https://code.jquery.com",
+        "https://cdn.jsdelivr.net",
+        "https://fonts.googleapis.com"
       ],
       fontSrc: [
         "'self'",
-        "https://cdnjs.cloudflare.com"
+        "https://cdnjs.cloudflare.com",
+        "https://fonts.gstatic.com"
       ],
       imgSrc: ["'self'", "data:"]
     }

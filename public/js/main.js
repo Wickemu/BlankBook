@@ -54,5 +54,8 @@ import * as domUtils from './utils/domUtils.js';
         // Initialize the application
         initMenus();
         initEvents();
+        
+        // Set a flag to indicate that the app has loaded
+        window.appLoaded = true;
     });
 })();
