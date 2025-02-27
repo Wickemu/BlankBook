@@ -90,34 +90,57 @@ const appendNonPronounVariablesToForm = (form) => {
     });
 };
 
-const createInputRow = (variable) => {
-    const groupRow = $(`
-      <div class="form-group input-row">
-        <div class="row">
-          <div class="col-sm-4">
-            <label class="input-label" title="Internal ID: ${variable.id}">
-              ${variable.officialDisplay}
-            </label>
-          </div>
-          <div class="col-sm-8">
-            <input type="text"
-              class="form-control form-control-sm compact-input"
-              name="${variable.id}"
-              data-label="${variable.officialDisplay}">
-          </div>
-        </div>
-      </div>
-    `);
-    if (state.fillValues[variable.id]) {
-        groupRow.find('input').val(state.fillValues[variable.id]);
+export const createInputRow = (variable) => {
+    const inputRow = document.createElement("div");
+    inputRow.className = "form-group mb-3";
+    
+    console.log(`Creating input row for variable: ${variable.id}`, variable);
+    
+    // Create standardized display label (remove any text within parentheses and trim)
+    const displayLabel = variable.officialDisplay.replace(/\s*\([^)]*\)/g, '').trim();
+    
+    // Create the label element
+    const label = document.createElement("label");
+    label.htmlFor = variable.id;
+    label.textContent = variable.officialDisplay;
+    label.className = "form-label";
+    
+    // Create the input element
+    const input = document.createElement("input");
+    input.type = "text";
+    input.className = "form-control";
+    input.id = variable.id;
+    input.setAttribute("data-id", variable.id); 
+    input.setAttribute("data-label", variable.officialDisplay);
+    input.setAttribute("data-display", displayLabel);
+    input.setAttribute("data-type", variable.internalType.split('|')[0]);
+    input.setAttribute("placeholder", displayLabel);
+    
+    // If we have existing values, use them
+    if (state.fillValues && state.fillValues[variable.id]) {
+        input.value = state.fillValues[variable.id];
+        console.log(`Pre-filling ${variable.id} with existing value: "${state.fillValues[variable.id]}"`);
     }
-    return groupRow;
+    
+    // Add elements to the row
+    inputRow.appendChild(label);
+    inputRow.appendChild(input);
+    
+    return inputRow;
 };
 
 // Add the missing validateInputForm function to forms.js
 
 export const validateInputForm = (formData) => {
-  // Input validation logic
+  // If no formData is provided, this is being called from handleGenerateStory
+  // to validate the entire form before generating the story
+  if (!formData) {
+    // Check if we have any filled values that need validation
+    // Return valid for basic story generation
+    return { valid: true };
+  }
+  
+  // Input validation logic for placeholders/variables
   if (!formData.display || formData.display.trim() === '') {
     return { valid: false, message: 'Display name is required' };
   }

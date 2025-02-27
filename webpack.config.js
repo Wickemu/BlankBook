@@ -22,5 +22,24 @@ module.exports = {
       }
     ]
   },
-  devtool: 'source-map'
+  devtool: 'source-map',
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'public'),
+    },
+    port: 8080,
+    hot: true,
+    proxy: [
+      {
+        context: ['/api'],
+        target: 'http://localhost:3000',
+        secure: false,
+        changeOrigin: true
+      }
+    ],
+    historyApiFallback: true,
+    devMiddleware: {
+      writeToDisk: true,
+    }
+  }
 };

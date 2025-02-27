@@ -29,6 +29,7 @@ import {
 } from '../core/storyProcessor.js';
 import * as domUtils from '../utils/domUtils.js';
 import Swal from 'sweetalert2'; // Ensure Swal is imported if used
+import { showToast } from '../ui/notifications.js';
 
 // Handle placeholder button click
 const handlePlaceholderClick = (internalType, displayName) => {
@@ -111,6 +112,22 @@ const handleGenerateStory = () => {
         return; // Validation failed
     }
     
+    // Collect values from the input form
+    const inputForm = document.getElementById('inputForm');
+    const inputs = inputForm.querySelectorAll('input[type="text"]');
+    
+    // Reset fillValues
+    state.fillValues = {};
+    
+    // Populate fillValues with the values from the input fields
+    inputs.forEach(input => {
+        const id = input.getAttribute('data-id');
+        if (id && input.value.trim() !== '') {
+            state.fillValues[id] = input.value.trim();
+            console.log(`Collected input value for ${id}: "${input.value.trim()}"`);
+        }
+    });
+    
     // Generate the final story with replacements
     let final = generateLegacyText();
     final = fillPlaceholders(final, state.variables, state.fillValues, state.pronounGroups);
@@ -129,24 +146,24 @@ const handleSaveStoryToSite = () => {
     Swal.fire({
         title: 'Save Story',
         html: `
-      <input type="text" id="swalTitle" class="swal2-input" placeholder="Story Title" value="${$('#storyTitle').val()}">
-      <input type="text" id="swalAuthor" class="swal2-input" placeholder="Author" value="${$('#storyAuthor').val()}">
-      <input type="text" id="swalTags" class="swal2-input" placeholder="Tags (comma separated)" value="${$('#storyTags').val()}">
-      <input type="password" id="swalPassword" class="swal2-input" placeholder="Password (optional)">
-      <div id="preexistingTagsContainer" style="text-align:left; margin-top:10px;"></div>
-    `,
+          <input type="text" id="swalTitle" class="swal2-input" placeholder="Story Title" value="${$('#storyTitle').val()}">
+          <input type="text" id="swalAuthor" class="swal2-input" placeholder="Author" value="${$('#storyAuthor').val()}">
+          <input type="text" id="swalTags" class="swal2-input" placeholder="Tags (comma separated)" value="${$('#storyTags').val()}">
+          <input type="password" id="swalPassword" class="swal2-input" placeholder="Password (optional)">
+          <div id="preexistingTagsContainer" style="text-align:left; margin-top:10px;"></div>
+        `,
         didOpen: () => {
-            loadPreexistingTags();
+          loadPreexistingTags();
         },
         showCancelButton: true,
         confirmButtonText: 'Save',
         preConfirm: () => {
-            return {
-                title: document.getElementById('swalTitle').value,
-                author: document.getElementById('swalAuthor').value,
-                tags: document.getElementById('swalTags').value,
-                password: document.getElementById('swalPassword').value
-            };
+          return {
+            title: document.getElementById('swalTitle').value,
+            author: document.getElementById('swalAuthor').value,
+            tags: document.getElementById('swalTags').value,
+            password: document.getElementById('swalPassword').value
+          };
         }
     }).then((result) => {
         if (result.isConfirmed) {
@@ -155,7 +172,7 @@ const handleSaveStoryToSite = () => {
             $('#storyTitle').val(data.title);
             $('#storyAuthor').val(data.author);
             $('#storyTags').val(data.tags);
-
+            
             let story = {
                 storyTitle: data.title,
                 storyAuthor: data.author,
@@ -167,20 +184,60 @@ const handleSaveStoryToSite = () => {
                 customPlaceholders: state.customPlaceholders,
                 tags: data.tags ? data.tags.split(',').map(s => s.trim()) : [],
                 savedAt: new Date().toISOString(),
-                password: data.password || null
+                password: data.password && data.password.trim() !== '' ? data.password : null
             };
-
+            
             $.ajax({
                 url: '/api/savestory',
                 method: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify(story),
                 success: () => {
-                    domUtils.showToast('Story saved to site!');
-                    state.storyHasUnsavedChanges = false;
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Story saved to site!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                 },
                 error: (xhr, statusText, errorThrown) => {
-                    Storage.handleAjaxError(xhr, statusText, errorThrown, 'Failed to save story');
+                    if (xhr.status === 409) {
+                        Swal.fire({
+                            title: 'Story exists',
+                            text: 'A story with this title already exists. Overwrite?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonText: 'Yes, overwrite',
+                            cancelButtonText: 'No'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                story.overwrite = true;
+                                $.ajax({
+                                    url: '/api/savestory',
+                                    method: 'POST',
+                                    contentType: 'application/json',
+                                    data: JSON.stringify(story),
+                                    success: () => {
+                                        Swal.fire({
+                                            toast: true,
+                                            position: 'top-end',
+                                            icon: 'success',
+                                            title: 'Story overwritten!',
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        });
+                                    },
+                                    error: (xhrOverwrite, statusTextOverwrite, errorThrownOverwrite) => {
+                                        Storage.handleAjaxError(xhrOverwrite, statusTextOverwrite, errorThrownOverwrite, 'Failed to overwrite story');
+                                    }
+                                });
+                            }
+                        });
+                    } else {
+                        Storage.handleAjaxError(xhr, statusText, errorThrown, 'Failed to save story');
+                    }
                 }
             });
         }
@@ -232,6 +289,13 @@ export const initEvents = () => {
         e.stopPropagation();
         const type = $(e.currentTarget).data('type');
         const tooltip = TypeHelpers.getTooltipForType(type);
+        domUtils.showToast(tooltip, 'info');
+    });
+    
+    // Add accordion info icon click handler
+    $(document).on('click', '.accordion-info-icon', (e) => {
+        e.stopPropagation();
+        const tooltip = $(e.currentTarget).data('tooltip');
         domUtils.showToast(tooltip, 'info');
     });
     
@@ -436,6 +500,11 @@ export const initEvents = () => {
         domUtils.downloadTextFile(content, fileName);
     });
 
+    // Save completed story button
+    $('#saveCompletedStory').on('click', () => {
+        Storage.addCompletedStoryToSavedStories();
+    });
+
     // Saved stories buttons
     $('#mySavedStoriesBtn').on('click', () => {
         Storage.loadSavedStoriesList();
@@ -571,4 +640,13 @@ export const initEvents = () => {
         $('#modalPlaceholderSearch').val('');
         updatePlaceholderAccordion('#modalPlaceholderAccordion', '#modalNoResults', state.currentModalPlaceholderSearch);
     });
+
+    // Search modal placeholder input
+    $('#modalPlaceholderSearchInput').on('input', function () {
+        state.currentModalPlaceholderSearch = $(this).val().trim().toLowerCase();
+        updatePlaceholderAccordion('#modalPlaceholderAccordion', '#modalNoResults', state.currentModalPlaceholderSearch);
+    });
+
+    // The remaining initialization code follows
+    // ... existing code ...
 };

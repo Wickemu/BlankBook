@@ -5603,7 +5603,7 @@ var pickPronounGroup = function pickPronounGroup(form) {
           insertPronounPlaceholderSimple(grp, form, _state_js__WEBPACK_IMPORTED_MODULE_0__["default"].pronounGroups[grp][form]);
         } else {
           choosePronounTempValue(form, grp).then(function (tempValue) {
-            _state_js__WEBPACK_IMPORTED_MODULE_0__["default"].pronounGroups[grp] = _state_js__WEBPACK_IMPORTED_MODULE_0__["default"].pronounMapping[tempValue] || {
+            _state_js__WEBPACK_IMPORTED_MODULE_0__["default"].pronounGroups[grp] = _state_js__WEBPACK_IMPORTED_MODULE_0__.pronounMapping[tempValue] || {
               subject: tempValue,
               object: tempValue,
               possAdj: tempValue,
@@ -5620,7 +5620,7 @@ var pickPronounGroup = function pickPronounGroup(form) {
         _state_js__WEBPACK_IMPORTED_MODULE_0__["default"].pronounGroups[newGroup] = {};
         Swal.close();
         choosePronounTempValue(form, newGroup).then(function (tempValue) {
-          _state_js__WEBPACK_IMPORTED_MODULE_0__["default"].pronounGroups[newGroup] = _state_js__WEBPACK_IMPORTED_MODULE_0__["default"].pronounMapping[tempValue] || {
+          _state_js__WEBPACK_IMPORTED_MODULE_0__["default"].pronounGroups[newGroup] = _state_js__WEBPACK_IMPORTED_MODULE_0__.pronounMapping[tempValue] || {
             subject: tempValue,
             object: tempValue,
             possAdj: tempValue,
@@ -5787,30 +5787,89 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
 
 // Fill in placeholders with user-provided values
 var fillPlaceholders = function fillPlaceholders(templateText, variables, fillValues, pronounGroups) {
-  var finalText = templateText;
+  console.log("========== FILLING PLACEHOLDERS ==========");
+  console.log("Input templateText length:", (templateText === null || templateText === void 0 ? void 0 : templateText.length) || 0);
+  console.log("Available variables:", (variables === null || variables === void 0 ? void 0 : variables.length) || 0);
+  console.log("Fill values:", fillValues);
+  console.log("Placeholder text:", templateText);
+  if (!templateText) return '';
+
+  // Extract all placeholders from the text
+  var placeholderRegex = /\{([^}]+)\}/g;
+  var placeholders = [];
+  var match;
+  while ((match = placeholderRegex.exec(templateText)) !== null) {
+    placeholders.push({
+      fullMatch: match[0],
+      id: match[1]
+    });
+  }
+  console.log("Extracted placeholders:", placeholders.length);
+  placeholders.forEach(function (p) {
+    return console.log("- ".concat(p.fullMatch, " (ID: ").concat(p.id, ")"));
+  });
+  var result = templateText;
+
+  // First pass: process placeholders with explicit variables
   var _iterator = _createForOfIteratorHelper(variables),
     _step;
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done;) {
       var variable = _step.value;
-      var phRegex = new RegExp("\\{".concat(variable.id, "\\}"), 'g');
-      if (variable.internalType.startsWith('PRONOUN|')) {
-        var parts = variable.internalType.split('|');
-        var groupId = parts[1];
-        var form = parts[2];
-        var groupObj = pronounGroups[groupId];
-        finalText = finalText.replace(phRegex, groupObj ? groupObj[form] || '' : '');
+      var placeholder = "{".concat(variable.id, "}");
+      if (result.includes(placeholder)) {
+        console.log("Processing ".concat(placeholder, "..."));
+
+        // Handle pronouns specially
+        if (variable.internalType.startsWith('PRONOUN|')) {
+          var parts = variable.internalType.split('|');
+          var groupId = parts[1];
+          var form = parts[2];
+          console.log("  Handling pronoun: groupId=".concat(groupId, ", form=").concat(form));
+          if (pronounGroups && pronounGroups[groupId] && pronounGroups[groupId][form]) {
+            var pronounValue = pronounGroups[groupId][form];
+            console.log("  Found pronoun value: \"".concat(pronounValue, "\""));
+            result = result.replace(new RegExp(placeholder, 'g'), pronounValue);
+          } else {
+            console.warn("  WARNING: No pronoun value found for group ".concat(groupId, " form ").concat(form));
+            result = result.replace(new RegExp(placeholder, 'g'), variable.displayOverride || variable.display || '[MISSING PRONOUN]');
+          }
+        }
+        // Handle regular variables
+        else if (fillValues && fillValues[variable.id]) {
+          console.log("  Replacing with user-provided value: \"".concat(fillValues[variable.id], "\""));
+          result = result.replace(new RegExp(placeholder, 'g'), fillValues[variable.id]);
+        } else {
+          console.warn("  WARNING: No fill value for ".concat(variable.id));
+          result = result.replace(new RegExp(placeholder, 'g'), variable.displayOverride || '[MISSING VALUE]');
+        }
       } else {
-        var userVal = fillValues[variable.id] || '';
-        finalText = finalText.replace(phRegex, userVal);
+        console.log("Placeholder {".concat(variable.id, "} not found in text"));
       }
     }
+
+    // Second pass: Check for any remaining placeholders not in the variables list
   } catch (err) {
     _iterator.e(err);
   } finally {
     _iterator.f();
   }
-  return finalText;
+  var remainingMatch;
+  var remainingRegex = /\{([^}]+)\}/g;
+  while ((remainingMatch = remainingRegex.exec(result)) !== null) {
+    var missingId = remainingMatch[1];
+    console.warn("WARNING: Found placeholder {".concat(missingId, "} that wasn't in the variables list!"));
+
+    // Try to directly replace from fillValues as a last resort
+    if (fillValues && fillValues[missingId]) {
+      console.log("  Replacing directly from fillValues with: \"".concat(fillValues[missingId], "\""));
+      result = result.replace(new RegExp("\\{".concat(missingId, "\\}"), 'g'), fillValues[missingId]);
+    } else {
+      console.error("  ERROR: No value available for placeholder {".concat(missingId, "}"));
+    }
+  }
+  console.log("Final text after replacements:", result);
+  return result;
 };
 
 // Parse uploaded story text file
@@ -5899,7 +5958,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core_state_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core/state.js */ "./public/js/core/state.js");
 /* harmony import */ var _core_placeholders_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/placeholders.js */ "./public/js/core/placeholders.js");
 /* harmony import */ var _ui_forms_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ui/forms.js */ "./public/js/ui/forms.js");
+/* harmony import */ var _utils_utils_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/utils.js */ "./public/js/utils/utils.js");
 // public/js/data/storage.js
+
 
 
 
@@ -5928,158 +5989,268 @@ var Storage = {
     console.error("AJAX Error:", errorMessage, xhr);
   },
   addCurrentStoryToSavedStories: function addCurrentStoryToSavedStories() {
-    var story = {
-      storyTitle: $('#storyTitle').val(),
-      storyAuthor: $('#storyAuthor').val(),
-      storyText: $('#storyText').html(),
-      variables: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].variables,
-      pronounGroups: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].pronounGroups,
-      variableCounts: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].variableCounts,
-      pronounGroupCount: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].pronounGroupCount,
-      customPlaceholders: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].customPlaceholders,
-      tags: $('#storyTags').val() ? $('#storyTags').val().split(',').map(function (s) {
-        return s.trim();
-      }) : [],
-      savedAt: new Date().toISOString(),
-      password: data.password || null
-    };
-    $.ajax({
-      url: "".concat(API_BASE_URL, "/api/savestory"),
-      method: 'POST',
-      contentType: 'application/json',
-      data: JSON.stringify(story),
-      success: function success() {
-        Swal.fire({
-          toast: true,
-          position: 'top-end',
-          icon: 'success',
-          title: 'Story saved to site!',
-          showConfirmButton: false,
-          timer: 1500
-        });
-      },
-      error: function error(xhr, statusText, errorThrown) {
-        if (xhr.status === 409) {
-          Swal.fire({
-            title: 'Story exists',
-            text: 'A story with this title already exists. Overwrite?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes, overwrite',
-            cancelButtonText: 'No'
-          }).then(function (result) {
-            if (result.isConfirmed) {
-              // Create a new story object with the overwrite flag
-              var storyWithOverwrite = {
-                storyTitle: data.title,
-                storyAuthor: data.author,
-                storyText: $('#storyText').html(),
-                variables: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].variables,
-                pronounGroups: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].pronounGroups,
-                variableCounts: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].variableCounts,
-                pronounGroupCount: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].pronounGroupCount,
-                customPlaceholders: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].customPlaceholders,
-                tags: data.tags ? data.tags.split(',').map(function (s) {
-                  return s.trim();
-                }) : [],
-                savedAt: new Date().toISOString(),
-                password: data.password || null,
-                overwrite: true // Add the overwrite flag
-              };
-              $.ajax({
-                url: "".concat(API_BASE_URL, "/api/savestory"),
-                method: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify(storyWithOverwrite),
-                success: function success() {
-                  Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Story overwritten!',
-                    showConfirmButton: false,
-                    timer: 1500
-                  });
-                },
-                error: function error(xhrOverwrite, statusTextOverwrite, errorThrownOverwrite) {
-                  Storage.handleAjaxError(xhrOverwrite, statusTextOverwrite, errorThrownOverwrite, 'Failed to overwrite story');
-                }
+    Swal.fire({
+      title: 'Save Story',
+      html: "\n              <input type=\"text\" id=\"swalTitle\" class=\"swal2-input\" placeholder=\"Story Title\" value=\"".concat($('#storyTitle').val(), "\">\n              <input type=\"text\" id=\"swalAuthor\" class=\"swal2-input\" placeholder=\"Author\" value=\"").concat($('#storyAuthor').val(), "\">\n              <input type=\"text\" id=\"swalTags\" class=\"swal2-input\" placeholder=\"Tags (comma separated)\" value=\"").concat($('#storyTags').val(), "\">\n              <input type=\"password\" id=\"swalPassword\" class=\"swal2-input\" placeholder=\"Password (optional)\">\n              <div id=\"preexistingTagsContainer\" style=\"text-align:left; margin-top:10px;\"></div>\n            "),
+      didOpen: function didOpen() {
+        // We need to import and call loadPreexistingTags from events.js
+        // This requires proper module handling
+        var container = $('#preexistingTagsContainer');
+        $.ajax({
+          url: "".concat(API_BASE_URL, "/api/gettags"),
+          method: 'GET',
+          success: function success(tags) {
+            container.empty();
+            if (tags.length > 0) {
+              container.append('<p>Select a tag:</p>');
+              tags.forEach(function (tag) {
+                var btn = $('<button type="button" class="btn btn-sm btn-outline-secondary m-1 preexisting-tag-btn"></button>');
+                btn.text(tag);
+                btn.on('click', function () {
+                  var current = $('#swalTags').val();
+                  var tagsArr = current ? current.split(',').map(function (t) {
+                    return t.trim();
+                  }).filter(Boolean) : [];
+                  if (!tagsArr.includes(tag)) {
+                    tagsArr.push(tag);
+                    $('#swalTags').val(tagsArr.join(', '));
+                  }
+                });
+                container.append(btn);
               });
             }
-          });
-        } else {
-          Storage.handleAjaxError(xhr, statusText, errorThrown, 'Failed to save story');
-        }
+          },
+          error: function error(err) {
+            console.error('Failed to load preexisting tags', err);
+          }
+        });
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Save',
+      preConfirm: function preConfirm() {
+        return {
+          title: document.getElementById('swalTitle').value,
+          author: document.getElementById('swalAuthor').value,
+          tags: document.getElementById('swalTags').value,
+          password: document.getElementById('swalPassword').value
+        };
+      }
+    }).then(function (result) {
+      if (result.isConfirmed) {
+        var data = result.value;
+        // Update fields in the editor
+        $('#storyTitle').val(data.title);
+        $('#storyAuthor').val(data.author);
+        $('#storyTags').val(data.tags);
+        var story = {
+          storyTitle: data.title,
+          storyAuthor: data.author,
+          storyText: $('#storyText').html(),
+          variables: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].variables,
+          pronounGroups: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].pronounGroups,
+          variableCounts: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].variableCounts,
+          pronounGroupCount: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].pronounGroupCount,
+          customPlaceholders: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].customPlaceholders,
+          tags: data.tags ? data.tags.split(',').map(function (s) {
+            return s.trim();
+          }) : [],
+          savedAt: new Date().toISOString(),
+          password: data.password && data.password.trim() !== '' ? data.password : null
+        };
+        $.ajax({
+          url: "".concat(API_BASE_URL, "/api/savestory"),
+          method: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify(story),
+          success: function success() {
+            Swal.fire({
+              toast: true,
+              position: 'top-end',
+              icon: 'success',
+              title: 'Story saved to site!',
+              showConfirmButton: false,
+              timer: 1500
+            });
+          },
+          error: function error(xhr, statusText, errorThrown) {
+            if (xhr.status === 409) {
+              Swal.fire({
+                title: 'Story exists',
+                text: 'A story with this title already exists. Overwrite?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, overwrite',
+                cancelButtonText: 'No'
+              }).then(function (result) {
+                if (result.isConfirmed) {
+                  // Create a new story object with the overwrite flag
+                  var storyWithOverwrite = {
+                    storyTitle: $('#storyTitle').val(),
+                    storyAuthor: $('#storyAuthor').val(),
+                    storyText: $('#storyText').html(),
+                    variables: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].variables,
+                    pronounGroups: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].pronounGroups,
+                    variableCounts: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].variableCounts,
+                    pronounGroupCount: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].pronounGroupCount,
+                    customPlaceholders: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].customPlaceholders,
+                    tags: $('#storyTags').val() ? $('#storyTags').val().split(',').map(function (s) {
+                      return s.trim();
+                    }) : [],
+                    savedAt: new Date().toISOString(),
+                    password: null,
+                    overwrite: true // Add the overwrite flag
+                  };
+                  $.ajax({
+                    url: "".concat(API_BASE_URL, "/api/savestory"),
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(storyWithOverwrite),
+                    success: function success() {
+                      Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Story overwritten!',
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                    },
+                    error: function error(xhrOverwrite, statusTextOverwrite, errorThrownOverwrite) {
+                      Storage.handleAjaxError(xhrOverwrite, statusTextOverwrite, errorThrownOverwrite, 'Failed to overwrite story');
+                    }
+                  });
+                }
+              });
+            } else {
+              Storage.handleAjaxError(xhr, statusText, errorThrown, 'Failed to save story');
+            }
+          }
+        });
       }
     });
   },
   addCompletedStoryToSavedStories: function addCompletedStoryToSavedStories() {
-    var story = {
-      storyTitle: $('#displayTitle').text(),
-      storyAuthor: $('#displayAuthor').text(),
-      storyText: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].storyText,
-      variables: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].variables,
-      pronounGroups: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].pronounGroups,
-      variableCounts: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].variableCounts,
-      pronounGroupCount: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].pronounGroupCount,
-      customPlaceholders: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].customPlaceholders,
-      tags: $('#displayTags').text() ? $('#displayTags').text().split(',').map(function (s) {
-        return s.trim();
-      }) : [],
-      savedAt: new Date().toISOString(),
-      password: data.password || null
-    };
-    $.ajax({
-      url: "".concat(API_BASE_URL, "/api/savestory"),
-      method: 'POST',
-      contentType: 'application/json',
-      data: JSON.stringify(story),
-      success: function success() {
-        Swal.fire({
-          toast: true,
-          position: 'top-end',
-          icon: 'success',
-          title: 'Completed story saved to site!',
-          showConfirmButton: false,
-          timer: 1500
-        });
-      },
-      error: function error(xhr, statusText, errorThrown) {
-        if (xhr.status === 409) {
-          Swal.fire({
-            title: 'Story exists',
-            text: 'A story with this title already exists. Overwrite?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes, overwrite',
-            cancelButtonText: 'No'
-          }).then(function (result) {
-            if (result.isConfirmed) {
-              story.overwrite = true;
-              $.ajax({
-                url: "".concat(API_BASE_URL, "/api/savestory"),
-                method: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify(story),
-                success: function success() {
-                  Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Completed story overwritten!',
-                    showConfirmButton: false,
-                    timer: 1500
-                  });
-                },
-                error: function error(xhrOverwrite, statusTextOverwrite, errorThrownOverwrite) {
-                  Storage.handleAjaxError(xhrOverwrite, statusTextOverwrite, errorThrownOverwrite, 'Failed to overwrite completed story');
-                }
+    Swal.fire({
+      title: 'Save Completed Story',
+      html: "\n              <input type=\"text\" id=\"swalTitle\" class=\"swal2-input\" placeholder=\"Story Title\" value=\"".concat($('#displayTitle').text(), "\">\n              <input type=\"text\" id=\"swalAuthor\" class=\"swal2-input\" placeholder=\"Author\" value=\"").concat($('#displayAuthor').text(), "\">\n              <input type=\"text\" id=\"swalTags\" class=\"swal2-input\" placeholder=\"Tags (comma separated)\" value=\"").concat($('#displayTags').text(), "\">\n              <input type=\"password\" id=\"swalPassword\" class=\"swal2-input\" placeholder=\"Password (optional)\">\n              <div id=\"preexistingTagsContainer\" style=\"text-align:left; margin-top:10px;\"></div>\n            "),
+      didOpen: function didOpen() {
+        // We need to import and call loadPreexistingTags from events.js
+        // This requires proper module handling
+        var container = $('#preexistingTagsContainer');
+        $.ajax({
+          url: "".concat(API_BASE_URL, "/api/gettags"),
+          method: 'GET',
+          success: function success(tags) {
+            container.empty();
+            if (tags.length > 0) {
+              container.append('<p>Select a tag:</p>');
+              tags.forEach(function (tag) {
+                var btn = $('<button type="button" class="btn btn-sm btn-outline-secondary m-1 preexisting-tag-btn"></button>');
+                btn.text(tag);
+                btn.on('click', function () {
+                  var current = $('#swalTags').val();
+                  var tagsArr = current ? current.split(',').map(function (t) {
+                    return t.trim();
+                  }).filter(Boolean) : [];
+                  if (!tagsArr.includes(tag)) {
+                    tagsArr.push(tag);
+                    $('#swalTags').val(tagsArr.join(', '));
+                  }
+                });
+                container.append(btn);
               });
             }
-          });
-        } else {
-          Storage.handleAjaxError(xhr, statusText, errorThrown, 'Failed to save completed story');
-        }
+          },
+          error: function error(err) {
+            console.error('Failed to load preexisting tags', err);
+          }
+        });
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Save',
+      preConfirm: function preConfirm() {
+        return {
+          title: document.getElementById('swalTitle').value,
+          author: document.getElementById('swalAuthor').value,
+          tags: document.getElementById('swalTags').value,
+          password: document.getElementById('swalPassword').value
+        };
+      }
+    }).then(function (result) {
+      if (result.isConfirmed) {
+        var data = result.value;
+        // Update display in the result section
+        $('#displayTitle').text(data.title);
+        $('#displayAuthor').text(data.author);
+        $('#displayTags').text(data.tags);
+        var story = {
+          storyTitle: data.title,
+          storyAuthor: data.author,
+          storyText: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].storyText,
+          variables: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].variables,
+          pronounGroups: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].pronounGroups,
+          variableCounts: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].variableCounts,
+          pronounGroupCount: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].pronounGroupCount,
+          customPlaceholders: _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].customPlaceholders,
+          tags: data.tags ? data.tags.split(',').map(function (s) {
+            return s.trim();
+          }) : [],
+          savedAt: new Date().toISOString(),
+          password: data.password && data.password.trim() !== '' ? data.password : null
+        };
+        $.ajax({
+          url: "".concat(API_BASE_URL, "/api/savestory"),
+          method: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify(story),
+          success: function success() {
+            Swal.fire({
+              toast: true,
+              position: 'top-end',
+              icon: 'success',
+              title: 'Completed story saved to site!',
+              showConfirmButton: false,
+              timer: 1500
+            });
+          },
+          error: function error(xhr, statusText, errorThrown) {
+            if (xhr.status === 409) {
+              Swal.fire({
+                title: 'Story exists',
+                text: 'A story with this title already exists. Overwrite?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, overwrite',
+                cancelButtonText: 'No'
+              }).then(function (result) {
+                if (result.isConfirmed) {
+                  story.overwrite = true;
+                  $.ajax({
+                    url: "".concat(API_BASE_URL, "/api/savestory"),
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(story),
+                    success: function success() {
+                      Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Completed story overwritten!',
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                    },
+                    error: function error(xhrOverwrite, statusTextOverwrite, errorThrownOverwrite) {
+                      Storage.handleAjaxError(xhrOverwrite, statusTextOverwrite, errorThrownOverwrite, 'Failed to overwrite completed story');
+                    }
+                  });
+                }
+              });
+            } else {
+              Storage.handleAjaxError(xhr, statusText, errorThrown, 'Failed to save completed story');
+            }
+          }
+        });
       }
     });
   },
@@ -6180,7 +6351,7 @@ var Storage = {
   populateEditorWithStory: function populateEditorWithStory(story, mode) {
     $('#storyTitle').val(story.storyTitle);
     $('#storyAuthor').val(story.storyAuthor);
-    $('#storyText').html(decodeHTMLEntities(story.storyText));
+    $('#storyText').html((0,_utils_utils_js__WEBPACK_IMPORTED_MODULE_3__.decodeHTMLEntities)(story.storyText));
     // NEW: Populate tags input if editing a story.
     if (story.tags && story.tags.length) {
       $('#storyTags').val(story.tags.join(', '));
@@ -6257,6 +6428,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/domUtils.js */ "./public/js/utils/domUtils.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _ui_notifications_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../ui/notifications.js */ "./public/js/ui/notifications.js");
 // public/js/handlers/events.js
 
 
@@ -6267,6 +6439,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
  // Ensure Swal is imported if used
+
 
 // Handle placeholder button click
 var handlePlaceholderClick = function handlePlaceholderClick(internalType, displayName) {
@@ -6348,6 +6521,22 @@ var handleGenerateStory = function handleGenerateStory() {
     return; // Validation failed
   }
 
+  // Collect values from the input form
+  var inputForm = document.getElementById('inputForm');
+  var inputs = inputForm.querySelectorAll('input[type="text"]');
+
+  // Reset fillValues
+  _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].fillValues = {};
+
+  // Populate fillValues with the values from the input fields
+  inputs.forEach(function (input) {
+    var id = input.getAttribute('data-id');
+    if (id && input.value.trim() !== '') {
+      _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].fillValues[id] = input.value.trim();
+      console.log("Collected input value for ".concat(id, ": \"").concat(input.value.trim(), "\""));
+    }
+  });
+
   // Generate the final story with replacements
   var _final = (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.generateLegacyText)();
   _final = (0,_core_storyProcessor_js__WEBPACK_IMPORTED_MODULE_6__.fillPlaceholders)(_final, _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].variables, _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].fillValues, _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].pronounGroups);
@@ -6365,7 +6554,7 @@ var handleGenerateStory = function handleGenerateStory() {
 var handleSaveStoryToSite = function handleSaveStoryToSite() {
   sweetalert2__WEBPACK_IMPORTED_MODULE_8___default().fire({
     title: 'Save Story',
-    html: "\n      <input type=\"text\" id=\"swalTitle\" class=\"swal2-input\" placeholder=\"Story Title\" value=\"".concat($('#storyTitle').val(), "\">\n      <input type=\"text\" id=\"swalAuthor\" class=\"swal2-input\" placeholder=\"Author\" value=\"").concat($('#storyAuthor').val(), "\">\n      <input type=\"text\" id=\"swalTags\" class=\"swal2-input\" placeholder=\"Tags (comma separated)\" value=\"").concat($('#storyTags').val(), "\">\n      <input type=\"password\" id=\"swalPassword\" class=\"swal2-input\" placeholder=\"Password (optional)\">\n      <div id=\"preexistingTagsContainer\" style=\"text-align:left; margin-top:10px;\"></div>\n    "),
+    html: "\n          <input type=\"text\" id=\"swalTitle\" class=\"swal2-input\" placeholder=\"Story Title\" value=\"".concat($('#storyTitle').val(), "\">\n          <input type=\"text\" id=\"swalAuthor\" class=\"swal2-input\" placeholder=\"Author\" value=\"").concat($('#storyAuthor').val(), "\">\n          <input type=\"text\" id=\"swalTags\" class=\"swal2-input\" placeholder=\"Tags (comma separated)\" value=\"").concat($('#storyTags').val(), "\">\n          <input type=\"password\" id=\"swalPassword\" class=\"swal2-input\" placeholder=\"Password (optional)\">\n          <div id=\"preexistingTagsContainer\" style=\"text-align:left; margin-top:10px;\"></div>\n        "),
     didOpen: function didOpen() {
       loadPreexistingTags();
     },
@@ -6399,7 +6588,7 @@ var handleSaveStoryToSite = function handleSaveStoryToSite() {
           return s.trim();
         }) : [],
         savedAt: new Date().toISOString(),
-        password: data.password || null
+        password: data.password && data.password.trim() !== '' ? data.password : null
       };
       $.ajax({
         url: '/api/savestory',
@@ -6407,11 +6596,51 @@ var handleSaveStoryToSite = function handleSaveStoryToSite() {
         contentType: 'application/json',
         data: JSON.stringify(story),
         success: function success() {
-          _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_7__.showToast('Story saved to site!');
-          _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].storyHasUnsavedChanges = false;
+          sweetalert2__WEBPACK_IMPORTED_MODULE_8___default().fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: 'Story saved to site!',
+            showConfirmButton: false,
+            timer: 1500
+          });
         },
         error: function error(xhr, statusText, errorThrown) {
-          _data_storage_js__WEBPACK_IMPORTED_MODULE_1__.Storage.handleAjaxError(xhr, statusText, errorThrown, 'Failed to save story');
+          if (xhr.status === 409) {
+            sweetalert2__WEBPACK_IMPORTED_MODULE_8___default().fire({
+              title: 'Story exists',
+              text: 'A story with this title already exists. Overwrite?',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonText: 'Yes, overwrite',
+              cancelButtonText: 'No'
+            }).then(function (result) {
+              if (result.isConfirmed) {
+                story.overwrite = true;
+                $.ajax({
+                  url: '/api/savestory',
+                  method: 'POST',
+                  contentType: 'application/json',
+                  data: JSON.stringify(story),
+                  success: function success() {
+                    sweetalert2__WEBPACK_IMPORTED_MODULE_8___default().fire({
+                      toast: true,
+                      position: 'top-end',
+                      icon: 'success',
+                      title: 'Story overwritten!',
+                      showConfirmButton: false,
+                      timer: 1500
+                    });
+                  },
+                  error: function error(xhrOverwrite, statusTextOverwrite, errorThrownOverwrite) {
+                    _data_storage_js__WEBPACK_IMPORTED_MODULE_1__.Storage.handleAjaxError(xhrOverwrite, statusTextOverwrite, errorThrownOverwrite, 'Failed to overwrite story');
+                  }
+                });
+              }
+            });
+          } else {
+            _data_storage_js__WEBPACK_IMPORTED_MODULE_1__.Storage.handleAjaxError(xhr, statusText, errorThrown, 'Failed to save story');
+          }
         }
       });
     }
@@ -6465,6 +6694,13 @@ var initEvents = function initEvents() {
     e.stopPropagation();
     var type = $(e.currentTarget).data('type');
     var tooltip = _utils_typeHelpers_js__WEBPACK_IMPORTED_MODULE_3__.TypeHelpers.getTooltipForType(type);
+    _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_7__.showToast(tooltip, 'info');
+  });
+
+  // Add accordion info icon click handler
+  $(document).on('click', '.accordion-info-icon', function (e) {
+    e.stopPropagation();
+    var tooltip = $(e.currentTarget).data('tooltip');
     _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_7__.showToast(tooltip, 'info');
   });
 
@@ -6661,6 +6897,11 @@ var initEvents = function initEvents() {
     _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_7__.downloadTextFile(content, fileName);
   });
 
+  // Save completed story button
+  $('#saveCompletedStory').on('click', function () {
+    _data_storage_js__WEBPACK_IMPORTED_MODULE_1__.Storage.addCompletedStoryToSavedStories();
+  });
+
   // Saved stories buttons
   $('#mySavedStoriesBtn').on('click', function () {
     _data_storage_js__WEBPACK_IMPORTED_MODULE_1__.Storage.loadSavedStoriesList();
@@ -6798,6 +7039,15 @@ var initEvents = function initEvents() {
     $('#modalPlaceholderSearch').val('');
     (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.updatePlaceholderAccordion)('#modalPlaceholderAccordion', '#modalNoResults', _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentModalPlaceholderSearch);
   });
+
+  // Search modal placeholder input
+  $('#modalPlaceholderSearchInput').on('input', function () {
+    _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentModalPlaceholderSearch = $(this).val().trim().toLowerCase();
+    (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.updatePlaceholderAccordion)('#modalPlaceholderAccordion', '#modalNoResults', _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentModalPlaceholderSearch);
+  });
+
+  // The remaining initialization code follows
+  // ... existing code ...
 };
 
 /***/ }),
@@ -6812,6 +7062,7 @@ var initEvents = function initEvents() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   buildFillForm: () => (/* binding */ buildFillForm),
+/* harmony export */   createInputRow: () => (/* binding */ createInputRow),
 /* harmony export */   validateInputForm: () => (/* binding */ validateInputForm)
 /* harmony export */ });
 /* harmony import */ var _core_state_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core/state.js */ "./public/js/core/state.js");
@@ -6897,17 +7148,56 @@ var appendNonPronounVariablesToForm = function appendNonPronounVariablesToForm(f
   });
 };
 var createInputRow = function createInputRow(variable) {
-  var groupRow = $("\n      <div class=\"form-group input-row\">\n        <div class=\"row\">\n          <div class=\"col-sm-4\">\n            <label class=\"input-label\" title=\"Internal ID: ".concat(variable.id, "\">\n              ").concat(variable.officialDisplay, "\n            </label>\n          </div>\n          <div class=\"col-sm-8\">\n            <input type=\"text\"\n              class=\"form-control form-control-sm compact-input\"\n              name=\"").concat(variable.id, "\"\n              data-label=\"").concat(variable.officialDisplay, "\">\n          </div>\n        </div>\n      </div>\n    "));
-  if (_core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].fillValues[variable.id]) {
-    groupRow.find('input').val(_core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].fillValues[variable.id]);
+  var inputRow = document.createElement("div");
+  inputRow.className = "form-group mb-3";
+  console.log("Creating input row for variable: ".concat(variable.id), variable);
+
+  // Create standardized display label (remove any text within parentheses and trim)
+  var displayLabel = variable.officialDisplay.replace(/\s*\([^)]*\)/g, '').trim();
+
+  // Create the label element
+  var label = document.createElement("label");
+  label.htmlFor = variable.id;
+  label.textContent = variable.officialDisplay;
+  label.className = "form-label";
+
+  // Create the input element
+  var input = document.createElement("input");
+  input.type = "text";
+  input.className = "form-control";
+  input.id = variable.id;
+  input.setAttribute("data-id", variable.id);
+  input.setAttribute("data-label", variable.officialDisplay);
+  input.setAttribute("data-display", displayLabel);
+  input.setAttribute("data-type", variable.internalType.split('|')[0]);
+  input.setAttribute("placeholder", displayLabel);
+
+  // If we have existing values, use them
+  if (_core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].fillValues && _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].fillValues[variable.id]) {
+    input.value = _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].fillValues[variable.id];
+    console.log("Pre-filling ".concat(variable.id, " with existing value: \"").concat(_core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].fillValues[variable.id], "\""));
   }
-  return groupRow;
+
+  // Add elements to the row
+  inputRow.appendChild(label);
+  inputRow.appendChild(input);
+  return inputRow;
 };
 
 // Add the missing validateInputForm function to forms.js
 
 var validateInputForm = function validateInputForm(formData) {
-  // Input validation logic
+  // If no formData is provided, this is being called from handleGenerateStory
+  // to validate the entire form before generating the story
+  if (!formData) {
+    // Check if we have any filled values that need validation
+    // Return valid for basic story generation
+    return {
+      valid: true
+    };
+  }
+
+  // Input validation logic for placeholders/variables
   if (!formData.display || formData.display.trim() === '') {
     return {
       valid: false,
@@ -7214,6 +7504,71 @@ var initMenuSystem = function initMenuSystem() {
   // Create menus if they don't exist yet
   if (!selectionMenu || !placeholderEditMenu) {
     initMenus();
+  }
+};
+
+/***/ }),
+
+/***/ "./public/js/ui/notifications.js":
+/*!***************************************!*\
+  !*** ./public/js/ui/notifications.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   showError: () => (/* binding */ showError),
+/* harmony export */   showToast: () => (/* binding */ showToast)
+/* harmony export */ });
+/**
+ * Utility functions for showing notifications to the user
+ */
+
+/**
+ * Shows a toast notification to the user
+ * @param {string} message - The message to display
+ * @param {string} type - The type of notification (success, error, warning, info)
+ * @param {number} duration - How long to show the notification in ms
+ */
+var showToast = function showToast(message) {
+  var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'success';
+  var duration = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 3000;
+  if (typeof Swal !== 'undefined') {
+    // If SweetAlert2 is available
+    Swal.fire({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: duration,
+      timerProgressBar: true,
+      icon: type,
+      title: message
+    });
+  } else {
+    // Fallback to alert if SweetAlert is not available
+    console.log("".concat(type.toUpperCase(), ": ").concat(message));
+    if (type === 'error') {
+      alert(message);
+    }
+  }
+};
+
+/**
+ * Shows an error notification with a title and message
+ * @param {string} title - The error title
+ * @param {string} message - The error message
+ */
+var showError = function showError(title, message) {
+  if (typeof Swal !== 'undefined') {
+    Swal.fire({
+      icon: 'error',
+      title: title,
+      text: message
+    });
+  } else {
+    console.error("".concat(title, ": ").concat(message));
+    alert("".concat(title, ": ").concat(message));
   }
 };
 

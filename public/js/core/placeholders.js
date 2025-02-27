@@ -1,5 +1,5 @@
 // public/js/core/placeholders.js
-import state from './state.js';
+import state, { pronounMapping } from './state.js';
 import { Utils } from '../utils/utils.js';
 import { TypeHelpers } from '../utils/typeHelpers.js';
 
@@ -721,7 +721,7 @@ export const pickPronounGroup = (form) => {
                     insertPronounPlaceholderSimple(grp, form, state.pronounGroups[grp][form]);
                 } else {
                     choosePronounTempValue(form, grp).then(tempValue => {
-                        state.pronounGroups[grp] = state.pronounMapping[tempValue] || 
+                        state.pronounGroups[grp] = pronounMapping[tempValue] || 
                             { subject: tempValue, object: tempValue, possAdj: tempValue, possPron: tempValue, reflexive: tempValue };
                         insertPronounPlaceholderSimple(grp, form, state.pronounGroups[grp][form]);
                     });
@@ -733,7 +733,7 @@ export const pickPronounGroup = (form) => {
                 state.pronounGroups[newGroup] = {};
                 Swal.close();
                 choosePronounTempValue(form, newGroup).then(tempValue => {
-                    state.pronounGroups[newGroup] = state.pronounMapping[tempValue] || 
+                    state.pronounGroups[newGroup] = pronounMapping[tempValue] || 
                         { subject: tempValue, object: tempValue, possAdj: tempValue, possPron: tempValue, reflexive: tempValue };
                     insertPronounPlaceholderSimple(newGroup, form, state.pronounGroups[newGroup][form]);
                 });

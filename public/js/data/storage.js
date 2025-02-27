@@ -2,6 +2,7 @@
 import state from '../core/state.js';
 import { updateVariablesFromEditor } from '../core/placeholders.js';
 import { buildFillForm } from '../ui/forms.js';
+import { Utils, decodeHTMLEntities } from '../utils/utils.js';
 
 // Define the base URL for all API calls - UPDATED to be dynamic
 const API_BASE_URL = (() => {
@@ -30,156 +31,276 @@ export const Storage = {
     },
     
     addCurrentStoryToSavedStories: () => {
-        const story = {
-            storyTitle: $('#storyTitle').val(),
-            storyAuthor: $('#storyAuthor').val(),
-            storyText: $('#storyText').html(),
-            variables: state.variables,
-            pronounGroups: state.pronounGroups,
-            variableCounts: state.variableCounts,
-            pronounGroupCount: state.pronounGroupCount,
-            customPlaceholders: state.customPlaceholders,
-            tags: $('#storyTags').val() ? $('#storyTags').val().split(',').map(s => s.trim()) : [],
-            savedAt: new Date().toISOString(),
-            password: data.password || null
-        };
-        
-        $.ajax({
-            url: `${API_BASE_URL}/api/savestory`,
-            method: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(story),
-            success: () => {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Story saved to site!',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            },
-            error: (xhr, statusText, errorThrown) => {
-                if (xhr.status === 409) {
-                    Swal.fire({
-                        title: 'Story exists',
-                        text: 'A story with this title already exists. Overwrite?',
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonText: 'Yes, overwrite',
-                        cancelButtonText: 'No'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            // Create a new story object with the overwrite flag
-                            let storyWithOverwrite = {
-                                storyTitle: data.title,
-                                storyAuthor: data.author,
-                                storyText: $('#storyText').html(),
-                                variables: state.variables,
-                                pronounGroups: state.pronounGroups,
-                                variableCounts: state.variableCounts,   
-                                pronounGroupCount: state.pronounGroupCount,
-                                customPlaceholders: state.customPlaceholders,
-                                tags: data.tags ? data.tags.split(',').map(s => s.trim()) : [],
-                                savedAt: new Date().toISOString(),
-                                password: data.password || null,
-                                overwrite: true  // Add the overwrite flag
-                            };
-
-                            $.ajax({
-                                url: `${API_BASE_URL}/api/savestory`,
-                                method: 'POST',
-                                contentType: 'application/json',
-                                data: JSON.stringify(storyWithOverwrite),
-                                success: () => {
-                                    Swal.fire({
-                                        toast: true,
-                                        position: 'top-end',
-                                        icon: 'success',
-                                        title: 'Story overwritten!',
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    });
-                                },
-                                error: (xhrOverwrite, statusTextOverwrite, errorThrownOverwrite) => {
-                                    Storage.handleAjaxError(xhrOverwrite, statusTextOverwrite, errorThrownOverwrite, 'Failed to overwrite story');
-                                }
+        Swal.fire({
+            title: 'Save Story',
+            html: `
+              <input type="text" id="swalTitle" class="swal2-input" placeholder="Story Title" value="${$('#storyTitle').val()}">
+              <input type="text" id="swalAuthor" class="swal2-input" placeholder="Author" value="${$('#storyAuthor').val()}">
+              <input type="text" id="swalTags" class="swal2-input" placeholder="Tags (comma separated)" value="${$('#storyTags').val()}">
+              <input type="password" id="swalPassword" class="swal2-input" placeholder="Password (optional)">
+              <div id="preexistingTagsContainer" style="text-align:left; margin-top:10px;"></div>
+            `,
+            didOpen: () => {
+                // We need to import and call loadPreexistingTags from events.js
+                // This requires proper module handling
+                const container = $('#preexistingTagsContainer');
+                $.ajax({
+                    url: `${API_BASE_URL}/api/gettags`,
+                    method: 'GET',
+                    success: (tags) => {
+                        container.empty();
+                        if (tags.length > 0) {
+                            container.append('<p>Select a tag:</p>');
+                            tags.forEach(tag => {
+                                const btn = $('<button type="button" class="btn btn-sm btn-outline-secondary m-1 preexisting-tag-btn"></button>');
+                                btn.text(tag);
+                                btn.on('click', () => {
+                                    let current = $('#swalTags').val();
+                                    let tagsArr = current ? current.split(',').map(t => t.trim()).filter(Boolean) : [];
+                                    if (!tagsArr.includes(tag)) {
+                                        tagsArr.push(tag);
+                                        $('#swalTags').val(tagsArr.join(', '));
+                                    }
+                                });
+                                container.append(btn);
                             });
                         }
-                    });
-                } else {
-                    Storage.handleAjaxError(xhr, statusText, errorThrown, 'Failed to save story');
-                }
+                    },
+                    error: (err) => {
+                        console.error('Failed to load preexisting tags', err);
+                    }
+                });
+            },
+            showCancelButton: true,
+            confirmButtonText: 'Save',
+            preConfirm: () => {
+                return {
+                    title: document.getElementById('swalTitle').value,
+                    author: document.getElementById('swalAuthor').value,
+                    tags: document.getElementById('swalTags').value,
+                    password: document.getElementById('swalPassword').value
+                };
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const data = result.value;
+                // Update fields in the editor
+                $('#storyTitle').val(data.title);
+                $('#storyAuthor').val(data.author);
+                $('#storyTags').val(data.tags);
+                
+                const story = {
+                    storyTitle: data.title,
+                    storyAuthor: data.author,
+                    storyText: $('#storyText').html(),
+                    variables: state.variables,
+                    pronounGroups: state.pronounGroups,
+                    variableCounts: state.variableCounts,   
+                    pronounGroupCount: state.pronounGroupCount,
+                    customPlaceholders: state.customPlaceholders,
+                    tags: data.tags ? data.tags.split(',').map(s => s.trim()) : [],
+                    savedAt: new Date().toISOString(),
+                    password: data.password && data.password.trim() !== '' ? data.password : null
+                };
+                
+                $.ajax({
+                    url: `${API_BASE_URL}/api/savestory`,
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(story),
+                    success: () => {
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Story saved to site!',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    },
+                    error: (xhr, statusText, errorThrown) => {
+                        if (xhr.status === 409) {
+                            Swal.fire({
+                                title: 'Story exists',
+                                text: 'A story with this title already exists. Overwrite?',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonText: 'Yes, overwrite',
+                                cancelButtonText: 'No'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    // Create a new story object with the overwrite flag
+                                    let storyWithOverwrite = {
+                                        storyTitle: $('#storyTitle').val(),
+                                        storyAuthor: $('#storyAuthor').val(),
+                                        storyText: $('#storyText').html(),
+                                        variables: state.variables,
+                                        pronounGroups: state.pronounGroups,
+                                        variableCounts: state.variableCounts,   
+                                        pronounGroupCount: state.pronounGroupCount,
+                                        customPlaceholders: state.customPlaceholders,
+                                        tags: $('#storyTags').val() ? $('#storyTags').val().split(',').map(s => s.trim()) : [],
+                                        savedAt: new Date().toISOString(),
+                                        password: null,
+                                        overwrite: true  // Add the overwrite flag
+                                    };
+
+                                    $.ajax({
+                                        url: `${API_BASE_URL}/api/savestory`,
+                                        method: 'POST',
+                                        contentType: 'application/json',
+                                        data: JSON.stringify(storyWithOverwrite),
+                                        success: () => {
+                                            Swal.fire({
+                                                toast: true,
+                                                position: 'top-end',
+                                                icon: 'success',
+                                                title: 'Story overwritten!',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            });
+                                        },
+                                        error: (xhrOverwrite, statusTextOverwrite, errorThrownOverwrite) => {
+                                            Storage.handleAjaxError(xhrOverwrite, statusTextOverwrite, errorThrownOverwrite, 'Failed to overwrite story');
+                                        }
+                                    });
+                                }
+                            });
+                        } else {
+                            Storage.handleAjaxError(xhr, statusText, errorThrown, 'Failed to save story');
+                        }
+                    }
+                });
             }
         });
     },
     
     addCompletedStoryToSavedStories: () => {
-        const story = {
-            storyTitle: $('#displayTitle').text(),
-            storyAuthor: $('#displayAuthor').text(),
-            storyText: state.storyText,
-            variables: state.variables,
-            pronounGroups: state.pronounGroups,
-            variableCounts: state.variableCounts,
-            pronounGroupCount: state.pronounGroupCount,
-            customPlaceholders: state.customPlaceholders,
-            tags: $('#displayTags').text() ? $('#displayTags').text().split(',').map(s => s.trim()) : [],
-            savedAt: new Date().toISOString(),
-            password: data.password || null
-        };
-        
-        $.ajax({
-            url: `${API_BASE_URL}/api/savestory`,
-            method: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(story),
-            success: () => {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Completed story saved to site!',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            },
-            error: (xhr, statusText, errorThrown) => {
-                if (xhr.status === 409) {
-                    Swal.fire({
-                        title: 'Story exists',
-                        text: 'A story with this title already exists. Overwrite?',
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonText: 'Yes, overwrite',
-                        cancelButtonText: 'No'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            story.overwrite = true;
-                            $.ajax({
-                                url: `${API_BASE_URL}/api/savestory`,
-                                method: 'POST',
-                                contentType: 'application/json',
-                                data: JSON.stringify(story),
-                                success: () => {
-                                    Swal.fire({
-                                        toast: true,
-                                        position: 'top-end',
-                                        icon: 'success',
-                                        title: 'Completed story overwritten!',
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    });
-                                },
-                                error: (xhrOverwrite, statusTextOverwrite, errorThrownOverwrite) => {
-                                    Storage.handleAjaxError(xhrOverwrite, statusTextOverwrite, errorThrownOverwrite, 'Failed to overwrite completed story');
-                                }
+        Swal.fire({
+            title: 'Save Completed Story',
+            html: `
+              <input type="text" id="swalTitle" class="swal2-input" placeholder="Story Title" value="${$('#displayTitle').text()}">
+              <input type="text" id="swalAuthor" class="swal2-input" placeholder="Author" value="${$('#displayAuthor').text()}">
+              <input type="text" id="swalTags" class="swal2-input" placeholder="Tags (comma separated)" value="${$('#displayTags').text()}">
+              <input type="password" id="swalPassword" class="swal2-input" placeholder="Password (optional)">
+              <div id="preexistingTagsContainer" style="text-align:left; margin-top:10px;"></div>
+            `,
+            didOpen: () => {
+                // We need to import and call loadPreexistingTags from events.js
+                // This requires proper module handling
+                const container = $('#preexistingTagsContainer');
+                $.ajax({
+                    url: `${API_BASE_URL}/api/gettags`,
+                    method: 'GET',
+                    success: (tags) => {
+                        container.empty();
+                        if (tags.length > 0) {
+                            container.append('<p>Select a tag:</p>');
+                            tags.forEach(tag => {
+                                const btn = $('<button type="button" class="btn btn-sm btn-outline-secondary m-1 preexisting-tag-btn"></button>');
+                                btn.text(tag);
+                                btn.on('click', () => {
+                                    let current = $('#swalTags').val();
+                                    let tagsArr = current ? current.split(',').map(t => t.trim()).filter(Boolean) : [];
+                                    if (!tagsArr.includes(tag)) {
+                                        tagsArr.push(tag);
+                                        $('#swalTags').val(tagsArr.join(', '));
+                                    }
+                                });
+                                container.append(btn);
                             });
                         }
-                    });
-                } else {
-                    Storage.handleAjaxError(xhr, statusText, errorThrown, 'Failed to save completed story');
-                }
+                    },
+                    error: (err) => {
+                        console.error('Failed to load preexisting tags', err);
+                    }
+                });
+            },
+            showCancelButton: true,
+            confirmButtonText: 'Save',
+            preConfirm: () => {
+                return {
+                    title: document.getElementById('swalTitle').value,
+                    author: document.getElementById('swalAuthor').value,
+                    tags: document.getElementById('swalTags').value,
+                    password: document.getElementById('swalPassword').value
+                };
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const data = result.value;
+                // Update display in the result section
+                $('#displayTitle').text(data.title);
+                $('#displayAuthor').text(data.author);
+                $('#displayTags').text(data.tags);
+                
+                const story = {
+                    storyTitle: data.title,
+                    storyAuthor: data.author,
+                    storyText: state.storyText,
+                    variables: state.variables,
+                    pronounGroups: state.pronounGroups,
+                    variableCounts: state.variableCounts,
+                    pronounGroupCount: state.pronounGroupCount,
+                    customPlaceholders: state.customPlaceholders,
+                    tags: data.tags ? data.tags.split(',').map(s => s.trim()) : [],
+                    savedAt: new Date().toISOString(),
+                    password: data.password && data.password.trim() !== '' ? data.password : null
+                };
+                
+                $.ajax({
+                    url: `${API_BASE_URL}/api/savestory`,
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(story),
+                    success: () => {
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Completed story saved to site!',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    },
+                    error: (xhr, statusText, errorThrown) => {
+                        if (xhr.status === 409) {
+                            Swal.fire({
+                                title: 'Story exists',
+                                text: 'A story with this title already exists. Overwrite?',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonText: 'Yes, overwrite',
+                                cancelButtonText: 'No'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    story.overwrite = true;
+                                    $.ajax({
+                                        url: `${API_BASE_URL}/api/savestory`,
+                                        method: 'POST',
+                                        contentType: 'application/json',
+                                        data: JSON.stringify(story),
+                                        success: () => {
+                                            Swal.fire({
+                                                toast: true,
+                                                position: 'top-end',
+                                                icon: 'success',
+                                                title: 'Completed story overwritten!',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            });
+                                        },
+                                        error: (xhrOverwrite, statusTextOverwrite, errorThrownOverwrite) => {
+                                            Storage.handleAjaxError(xhrOverwrite, statusTextOverwrite, errorThrownOverwrite, 'Failed to overwrite completed story');
+                                        }
+                                    });
+                                }
+                            });
+                        } else {
+                            Storage.handleAjaxError(xhr, statusText, errorThrown, 'Failed to save completed story');
+                        }
+                    }
+                });
             }
         });
     },
