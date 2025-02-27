@@ -3,58 +3,35 @@ import state from '../core/state.js';
 import { pronounMapping } from '../core/state.js';
 import { allPlaceholders } from '../core/placeholders.js';
 import { Utils } from './utils.js';
+import { StringUtils } from './StringUtils.js';
 
 export const TypeHelpers = {
+    // Helper functions for naturalizeType
+    _extractSubtype: (type, prefixLength) => {
+        return StringUtils.extractSubtype(type, prefixLength);
+    },
+    
+    _formatNounType: (sub, nounType, isPlural, isProper) => {
+        if (sub.toLowerCase() === "person") {
+            return `Person (${isProper ? 'proper' : 'common'}, ${isPlural ? 'plural' : 'singular'})`;
+        }
+        const displayText = StringUtils.toTitleCase(StringUtils.naturalDisplay(sub || (isProper ? "Proper Noun" : "Common Noun")));
+        return `${displayText} (${isPlural ? 'Plural' : 'Singular'})`;
+    },
+    
     naturalizeType: (type) => {
-        if (type.startsWith("NNPS")) {
-            let sub = type.substring(4);
-            if (sub.startsWith("_")) sub = sub.substring(1);
-            sub = sub.replace(/\d+$/, '');
-            if (sub.toLowerCase() === "person") {
-                return "Person (proper, plural)";
-            }
-            return Utils.toTitleCase(Utils.naturalDisplay(sub || "Proper Noun")) + " (Plural)";
+        // Handle noun patterns (NNP/NNPS/NN/NNS)
+        if (type.startsWith("NNP") || type.startsWith("NN")) {
+            const isProper = type.startsWith("NNP");
+            const isPlural = type.startsWith("NNS") || type.startsWith("NNPS");
+            const prefixLength = isProper ? (isPlural ? 4 : 3) : (isPlural ? 3 : 2);
+            const sub = TypeHelpers._extractSubtype(type, prefixLength);
+            return TypeHelpers._formatNounType(sub, type, isPlural, isProper);
         }
-        if (type.startsWith("NNP")) {
-            let sub = type.substring(3);
-            if (sub.startsWith("_")) sub = sub.substring(1);
-            sub = sub.replace(/\d+$/, '');
-            if (sub.toLowerCase() === "person") {
-                return "Person (proper, singular)";
-            }
-            return Utils.toTitleCase(Utils.naturalDisplay(sub || "Proper Noun")) + " (Singular)";
-        }
-        if (type.startsWith("NNS")) {
-            let sub = type.substring(3);
-            if (sub.startsWith("_")) sub = sub.substring(1);
-            sub = sub.replace(/\d+$/, '');
-            if (sub.toLowerCase() === "person") {
-                return "Person (common, plural)";
-            }
-            return Utils.toTitleCase(Utils.naturalDisplay(sub || "Common Noun")) + " (Plural)";
-        }
-        if (type.startsWith("NN")) {
-            let sub = type.substring(2);
-            if (sub.startsWith("_")) sub = sub.substring(1);
-            sub = sub.replace(/\d+$/, '');
-            if (sub.toLowerCase() === "person") {
-                return "Person (common, singular)";
-            }
-            return Utils.toTitleCase(Utils.naturalDisplay(sub || "Common Noun")) + " (Singular)";
-        }
-        if (type.startsWith("NNS")) {
-            let sub = type.substring(3);
-            if (sub.startsWith("_")) sub = sub.substring(1);
-            sub = sub.replace(/\d+$/, '');
-            return Utils.toTitleCase(Utils.naturalDisplay(sub || "Common Noun")) + " (Plural)";
-        }
-        if (type.startsWith("NN")) {
-            let sub = type.substring(2);
-            if (sub.startsWith("_")) sub = sub.substring(1);
-            sub = sub.replace(/\d+$/, '');
-            return Utils.toTitleCase(Utils.naturalDisplay(sub || "Common Noun")) + " (Singular)";
-        }
+        
         if (type === "Onomatopoeia") return "Onomatopoeia";
+        
+        // Handle modal verbs
         if (type.startsWith("MD_")) {
             let tense = type.substring(3);
             let tenseNatural = "";
@@ -69,6 +46,8 @@ export const TypeHelpers = {
             }
             return "Modal Verb (" + tenseNatural + ")";
         }
+        
+        // Handle verb tenses
         const verbTenseMap = {
             "VBZ": "3rd Person (he leaves)",
             "VBD": "Past Tense (slept)",
@@ -76,47 +55,54 @@ export const TypeHelpers = {
             "VBN": "Past Participle (eaten)",
             "VBP": "Present (I walk)"
         };
+        
         for (let tense in verbTenseMap) {
             if (type.startsWith(tense)) {
                 let remainder = type.substring(tense.length);
-                let category = "";
-                if (remainder.startsWith("_")) {
-                    category = remainder.substring(1);
-                }
+                let category = remainder.startsWith("_") ? remainder.substring(1) : "";
                 return category
-                    ? Utils.toTitleCase(category) + " Verb (" + verbTenseMap[tense] + ")"
+                    ? StringUtils.toTitleCase(category) + " Verb (" + verbTenseMap[tense] + ")"
                     : "Verb (" + verbTenseMap[tense] + ")";
             }
         }
+        
+        // Handle base verb form
         if (type.startsWith("VB")) {
             let rest = type.substring(2).replace(/^_+/, "");
-            return rest ? Utils.toTitleCase(rest) + " Verb (Base Form)" : "Verb (Base Form)";
+            return rest ? StringUtils.toTitleCase(rest) + " Verb (Base Form)" : "Verb (Base Form)";
         }
+        
+        // Handle adjectives and other types
         if (type.startsWith("JJ_")) {
-            let sub = type.substring(3);
-            return Utils.toTitleCase(Utils.naturalDisplay(sub));
+            return StringUtils.toTitleCase(StringUtils.naturalDisplay(type.substring(3)));
         }
+        
         if (type.startsWith("JJS_")) {
             let sub = type.substring(4);
             if (sub.toLowerCase() === "ordinal") {
                 return "Ordinal Number";
             }
-            return Utils.toTitleCase(Utils.naturalDisplay(sub)) + " Superlative Adjective";
+            return StringUtils.toTitleCase(StringUtils.naturalDisplay(sub)) + " Superlative Adjective";
         }
-        if (type === "JJ") return "Adjective";
-        if (type === "JJR") return "Comparative Adjective";
-        if (type === "JJS") return "Superlative Adjective";
-        if (type === "RB") return "Adverb";
-        if (type === "RBR") return "Comparative Adverb";
-        if (type === "RBS") return "Superlative Adverb";
-        if (type === "WRB") return "WH-adverb";
-        if (type === "CC") return "Coordinating Conjunction";
-        if (type === "PDT") return "Pre-determiner";
-        if (type === "WDT") return "WH-determiner";
-        if (type === "FW") return "Foreign Word";
-        if (type === "Number") return "Number";
-        if (type === "Exclamation") return "Exclamation";
-        return type;
+        
+        // Handle standard part-of-speech abbreviations
+        const posMap = {
+            "JJ": "Adjective",
+            "JJR": "Comparative Adjective",
+            "JJS": "Superlative Adjective",
+            "RB": "Adverb",
+            "RBR": "Comparative Adverb",
+            "RBS": "Superlative Adverb",
+            "WRB": "WH-adverb",
+            "CC": "Coordinating Conjunction",
+            "PDT": "Pre-determiner",
+            "WDT": "WH-determiner",
+            "FW": "Foreign Word",
+            "Number": "Number",
+            "Exclamation": "Exclamation"
+        };
+        
+        return posMap[type] || type;
     },
     getTooltipForType: (type) => {
         const normalizedType = type.trim().toLowerCase();

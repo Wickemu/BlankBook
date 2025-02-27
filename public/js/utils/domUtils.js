@@ -4,6 +4,12 @@
  * DOM utility functions for working with the story editor and UI
  */
 
+// Import the notification functions instead of duplicating them
+import { showToast, showError } from '../ui/notifications.js';
+
+// Re-export them to maintain compatibility
+export { showToast, showError };
+
 // Show a confirmation dialog using SweetAlert
 export const confirmDialog = (options) => {
   const defaultOptions = {
@@ -17,28 +23,6 @@ export const confirmDialog = (options) => {
   
   const finalOptions = { ...defaultOptions, ...options };
   return Swal.fire(finalOptions);
-};
-
-// Show a toast notification
-export const showToast = (title, icon = 'success', timer = 1500) => {
-  Swal.fire({
-    toast: true,
-    position: 'top-end',
-    icon: icon,
-    title: title,
-    showConfirmButton: false,
-    timer: timer,
-    timerProgressBar: true
-  });
-};
-
-// Show an error message
-export const showError = (title, text = '') => {
-  Swal.fire({
-    title: title,
-    text: text,
-    icon: 'error'
-  });
 };
 
 // Toggle element visibility
@@ -168,28 +152,8 @@ export const clearForm = (formSelector) => {
   });
 };
 
-// Copy text to clipboard
-export const copyToClipboard = (text) => {
-  return new Promise((resolve, reject) => {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text)
-        .then(() => {
-          resolve(true);
-        })
-        .catch(err => {
-          console.error('Error copying text: ', err);
-          const success = fallbackCopyTextToClipboard(text);
-          resolve(success);
-        });
-    } else {
-      const success = fallbackCopyTextToClipboard(text);
-      resolve(success);
-    }
-  });
-};
-
 // Fallback method for copying text to clipboard
-export const fallbackCopyTextToClipboard = (text) => {
+const fallbackCopyTextToClipboard = (text) => {
   const textarea = document.createElement('textarea');
   textarea.value = text;
   textarea.style.position = 'fixed';
@@ -208,6 +172,29 @@ export const fallbackCopyTextToClipboard = (text) => {
   }
 };
 
+// Copy text to clipboard with notification
+export const copyToClipboard = async (text, showNotification = true) => {
+  let success = false;
+  
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    try {
+      await navigator.clipboard.writeText(text);
+      success = true;
+    } catch (err) {
+      console.error('Error copying text: ', err);
+      success = fallbackCopyTextToClipboard(text);
+    }
+  } else {
+    success = fallbackCopyTextToClipboard(text);
+  }
+  
+  if (success && showNotification) {
+    showToast('Copied to clipboard!');
+  }
+  
+  return success;
+};
+
 // Download text as file
 export const downloadTextFile = (content, filename) => {
   const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
@@ -220,21 +207,4 @@ export const downloadTextFile = (content, filename) => {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
   return true;
-};
-
-
-// Advanced copy to clipboard function
-export const copyTextToClipboard = async (content) => {
-  if (navigator.clipboard) {
-    try {
-      await navigator.clipboard.writeText(content);
-      showToast('Copied to clipboard!');
-      return true;
-    } catch (err) {
-      console.error('Error copying text: ', err);
-      return fallbackCopyTextToClipboard(content);
-    }
-  } else {
-    return fallbackCopyTextToClipboard(content);
-  }
 };

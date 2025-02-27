@@ -1,10 +1,21 @@
 // public/js/core/placeholders.js
 import state, { pronounMapping } from './state.js';
 import { Utils } from '../utils/utils.js';
+import { StringUtils } from '../utils/StringUtils.js';
 import { TypeHelpers } from '../utils/typeHelpers.js';
 
+//-----------------------------------------------------------------------------
+// Constants and Placeholder Definitions
+//-----------------------------------------------------------------------------
+
+/**
+ * Order of categories as they appear in the placeholder accordion
+ */
 export const categoryOrder = ["Nouns", "Verbs", "Descriptors", "Other"];
 
+/**
+ * Complete collection of all predefined placeholders by category
+ */
 export const allPlaceholders = {
     "Nouns": [
         { internalType: "NN", display: "Noun", tooltip: "Generic noun (table, apple)", icon: "fas fa-book", isPrimary: true },
@@ -53,6 +64,9 @@ export const allPlaceholders = {
     ]
 };
 
+/**
+ * Available verb tenses for selection
+ */
 export const VERB_TENSES = [
     { value: 'VB', text: 'Base (run)' },
     { value: 'VBP', text: 'Present (I walk)' },
@@ -62,7 +76,15 @@ export const VERB_TENSES = [
     { value: 'VBN', text: 'Past Participle (eaten)' }
 ];
 
-// Helper function to insert a node at the caret position
+//-----------------------------------------------------------------------------
+// DOM Manipulation Utilities
+//-----------------------------------------------------------------------------
+
+/**
+ * Inserts a DOM node at the current caret position
+ * @param {Node} node - The DOM node to insert
+ * @param {Range} range - Optional range to use instead of current selection
+ */
 export const insertNodeAtCaret = (node, range) => {
     if (range) {
         range.deleteContents();
@@ -87,7 +109,9 @@ export const insertNodeAtCaret = (node, range) => {
     }
 };
 
-// Ensure the editor has focus
+/**
+ * Ensures the editor has focus and a valid selection range
+ */
 export const ensureEditorFocus = () => {
     const editor = document.getElementById("storyText");
     const sel = window.getSelection();
@@ -101,7 +125,12 @@ export const ensureEditorFocus = () => {
     }
 };
 
-// Insert a placeholder span at the caret position
+/**
+ * Creates and inserts a placeholder span element at the current caret position
+ * @param {string} placeholderID - The ID of the placeholder
+ * @param {string} displayText - The text to display in the placeholder
+ * @param {Range} range - Optional range to use instead of current selection
+ */
 export const insertPlaceholderSpan = (placeholderID, displayText, range) => {
     const span = document.createElement("span");
     span.className = "placeholder";
@@ -128,7 +157,14 @@ export const insertPlaceholderSpan = (placeholderID, displayText, range) => {
     }
 };
 
-// Duplicate an existing placeholder
+//-----------------------------------------------------------------------------
+// Placeholder Creation and Insertion
+//-----------------------------------------------------------------------------
+
+/**
+ * Duplicates an existing placeholder at the current caret position
+ * @param {Object} variable - The placeholder variable to duplicate
+ */
 export const duplicatePlaceholder = (variable) => {
     state.usageTracker[variable.id] = (state.usageTracker[variable.id] || 0) + 1;
     const newId = variable.id;
@@ -145,9 +181,15 @@ export const duplicatePlaceholder = (variable) => {
     state.lastRange = null;
 };
 
-// Insert a new placeholder
+/**
+ * Inserts a new placeholder into the editor
+ * @param {string} internalType - The internal type of the placeholder
+ * @param {string} displayName - The display name of the placeholder
+ * @param {boolean} isCustom - Whether this is a custom placeholder
+ * @returns {Promise<void>}
+ */
 export const insertPlaceholder = async (internalType, displayName, isCustom) => {
-    const sanitized = Utils.sanitizeString(internalType);
+    const sanitized = StringUtils.sanitizeString(internalType);
     const editor = document.getElementById("storyText");
     const spans = editor.querySelectorAll(".placeholder");
     let max = 0;
@@ -216,7 +258,12 @@ export const insertPlaceholder = async (internalType, displayName, isCustom) => 
     }
 };
 
-// Apply placeholder to all occurrences of text in the story
+/**
+ * Applies a placeholder to all occurrences of a text string in the story
+ * @param {string} text - The text to replace
+ * @param {string} id - The ID of the placeholder
+ * @param {string} displayText - The display text of the placeholder
+ */
 export const applyPlaceholderToAllOccurrences = (text, id, displayText) => {
     const editor = document.getElementById("storyText");
     const textNodes = [];
@@ -266,35 +313,47 @@ export const applyPlaceholderToAllOccurrences = (text, id, displayText) => {
     updateVariablesFromEditor();
 };
 
-// Custom placeholder functions
-export const addNewCustomPlaceholderWithUsage = (rawText, usage) => {
+/**
+ * Adds a new custom placeholder type to the system with optional type information
+ * @param {string} rawText - The raw text to use as the base
+ * @param {string} [usage='generic'] - The usage type ('noun', 'verb', or 'generic')
+ * @returns {string} The generated internal type
+ */
+export const addCustomPlaceholder = (rawText, usage = 'generic') => {
     let internal;
+    
     if (usage === "noun") {
-        internal = "NN_" + Utils.pascalCase(rawText);
+        internal = "NN_" + StringUtils.pascalCase(rawText);
     } else if (usage === "verb") {
-        internal = "VB_" + Utils.pascalCase(rawText);
+        internal = "VB_" + StringUtils.pascalCase(rawText);
     } else {
-        internal = Utils.pascalCase(rawText);
+        internal = StringUtils.pascalCase(rawText);
     }
+    
     if (!state.customPlaceholders.some(p => p.type === internal)) {
         state.customPlaceholders.push({ type: internal });
     }
+    
+    return internal;
 };
 
-export const addNewCustomPlaceholder = (rawText) => {
-    const internal = Utils.pascalCase(rawText);
-    if (!state.customPlaceholders.some(p => p.type === internal)) {
-        state.customPlaceholders.push({ type: internal });
-    }
-};
-
+/**
+ * Creates and inserts a custom placeholder into the editor
+ * @param {string} rawText - The raw text to use as the base
+ */
 export const insertPlaceholderFromCustom = (rawText) => {
-    const internal = Utils.pascalCase(rawText);
-    const display = Utils.naturalDisplay(internal);
+    const internal = addCustomPlaceholder(rawText);
+    const display = StringUtils.naturalDisplay(internal);
     insertPlaceholder(internal, display, true);
 };
 
-// Update the variables list display
+//-----------------------------------------------------------------------------
+// Placeholder Management and UI
+//-----------------------------------------------------------------------------
+
+/**
+ * Updates the variables list display in the UI
+ */
 export const updateVariablesList = () => {
     const container = document.getElementById('existingPlaceholdersContainer');
     container.innerHTML = '';
@@ -312,7 +371,12 @@ export const updateVariablesList = () => {
     });
 };
 
-// Pronoun placeholder insertion
+/**
+ * Inserts a pronoun placeholder with a specified form
+ * @param {string} groupId - The pronoun group ID
+ * @param {string} form - The pronoun form (subject, object, etc.)
+ * @param {string} tempValue - The temporary display value
+ */
 export const insertPronounPlaceholderSimple = (groupId, form, tempValue) => {
     const editor = document.getElementById("storyText");
     ensureEditorFocus();
@@ -341,7 +405,9 @@ export const insertPronounPlaceholderSimple = (groupId, form, tempValue) => {
     state.lastRange = null;
 };
 
-// Update variables from editor content
+/**
+ * Updates the variables array by scanning the editor for placeholders
+ */
 export const updateVariablesFromEditor = () => {
     state.variables = [];
     state.variableCounts = {};
@@ -394,7 +460,10 @@ export const updateVariablesFromEditor = () => {
     updateVariablesList();
 };
 
-// Convert editor content to text format with placeholders
+/**
+ * Converts the editor content to text format with placeholders in {id} format
+ * @returns {string} The story text with placeholders in {id} format
+ */
 export const generateLegacyText = () => {
     const editor = document.getElementById("storyText");
     const traverse = (node) => {
@@ -419,7 +488,10 @@ export const generateLegacyText = () => {
     return traverse(editor);
 };
 
+//-----------------------------------------------------------------------------
 // Placeholder Accordion UI Functions
+//-----------------------------------------------------------------------------
+
 export const updatePlaceholderAccordion = (accordionSelector, noResultsSelector, searchVal = '') => {
     if (noResultsSelector === "#noResults") {
         $("#searchQuery").text(searchVal);
@@ -550,7 +622,10 @@ export const appendPlaceholderItem = (listGroup, placeholder, searchVal, isSecon
     listGroup.append(item);
 };
 
-// Type selection modals
+//-----------------------------------------------------------------------------
+// Type Selection Modals
+//-----------------------------------------------------------------------------
+
 export const showPersonTypeSelection = (baseInternal, baseDisplay) => {
     let html = `<div class='list-group'>
   <button class='list-group-item list-group-item-action person-type-btn' data-type='common'>
@@ -666,7 +741,10 @@ export const updateExistingPlaceholder = (variable, newInternalType, newDisplayN
     updateVariablesList();
 };
 
-// Pronoun functions
+//-----------------------------------------------------------------------------
+// Pronoun Functions
+//-----------------------------------------------------------------------------
+
 export const pickPronounFormAndGroup = () => {
     const forms = [
         { value: 'subject', text: 'Subject (he, she, they)' },

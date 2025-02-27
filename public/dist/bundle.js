@@ -4630,8 +4630,7 @@ if (typeof this !== 'undefined' && this.Sweetalert2){this.swal = this.sweetAlert
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   VERB_TENSES: () => (/* binding */ VERB_TENSES),
-/* harmony export */   addNewCustomPlaceholder: () => (/* binding */ addNewCustomPlaceholder),
-/* harmony export */   addNewCustomPlaceholderWithUsage: () => (/* binding */ addNewCustomPlaceholderWithUsage),
+/* harmony export */   addCustomPlaceholder: () => (/* binding */ addCustomPlaceholder),
 /* harmony export */   allPlaceholders: () => (/* binding */ allPlaceholders),
 /* harmony export */   appendPlaceholderItem: () => (/* binding */ appendPlaceholderItem),
 /* harmony export */   applyPlaceholderToAllOccurrences: () => (/* binding */ applyPlaceholderToAllOccurrences),
@@ -4663,7 +4662,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _state_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state.js */ "./public/js/core/state.js");
 /* harmony import */ var _utils_utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/utils.js */ "./public/js/utils/utils.js");
-/* harmony import */ var _utils_typeHelpers_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/typeHelpers.js */ "./public/js/utils/typeHelpers.js");
+/* harmony import */ var _utils_StringUtils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/StringUtils.js */ "./public/js/utils/StringUtils.js");
+/* harmony import */ var _utils_typeHelpers_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/typeHelpers.js */ "./public/js/utils/typeHelpers.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
@@ -4672,7 +4672,20 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 
 
 
+
+
+//-----------------------------------------------------------------------------
+// Constants and Placeholder Definitions
+//-----------------------------------------------------------------------------
+
+/**
+ * Order of categories as they appear in the placeholder accordion
+ */
 var categoryOrder = ["Nouns", "Verbs", "Descriptors", "Other"];
+
+/**
+ * Complete collection of all predefined placeholders by category
+ */
 var allPlaceholders = {
   "Nouns": [{
     internalType: "NN",
@@ -4901,6 +4914,10 @@ var allPlaceholders = {
     isPrimary: true
   }]
 };
+
+/**
+ * Available verb tenses for selection
+ */
 var VERB_TENSES = [{
   value: 'VB',
   text: 'Base (run)'
@@ -4921,7 +4938,15 @@ var VERB_TENSES = [{
   text: 'Past Participle (eaten)'
 }];
 
-// Helper function to insert a node at the caret position
+//-----------------------------------------------------------------------------
+// DOM Manipulation Utilities
+//-----------------------------------------------------------------------------
+
+/**
+ * Inserts a DOM node at the current caret position
+ * @param {Node} node - The DOM node to insert
+ * @param {Range} range - Optional range to use instead of current selection
+ */
 var insertNodeAtCaret = function insertNodeAtCaret(node, range) {
   if (range) {
     range.deleteContents();
@@ -4946,7 +4971,9 @@ var insertNodeAtCaret = function insertNodeAtCaret(node, range) {
   }
 };
 
-// Ensure the editor has focus
+/**
+ * Ensures the editor has focus and a valid selection range
+ */
 var ensureEditorFocus = function ensureEditorFocus() {
   var editor = document.getElementById("storyText");
   var sel = window.getSelection();
@@ -4960,7 +4987,12 @@ var ensureEditorFocus = function ensureEditorFocus() {
   }
 };
 
-// Insert a placeholder span at the caret position
+/**
+ * Creates and inserts a placeholder span element at the current caret position
+ * @param {string} placeholderID - The ID of the placeholder
+ * @param {string} displayText - The text to display in the placeholder
+ * @param {Range} range - Optional range to use instead of current selection
+ */
 var insertPlaceholderSpan = function insertPlaceholderSpan(placeholderID, displayText, range) {
   var span = document.createElement("span");
   span.className = "placeholder";
@@ -4987,7 +5019,14 @@ var insertPlaceholderSpan = function insertPlaceholderSpan(placeholderID, displa
   }
 };
 
-// Duplicate an existing placeholder
+//-----------------------------------------------------------------------------
+// Placeholder Creation and Insertion
+//-----------------------------------------------------------------------------
+
+/**
+ * Duplicates an existing placeholder at the current caret position
+ * @param {Object} variable - The placeholder variable to duplicate
+ */
 var duplicatePlaceholder = function duplicatePlaceholder(variable) {
   _state_js__WEBPACK_IMPORTED_MODULE_0__["default"].usageTracker[variable.id] = (_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].usageTracker[variable.id] || 0) + 1;
   var newId = variable.id;
@@ -5002,14 +5041,20 @@ var duplicatePlaceholder = function duplicatePlaceholder(variable) {
   _state_js__WEBPACK_IMPORTED_MODULE_0__["default"].lastRange = null;
 };
 
-// Insert a new placeholder
+/**
+ * Inserts a new placeholder into the editor
+ * @param {string} internalType - The internal type of the placeholder
+ * @param {string} displayName - The display name of the placeholder
+ * @param {boolean} isCustom - Whether this is a custom placeholder
+ * @returns {Promise<void>}
+ */
 var insertPlaceholder = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(internalType, displayName, isCustom) {
     var sanitized, editor, spans, max, newCount, id, rangeToUse, selectedText, displayText, _yield$Swal$fire, temp;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
-          sanitized = _utils_utils_js__WEBPACK_IMPORTED_MODULE_1__.Utils.sanitizeString(internalType);
+          sanitized = _utils_StringUtils_js__WEBPACK_IMPORTED_MODULE_2__.StringUtils.sanitizeString(internalType);
           editor = document.getElementById("storyText");
           spans = editor.querySelectorAll(".placeholder");
           max = 0;
@@ -5094,7 +5139,12 @@ var insertPlaceholder = /*#__PURE__*/function () {
   };
 }();
 
-// Apply placeholder to all occurrences of text in the story
+/**
+ * Applies a placeholder to all occurrences of a text string in the story
+ * @param {string} text - The text to replace
+ * @param {string} id - The ID of the placeholder
+ * @param {string} displayText - The display text of the placeholder
+ */
 var applyPlaceholderToAllOccurrences = function applyPlaceholderToAllOccurrences(text, id, displayText) {
   var editor = document.getElementById("storyText");
   var textNodes = [];
@@ -5140,15 +5190,21 @@ var applyPlaceholderToAllOccurrences = function applyPlaceholderToAllOccurrences
   updateVariablesFromEditor();
 };
 
-// Custom placeholder functions
-var addNewCustomPlaceholderWithUsage = function addNewCustomPlaceholderWithUsage(rawText, usage) {
+/**
+ * Adds a new custom placeholder type to the system with optional type information
+ * @param {string} rawText - The raw text to use as the base
+ * @param {string} [usage='generic'] - The usage type ('noun', 'verb', or 'generic')
+ * @returns {string} The generated internal type
+ */
+var addCustomPlaceholder = function addCustomPlaceholder(rawText) {
+  var usage = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'generic';
   var internal;
   if (usage === "noun") {
-    internal = "NN_" + _utils_utils_js__WEBPACK_IMPORTED_MODULE_1__.Utils.pascalCase(rawText);
+    internal = "NN_" + _utils_StringUtils_js__WEBPACK_IMPORTED_MODULE_2__.StringUtils.pascalCase(rawText);
   } else if (usage === "verb") {
-    internal = "VB_" + _utils_utils_js__WEBPACK_IMPORTED_MODULE_1__.Utils.pascalCase(rawText);
+    internal = "VB_" + _utils_StringUtils_js__WEBPACK_IMPORTED_MODULE_2__.StringUtils.pascalCase(rawText);
   } else {
-    internal = _utils_utils_js__WEBPACK_IMPORTED_MODULE_1__.Utils.pascalCase(rawText);
+    internal = _utils_StringUtils_js__WEBPACK_IMPORTED_MODULE_2__.StringUtils.pascalCase(rawText);
   }
   if (!_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].customPlaceholders.some(function (p) {
     return p.type === internal;
@@ -5157,24 +5213,26 @@ var addNewCustomPlaceholderWithUsage = function addNewCustomPlaceholderWithUsage
       type: internal
     });
   }
+  return internal;
 };
-var addNewCustomPlaceholder = function addNewCustomPlaceholder(rawText) {
-  var internal = _utils_utils_js__WEBPACK_IMPORTED_MODULE_1__.Utils.pascalCase(rawText);
-  if (!_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].customPlaceholders.some(function (p) {
-    return p.type === internal;
-  })) {
-    _state_js__WEBPACK_IMPORTED_MODULE_0__["default"].customPlaceholders.push({
-      type: internal
-    });
-  }
-};
+
+/**
+ * Creates and inserts a custom placeholder into the editor
+ * @param {string} rawText - The raw text to use as the base
+ */
 var insertPlaceholderFromCustom = function insertPlaceholderFromCustom(rawText) {
-  var internal = _utils_utils_js__WEBPACK_IMPORTED_MODULE_1__.Utils.pascalCase(rawText);
-  var display = _utils_utils_js__WEBPACK_IMPORTED_MODULE_1__.Utils.naturalDisplay(internal);
+  var internal = addCustomPlaceholder(rawText);
+  var display = _utils_StringUtils_js__WEBPACK_IMPORTED_MODULE_2__.StringUtils.naturalDisplay(internal);
   insertPlaceholder(internal, display, true);
 };
 
-// Update the variables list display
+//-----------------------------------------------------------------------------
+// Placeholder Management and UI
+//-----------------------------------------------------------------------------
+
+/**
+ * Updates the variables list display in the UI
+ */
 var updateVariablesList = function updateVariablesList() {
   var container = document.getElementById('existingPlaceholdersContainer');
   container.innerHTML = '';
@@ -5192,7 +5250,12 @@ var updateVariablesList = function updateVariablesList() {
   });
 };
 
-// Pronoun placeholder insertion
+/**
+ * Inserts a pronoun placeholder with a specified form
+ * @param {string} groupId - The pronoun group ID
+ * @param {string} form - The pronoun form (subject, object, etc.)
+ * @param {string} tempValue - The temporary display value
+ */
 var insertPronounPlaceholderSimple = function insertPronounPlaceholderSimple(groupId, form, tempValue) {
   var editor = document.getElementById("storyText");
   ensureEditorFocus();
@@ -5227,7 +5290,9 @@ var insertPronounPlaceholderSimple = function insertPronounPlaceholderSimple(gro
   _state_js__WEBPACK_IMPORTED_MODULE_0__["default"].lastRange = null;
 };
 
-// Update variables from editor content
+/**
+ * Updates the variables array by scanning the editor for placeholders
+ */
 var updateVariablesFromEditor = function updateVariablesFromEditor() {
   _state_js__WEBPACK_IMPORTED_MODULE_0__["default"].variables = [];
   _state_js__WEBPACK_IMPORTED_MODULE_0__["default"].variableCounts = {};
@@ -5253,15 +5318,15 @@ var updateVariablesFromEditor = function updateVariablesFromEditor() {
         variableEntry = {
           id: id,
           internalType: custom.type,
-          officialDisplay: _utils_typeHelpers_js__WEBPACK_IMPORTED_MODULE_2__.TypeHelpers.naturalizeType(custom.type),
-          display: _utils_typeHelpers_js__WEBPACK_IMPORTED_MODULE_2__.TypeHelpers.naturalizeType(custom.type),
+          officialDisplay: _utils_typeHelpers_js__WEBPACK_IMPORTED_MODULE_3__.TypeHelpers.naturalizeType(custom.type),
+          display: _utils_typeHelpers_js__WEBPACK_IMPORTED_MODULE_3__.TypeHelpers.naturalizeType(custom.type),
           isCustom: true,
           order: _state_js__WEBPACK_IMPORTED_MODULE_0__["default"].insertionCounter++,
           displayOverride: el.textContent
         };
       } else {
-        var guessed = _utils_typeHelpers_js__WEBPACK_IMPORTED_MODULE_2__.TypeHelpers.guessTypeFromId(id);
-        var originalDisplay = _utils_typeHelpers_js__WEBPACK_IMPORTED_MODULE_2__.TypeHelpers.getOriginalDisplayForType(guessed) || guessed;
+        var guessed = _utils_typeHelpers_js__WEBPACK_IMPORTED_MODULE_3__.TypeHelpers.guessTypeFromId(id);
+        var originalDisplay = _utils_typeHelpers_js__WEBPACK_IMPORTED_MODULE_3__.TypeHelpers.getOriginalDisplayForType(guessed) || guessed;
         variableEntry = {
           id: id,
           internalType: guessed,
@@ -5281,7 +5346,10 @@ var updateVariablesFromEditor = function updateVariablesFromEditor() {
   updateVariablesList();
 };
 
-// Convert editor content to text format with placeholders
+/**
+ * Converts the editor content to text format with placeholders in {id} format
+ * @returns {string} The story text with placeholders in {id} format
+ */
 var generateLegacyText = function generateLegacyText() {
   var editor = document.getElementById("storyText");
   var _traverse = function traverse(node) {
@@ -5306,7 +5374,10 @@ var generateLegacyText = function generateLegacyText() {
   return _traverse(editor);
 };
 
+//-----------------------------------------------------------------------------
 // Placeholder Accordion UI Functions
+//-----------------------------------------------------------------------------
+
 var updatePlaceholderAccordion = function updatePlaceholderAccordion(accordionSelector, noResultsSelector) {
   var searchVal = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
   if (noResultsSelector === "#noResults") {
@@ -5403,7 +5474,10 @@ var appendPlaceholderItem = function appendPlaceholderItem(listGroup, placeholde
   listGroup.append(item);
 };
 
-// Type selection modals
+//-----------------------------------------------------------------------------
+// Type Selection Modals
+//-----------------------------------------------------------------------------
+
 var showPersonTypeSelection = function showPersonTypeSelection(baseInternal, baseDisplay) {
   var html = "<div class='list-group'>\n  <button class='list-group-item list-group-item-action person-type-btn' data-type='common'>\n    Common (e.g., doctor)\n  </button>\n  <button class='list-group-item list-group-item-action person-type-btn' data-type='proper'>\n    Proper (e.g., Donald Trump)\n  </button>\n</div>";
   Swal.fire({
@@ -5453,7 +5527,7 @@ var showNounNumberSelection = function showNounNumberSelection(baseInternal, bas
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
               selected = $(this).data('form');
-              finalInternal = _utils_typeHelpers_js__WEBPACK_IMPORTED_MODULE_2__.TypeHelpers.getNounFinalType(baseInternal, selected);
+              finalInternal = _utils_typeHelpers_js__WEBPACK_IMPORTED_MODULE_3__.TypeHelpers.getNounFinalType(baseInternal, selected);
               finalDisplay = "".concat(baseDisplay, " (").concat(selected, ")");
               if (!(_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].isEditingPlaceholder && _state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentEditingVariable)) {
                 _context2.next = 10;
@@ -5499,7 +5573,7 @@ var showVerbTenseSelection = function showVerbTenseSelection(baseInternal, baseD
             case 0:
               selectedTense = $(this).data('tense');
               tenseText = $(this).data('text');
-              finalInternal = _utils_typeHelpers_js__WEBPACK_IMPORTED_MODULE_2__.TypeHelpers.computeFinalVerbType(baseInternal, selectedTense);
+              finalInternal = _utils_typeHelpers_js__WEBPACK_IMPORTED_MODULE_3__.TypeHelpers.computeFinalVerbType(baseInternal, selectedTense);
               finalDisplay = "".concat(baseDisplay, " (").concat(tenseText, ")");
               if (!(_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].isEditingPlaceholder && _state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentEditingVariable)) {
                 _context3.next = 11;
@@ -5540,7 +5614,10 @@ var updateExistingPlaceholder = function updateExistingPlaceholder(variable, new
   updateVariablesList();
 };
 
-// Pronoun functions
+//-----------------------------------------------------------------------------
+// Pronoun Functions
+//-----------------------------------------------------------------------------
+
 var pickPronounFormAndGroup = function pickPronounFormAndGroup() {
   var forms = [{
     value: 'subject',
@@ -6421,15 +6498,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core_state_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core/state.js */ "./public/js/core/state.js");
 /* harmony import */ var _data_storage_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data/storage.js */ "./public/js/data/storage.js");
 /* harmony import */ var _utils_utils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/utils.js */ "./public/js/utils/utils.js");
-/* harmony import */ var _utils_typeHelpers_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/typeHelpers.js */ "./public/js/utils/typeHelpers.js");
-/* harmony import */ var _core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/placeholders.js */ "./public/js/core/placeholders.js");
-/* harmony import */ var _ui_forms_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../ui/forms.js */ "./public/js/ui/forms.js");
-/* harmony import */ var _core_storyProcessor_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../core/storyProcessor.js */ "./public/js/core/storyProcessor.js");
-/* harmony import */ var _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/domUtils.js */ "./public/js/utils/domUtils.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _ui_notifications_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../ui/notifications.js */ "./public/js/ui/notifications.js");
+/* harmony import */ var _utils_StringUtils_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/StringUtils.js */ "./public/js/utils/StringUtils.js");
+/* harmony import */ var _utils_typeHelpers_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/typeHelpers.js */ "./public/js/utils/typeHelpers.js");
+/* harmony import */ var _core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../core/placeholders.js */ "./public/js/core/placeholders.js");
+/* harmony import */ var _ui_forms_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../ui/forms.js */ "./public/js/ui/forms.js");
+/* harmony import */ var _core_storyProcessor_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../core/storyProcessor.js */ "./public/js/core/storyProcessor.js");
+/* harmony import */ var _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../utils/domUtils.js */ "./public/js/utils/domUtils.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _ui_notifications_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../ui/notifications.js */ "./public/js/ui/notifications.js");
 // public/js/handlers/events.js
+
 
 
 
@@ -6444,38 +6523,38 @@ __webpack_require__.r(__webpack_exports__);
 // Handle placeholder button click
 var handlePlaceholderClick = function handlePlaceholderClick(internalType, displayName) {
   if (_core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].isEditingPlaceholder && _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentEditingVariable) {
-    (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.updateExistingPlaceholder)(_core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentEditingVariable, internalType, displayName);
+    (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.updateExistingPlaceholder)(_core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentEditingVariable, internalType, displayName);
     _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].isEditingPlaceholder = false;
     _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentEditingVariable = null;
     $('#placeholderModal').modal('hide');
   } else {
     if (internalType === "PRONOUN") {
-      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.pickPronounFormAndGroup)();
+      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.pickPronounFormAndGroup)();
       $('#placeholderSearch').val('');
-      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.updatePlaceholderAccordion)('#placeholderAccordion', '#noResults', _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentPlaceholderSearch);
+      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.updatePlaceholderAccordion)('#placeholderAccordion', '#noResults', _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentPlaceholderSearch);
       return;
     }
     if (internalType.startsWith("NN")) {
       if (internalType === "NN_Person") {
-        (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.showPersonTypeSelection)(internalType, displayName);
+        (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.showPersonTypeSelection)(internalType, displayName);
         $('#placeholderSearch').val('');
-        (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.updatePlaceholderAccordion)('#placeholderAccordion', '#noResults', _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentPlaceholderSearch);
+        (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.updatePlaceholderAccordion)('#placeholderAccordion', '#noResults', _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentPlaceholderSearch);
         return;
       }
-      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.showNounNumberSelection)(internalType, displayName);
+      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.showNounNumberSelection)(internalType, displayName);
       $('#placeholderSearch').val('');
-      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.updatePlaceholderAccordion)('#placeholderAccordion', '#noResults', _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentPlaceholderSearch);
+      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.updatePlaceholderAccordion)('#placeholderAccordion', '#noResults', _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentPlaceholderSearch);
       return;
     }
     if (internalType.startsWith("VB") || internalType === "MD") {
-      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.showVerbTenseSelection)(internalType, displayName);
+      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.showVerbTenseSelection)(internalType, displayName);
       $('#placeholderSearch').val('');
-      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.updatePlaceholderAccordion)('#placeholderAccordion', '#noResults', _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentPlaceholderSearch);
+      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.updatePlaceholderAccordion)('#placeholderAccordion', '#noResults', _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentPlaceholderSearch);
       return;
     }
-    (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.insertPlaceholder)(internalType, displayName, false);
+    (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.insertPlaceholder)(internalType, displayName, false);
     $('#placeholderSearch').val('');
-    (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.updatePlaceholderAccordion)('#placeholderAccordion', '#noResults', _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentPlaceholderSearch);
+    (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.updatePlaceholderAccordion)('#placeholderAccordion', '#noResults', _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentPlaceholderSearch);
   }
 };
 
@@ -6483,7 +6562,7 @@ var handlePlaceholderClick = function handlePlaceholderClick(internalType, displ
 var handleCreateNewStory = function handleCreateNewStory(e) {
   e.preventDefault();
   if (_core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].storyHasUnsavedChanges) {
-    _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_7__.confirmDialog({
+    _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_8__.confirmDialog({
       title: 'Unsaved changes',
       text: 'Your story has unsaved changes. Would you like to save it to the site before starting a new one?',
       showDenyButton: true,
@@ -6492,24 +6571,24 @@ var handleCreateNewStory = function handleCreateNewStory(e) {
     }).then(function (result) {
       if (result.isConfirmed) {
         _data_storage_js__WEBPACK_IMPORTED_MODULE_1__.Storage.addCurrentStoryToSavedStories();
-        setTimeout(_core_storyProcessor_js__WEBPACK_IMPORTED_MODULE_6__.resetStoryState, 1000);
+        setTimeout(_core_storyProcessor_js__WEBPACK_IMPORTED_MODULE_7__.resetStoryState, 1000);
       } else if (result.isDenied) {
-        _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_7__.confirmDialog({
+        _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_8__.confirmDialog({
           title: 'Are you sure?',
           text: 'This will discard your current unsaved story.',
           confirmButtonText: 'Yes, start new'
         }).then(function (res) {
-          if (res.isConfirmed) (0,_core_storyProcessor_js__WEBPACK_IMPORTED_MODULE_6__.resetStoryState)();
+          if (res.isConfirmed) (0,_core_storyProcessor_js__WEBPACK_IMPORTED_MODULE_7__.resetStoryState)();
         });
       }
     });
   } else {
-    _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_7__.confirmDialog({
+    _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_8__.confirmDialog({
       title: 'Are you sure?',
       text: 'This will discard your current story.',
       confirmButtonText: 'Yes, start new'
     }).then(function (res) {
-      if (res.isConfirmed) (0,_core_storyProcessor_js__WEBPACK_IMPORTED_MODULE_6__.resetStoryState)();
+      if (res.isConfirmed) (0,_core_storyProcessor_js__WEBPACK_IMPORTED_MODULE_7__.resetStoryState)();
     });
   }
 };
@@ -6517,7 +6596,7 @@ var handleCreateNewStory = function handleCreateNewStory(e) {
 // Handle generate story button click
 var handleGenerateStory = function handleGenerateStory() {
   // Use the form validation function from forms.js
-  if (!(0,_ui_forms_js__WEBPACK_IMPORTED_MODULE_5__.validateInputForm)()) {
+  if (!(0,_ui_forms_js__WEBPACK_IMPORTED_MODULE_6__.validateInputForm)()) {
     return; // Validation failed
   }
 
@@ -6538,8 +6617,8 @@ var handleGenerateStory = function handleGenerateStory() {
   });
 
   // Generate the final story with replacements
-  var _final = (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.generateLegacyText)();
-  _final = (0,_core_storyProcessor_js__WEBPACK_IMPORTED_MODULE_6__.fillPlaceholders)(_final, _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].variables, _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].fillValues, _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].pronounGroups);
+  var _final = (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.generateLegacyText)();
+  _final = (0,_core_storyProcessor_js__WEBPACK_IMPORTED_MODULE_7__.fillPlaceholders)(_final, _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].variables, _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].fillValues, _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].pronounGroups);
 
   // Update the result display
   $('#finalStory').text(_final);
@@ -6552,7 +6631,7 @@ var handleGenerateStory = function handleGenerateStory() {
 
 // Handle save story to site button
 var handleSaveStoryToSite = function handleSaveStoryToSite() {
-  sweetalert2__WEBPACK_IMPORTED_MODULE_8___default().fire({
+  sweetalert2__WEBPACK_IMPORTED_MODULE_9___default().fire({
     title: 'Save Story',
     html: "\n          <input type=\"text\" id=\"swalTitle\" class=\"swal2-input\" placeholder=\"Story Title\" value=\"".concat($('#storyTitle').val(), "\">\n          <input type=\"text\" id=\"swalAuthor\" class=\"swal2-input\" placeholder=\"Author\" value=\"").concat($('#storyAuthor').val(), "\">\n          <input type=\"text\" id=\"swalTags\" class=\"swal2-input\" placeholder=\"Tags (comma separated)\" value=\"").concat($('#storyTags').val(), "\">\n          <input type=\"password\" id=\"swalPassword\" class=\"swal2-input\" placeholder=\"Password (optional)\">\n          <div id=\"preexistingTagsContainer\" style=\"text-align:left; margin-top:10px;\"></div>\n        "),
     didOpen: function didOpen() {
@@ -6596,7 +6675,7 @@ var handleSaveStoryToSite = function handleSaveStoryToSite() {
         contentType: 'application/json',
         data: JSON.stringify(story),
         success: function success() {
-          sweetalert2__WEBPACK_IMPORTED_MODULE_8___default().fire({
+          sweetalert2__WEBPACK_IMPORTED_MODULE_9___default().fire({
             toast: true,
             position: 'top-end',
             icon: 'success',
@@ -6607,7 +6686,7 @@ var handleSaveStoryToSite = function handleSaveStoryToSite() {
         },
         error: function error(xhr, statusText, errorThrown) {
           if (xhr.status === 409) {
-            sweetalert2__WEBPACK_IMPORTED_MODULE_8___default().fire({
+            sweetalert2__WEBPACK_IMPORTED_MODULE_9___default().fire({
               title: 'Story exists',
               text: 'A story with this title already exists. Overwrite?',
               icon: 'warning',
@@ -6623,7 +6702,7 @@ var handleSaveStoryToSite = function handleSaveStoryToSite() {
                   contentType: 'application/json',
                   data: JSON.stringify(story),
                   success: function success() {
-                    sweetalert2__WEBPACK_IMPORTED_MODULE_8___default().fire({
+                    sweetalert2__WEBPACK_IMPORTED_MODULE_9___default().fire({
                       toast: true,
                       position: 'top-end',
                       icon: 'success',
@@ -6693,15 +6772,15 @@ var initEvents = function initEvents() {
   $(document).on('click', '.fill-info-icon', function (e) {
     e.stopPropagation();
     var type = $(e.currentTarget).data('type');
-    var tooltip = _utils_typeHelpers_js__WEBPACK_IMPORTED_MODULE_3__.TypeHelpers.getTooltipForType(type);
-    _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_7__.showToast(tooltip, 'info');
+    var tooltip = _utils_typeHelpers_js__WEBPACK_IMPORTED_MODULE_4__.TypeHelpers.getTooltipForType(type);
+    _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_8__.showToast(tooltip, 'info');
   });
 
   // Add accordion info icon click handler
   $(document).on('click', '.accordion-info-icon', function (e) {
     e.stopPropagation();
     var tooltip = $(e.currentTarget).data('tooltip');
-    _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_7__.showToast(tooltip, 'info');
+    _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_8__.showToast(tooltip, 'info');
   });
 
   // Show more toggle event handler
@@ -6716,7 +6795,7 @@ var initEvents = function initEvents() {
   // Add copy to clipboard handler
   $('#copyStory').on('click', function () {
     var finalText = $('#finalStory').text();
-    _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_7__.copyTextToClipboard(finalText);
+    _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_8__.copyToClipboard(finalText);
   });
 
   // Selection changes
@@ -6731,18 +6810,18 @@ var initEvents = function initEvents() {
   // Attach search handlers with a reduced debounce delay (50ms)
   $('#placeholderSearch').on('input', _utils_utils_js__WEBPACK_IMPORTED_MODULE_2__.Utils.debounce(function () {
     var searchVal = $(this).val();
-    (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.updatePlaceholderAccordion)('#placeholderAccordion', '#noResults', searchVal);
+    (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.updatePlaceholderAccordion)('#placeholderAccordion', '#noResults', searchVal);
     $('#addCustomPlaceholderBtn').text('Add "' + searchVal + '"');
   }, 50));
   $('#modalPlaceholderSearch').on('input', _utils_utils_js__WEBPACK_IMPORTED_MODULE_2__.Utils.debounce(function () {
     var searchVal = $(this).val();
-    (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.updatePlaceholderAccordion)('#modalPlaceholderAccordion', '#modalNoResults', searchVal);
+    (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.updatePlaceholderAccordion)('#modalPlaceholderAccordion', '#modalNoResults', searchVal);
     $('#modalAddCustomPlaceholderBtn').text('Add "' + searchVal + '"');
   }, 50));
 
   // Init accordions
-  (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.updatePlaceholderAccordion)('#placeholderAccordion', '#noResults', _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentPlaceholderSearch);
-  (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.updatePlaceholderAccordion)('#modalPlaceholderAccordion', '#modalNoResults', _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentModalPlaceholderSearch);
+  (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.updatePlaceholderAccordion)('#placeholderAccordion', '#noResults', _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentPlaceholderSearch);
+  (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.updatePlaceholderAccordion)('#modalPlaceholderAccordion', '#modalNoResults', _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentModalPlaceholderSearch);
 
   // Filter tag input handler
   $('#filterTag').on('input', _utils_utils_js__WEBPACK_IMPORTED_MODULE_2__.Utils.debounce(function () {
@@ -6759,7 +6838,7 @@ var initEvents = function initEvents() {
     _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].fillOrder = 'alphabetical';
     $(this).removeClass('btn-outline-secondary').addClass('btn-outline-primary');
     $('#randomOrderBtn').removeClass('btn-outline-primary').addClass('btn-outline-secondary');
-    (0,_ui_forms_js__WEBPACK_IMPORTED_MODULE_5__.buildFillForm)();
+    (0,_ui_forms_js__WEBPACK_IMPORTED_MODULE_6__.buildFillForm)();
   });
 
   // Random order button
@@ -6767,7 +6846,7 @@ var initEvents = function initEvents() {
     _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].fillOrder = 'random';
     $(this).removeClass('btn-outline-secondary').addClass('btn-outline-primary');
     $('#alphabeticalOrderBtn').removeClass('btn-outline-primary').addClass('btn-outline-secondary');
-    (0,_ui_forms_js__WEBPACK_IMPORTED_MODULE_5__.buildFillForm)();
+    (0,_ui_forms_js__WEBPACK_IMPORTED_MODULE_6__.buildFillForm)();
   });
 
   // Tag autocomplete
@@ -6805,19 +6884,19 @@ var initEvents = function initEvents() {
     var finalText = $('#finalStory').text();
     var title = $('#displayTitle').text();
     var author = $('#displayAuthor').text();
-    var content = (0,_core_storyProcessor_js__WEBPACK_IMPORTED_MODULE_6__.formatStoryForExport)(title, author, finalText);
-    _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_7__.copyToClipboard(content).then(function (success) {
+    var content = (0,_core_storyProcessor_js__WEBPACK_IMPORTED_MODULE_7__.formatStoryForExport)(title, author, finalText);
+    _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_8__.copyToClipboard(content).then(function (success) {
       if (success) {
-        _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_7__.showToast('Story copied to clipboard!');
+        _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_8__.showToast('Story copied to clipboard!');
       } else {
-        _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_7__.showError('Copy Failed', 'Failed to copy story. Please copy manually.');
+        _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_8__.showError('Copy Failed', 'Failed to copy story. Please copy manually.');
       }
     });
   });
 
   // Story editor input event
   $('#storyText').on('input', function () {
-    (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.updateVariablesFromEditor)();
+    (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.updateVariablesFromEditor)();
     _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].storyHasUnsavedChanges = true;
   });
 
@@ -6831,7 +6910,7 @@ var initEvents = function initEvents() {
     var reader = new FileReader();
     reader.onload = function (e) {
       var content = e.target.result;
-      var storyData = (0,_core_storyProcessor_js__WEBPACK_IMPORTED_MODULE_6__.parseStoryFile)(content);
+      var storyData = (0,_core_storyProcessor_js__WEBPACK_IMPORTED_MODULE_7__.parseStoryFile)(content);
       $('#storyTitle').val(storyData.title);
       $('#storyAuthor').val(storyData.author);
       $('#storyText').html(storyData.content);
@@ -6844,7 +6923,7 @@ var initEvents = function initEvents() {
       _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].pronounGroups = {};
       _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].fillValues = {};
       _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].customPlaceholders = [];
-      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.updateVariablesFromEditor)();
+      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.updateVariablesFromEditor)();
     };
     reader.readAsText(file);
   });
@@ -6853,16 +6932,16 @@ var initEvents = function initEvents() {
   $('#startGame').on('click', function () {
     var content = $('#storyText').html();
     if (!content.trim()) {
-      _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_7__.showError('Empty Story', 'Please write a story before continuing.');
+      _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_8__.showError('Empty Story', 'Please write a story before continuing.');
       return;
     }
-    (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.updateVariablesFromEditor)();
-    _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].storyText = (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.generateLegacyText)();
+    (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.updateVariablesFromEditor)();
+    _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].storyText = (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.generateLegacyText)();
     if (!_core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].variables.length) {
-      _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_7__.showError('No Placeholders', 'No placeholders found in the story.');
+      _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_8__.showError('No Placeholders', 'No placeholders found in the story.');
       return;
     }
-    (0,_ui_forms_js__WEBPACK_IMPORTED_MODULE_5__.buildFillForm)();
+    (0,_ui_forms_js__WEBPACK_IMPORTED_MODULE_6__.buildFillForm)();
     $('#inputs').removeClass('d-none');
     $('#editor').addClass('d-none');
   });
@@ -6875,7 +6954,7 @@ var initEvents = function initEvents() {
 
   // Story editing flow buttons
   $('#editStoryEntries').on('click', function () {
-    (0,_ui_forms_js__WEBPACK_IMPORTED_MODULE_5__.buildFillForm)();
+    (0,_ui_forms_js__WEBPACK_IMPORTED_MODULE_6__.buildFillForm)();
     $('#result').addClass('d-none');
     $('#inputs').removeClass('d-none');
   });
@@ -6892,9 +6971,9 @@ var initEvents = function initEvents() {
     var finalText = $('#finalStory').text();
     var title = $('#displayTitle').text();
     var author = $('#displayAuthor').text();
-    var content = (0,_core_storyProcessor_js__WEBPACK_IMPORTED_MODULE_6__.formatStoryForExport)(title, author, finalText);
-    var fileName = (0,_core_storyProcessor_js__WEBPACK_IMPORTED_MODULE_6__.createFilenameFromTitle)(title);
-    _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_7__.downloadTextFile(content, fileName);
+    var content = (0,_core_storyProcessor_js__WEBPACK_IMPORTED_MODULE_7__.formatStoryForExport)(title, author, finalText);
+    var fileName = (0,_core_storyProcessor_js__WEBPACK_IMPORTED_MODULE_7__.createFilenameFromTitle)(title);
+    _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_8__.downloadTextFile(content, fileName);
   });
 
   // Save completed story button
@@ -6919,7 +6998,7 @@ var initEvents = function initEvents() {
   });
   $(document).on('click', '.deleteSavedStoryBtn', function () {
     var title = $(this).data('title');
-    _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_7__.confirmDialog({
+    _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_8__.confirmDialog({
       title: 'Delete Story?',
       text: 'Are you sure you want to delete this saved story?',
       confirmButtonText: 'Yes, delete it!'
@@ -6932,7 +7011,7 @@ var initEvents = function initEvents() {
   $('#submitRating').on('click', function () {
     var rating = parseInt($('#storyRating').val(), 10);
     if (!_core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentStoryId) {
-      _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_7__.showError('Error', 'Story ID not found.');
+      _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_8__.showError('Error', 'Story ID not found.');
       return;
     }
     $.ajax({
@@ -6944,7 +7023,7 @@ var initEvents = function initEvents() {
         rating: rating
       }),
       success: function success(data) {
-        _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_7__.showToast("Thank you for rating! New average: ".concat(data.rating.toFixed(1), " (").concat(data.ratingCount, " votes)"));
+        _utils_domUtils_js__WEBPACK_IMPORTED_MODULE_8__.showToast("Thank you for rating! New average: ".concat(data.rating.toFixed(1), " (").concat(data.ratingCount, " votes)"));
       },
       error: function error(xhr, statusText, errorThrown) {
         _data_storage_js__WEBPACK_IMPORTED_MODULE_1__.Storage.handleAjaxError(xhr, statusText, errorThrown, 'Failed to rate story');
@@ -6999,7 +7078,7 @@ var initEvents = function initEvents() {
     var variable = _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].variables.find(function (v) {
       return v.id === id;
     });
-    if (variable) (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.duplicatePlaceholder)(variable);
+    if (variable) (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.duplicatePlaceholder)(variable);
   });
 
   // Add custom placeholder button
@@ -7007,17 +7086,17 @@ var initEvents = function initEvents() {
     var raw = $('#placeholderSearch').val();
     var usage = $('input[name="customPlaceholderType"]:checked').val() || "generic";
     if (usage === "noun") {
-      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.addNewCustomPlaceholderWithUsage)(raw, "noun");
-      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.showNounNumberSelection)("NN_" + _utils_utils_js__WEBPACK_IMPORTED_MODULE_2__.Utils.pascalCase(raw), _utils_utils_js__WEBPACK_IMPORTED_MODULE_2__.Utils.naturalDisplay(raw));
+      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.addCustomPlaceholder)(raw, "noun");
+      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.showNounNumberSelection)("NN_" + _utils_StringUtils_js__WEBPACK_IMPORTED_MODULE_3__.StringUtils.pascalCase(raw), _utils_StringUtils_js__WEBPACK_IMPORTED_MODULE_3__.StringUtils.naturalDisplay(raw));
     } else if (usage === "verb") {
-      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.addNewCustomPlaceholderWithUsage)(raw, "verb");
-      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.showVerbTenseSelection)("VB_" + _utils_utils_js__WEBPACK_IMPORTED_MODULE_2__.Utils.pascalCase(raw), _utils_utils_js__WEBPACK_IMPORTED_MODULE_2__.Utils.naturalDisplay(raw));
+      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.addCustomPlaceholder)(raw, "verb");
+      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.showVerbTenseSelection)("VB_" + _utils_StringUtils_js__WEBPACK_IMPORTED_MODULE_3__.StringUtils.pascalCase(raw), _utils_StringUtils_js__WEBPACK_IMPORTED_MODULE_3__.StringUtils.naturalDisplay(raw));
     } else {
-      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.addNewCustomPlaceholder)(raw);
-      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.insertPlaceholderFromCustom)(raw);
+      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.addCustomPlaceholder)(raw);
+      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.insertPlaceholderFromCustom)(raw);
     }
     $('#placeholderSearch').val('');
-    (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.updatePlaceholderAccordion)('#placeholderAccordion', '#noResults', _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentPlaceholderSearch);
+    (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.updatePlaceholderAccordion)('#placeholderAccordion', '#noResults', _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentPlaceholderSearch);
   });
 
   // Modal add custom placeholder button
@@ -7025,25 +7104,25 @@ var initEvents = function initEvents() {
     var raw = $('#modalPlaceholderSearch').val();
     var usage = $('input[name="modalCustomPlaceholderType"]:checked').val() || "generic";
     if (usage === "noun") {
-      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.addNewCustomPlaceholderWithUsage)(raw, "noun");
-      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.showNounNumberSelection)("NN_" + _utils_utils_js__WEBPACK_IMPORTED_MODULE_2__.Utils.pascalCase(raw), _utils_utils_js__WEBPACK_IMPORTED_MODULE_2__.Utils.naturalDisplay(raw));
+      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.addCustomPlaceholder)(raw, "noun");
+      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.showNounNumberSelection)("NN_" + _utils_StringUtils_js__WEBPACK_IMPORTED_MODULE_3__.StringUtils.pascalCase(raw), _utils_StringUtils_js__WEBPACK_IMPORTED_MODULE_3__.StringUtils.naturalDisplay(raw));
     } else if (usage === "verb") {
-      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.addNewCustomPlaceholderWithUsage)(raw, "verb");
-      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.showVerbTenseSelection)("VB_" + _utils_utils_js__WEBPACK_IMPORTED_MODULE_2__.Utils.pascalCase(raw), _utils_utils_js__WEBPACK_IMPORTED_MODULE_2__.Utils.naturalDisplay(raw));
+      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.addCustomPlaceholder)(raw, "verb");
+      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.showVerbTenseSelection)("VB_" + _utils_StringUtils_js__WEBPACK_IMPORTED_MODULE_3__.StringUtils.pascalCase(raw), _utils_StringUtils_js__WEBPACK_IMPORTED_MODULE_3__.StringUtils.naturalDisplay(raw));
     } else {
-      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.addNewCustomPlaceholder)(raw);
-      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.insertPlaceholderFromCustom)(raw);
+      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.addCustomPlaceholder)(raw);
+      (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.insertPlaceholderFromCustom)(raw);
     }
-    (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.updatePlaceholderAccordion)('#modalPlaceholderAccordion', '#modalNoResults', _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentModalPlaceholderSearch);
+    (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.updatePlaceholderAccordion)('#modalPlaceholderAccordion', '#modalNoResults', _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentModalPlaceholderSearch);
     $('#placeholderModal').modal('hide');
     $('#modalPlaceholderSearch').val('');
-    (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.updatePlaceholderAccordion)('#modalPlaceholderAccordion', '#modalNoResults', _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentModalPlaceholderSearch);
+    (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.updatePlaceholderAccordion)('#modalPlaceholderAccordion', '#modalNoResults', _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentModalPlaceholderSearch);
   });
 
   // Search modal placeholder input
   $('#modalPlaceholderSearchInput').on('input', function () {
     _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentModalPlaceholderSearch = $(this).val().trim().toLowerCase();
-    (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_4__.updatePlaceholderAccordion)('#modalPlaceholderAccordion', '#modalNoResults', _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentModalPlaceholderSearch);
+    (0,_core_placeholders_js__WEBPACK_IMPORTED_MODULE_5__.updatePlaceholderAccordion)('#modalPlaceholderAccordion', '#modalNoResults', _core_state_js__WEBPACK_IMPORTED_MODULE_0__["default"].currentModalPlaceholderSearch);
   });
 
   // The remaining initialization code follows
@@ -7574,6 +7653,77 @@ var showError = function showError(title, message) {
 
 /***/ }),
 
+/***/ "./public/js/utils/StringUtils.js":
+/*!****************************************!*\
+  !*** ./public/js/utils/StringUtils.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   StringUtils: () => (/* binding */ StringUtils),
+/* harmony export */   decodeHTMLEntities: () => (/* binding */ decodeHTMLEntities)
+/* harmony export */ });
+/**
+ * A dedicated module for string manipulation utilities
+ */
+var StringUtils = {
+  /**
+   * Converts a string to title case (first letter of each word capitalized)
+   */
+  toTitleCase: function toTitleCase(str) {
+    return str.replace(/\w\S*/g, function (txt) {
+      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+  },
+  /**
+   * Capitalizes the first letter of a string
+   */
+  capitalize: function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  },
+  /**
+   * Converts a string to PascalCase
+   */
+  pascalCase: function pascalCase(str) {
+    return str.toLowerCase().split(/\s+/).map(function (word) {
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    }).join('');
+  },
+  /**
+   * Converts camelCase or PascalCase to a natural display format with spaces
+   */
+  naturalDisplay: function naturalDisplay(str) {
+    return str.replace(/([a-z])([A-Z])/g, '$1 $2');
+  },
+  /**
+   * Removes all characters except alphanumerics and underscores
+   */
+  sanitizeString: function sanitizeString(str) {
+    return str.replace(/[^a-zA-Z0-9_]/g, '');
+  },
+  /**
+   * Extracts a subtype from a string by removing prefix and trailing numbers
+   */
+  extractSubtype: function extractSubtype(type, prefixLength) {
+    var sub = type.substring(prefixLength);
+    if (sub.startsWith("_")) sub = sub.substring(1);
+    return sub.replace(/\d+$/, '');
+  }
+};
+
+/**
+ * Decodes HTML entities in a string
+ */
+var decodeHTMLEntities = function decodeHTMLEntities(text) {
+  var textarea = document.createElement("textarea");
+  textarea.innerHTML = text;
+  return textarea.value;
+};
+
+/***/ }),
+
 /***/ "./public/js/utils/domUtils.js":
 /*!*************************************!*\
   !*** ./public/js/utils/domUtils.js ***!
@@ -7585,20 +7735,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   clearForm: () => (/* binding */ clearForm),
 /* harmony export */   confirmDialog: () => (/* binding */ confirmDialog),
-/* harmony export */   copyTextToClipboard: () => (/* binding */ copyTextToClipboard),
 /* harmony export */   copyToClipboard: () => (/* binding */ copyToClipboard),
 /* harmony export */   createElement: () => (/* binding */ createElement),
 /* harmony export */   downloadTextFile: () => (/* binding */ downloadTextFile),
-/* harmony export */   fallbackCopyTextToClipboard: () => (/* binding */ fallbackCopyTextToClipboard),
 /* harmony export */   getElementValue: () => (/* binding */ getElementValue),
 /* harmony export */   getFormData: () => (/* binding */ getFormData),
 /* harmony export */   setElementValue: () => (/* binding */ setElementValue),
-/* harmony export */   showError: () => (/* binding */ showError),
-/* harmony export */   showToast: () => (/* binding */ showToast),
+/* harmony export */   showError: () => (/* reexport safe */ _ui_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showError),
+/* harmony export */   showToast: () => (/* reexport safe */ _ui_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showToast),
 /* harmony export */   showView: () => (/* binding */ showView),
 /* harmony export */   toggleClass: () => (/* binding */ toggleClass),
 /* harmony export */   toggleVisibility: () => (/* binding */ toggleVisibility)
 /* harmony export */ });
+/* harmony import */ var _ui_notifications_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../ui/notifications.js */ "./public/js/ui/notifications.js");
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
@@ -7621,6 +7770,12 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
  * DOM utility functions for working with the story editor and UI
  */
 
+// Import the notification functions instead of duplicating them
+
+
+// Re-export them to maintain compatibility
+
+
 // Show a confirmation dialog using SweetAlert
 var confirmDialog = function confirmDialog(options) {
   var defaultOptions = {
@@ -7633,31 +7788,6 @@ var confirmDialog = function confirmDialog(options) {
   };
   var finalOptions = _objectSpread(_objectSpread({}, defaultOptions), options);
   return Swal.fire(finalOptions);
-};
-
-// Show a toast notification
-var showToast = function showToast(title) {
-  var icon = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'success';
-  var timer = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1500;
-  Swal.fire({
-    toast: true,
-    position: 'top-end',
-    icon: icon,
-    title: title,
-    showConfirmButton: false,
-    timer: timer,
-    timerProgressBar: true
-  });
-};
-
-// Show an error message
-var showError = function showError(title) {
-  var text = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-  Swal.fire({
-    title: title,
-    text: text,
-    icon: 'error'
-  });
 };
 
 // Toggle element visibility
@@ -7797,24 +7927,6 @@ var clearForm = function clearForm(formSelector) {
   });
 };
 
-// Copy text to clipboard
-var copyToClipboard = function copyToClipboard(text) {
-  return new Promise(function (resolve, reject) {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(function () {
-        resolve(true);
-      })["catch"](function (err) {
-        console.error('Error copying text: ', err);
-        var success = fallbackCopyTextToClipboard(text);
-        resolve(success);
-      });
-    } else {
-      var success = fallbackCopyTextToClipboard(text);
-      resolve(success);
-    }
-  });
-};
-
 // Fallback method for copying text to clipboard
 var fallbackCopyTextToClipboard = function fallbackCopyTextToClipboard(text) {
   var textarea = document.createElement('textarea');
@@ -7834,6 +7946,54 @@ var fallbackCopyTextToClipboard = function fallbackCopyTextToClipboard(text) {
   }
 };
 
+// Copy text to clipboard with notification
+var copyToClipboard = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(text) {
+    var showNotification,
+      success,
+      _args = arguments;
+    return _regeneratorRuntime().wrap(function _callee$(_context) {
+      while (1) switch (_context.prev = _context.next) {
+        case 0:
+          showNotification = _args.length > 1 && _args[1] !== undefined ? _args[1] : true;
+          success = false;
+          if (!(navigator.clipboard && navigator.clipboard.writeText)) {
+            _context.next = 15;
+            break;
+          }
+          _context.prev = 3;
+          _context.next = 6;
+          return navigator.clipboard.writeText(text);
+        case 6:
+          success = true;
+          _context.next = 13;
+          break;
+        case 9:
+          _context.prev = 9;
+          _context.t0 = _context["catch"](3);
+          console.error('Error copying text: ', _context.t0);
+          success = fallbackCopyTextToClipboard(text);
+        case 13:
+          _context.next = 16;
+          break;
+        case 15:
+          success = fallbackCopyTextToClipboard(text);
+        case 16:
+          if (success && showNotification) {
+            (0,_ui_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showToast)('Copied to clipboard!');
+          }
+          return _context.abrupt("return", success);
+        case 18:
+        case "end":
+          return _context.stop();
+      }
+    }, _callee, null, [[3, 9]]);
+  }));
+  return function copyToClipboard(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
 // Download text as file
 var downloadTextFile = function downloadTextFile(content, filename) {
   var blob = new Blob([content], {
@@ -7849,43 +8009,6 @@ var downloadTextFile = function downloadTextFile(content, filename) {
   URL.revokeObjectURL(url);
   return true;
 };
-
-// Advanced copy to clipboard function
-var copyTextToClipboard = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(content) {
-    return _regeneratorRuntime().wrap(function _callee$(_context) {
-      while (1) switch (_context.prev = _context.next) {
-        case 0:
-          if (!navigator.clipboard) {
-            _context.next = 14;
-            break;
-          }
-          _context.prev = 1;
-          _context.next = 4;
-          return navigator.clipboard.writeText(content);
-        case 4:
-          showToast('Copied to clipboard!');
-          return _context.abrupt("return", true);
-        case 8:
-          _context.prev = 8;
-          _context.t0 = _context["catch"](1);
-          console.error('Error copying text: ', _context.t0);
-          return _context.abrupt("return", fallbackCopyTextToClipboard(content));
-        case 12:
-          _context.next = 15;
-          break;
-        case 14:
-          return _context.abrupt("return", fallbackCopyTextToClipboard(content));
-        case 15:
-        case "end":
-          return _context.stop();
-      }
-    }, _callee, null, [[1, 8]]);
-  }));
-  return function copyTextToClipboard(_x) {
-    return _ref.apply(this, arguments);
-  };
-}();
 
 /***/ }),
 
@@ -7903,6 +8026,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core_state_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core/state.js */ "./public/js/core/state.js");
 /* harmony import */ var _core_placeholders_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/placeholders.js */ "./public/js/core/placeholders.js");
 /* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils.js */ "./public/js/utils/utils.js");
+/* harmony import */ var _StringUtils_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./StringUtils.js */ "./public/js/utils/StringUtils.js");
 function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
@@ -7911,57 +8035,31 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
 
 
 
+
 var TypeHelpers = {
+  // Helper functions for naturalizeType
+  _extractSubtype: function _extractSubtype(type, prefixLength) {
+    return _StringUtils_js__WEBPACK_IMPORTED_MODULE_3__.StringUtils.extractSubtype(type, prefixLength);
+  },
+  _formatNounType: function _formatNounType(sub, nounType, isPlural, isProper) {
+    if (sub.toLowerCase() === "person") {
+      return "Person (".concat(isProper ? 'proper' : 'common', ", ").concat(isPlural ? 'plural' : 'singular', ")");
+    }
+    var displayText = _StringUtils_js__WEBPACK_IMPORTED_MODULE_3__.StringUtils.toTitleCase(_StringUtils_js__WEBPACK_IMPORTED_MODULE_3__.StringUtils.naturalDisplay(sub || (isProper ? "Proper Noun" : "Common Noun")));
+    return "".concat(displayText, " (").concat(isPlural ? 'Plural' : 'Singular', ")");
+  },
   naturalizeType: function naturalizeType(type) {
-    if (type.startsWith("NNPS")) {
-      var sub = type.substring(4);
-      if (sub.startsWith("_")) sub = sub.substring(1);
-      sub = sub.replace(/\d+$/, '');
-      if (sub.toLowerCase() === "person") {
-        return "Person (proper, plural)";
-      }
-      return _utils_js__WEBPACK_IMPORTED_MODULE_2__.Utils.toTitleCase(_utils_js__WEBPACK_IMPORTED_MODULE_2__.Utils.naturalDisplay(sub || "Proper Noun")) + " (Plural)";
-    }
-    if (type.startsWith("NNP")) {
-      var _sub = type.substring(3);
-      if (_sub.startsWith("_")) _sub = _sub.substring(1);
-      _sub = _sub.replace(/\d+$/, '');
-      if (_sub.toLowerCase() === "person") {
-        return "Person (proper, singular)";
-      }
-      return _utils_js__WEBPACK_IMPORTED_MODULE_2__.Utils.toTitleCase(_utils_js__WEBPACK_IMPORTED_MODULE_2__.Utils.naturalDisplay(_sub || "Proper Noun")) + " (Singular)";
-    }
-    if (type.startsWith("NNS")) {
-      var _sub2 = type.substring(3);
-      if (_sub2.startsWith("_")) _sub2 = _sub2.substring(1);
-      _sub2 = _sub2.replace(/\d+$/, '');
-      if (_sub2.toLowerCase() === "person") {
-        return "Person (common, plural)";
-      }
-      return _utils_js__WEBPACK_IMPORTED_MODULE_2__.Utils.toTitleCase(_utils_js__WEBPACK_IMPORTED_MODULE_2__.Utils.naturalDisplay(_sub2 || "Common Noun")) + " (Plural)";
-    }
-    if (type.startsWith("NN")) {
-      var _sub3 = type.substring(2);
-      if (_sub3.startsWith("_")) _sub3 = _sub3.substring(1);
-      _sub3 = _sub3.replace(/\d+$/, '');
-      if (_sub3.toLowerCase() === "person") {
-        return "Person (common, singular)";
-      }
-      return _utils_js__WEBPACK_IMPORTED_MODULE_2__.Utils.toTitleCase(_utils_js__WEBPACK_IMPORTED_MODULE_2__.Utils.naturalDisplay(_sub3 || "Common Noun")) + " (Singular)";
-    }
-    if (type.startsWith("NNS")) {
-      var _sub4 = type.substring(3);
-      if (_sub4.startsWith("_")) _sub4 = _sub4.substring(1);
-      _sub4 = _sub4.replace(/\d+$/, '');
-      return _utils_js__WEBPACK_IMPORTED_MODULE_2__.Utils.toTitleCase(_utils_js__WEBPACK_IMPORTED_MODULE_2__.Utils.naturalDisplay(_sub4 || "Common Noun")) + " (Plural)";
-    }
-    if (type.startsWith("NN")) {
-      var _sub5 = type.substring(2);
-      if (_sub5.startsWith("_")) _sub5 = _sub5.substring(1);
-      _sub5 = _sub5.replace(/\d+$/, '');
-      return _utils_js__WEBPACK_IMPORTED_MODULE_2__.Utils.toTitleCase(_utils_js__WEBPACK_IMPORTED_MODULE_2__.Utils.naturalDisplay(_sub5 || "Common Noun")) + " (Singular)";
+    // Handle noun patterns (NNP/NNPS/NN/NNS)
+    if (type.startsWith("NNP") || type.startsWith("NN")) {
+      var isProper = type.startsWith("NNP");
+      var isPlural = type.startsWith("NNS") || type.startsWith("NNPS");
+      var prefixLength = isProper ? isPlural ? 4 : 3 : isPlural ? 3 : 2;
+      var sub = TypeHelpers._extractSubtype(type, prefixLength);
+      return TypeHelpers._formatNounType(sub, type, isPlural, isProper);
     }
     if (type === "Onomatopoeia") return "Onomatopoeia";
+
+    // Handle modal verbs
     if (type.startsWith("MD_")) {
       var tense = type.substring(3);
       var tenseNatural = "";
@@ -7989,6 +8087,8 @@ var TypeHelpers = {
       }
       return "Modal Verb (" + tenseNatural + ")";
     }
+
+    // Handle verb tenses
     var verbTenseMap = {
       "VBZ": "3rd Person (he leaves)",
       "VBD": "Past Tense (slept)",
@@ -7999,42 +8099,46 @@ var TypeHelpers = {
     for (var _tense in verbTenseMap) {
       if (type.startsWith(_tense)) {
         var remainder = type.substring(_tense.length);
-        var category = "";
-        if (remainder.startsWith("_")) {
-          category = remainder.substring(1);
-        }
-        return category ? _utils_js__WEBPACK_IMPORTED_MODULE_2__.Utils.toTitleCase(category) + " Verb (" + verbTenseMap[_tense] + ")" : "Verb (" + verbTenseMap[_tense] + ")";
+        var category = remainder.startsWith("_") ? remainder.substring(1) : "";
+        return category ? _StringUtils_js__WEBPACK_IMPORTED_MODULE_3__.StringUtils.toTitleCase(category) + " Verb (" + verbTenseMap[_tense] + ")" : "Verb (" + verbTenseMap[_tense] + ")";
       }
     }
+
+    // Handle base verb form
     if (type.startsWith("VB")) {
       var rest = type.substring(2).replace(/^_+/, "");
-      return rest ? _utils_js__WEBPACK_IMPORTED_MODULE_2__.Utils.toTitleCase(rest) + " Verb (Base Form)" : "Verb (Base Form)";
+      return rest ? _StringUtils_js__WEBPACK_IMPORTED_MODULE_3__.StringUtils.toTitleCase(rest) + " Verb (Base Form)" : "Verb (Base Form)";
     }
+
+    // Handle adjectives and other types
     if (type.startsWith("JJ_")) {
-      var _sub6 = type.substring(3);
-      return _utils_js__WEBPACK_IMPORTED_MODULE_2__.Utils.toTitleCase(_utils_js__WEBPACK_IMPORTED_MODULE_2__.Utils.naturalDisplay(_sub6));
+      return _StringUtils_js__WEBPACK_IMPORTED_MODULE_3__.StringUtils.toTitleCase(_StringUtils_js__WEBPACK_IMPORTED_MODULE_3__.StringUtils.naturalDisplay(type.substring(3)));
     }
     if (type.startsWith("JJS_")) {
-      var _sub7 = type.substring(4);
-      if (_sub7.toLowerCase() === "ordinal") {
+      var _sub = type.substring(4);
+      if (_sub.toLowerCase() === "ordinal") {
         return "Ordinal Number";
       }
-      return _utils_js__WEBPACK_IMPORTED_MODULE_2__.Utils.toTitleCase(_utils_js__WEBPACK_IMPORTED_MODULE_2__.Utils.naturalDisplay(_sub7)) + " Superlative Adjective";
+      return _StringUtils_js__WEBPACK_IMPORTED_MODULE_3__.StringUtils.toTitleCase(_StringUtils_js__WEBPACK_IMPORTED_MODULE_3__.StringUtils.naturalDisplay(_sub)) + " Superlative Adjective";
     }
-    if (type === "JJ") return "Adjective";
-    if (type === "JJR") return "Comparative Adjective";
-    if (type === "JJS") return "Superlative Adjective";
-    if (type === "RB") return "Adverb";
-    if (type === "RBR") return "Comparative Adverb";
-    if (type === "RBS") return "Superlative Adverb";
-    if (type === "WRB") return "WH-adverb";
-    if (type === "CC") return "Coordinating Conjunction";
-    if (type === "PDT") return "Pre-determiner";
-    if (type === "WDT") return "WH-determiner";
-    if (type === "FW") return "Foreign Word";
-    if (type === "Number") return "Number";
-    if (type === "Exclamation") return "Exclamation";
-    return type;
+
+    // Handle standard part-of-speech abbreviations
+    var posMap = {
+      "JJ": "Adjective",
+      "JJR": "Comparative Adjective",
+      "JJS": "Superlative Adjective",
+      "RB": "Adverb",
+      "RBR": "Comparative Adverb",
+      "RBS": "Superlative Adverb",
+      "WRB": "WH-adverb",
+      "CC": "Coordinating Conjunction",
+      "PDT": "Pre-determiner",
+      "WDT": "WH-determiner",
+      "FW": "Foreign Word",
+      "Number": "Number",
+      "Exclamation": "Exclamation"
+    };
+    return posMap[type] || type;
   },
   getTooltipForType: function getTooltipForType(type) {
     var normalizedType = type.trim().toLowerCase();
@@ -8157,12 +8261,21 @@ var TypeHelpers = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   StringUtils: () => (/* reexport safe */ _StringUtils_js__WEBPACK_IMPORTED_MODULE_0__.StringUtils),
 /* harmony export */   Utils: () => (/* binding */ Utils),
-/* harmony export */   decodeHTMLEntities: () => (/* binding */ decodeHTMLEntities)
+/* harmony export */   decodeHTMLEntities: () => (/* reexport safe */ _StringUtils_js__WEBPACK_IMPORTED_MODULE_0__.decodeHTMLEntities)
 /* harmony export */ });
+/* harmony import */ var _StringUtils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./StringUtils.js */ "./public/js/utils/StringUtils.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 // public/js/utils/utils.js
 
-var Utils = {
+
+var Utils = _objectSpread({
   debounce: function debounce(func, delay) {
     var timeout;
     return function () {
@@ -8175,32 +8288,8 @@ var Utils = {
         return func.apply(context, args);
       }, delay);
     };
-  },
-  toTitleCase: function toTitleCase(str) {
-    return str.replace(/\w\S*/g, function (txt) {
-      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-    });
-  },
-  capitalize: function capitalize(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-  },
-  pascalCase: function pascalCase(str) {
-    return str.toLowerCase().split(/\s+/).map(function (word) {
-      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-    }).join('');
-  },
-  naturalDisplay: function naturalDisplay(str) {
-    return str.replace(/([a-z])([A-Z])/g, '$1 $2');
-  },
-  sanitizeString: function sanitizeString(str) {
-    return str.replace(/[^a-zA-Z0-9_]/g, '');
   }
-};
-var decodeHTMLEntities = function decodeHTMLEntities(text) {
-  var textarea = document.createElement("textarea");
-  textarea.innerHTML = text;
-  return textarea.value;
-};
+}, _StringUtils_js__WEBPACK_IMPORTED_MODULE_0__.StringUtils);
 
 /***/ })
 

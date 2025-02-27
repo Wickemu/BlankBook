@@ -2,16 +2,16 @@
 import state from '../core/state.js';
 import { Storage } from '../data/storage.js';
 import { Utils } from '../utils/utils.js';
+import { StringUtils } from '../utils/StringUtils.js';
 import { TypeHelpers } from '../utils/typeHelpers.js';
 import { 
     updatePlaceholderAccordion, 
     updateVariablesFromEditor, 
     generateLegacyText,
-    addNewCustomPlaceholderWithUsage,
+    addCustomPlaceholder,
     showNounNumberSelection,
     showVerbTenseSelection,
     insertPlaceholderFromCustom,
-    addNewCustomPlaceholder,
     pickPronounFormAndGroup,
     updateVariablesList,
     duplicatePlaceholder,
@@ -311,7 +311,7 @@ export const initEvents = () => {
     // Add copy to clipboard handler
     $('#copyStory').on('click', () => {
         const finalText = $('#finalStory').text();
-        domUtils.copyTextToClipboard(finalText);
+        domUtils.copyToClipboard(finalText);
     });
 
     // Selection changes
@@ -608,13 +608,13 @@ export const initEvents = () => {
         const raw = $('#placeholderSearch').val();
         const usage = $('input[name="customPlaceholderType"]:checked').val() || "generic";
         if (usage === "noun") {
-            addNewCustomPlaceholderWithUsage(raw, "noun");
-            showNounNumberSelection("NN_" + Utils.pascalCase(raw), Utils.naturalDisplay(raw));
+            addCustomPlaceholder(raw, "noun");
+            showNounNumberSelection("NN_" + StringUtils.pascalCase(raw), StringUtils.naturalDisplay(raw));
         } else if (usage === "verb") {
-            addNewCustomPlaceholderWithUsage(raw, "verb");
-            showVerbTenseSelection("VB_" + Utils.pascalCase(raw), Utils.naturalDisplay(raw));
+            addCustomPlaceholder(raw, "verb");
+            showVerbTenseSelection("VB_" + StringUtils.pascalCase(raw), StringUtils.naturalDisplay(raw));
         } else {
-            addNewCustomPlaceholder(raw);
+            addCustomPlaceholder(raw);
             insertPlaceholderFromCustom(raw);
         }
         $('#placeholderSearch').val('');
@@ -626,13 +626,13 @@ export const initEvents = () => {
         const raw = $('#modalPlaceholderSearch').val();
         const usage = $('input[name="modalCustomPlaceholderType"]:checked').val() || "generic";
         if (usage === "noun") {
-            addNewCustomPlaceholderWithUsage(raw, "noun");
-            showNounNumberSelection("NN_" + Utils.pascalCase(raw), Utils.naturalDisplay(raw));
+            addCustomPlaceholder(raw, "noun");
+            showNounNumberSelection("NN_" + StringUtils.pascalCase(raw), StringUtils.naturalDisplay(raw));
         } else if (usage === "verb") {
-            addNewCustomPlaceholderWithUsage(raw, "verb");
-            showVerbTenseSelection("VB_" + Utils.pascalCase(raw), Utils.naturalDisplay(raw));
+            addCustomPlaceholder(raw, "verb");
+            showVerbTenseSelection("VB_" + StringUtils.pascalCase(raw), StringUtils.naturalDisplay(raw));
         } else {
-            addNewCustomPlaceholder(raw);
+            addCustomPlaceholder(raw);
             insertPlaceholderFromCustom(raw);
         }
         updatePlaceholderAccordion('#modalPlaceholderAccordion', '#modalNoResults', state.currentModalPlaceholderSearch);

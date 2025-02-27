@@ -19,8 +19,7 @@ import {
     insertPronounPlaceholderSimple,
     choosePronounTempValue,
     updateExistingPlaceholder,
-    addNewCustomPlaceholderWithUsage,
-    addNewCustomPlaceholder,
+    addCustomPlaceholder,
     insertPlaceholderFromCustom
 } from './core/placeholders.js';
 import { buildFillForm } from './ui/forms.js';
