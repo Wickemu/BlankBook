@@ -1,0 +1,58 @@
+/* Modal Styles */
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+#modalPlaceholderAccordion {
+  margin-top: 1rem;
+}
+
+/* No Results Message */
+#noResults,
+#modalNoResults {
+  margin-top: 1rem;
+  display: none;
+  background-color: var(--gray-100);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+}
+
+/* Floating Menus (Talk Bubble Style) */
+.floating-menu {
+  position: absolute;
+  display: none;
+  z-index: 1000;
+  background-color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 0.5rem;
+  box-shadow: var(--shadow);
+  animation: fadeIn 0.2s;
+}
+
+.floating-menu::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px 8px 0;
+  border-style: solid;
+  border-color: white transparent transparent;
+}
+
+.floating-menu .btn {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-size: 14px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: var(--transition);
+}
+
+.floating-menu .btn:hover {
+  background-color: rgba(67, 97, 238, 0.1);
+} 

@@ -43,6 +43,8 @@ const handlePlaceholderClick = (internalType, displayName) => {
             pickPronounFormAndGroup();
             $('#placeholderSearch').val('');
             updatePlaceholderAccordion('#placeholderAccordion', '#noResults', state.currentPlaceholderSearch);
+            // Hide the accordion container after selecting
+            $('.placeholder-accordion-container').hide();
             return;
         }
         if (internalType.startsWith("NN")) {
@@ -50,11 +52,15 @@ const handlePlaceholderClick = (internalType, displayName) => {
                 showPersonTypeSelection(internalType, displayName);
                 $('#placeholderSearch').val('');
                 updatePlaceholderAccordion('#placeholderAccordion', '#noResults', state.currentPlaceholderSearch);
+                // Hide the accordion container after selecting
+                $('.placeholder-accordion-container').hide();
                 return;
             }
             showNounNumberSelection(internalType, displayName);
             $('#placeholderSearch').val('');
             updatePlaceholderAccordion('#placeholderAccordion', '#noResults', state.currentPlaceholderSearch);
+            // Hide the accordion container after selecting
+            $('.placeholder-accordion-container').hide();
             return;
         }
 
@@ -62,11 +68,15 @@ const handlePlaceholderClick = (internalType, displayName) => {
             showVerbTenseSelection(internalType, displayName);
             $('#placeholderSearch').val('');
             updatePlaceholderAccordion('#placeholderAccordion', '#noResults', state.currentPlaceholderSearch);
+            // Hide the accordion container after selecting
+            $('.placeholder-accordion-container').hide();
             return;
         }
         insertPlaceholder(internalType, displayName, false);
         $('#placeholderSearch').val('');
         updatePlaceholderAccordion('#placeholderAccordion', '#noResults', state.currentPlaceholderSearch);
+        // Hide the accordion container after inserting the placeholder
+        $('.placeholder-accordion-container').hide();
     }
 };
 
@@ -326,14 +336,26 @@ export const initEvents = () => {
     // Attach search handlers with a reduced debounce delay (50ms)
     $('#placeholderSearch').on('input', Utils.debounce(function () {
         const searchVal = $(this).val();
+        const scrollTop = $('#sidePlaceholderPanel').scrollTop(); // Store current scroll position
         updatePlaceholderAccordion('#placeholderAccordion', '#noResults', searchVal);
         $('#addCustomPlaceholderBtn').text('Add "' + searchVal + '"');
+        
+        // Restore scroll position after update if needed
+        if (searchVal && scrollTop === 0) {
+            $('#sidePlaceholderPanel').scrollTop(0); // Ensure stays at top
+        }
     }, 50));
 
     $('#modalPlaceholderSearch').on('input', Utils.debounce(function () {
         const searchVal = $(this).val();
+        const scrollTop = $('.modal-body').scrollTop(); // Store current scroll position
         updatePlaceholderAccordion('#modalPlaceholderAccordion', '#modalNoResults', searchVal);
         $('#modalAddCustomPlaceholderBtn').text('Add "' + searchVal + '"');
+        
+        // Restore scroll position after update if needed
+        if (searchVal && scrollTop === 0) {
+            $('.modal-body').scrollTop(0); // Ensure stays at top
+        }
     }, 50));
 
     // Init accordions

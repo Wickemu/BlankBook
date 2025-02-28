@@ -32,7 +32,7 @@
   <!-- jQuery UI CSS -->
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
   <header class="mb-4">
@@ -71,41 +71,44 @@
     <!-- Story Editor Section -->
     <section id="editor" class="card border-0 shadow-sm mb-4">
       <div class="card-body">
-        <h2 class="text-center fw-bold mb-4">Create Your Story</h2>
-        <div class="form-row">
-          <div class="form-group col-md-6">
+        <h2 class="text-center fw-bold mb-3">Create Your Story</h2>
+        
+        <!-- Compact story metadata section -->
+        <div class="story-metadata mb-3">
+          <div class="form-group">
             <label for="storyTitle">Story Title</label>
-            <input type="text" class="form-control form-control-sm" id="storyTitle" placeholder="Enter story title" aria-label="Story Title">
+            <input type="text" class="form-control" id="storyTitle" placeholder="Enter story title" aria-label="Story Title">
           </div>
-          <div class="form-group col-md-6">
+          <div class="form-group">
             <label for="storyAuthor">Author</label>
-            <input type="text" class="form-control form-control-sm" id="storyAuthor" placeholder="Enter author name" aria-label="Author Name">
+            <input type="text" class="form-control" id="storyAuthor" placeholder="Enter author name" aria-label="Author Name">
+          </div>
+          <div class="form-group">
+            <label for="storyTags">Tags</label>
+            <input type="text" class="form-control" id="storyTags" placeholder="Enter tags (comma separated)" aria-label="Story Tags">
           </div>
         </div>
-        <!-- NEW: Tags input bar added below title and author -->
-        <div class="form-group">
-          <label for="storyTags">Tags</label>
-          <input type="text" class="form-control form-control-sm" id="storyTags" placeholder="Enter tags (comma separated)" aria-label="Story Tags">
-        </div>
-        <p>
+        
+        <p class="editor-instructions">
           Write your story below. Use placeholders (e.g., select a word and assign a placeholder) or insert them via the panel/button.
         </p>
+        
         <div class="row">
           <div class="col-md-8">
             <div class="form-group position-relative">
-              <div id="storyText" contenteditable="true" class="form-control form-control-sm story-editor" 
+              <div id="storyText" contenteditable="true" class="form-control story-editor" 
                    aria-label="Story Text" placeholder="Start writing your story here..."></div>
             </div>
-            <div class="my-3">
+            <div class="mt-2">
               <button class="btn btn-primary btn-sm" id="addPlaceholderBtn" aria-label="Add Placeholder">
                 <i class="fas fa-plus"></i> Add Placeholder
               </button>
-              <div id="variables" class="mt-3">
-                <label>Existing Placeholders:</label>
+              <div id="variables" class="mt-2">
+                <label class="form-label mb-1">Existing Placeholders:</label>
                 <div id="existingPlaceholdersContainer" class="d-flex flex-wrap"></div>
               </div>
             </div>
-            <div class="my-3">
+            <div class="actions-container mt-3">
               <input type="file" id="uploadStory" accept=".txt" class="d-none">
               <button id="uploadStoryBtn" class="btn btn-secondary btn-sm" aria-label="Upload Saved Story">
                 <i class="fas fa-upload"></i> Upload Saved Story
@@ -122,7 +125,7 @@
           <div class="col-md-4 d-none d-md-block" id="sidePlaceholderPanel">
             <h5>Available Placeholders</h5>
             <hr>
-            <div class="form-group sticky-search-bar">
+            <div class="form-group sticky-search-bar mb-2">
               <input type="text" class="form-control form-control-sm" id="placeholderSearch" placeholder="Search..." aria-label="Search Placeholders">
             </div>
             <div id="noResults">
@@ -131,15 +134,18 @@
                 Add "<span id="searchQueryBtn"></span>"
               </button>
               <div id="customPlaceholderOptions" class="mb-2">
-                <label>
-                  <input type="radio" name="customPlaceholderType" value="generic" checked> Generic
-                </label>
-                <label>
-                  <input type="radio" name="customPlaceholderType" value="noun"> Noun
-                </label>
-                <label>
-                  <input type="radio" name="customPlaceholderType" value="verb"> Verb
-                </label>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="customPlaceholderType" id="genericType" value="generic" checked>
+                  <label class="form-check-label" for="genericType">Generic</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="customPlaceholderType" id="nounType" value="noun">
+                  <label class="form-check-label" for="nounType">Noun</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="customPlaceholderType" id="verbType" value="verb">
+                  <label class="form-check-label" for="verbType">Verb</label>
+                </div>
               </div>
               <p>No placeholders found for "<span id="searchQuery"></span>".</p>
             </div>
@@ -158,8 +164,8 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <div class="form-group">
-              <input type="text" class="form-control form-control-sm" id="modalPlaceholderSearch" placeholder="Search..." aria-label="Search Placeholders in Modal">
+            <div class="form-group sticky-search-bar mb-2">
+              <input type="text" class="form-control" id="modalPlaceholderSearch" placeholder="Search..." aria-label="Search Placeholders in Modal">
             </div>
             <div id="modalNoResults">
               <button id="modalAddCustomPlaceholderBtn" class="btn btn-outline-primary btn-sm mb-2" aria-label="Add Custom Placeholder in Modal">
@@ -167,15 +173,18 @@
                 Add "<span id="modalSearchQueryBtn"></span>"
               </button>
               <div id="modalCustomPlaceholderOptions" class="mb-2">
-                <label>
-                  <input type="radio" name="modalCustomPlaceholderType" value="generic" checked> Generic
-                </label>
-                <label>
-                  <input type="radio" name="modalCustomPlaceholderType" value="noun"> Noun
-                </label>
-                <label>
-                  <input type="radio" name="modalCustomPlaceholderType" value="verb"> Verb
-                </label>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="modalCustomPlaceholderType" id="modalGenericType" value="generic" checked>
+                  <label class="form-check-label" for="modalGenericType">Generic</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="modalCustomPlaceholderType" id="modalNounType" value="noun">
+                  <label class="form-check-label" for="modalNounType">Noun</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="modalCustomPlaceholderType" id="modalVerbType" value="verb">
+                  <label class="form-check-label" for="modalVerbType">Verb</label>
+                </div>
               </div>
               <p>No placeholders found for "<span id="modalSearchQuery"></span>".</p>
             </div>

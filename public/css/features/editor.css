@@ -1,0 +1,55 @@
+/* Story Editor Styles */
+
+/* Sections: Editor, Inputs, and Result */
+#editor,
+#inputs,
+#result {
+  margin-bottom: 2rem;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+/* Story Editor Layout Improvements */
+#editor .card-body {
+  padding: 1.5rem;
+}
+
+/* Improved editor instructions */
+.editor-instructions {
+  font-size: 0.9rem;
+  color: var(--gray-600);
+  margin-bottom: 0.75rem;
+}
+
+/* Story Editor (contenteditable) */
+.story-editor {
+  width: 100%;
+  min-height: var(--editor-height);
+  border: 1px solid var(--gray-300);
+  padding: 1.25rem;
+  border-radius: var(--border-radius);
+  overflow-y: auto;
+  background-color: white;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.05);
+  transition: var(--transition);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.story-editor:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(67, 97, 238, 0.25);
+  outline: none;
+}
+
+/* Final Story Styling */
+#finalStory {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  background-color: white;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  line-height: 1.8;
+} 

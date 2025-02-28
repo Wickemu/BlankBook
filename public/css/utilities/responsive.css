@@ -1,0 +1,28 @@
+/* Responsive Styles */
+
+/* Responsive Adjustments */
+@media (min-width: 768px) {
+  #sidePlaceholderPanel {
+    position: sticky;
+    top: 0;
+    max-height: calc(var(--editor-height) + 50px);
+  }
+  
+  #addPlaceholderBtn {
+    margin-right: 0.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  #sidePlaceholderPanel {
+    display: none;
+  }
+  
+  .card-body {
+    padding: 1rem;
+  }
+  
+  .story-editor {
+    min-height: 250px;
+  }
+} 

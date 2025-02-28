@@ -1,0 +1,15 @@
+/* Saved Stories Styles */
+
+/* Saved Stories List Items */
+#savedStoriesList .list-group-item {
+  margin-bottom: 0.75rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--gray-200);
+  padding: 1rem;
+  transition: var(--transition);
+}
+
+#savedStoriesList .list-group-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+} 

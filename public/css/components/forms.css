@@ -1,0 +1,50 @@
+/* Form Control Styles */
+
+.form-control {
+  border: 1px solid var(--gray-300);
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+  font-size: 0.95rem;
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(67, 97, 238, 0.25);
+}
+
+/* Compact form layout */
+.story-metadata {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.story-metadata .form-group {
+  flex: 1 1 200px;
+}
+
+.story-metadata label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.story-metadata input {
+  height: 38px;
+}
+
+/* Improved search UI */
+#placeholderSearch,
+#modalPlaceholderSearch {
+  border-radius: 50px;
+  padding-left: 1rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--gray-300);
+}
+
+/* Custom Placeholder Styling */
+.custom-placeholder {
+  background-color: var(--gray-200);
+  transition: var(--transition);
+} 

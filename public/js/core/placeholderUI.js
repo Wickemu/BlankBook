@@ -36,6 +36,9 @@ export const updatePlaceholderAccordion = (accordionSelector, noResultsSelector,
     } else {
         accordion.find('.card-header, .show-more-toggle').show();
     }
+    
+    // Make sure to fix any display styles
+    accordion.find('.placeholder-btn[style*="display: block"]').css('display', 'flex');
 };
 
 /**
@@ -84,12 +87,15 @@ export const createCustomPlaceholderCategoryCard = (accordionSelector, searchVal
 `);
     state.customPlaceholders.forEach(p => {
         const showItem = !searchVal || p.type.toLowerCase().includes(searchVal.toLowerCase());
+        const displayStyle = showItem ? 'flex' : 'none';
         const item = $(`
     <div class='list-group-item placeholder-btn custom-placeholder'
       data-internal='${p.type}'
       data-display='${p.type}'
-      style='display: ${showItem ? 'block' : 'none'};'>
-      <i class='fas fa-star'></i> ${p.type}
+      style='display: ${displayStyle};'>
+      <i class='fas fa-star'></i>
+      <span class="placeholder-text">${p.type}</span>
+      <i class='fas fa-info-circle accordion-info-icon' data-tooltip="Custom placeholder"></i>
     </div>
   `);
         collapseDiv.find('.list-group').append(item);
@@ -109,8 +115,8 @@ export const createCardHeader = (categoryName, sanitizedCategoryName, accordionS
     return $(`
   <div class='card-header' id='${sanitizedCategoryName}Heading'>
     <h2 class='mb-0'>
-      <button class='btn btn-link btn-block text-left' type='button'
-        data-toggle='collapse' data-target='#${sanitizedCategoryName}Collapse'
+      <button class='btn btn-link btn-block text-left w-100' type='button'
+        data-bs-toggle='collapse' data-bs-target='#${sanitizedCategoryName}Collapse'
         aria-expanded='true' aria-controls='${sanitizedCategoryName}Collapse'>
         ${categoryName}
       </button>
@@ -170,13 +176,15 @@ export const updateShowMoreToggleVisibility = (collapseDiv, searchVal, secondary
  */
 export const appendPlaceholderItem = (listGroup, placeholder, searchVal, isSecondary = false) => {
     const showItem = !searchVal || placeholder.display.toLowerCase().includes(searchVal.toLowerCase());
+    const displayStyle = showItem ? 'flex' : 'none';
     const item = $(`
   <div class='list-group-item placeholder-btn${isSecondary ? ' secondary-placeholder' : ''}'
     data-internal='${placeholder.internalType}'
     data-display='${placeholder.display}'
-    style='display: ${showItem ? 'block' : 'none'};'>
-    <i class='${placeholder.icon}'></i> ${placeholder.display}
-    <i class='fas fa-info-circle accordion-info-icon' data-tooltip="${placeholder.tooltip}" style="font-size:0.8em; margin-left:5px;"></i>
+    style='display: ${displayStyle};'>
+    <i class='${placeholder.icon}'></i>
+    <span class="placeholder-text">${placeholder.display}</span>
+    <i class='fas fa-info-circle accordion-info-icon' data-tooltip="${placeholder.tooltip}"></i>
   </div>
 `);
     listGroup.append(item);

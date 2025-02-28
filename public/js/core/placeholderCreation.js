@@ -61,14 +61,20 @@ export const insertPlaceholder = async (internalType, displayName, isCustom) => 
     }
     let displayText = selectedText || displayName;
     if (!selectedText) {
-        const { value: temp } = await Swal.fire({
+        const result = await Swal.fire({
             title: 'Enter temporary word',
             input: 'text',
             inputLabel: 'Temporary fill word for this placeholder',
             inputValue: displayName,
             showCancelButton: true
         });
-        if (temp) displayText = temp;
+        
+        // If user clicked Cancel, exit the function without creating a placeholder
+        if (result.dismiss) {
+            return;
+        }
+        
+        if (result.value) displayText = result.value;
     }
     insertPlaceholderSpan(id, displayText, rangeToUse);
     if (!state.variables.some(v => v.id === id)) {
@@ -84,6 +90,10 @@ export const insertPlaceholder = async (internalType, displayName, isCustom) => 
     }
     updateVariablesList();
     state.lastRange = null;
+    
+    // Close the placeholder modal if it's open
+    $('#placeholderModal').modal('hide');
+    
     if (internalType.startsWith("NN") && selectedText) {
         Swal.fire({
             title: 'Apply placeholder to all occurrences?',

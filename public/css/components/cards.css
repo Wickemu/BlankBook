@@ -1,0 +1,58 @@
+/* Card Component Styles */
+
+.card {
+  border: none;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+/* Card body padding reduction */
+#placeholderAccordion .card-body,
+#modalPlaceholderAccordion .card-body {
+  padding: 1rem;
+}
+
+/* Card header simplification */
+#placeholderAccordion .card-header,
+#modalPlaceholderAccordion .card-header {
+  padding: 0;
+  background-color: var(--gray-100);
+  cursor: pointer;
+}
+
+#placeholderAccordion .card-header h2,
+#modalPlaceholderAccordion .card-header h2 {
+  margin: 0;
+}
+
+#placeholderAccordion .card-header button,
+#modalPlaceholderAccordion .card-header button {
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  color: var(--gray-800);
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  outline: none !important;
+}
+
+/* More compact cards with less nesting */
+#placeholderAccordion .card,
+#modalPlaceholderAccordion .card {
+  margin-bottom: 0.75rem;
+  border: 1px solid var(--gray-200);
+}
+
+#placeholderAccordion .collapse,
+#modalPlaceholderAccordion .collapse {
+  border-top: 1px solid var(--gray-200);
+} 
