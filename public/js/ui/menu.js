@@ -161,6 +161,18 @@
     
     // Handle "New Placeholder" button click
     export const handleNewPlaceholder = () => {
+        // Reset any previously saved selection data
+        state.lastSelectedText = '';
+        
+        // Save the current selected text to state before hiding the selection menu
+        const sel = window.getSelection();
+        if (sel && sel.toString().trim().length > 0) {
+            state.lastSelectedText = sel.toString().trim();
+            console.log("Selection menu: Saved selected text:", state.lastSelectedText);
+        } else {
+            console.log("Selection menu: No text selected");
+        }
+        
         hideMenu(selectionMenu);
         $('#placeholderModal').modal('show');
     };

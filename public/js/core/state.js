@@ -11,6 +11,7 @@ const state = {
   pronounGroups: {},
   pronounGroupCount: 0,
   lastRange: null,
+  lastSelectedText: '',
   usageTracker: {},
   placeholderInsertionInProgress: false,
   storyHasUnsavedChanges: false,
@@ -44,6 +45,7 @@ export function resetState() {
   state.pronounGroups = {};
   state.pronounGroupCount = 0;
   state.lastRange = null;
+  state.lastSelectedText = '';
   state.usageTracker = {};
   state.placeholderInsertionInProgress = false;
   state.storyHasUnsavedChanges = false;

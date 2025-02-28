@@ -39,6 +39,7 @@ const handlePlaceholderClick = (internalType, displayName) => {
         state.currentEditingVariable = null;
         $('#placeholderModal').modal('hide');
     } else {
+        // For specialized types that have their own modal chains
         if (internalType === "PRONOUN") {
             pickPronounFormAndGroup();
             $('#placeholderSearch').val('');
@@ -72,6 +73,10 @@ const handlePlaceholderClick = (internalType, displayName) => {
             $('.placeholder-accordion-container').hide();
             return;
         }
+
+        // For direct placeholder insertion (non-pronoun, non-noun, non-verb)
+        // We don't need to modify state.lastSelectedText here as it should already be set
+        // by handleNewPlaceholder when the selection menu was clicked
         insertPlaceholder(internalType, displayName, false);
         $('#placeholderSearch').val('');
         updatePlaceholderAccordion('#placeholderAccordion', '#noResults', state.currentPlaceholderSearch);

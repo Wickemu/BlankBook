@@ -2,6 +2,24 @@ import state, { pronounMapping } from './state.js';
 import { ensureEditorFocus } from './placeholderDOM.js';
 import { insertPlaceholderSpan } from './placeholderDOM.js';
 import { updateVariablesList } from './placeholderManagement.js';
+import { StringUtils } from '../utils/StringUtils.js';
+
+/**
+ * Gets the currently selected text from the editor
+ * @returns {string} The selected text or an empty string
+ */
+const getSelectedText = () => {
+    // If we have a saved range, use that to get the selected text
+    if (state.lastRange && !state.lastRange.collapsed) {
+        return state.lastRange.toString().trim();
+    }
+    // Otherwise try to get the current selection
+    const sel = window.getSelection();
+    if (sel && sel.rangeCount && !sel.isCollapsed) {
+        return sel.toString().trim();
+    }
+    return "";
+};
 
 /**
  * Inserts a pronoun placeholder with a specified form
@@ -16,6 +34,10 @@ export const insertPronounPlaceholderSimple = (groupId, form, tempValue) => {
     const range = (state.lastRange && editor.contains(state.lastRange.commonAncestorContainer))
         ? state.lastRange
         : (sel.rangeCount ? sel.getRangeAt(0) : null);
+    
+    // Check if we already have a selected text saved
+    const selectedText = state.lastSelectedText || (range && !range.collapsed ? range.toString().trim() : "");
+    
     const groupNum = groupId.replace('PronounGroup', '');
     const formAbbrevMap = { subject: 'SUB', object: 'OBJ', possAdj: 'PSA', possPron: 'PSP', reflexive: 'REF' };
     const abbrev = formAbbrevMap[form] || form.toUpperCase();
@@ -34,6 +56,34 @@ export const insertPronounPlaceholderSimple = (groupId, form, tempValue) => {
         updateVariablesList();
     }
     insertPlaceholderSpan(placeholderId, tempValue, range);
+    
+    // After inserting, check if there are multiple instances of the selected text
+    if (selectedText) {
+        const editor = document.getElementById("storyText");
+        const editorContent = editor.textContent;
+        const occurrences = (editorContent.match(new RegExp(`\\b${StringUtils.escapeRegExp(selectedText)}\\b`, 'g')) || []).length;
+        
+        if (occurrences > 1) {
+            Swal.fire({
+                title: 'Multiple occurrences found',
+                html: `Found <strong>${occurrences}</strong> instances of "<strong>${selectedText}</strong>" in your story.<br>Would you like to replace all instances with this placeholder?`,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, replace all',
+                cancelButtonText: 'No, just this one',
+                footer: '<small>This is useful for replacing character names or recurring objects with placeholders</small>'
+            }).then(result => {
+                if (result.isConfirmed) {
+                    // We need to import this function since it's normally in placeholderCreation.js
+                    import('./placeholderCreation.js').then(module => {
+                        module.applyPlaceholderToAllOccurrences(selectedText, placeholderId, tempValue);
+                    });
+                }
+            });
+        }
+    }
+    
+    state.lastSelectedText = ''; // Clear the saved text
     state.lastRange = null;
 };
 
@@ -41,6 +91,9 @@ export const insertPronounPlaceholderSimple = (groupId, form, tempValue) => {
  * Shows a modal to pick a pronoun form and group
  */
 export const pickPronounFormAndGroup = () => {
+    // Store the selected text before modal interactions cause selection to be lost
+    state.lastSelectedText = getSelectedText();
+    
     const forms = [
         { value: 'subject', text: 'Subject (he, she, they)' },
         { value: 'object', text: 'Object (him, her, them)' },

@@ -35,6 +35,15 @@ export const StringUtils = {
     let sub = type.substring(prefixLength);
     if (sub.startsWith("_")) sub = sub.substring(1);
     return sub.replace(/\d+$/, '');
+  },
+  
+  /**
+   * Escapes special characters in a string for use in a regular expression
+   * @param {string} string - The string to escape
+   * @returns {string} The escaped string safe for regex use
+   */
+  escapeRegExp: (string) => {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
   }
 };
 

@@ -5,11 +5,31 @@ import { insertPlaceholder } from './placeholderCreation.js';
 import { updateExistingPlaceholder } from './placeholderManagement.js';
 
 /**
+ * Gets the currently selected text from the editor
+ * @returns {string} The selected text or an empty string
+ */
+const getSelectedText = () => {
+    // If we have a saved range, use that to get the selected text
+    if (state.lastRange && !state.lastRange.collapsed) {
+        return state.lastRange.toString().trim();
+    }
+    // Otherwise try to get the current selection
+    const sel = window.getSelection();
+    if (sel && sel.rangeCount && !sel.isCollapsed) {
+        return sel.toString().trim();
+    }
+    return "";
+};
+
+/**
  * Shows a modal for selecting person type
  * @param {string} baseInternal - The base internal type
  * @param {string} baseDisplay - The base display name
  */
 export const showPersonTypeSelection = (baseInternal, baseDisplay) => {
+    // Store selected text before modal interactions cause selection to be lost
+    const selectedText = getSelectedText();
+    
     let html = `<div class='list-group'>
   <button class='list-group-item list-group-item-action person-type-btn' data-type='common'>
     Common (e.g., doctor)
@@ -40,7 +60,8 @@ export const showPersonTypeSelection = (baseInternal, baseDisplay) => {
                 Swal.close();
                 // ...and use a small timeout to ensure it's fully closed before showing the next modal.
                 setTimeout(() => {
-                    showNounNumberSelection(updatedBaseInternal, updatedBaseDisplay);
+                    // Pass along the selected text to the next modal
+                    showNounNumberSelection(updatedBaseInternal, updatedBaseDisplay, selectedText);
                 }, 100);
             });
         }
@@ -51,8 +72,14 @@ export const showPersonTypeSelection = (baseInternal, baseDisplay) => {
  * Shows a modal for selecting noun number
  * @param {string} baseInternal - The base internal type
  * @param {string} baseDisplay - The base display name
+ * @param {string} [selectedText=''] - The selected text from the editor
  */
-export const showNounNumberSelection = (baseInternal, baseDisplay) => {
+export const showNounNumberSelection = (baseInternal, baseDisplay, selectedText = '') => {
+    // If selectedText wasn't passed, try to get it now
+    if (!selectedText) {
+        selectedText = getSelectedText();
+    }
+    
     let html = `<div class='list-group'>`;
     ['Singular', 'Plural'].forEach(f => {
         html += `<button class='list-group-item list-group-item-action noun-number-btn' data-form='${f}'>${f}</button>`;
@@ -75,7 +102,13 @@ export const showNounNumberSelection = (baseInternal, baseDisplay) => {
                     state.currentEditingVariable = null;
                     Swal.close();
                 } else {
+                    // Preserve the selected text by saving it to state.lastSelectedText
+                    if (selectedText) {
+                        state.lastSelectedText = selectedText;
+                    }
                     await insertPlaceholder(finalInternal, finalDisplay, false);
+                    // Clear the temporary state to avoid affecting future placeholder additions
+                    state.lastSelectedText = '';
                     Swal.close();
                 }
             });
@@ -87,8 +120,14 @@ export const showNounNumberSelection = (baseInternal, baseDisplay) => {
  * Shows a modal for selecting verb tense
  * @param {string} baseInternal - The base internal type
  * @param {string} baseDisplay - The base display name
+ * @param {string} [selectedText=''] - The selected text from the editor
  */
-export const showVerbTenseSelection = (baseInternal, baseDisplay) => {
+export const showVerbTenseSelection = (baseInternal, baseDisplay, selectedText = '') => {
+    // If selectedText wasn't passed, try to get it now
+    if (!selectedText) {
+        selectedText = getSelectedText();
+    }
+    
     let html = `<div class='list-group'>`;
     VERB_TENSES.forEach(t => {
         html += `<button class='list-group-item list-group-item-action verb-tense-btn' data-tense='${t.value}' data-text='${t.text}'>${t.text}</button>`;
@@ -112,7 +151,13 @@ export const showVerbTenseSelection = (baseInternal, baseDisplay) => {
                     state.currentEditingVariable = null;
                     Swal.close();
                 } else {
+                    // Preserve the selected text by saving it to state.lastSelectedText
+                    if (selectedText) {
+                        state.lastSelectedText = selectedText;
+                    }
                     await insertPlaceholder(finalInternal, finalDisplay, false);
+                    // Clear the temporary state to avoid affecting future placeholder additions
+                    state.lastSelectedText = '';
                     Swal.close();
                 }
             });
