@@ -1,7 +1,8 @@
     // Start of Selection
     // public/js/ui/menu.js
     import state from '../core/state.js';
-    import { duplicatePlaceholder, insertPlaceholder, updateVariablesList, updateVariablesFromEditor } from '../core/placeholders.js';
+    import { StringUtils } from '../utils/StringUtils.js';
+    import { duplicatePlaceholder, insertPlaceholder, updateVariablesList, updateVariablesFromEditor, applyPlaceholderToAllOccurrences } from '../core/placeholders.js';
     
     // Menu element references
     let selectionMenu;
@@ -74,9 +75,14 @@
             boxShadow: '0px 2px 4px rgba(0,0,0,0.2)'
         });
         placeholderEditMenu.innerHTML = `
-        <button id="editPlaceholderBtn" class="btn btn-sm btn-primary">Change Placeholder</button>
-        <button id="editOverrideBtn" class="btn btn-sm btn-secondary">Change Override</button>
-        <button id="deletePlaceholderBtn" class="btn btn-sm btn-danger">Delete</button>
+        <div class="placeholder-menu-row">
+          <button id="editPlaceholderBtn" class="btn btn-sm btn-primary">Change</button>
+          <button id="editOverrideBtn" class="btn btn-sm btn-secondary">Rename</button>
+        </div>
+        <div class="placeholder-menu-row mt-1">
+          <button id="replaceAllBtn" class="btn btn-sm btn-warning">Replace All</button>
+          <button id="deletePlaceholderBtn" class="btn btn-sm btn-danger">Delete</button>
+        </div>
       `;
         document.body.appendChild(placeholderEditMenu);
     
@@ -179,6 +185,18 @@
     
     // Handle "Reuse Placeholder" button click
     export const handleReusePlaceholder = () => {
+        // Reset any previously saved selection data
+        state.lastSelectedText = '';
+        
+        // Save the current selected text to state before hiding the selection menu
+        const sel = window.getSelection();
+        if (sel && sel.toString().trim().length > 0) {
+            state.lastSelectedText = sel.toString().trim();
+            console.log("Reuse placeholder menu: Saved selected text:", state.lastSelectedText);
+        } else {
+            console.log("Reuse placeholder menu: No text selected");
+        }
+        
         hideMenu(selectionMenu);
         if (state.variables.length === 0) {
             Swal.fire('No existing placeholders', 'There are no placeholders to reuse yet.', 'info');
@@ -218,6 +236,68 @@
         });
     };
     
+    // Handle "Replace All" button click in placeholder edit menu
+    export const handleReplaceAll = () => {
+        hideMenu(placeholderEditMenu);
+        
+        // Make sure we have the current placeholder element and variable
+        if (!state.currentPlaceholderElement || !state.currentEditingVariable) {
+            console.error("Missing placeholder element or variable for replace all");
+            resetCurrentEditing();
+            return;
+        }
+        
+        // Get the text from the placeholder
+        const placeholderText = state.currentPlaceholderElement.textContent.trim();
+        if (!placeholderText) {
+            console.error("Placeholder has no text to search for");
+            resetCurrentEditing();
+            return;
+        }
+        
+        const placeholderId = state.currentEditingVariable.id;
+        if (!placeholderId) {
+            console.error("Placeholder has no ID");
+            resetCurrentEditing();
+            return;
+        }
+        
+        // Count occurrences of the text in the editor
+        const editor = document.getElementById("storyText");
+        const editorContent = editor.textContent;
+        const occurrences = (editorContent.match(new RegExp(`\\b${StringUtils.escapeRegExp(placeholderText)}\\b`, 'g')) || []).length;
+        
+        // If there's only one occurrence (the placeholder itself), notify the user
+        if (occurrences <= 1) {
+            Swal.fire({
+                title: 'No other occurrences found',
+                text: `No other instances of "${placeholderText}" were found in your story.`,
+                icon: 'info'
+            });
+            resetCurrentEditing();
+            return;
+        }
+        
+        // Ask user to confirm replacing all occurrences
+        Swal.fire({
+            title: 'Multiple occurrences found',
+            html: `Found <strong>${occurrences-1}</strong> other instance(s) of "<strong>${placeholderText}</strong>" in your story.<br>Would you like to replace all these instances with this placeholder?`,
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, replace all',
+            cancelButtonText: 'No, cancel'
+        }).then(result => {
+            if (result.isConfirmed) {
+                console.log(`Replacing all occurrences of "${placeholderText}" with placeholder ${placeholderId}`);
+                
+                // Use the existing function to perform the replacement
+                applyPlaceholderToAllOccurrences(placeholderText, placeholderId, placeholderText);
+            }
+        });
+        
+        resetCurrentEditing();
+    };
+    
     // Attach event listeners to the menu elements
     const attachMenuEventListeners = () => {
         // Click outside menus to close them
@@ -239,6 +319,7 @@
         document.getElementById('editPlaceholderBtn').addEventListener('click', handleEditPlaceholder);
         document.getElementById('editOverrideBtn').addEventListener('click', handleEditOverride);
         document.getElementById('deletePlaceholderBtn').addEventListener('click', handleDeletePlaceholder);
+        document.getElementById('replaceAllBtn').addEventListener('click', handleReplaceAll);
     };
     
     // Export menu elements for external access if needed

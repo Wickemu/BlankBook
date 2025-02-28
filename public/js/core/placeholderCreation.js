@@ -18,9 +18,71 @@ export const duplicatePlaceholder = (variable) => {
             const sel = window.getSelection();
             return sel.rangeCount ? sel.getRangeAt(0) : null;
         })();
+    
+    // Get the selected text - either from lastSelectedText or from range
+    let selectedText = "";
+    if (state.lastSelectedText) {
+        // Use the preserved selected text from modal chains
+        selectedText = state.lastSelectedText;
+        console.log("Using saved selected text for reuse:", selectedText);
+    } else if (rangeToUse && !rangeToUse.collapsed) {
+        selectedText = rangeToUse.toString().trim();
+        console.log("Using range selected text for reuse:", selectedText);
+    }
+    
     const displayText = variable.displayOverride || variable.officialDisplay;
     insertPlaceholderSpan(newId, displayText, rangeToUse);
     state.lastRange = null;
+    
+    // Check if there's selected text that might exist elsewhere in the document
+    if (selectedText) {
+        // Count occurrences of the selected text in the editor
+        const editorContent = editor.textContent;
+        const occurrences = (editorContent.match(new RegExp(`\\b${StringUtils.escapeRegExp(selectedText)}\\b`, 'g')) || []).length;
+        
+        console.log(`Found ${occurrences} occurrences of "${selectedText}" in the document for reuse`);
+        
+        // Only offer to replace all if there's more than one occurrence
+        if (occurrences > 1) {
+            console.log("Showing replace all confirmation dialog for reuse");
+            
+            // Delay showing the replace all dialog to ensure any other modal is fully hidden
+            setTimeout(() => {
+                Swal.fire({
+                    title: 'Multiple occurrences found',
+                    html: `Found <strong>${occurrences}</strong> instances of "<strong>${selectedText}</strong>" in your story.<br>Would you like to replace all instances with this placeholder?`,
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, replace all',
+                    cancelButtonText: 'No, just this one',
+                    footer: '<small>This is useful for replacing character names or recurring objects with placeholders</small>'
+                }).then(result => {
+                    if (result.isConfirmed) {
+                        console.log("User confirmed replace all for reuse");
+                        applyPlaceholderToAllOccurrences(selectedText, newId, displayText);
+                    } else {
+                        console.log("User chose not to replace all for reuse");
+                    }
+                    
+                    // Clear the saved selected text after the dialog is handled
+                    console.log("Clearing lastSelectedText after replace all dialog for reuse");
+                    state.lastSelectedText = '';
+                });
+            }, 300); // 300ms delay to ensure modal transition completes
+        } else {
+            // Clear the saved selected text if no replace dialog shown
+            setTimeout(() => {
+                console.log("Clearing lastSelectedText after placeholder reuse");
+                state.lastSelectedText = '';
+            }, 200);
+        }
+    } else {
+        // Clear the saved selected text if no selected text
+        setTimeout(() => {
+            console.log("Clearing lastSelectedText after placeholder reuse");
+            state.lastSelectedText = '';
+        }, 200);
+    }
 };
 
 /**
