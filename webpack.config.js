@@ -28,6 +28,8 @@ module.exports = {
     static: {
       directory: path.join(__dirname, 'public'),
     },
+    host: '0.0.0.0',
+    allowedHosts: 'all',
     port: 8080,
     hot: true,
     proxy: [
