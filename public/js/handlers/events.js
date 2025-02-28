@@ -120,6 +120,41 @@ const handleCreateNewStory = (e) => {
     }
 };
 
+// Handle clear form button click
+const handleClearForm = (e) => {
+    e.preventDefault();
+    if (state.storyHasUnsavedChanges) {
+        domUtils.confirmDialog({
+            title: 'Clear Form',
+            text: 'You have unsaved changes. Would you like to save your story to the site before clearing the form?',
+            showDenyButton: true,
+            confirmButtonText: 'Save first',
+            denyButtonText: 'Clear without saving'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Storage.addCurrentStoryToSavedStories();
+                setTimeout(resetStoryState, 1000);
+            } else if (result.isDenied) {
+                domUtils.confirmDialog({
+                    title: 'Are you sure?',
+                    text: 'This will clear your current form and discard all unsaved changes.',
+                    confirmButtonText: 'Yes, clear form'
+                }).then((res) => {
+                    if (res.isConfirmed) resetStoryState();
+                });
+            }
+        });
+    } else {
+        domUtils.confirmDialog({
+            title: 'Clear Form',
+            text: 'This will clear all content from the current form. Are you sure?',
+            confirmButtonText: 'Yes, clear form'
+        }).then((res) => {
+            if (res.isConfirmed) resetStoryState();
+        });
+    }
+};
+
 // Handle generate story button click
 const handleGenerateStory = () => {
     // Use the form validation function from forms.js
@@ -500,6 +535,9 @@ export const initEvents = () => {
 
     // Create new story buttons
     $('#createNewStory2, #createNewStory').on('click', handleCreateNewStory);
+
+    // Clear form button
+    $('#clearFormBtn').on('click', handleClearForm);
 
     // Story editing flow buttons
     $('#editStoryEntries').on('click', () => {
