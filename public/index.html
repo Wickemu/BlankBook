@@ -76,7 +76,7 @@
         <!-- Compact story metadata section -->
         <div class="story-metadata mb-3">
           <div class="form-group">
-            <label for="storyTitle">Story Title</label>
+            <label for="storyTitle">Title</label>
             <input type="text" class="form-control" id="storyTitle" placeholder="Enter story title" aria-label="Story Title">
           </div>
           <div class="form-group">
@@ -87,37 +87,47 @@
             <label for="storyTags">Tags</label>
             <input type="text" class="form-control" id="storyTags" placeholder="Enter tags (comma separated)" aria-label="Story Tags">
           </div>
+          <!-- NEW: Chapter Management -->
+          <div class="form-group mt-2">
+            <label for="chapterSelector">Chapter</label>
+            <div class="input-group">
+              <select class="form-select" id="chapterSelector" aria-label="Chapter Selector">
+                <option value="0" selected>Main Story</option>
+              </select>
+              <input type="text" class="form-control" id="chapterTitle" placeholder="Chapter Title" aria-label="Chapter Title">
+              <button class="btn btn-outline-primary" id="addChapterBtn" type="button" aria-label="Add Chapter">
+                <i class="fas fa-plus"></i> Add Chapter
+              </button>
+              <button class="btn btn-outline-danger" id="deleteChapterBtn" type="button" aria-label="Delete Chapter">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
         </div>
-        
-        <p class="editor-instructions">
-          Write your story below. Use placeholders (e.g., select a word and assign a placeholder) or insert them via the panel/button.
-        </p>
         
         <div class="row">
           <div class="col-md-8">
             <div class="form-group position-relative">
-              <div id="storyText" contenteditable="true" class="form-control story-editor" 
+              <div id="storyText" role="textbox" aria-multiline="true" contenteditable="true" class="form-control story-editor" 
                    aria-label="Story Text" placeholder="Start writing your story here..."></div>
             </div>
             <div class="mt-2">
-              <button class="btn btn-primary btn-sm" id="addPlaceholderBtn" aria-label="Add Placeholder">
+              <button class="btn btn-primary btn-sm d-md-none" id="addPlaceholderBtn" aria-label="Add Placeholder">
                 <i class="fas fa-plus"></i> Add Placeholder
               </button>
-              <div id="variables" class="mt-2">
-                <label class="form-label mb-1">Existing Placeholders:</label>
-                <div id="existingPlaceholdersContainer" class="d-flex flex-wrap"></div>
+              <div id="variables" class="mt-2" style="display: none;">
+                <!-- Existing placeholders display moved to side panel -->
               </div>
             </div>
             <div class="actions-container mt-3">
-              <input type="file" id="uploadStory" accept=".txt" class="d-none">
-              <button id="uploadStoryBtn" class="btn btn-secondary btn-sm" aria-label="Upload Saved Story">
-                <i class="fas fa-upload"></i> Upload Saved Story
-              </button>
               <button id="clearFormBtn" class="btn btn-danger btn-sm" aria-label="Clear Form">
                 <i class="fas fa-trash-alt"></i> Clear Form
               </button>
               <button id="saveStoryToSite" class="btn btn-info btn-sm" aria-label="Save Story to Site">
                 <i class="fas fa-cloud-upload-alt"></i> Save Story to Site
+              </button>
+              <button id="saveChapterBtn" class="btn btn-info btn-sm" aria-label="Save Chapter">
+                <i class="fas fa-save"></i> Save Chapter
               </button>
               <button id="startGame" class="btn btn-success btn-sm" aria-label="Start Game">
                 <i class="fas fa-play"></i> Start Game
@@ -126,33 +136,50 @@
           </div>
           <!-- Side Placeholder Panel (visible on medium and larger screens) -->
           <div class="col-md-4 d-none d-md-block" id="sidePlaceholderPanel">
-            <h5>Available Placeholders</h5>
-            <hr>
-            <div class="form-group sticky-search-bar mb-2">
-              <input type="text" class="form-control form-control-sm" id="placeholderSearch" placeholder="Search..." aria-label="Search Placeholders">
+            <div class="placeholder-toggle-buttons d-flex mb-2">
+              <button class="btn btn-outline-primary btn-sm flex-grow-1 me-1 active" id="newPlaceholderToggle">New Placeholder</button>
+              <button class="btn btn-outline-primary btn-sm flex-grow-1" id="existingPlaceholderToggle">Existing Placeholder</button>
             </div>
-            <div id="noResults">
-              <button id="addCustomPlaceholderBtn" class="btn btn-outline-primary btn-sm mb-2" aria-label="Add Custom Placeholder">
-                <i class="fas fa-plus-circle"></i>
-                Add "<span id="searchQueryBtn"></span>"
-              </button>
-              <div id="customPlaceholderOptions" class="mb-2">
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="customPlaceholderType" id="genericType" value="generic" checked>
-                  <label class="form-check-label" for="genericType">Generic</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="customPlaceholderType" id="nounType" value="noun">
-                  <label class="form-check-label" for="nounType">Noun</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="customPlaceholderType" id="verbType" value="verb">
-                  <label class="form-check-label" for="verbType">Verb</label>
-                </div>
+            <div id="newPlaceholderView">
+              <h5>Available Placeholders</h5>
+              <hr>
+              <div class="form-group sticky-search-bar mb-2">
+                <input type="text" class="form-control form-control-sm" id="placeholderSearch" placeholder="Search..." aria-label="Search Placeholders">
               </div>
-              <p>No placeholders found for "<span id="searchQuery"></span>".</p>
+              <div id="noResults">
+                <button id="addCustomPlaceholderBtn" class="btn btn-outline-primary btn-sm mb-2" aria-label="Add Custom Placeholder">
+                  <i class="fas fa-plus-circle"></i>
+                  Add "<span id="searchQueryBtn"></span>"
+                </button>
+                <div id="customPlaceholderOptions" class="mb-2">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="customPlaceholderType" id="genericType" value="generic" checked>
+                    <label class="form-check-label" for="genericType">Generic</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="customPlaceholderType" id="nounType" value="noun">
+                    <label class="form-check-label" for="nounType">Noun</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="customPlaceholderType" id="verbType" value="verb">
+                    <label class="form-check-label" for="verbType">Verb</label>
+                  </div>
+                </div>
+                <p>No placeholders found for "<span id="searchQuery"></span>".</p>
+              </div>
+              <div id="placeholderAccordion" class="accordion" role="region" aria-label="Available Placeholders"></div>
             </div>
-            <div id="placeholderAccordion" class="accordion"></div>
+            <div id="existingPlaceholderView" style="display: none;">
+              <h5>Existing Placeholders</h5>
+              <hr>
+              <div class="form-group sticky-search-bar mb-2">
+                <input type="text" class="form-control form-control-sm" id="existingPlaceholderSearch" placeholder="Search..." aria-label="Search Existing Placeholders">
+              </div>
+              <div id="noExistingResults" style="display: none;">
+                <p>No existing placeholders found for "<span id="existingSearchQuery"></span>".</p>
+              </div>
+              <div id="existingPlaceholderAccordion" class="accordion" role="region" aria-label="Existing Placeholders"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -163,35 +190,54 @@
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="placeholderModalLabel">Add Placeholder</h5>
+            <h5 class="modal-title" id="placeholderModalLabel">Placeholders</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <div class="form-group sticky-search-bar mb-2">
-              <input type="text" class="form-control" id="modalPlaceholderSearch" placeholder="Search..." aria-label="Search Placeholders in Modal">
+            <div class="placeholder-toggle-buttons d-flex mb-2">
+              <button class="btn btn-outline-primary btn-sm flex-grow-1 me-1 active" id="modalNewPlaceholderToggle">New Placeholder</button>
+              <button class="btn btn-outline-primary btn-sm flex-grow-1" id="modalExistingPlaceholderToggle">Existing Placeholder</button>
             </div>
-            <div id="modalNoResults">
-              <button id="modalAddCustomPlaceholderBtn" class="btn btn-outline-primary btn-sm mb-2" aria-label="Add Custom Placeholder in Modal">
-                <i class="fas fa-plus-circle"></i>
-                Add "<span id="modalSearchQueryBtn"></span>"
-              </button>
-              <div id="modalCustomPlaceholderOptions" class="mb-2">
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="modalCustomPlaceholderType" id="modalGenericType" value="generic" checked>
-                  <label class="form-check-label" for="modalGenericType">Generic</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="modalCustomPlaceholderType" id="modalNounType" value="noun">
-                  <label class="form-check-label" for="modalNounType">Noun</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="modalCustomPlaceholderType" id="modalVerbType" value="verb">
-                  <label class="form-check-label" for="modalVerbType">Verb</label>
-                </div>
+            <div id="modalNewPlaceholderView">
+              <h5>Available Placeholders</h5>
+              <hr>
+              <div class="form-group sticky-search-bar mb-2">
+                <input type="text" class="form-control form-control-sm" id="modalPlaceholderSearch" placeholder="Search..." aria-label="Search Placeholders">
               </div>
-              <p>No placeholders found for "<span id="modalSearchQuery"></span>".</p>
+              <div id="modalNoResults">
+                <button id="modalAddCustomPlaceholderBtn" class="btn btn-outline-primary btn-sm mb-2" aria-label="Add Custom Placeholder">
+                  <i class="fas fa-plus-circle"></i>
+                  Add "<span id="modalSearchQueryBtn"></span>"
+                </button>
+                <div id="modalCustomPlaceholderOptions" class="mb-2">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="modalCustomPlaceholderType" id="modalGenericType" value="generic" checked>
+                    <label class="form-check-label" for="modalGenericType">Generic</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="modalCustomPlaceholderType" id="modalNounType" value="noun">
+                    <label class="form-check-label" for="modalNounType">Noun</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="modalCustomPlaceholderType" id="modalVerbType" value="verb">
+                    <label class="form-check-label" for="modalVerbType">Verb</label>
+                  </div>
+                </div>
+                <p>No placeholders found for "<span id="modalSearchQuery"></span>".</p>
+              </div>
+              <div id="modalPlaceholderAccordion" class="accordion"></div>
             </div>
-            <div id="modalPlaceholderAccordion"></div>
+            <div id="modalExistingPlaceholderView" style="display: none;">
+              <h5>Existing Placeholders</h5>
+              <hr>
+              <div class="form-group sticky-search-bar mb-2">
+                <input type="text" class="form-control form-control-sm" id="modalExistingPlaceholderSearch" placeholder="Search..." aria-label="Search Existing Placeholders">
+              </div>
+              <div id="modalNoExistingResults" style="display: none;">
+                <p>No existing placeholders found for "<span id="modalExistingSearchQuery"></span>".</p>
+              </div>
+              <div id="modalExistingPlaceholderAccordion" class="accordion"></div>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -203,6 +249,31 @@
     <!-- Fill in the Blanks Section -->
     <section id="inputs" class="d-none">
       <h2 class="text-center my-4">Fill in the Blanks</h2>
+      
+      <!-- NEW: Chapter Navigation -->
+      <div id="chapterNavigation" class="d-none mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h4 id="playChapterTitle" class="card-title"></h4>
+            <div class="row align-items-center">
+              <div class="col-sm-8">
+                <select id="playChapterSelector" class="form-select">
+                  <option value="0">Introduction</option>
+                </select>
+              </div>
+              <div class="col-sm-4 text-end">
+                <button id="prevChapterBtn" class="btn btn-outline-secondary btn-sm">
+                  <i class="fas fa-chevron-left"></i> Previous
+                </button>
+                <button id="nextChapterBtn" class="btn btn-outline-primary btn-sm">
+                  Next <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
       <div class="text-center mb-3">
         <button id="alphabeticalOrderBtn" class="btn btn-outline-primary btn-sm">Alphabetical Order</button>
         <button id="randomOrderBtn" class="btn btn-outline-secondary btn-sm">Random Order</button>
@@ -312,9 +383,10 @@
   <!-- Other scripts with defer -->
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8" defer></script>
   <!-- Custom JavaScript -->
   <script src="./dist/bundle.js" defer></script>
+  <script src="./js/responsive-fixes.js" defer></script>
   <script>
     // Set appLoaded flag in case the main script fails to do so
     window.addEventListener('load', function() {

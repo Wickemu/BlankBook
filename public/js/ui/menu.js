@@ -13,19 +13,36 @@
         menu.style.display = 'block';
         const menuWidth = menu.offsetWidth;
         const menuHeight = menu.offsetHeight;
-        const offset = 5;
-        let desiredTop = (rect.bottom + offset + menuHeight <= window.innerHeight)
-            ? window.scrollY + rect.bottom + offset
-            : window.scrollY + rect.top - menuHeight - offset;
+        const offset = 10;
+        
+        // Calculate position - center horizontally over the placeholder
         let desiredLeft = window.scrollX + rect.left + (rect.width / 2) - (menuWidth / 2);
         desiredLeft = Math.max(window.scrollX + 5, Math.min(desiredLeft, window.scrollX + window.innerWidth - menuWidth - 5));
+        
+        // Position below element by default (to avoid mobile device system menus)
+        // Only position above if there's no room below
+        let desiredTop;
+        const spaceBelow = window.innerHeight - (rect.bottom - window.scrollY);
+        
+        if (spaceBelow >= menuHeight + offset) {
+            // Position below the element - preferred
+            desiredTop = window.scrollY + rect.bottom + offset;
+            menu.classList.add('menu-position-bottom');
+            menu.classList.remove('menu-position-top');
+        } else {
+            // If no space below, position above
+            desiredTop = window.scrollY + rect.top - menuHeight - offset;
+            menu.classList.add('menu-position-top');
+            menu.classList.remove('menu-position-bottom');
+        }
+        
         menu.style.top = desiredTop + 'px';
         menu.style.left = desiredLeft + 'px';
     };
     
     // Hide a menu
     export const hideMenu = (menu) => { 
-        menu.style.display = 'none'; 
+        if (menu) menu.style.display = 'none'; 
     };
     
     // Hide all menus
@@ -45,43 +62,27 @@
         // Create selection menu for text selections
         selectionMenu = document.createElement('div');
         selectionMenu.id = 'textSelectionMenu';
-        Object.assign(selectionMenu.style, {
-            position: 'absolute',
-            display: 'none',
-            zIndex: '1000',
-            background: '#fff',
-            border: '1px solid #ccc',
-            padding: '5px',
-            borderRadius: '4px',
-            boxShadow: '0px 2px 4px rgba(0,0,0,0.2)'
-        });
+        selectionMenu.className = 'floating-menu';
         selectionMenu.innerHTML = `
-        <button id="newPlaceholderBtn" class="btn btn-sm btn-primary">New Placeholder</button>
-        <button id="reusePlaceholderBtn" class="btn btn-sm btn-secondary">Reuse Placeholder</button>
+        <div class="placeholder-menu-row">
+          <button id="newPlaceholderBtn" class="btn btn-sm btn-primary fixed-size-btn">New Placeholder</button>
+          <button id="reusePlaceholderBtn" class="btn btn-sm btn-secondary fixed-size-btn">Reuse Placeholder</button>
+        </div>
       `;
         document.body.appendChild(selectionMenu);
     
         // Create placeholder edit menu for modifying existing placeholders
         placeholderEditMenu = document.createElement('div');
         placeholderEditMenu.id = 'placeholderEditMenu';
-        Object.assign(placeholderEditMenu.style, {
-            position: 'absolute',
-            display: 'none',
-            zIndex: '1000',
-            background: '#fff',
-            border: '1px solid #ccc',
-            padding: '5px',
-            borderRadius: '4px',
-            boxShadow: '0px 2px 4px rgba(0,0,0,0.2)'
-        });
+        placeholderEditMenu.className = 'floating-menu';
         placeholderEditMenu.innerHTML = `
         <div class="placeholder-menu-row">
-          <button id="editPlaceholderBtn" class="btn btn-sm btn-primary">Change</button>
-          <button id="editOverrideBtn" class="btn btn-sm btn-secondary">Rename</button>
+          <button id="editPlaceholderBtn" class="btn btn-sm btn-primary fixed-size-btn">Change</button>
+          <button id="editOverrideBtn" class="btn btn-sm btn-secondary fixed-size-btn">Rename</button>
         </div>
-        <div class="placeholder-menu-row mt-1">
-          <button id="replaceAllBtn" class="btn btn-sm btn-warning">Replace All</button>
-          <button id="deletePlaceholderBtn" class="btn btn-sm btn-danger">Delete</button>
+        <div class="placeholder-menu-row">
+          <button id="replaceAllBtn" class="btn btn-sm btn-warning fixed-size-btn">Find All</button>
+          <button id="deletePlaceholderBtn" class="btn btn-sm btn-danger fixed-size-btn">Delete</button>
         </div>
       `;
         document.body.appendChild(placeholderEditMenu);

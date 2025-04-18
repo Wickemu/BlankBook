@@ -1,28 +1,67 @@
 // public/js/core/state.js
 
-// Create state singleton object
+// Central state object for the application
 const state = {
-  variables: [],
-  variableCounts: {},
-  insertionCounter: 0,
-  storyText: '',
-  customPlaceholders: [],
-  fillValues: {},
-  pronounGroups: {},
-  pronounGroupCount: 0,
-  lastRange: null,
-  lastSelectedText: '',
-  usageTracker: {},
-  placeholderInsertionInProgress: false,
-  storyHasUnsavedChanges: false,
-  fillOrder: 'alphabetical',
-  currentStoryId: null,
-  currentPlaceholderSearch: '',
-  currentModalPlaceholderSearch: '',
-  currentEditingVariable: null,
-  currentPlaceholderElement: null,
-  isEditingPlaceholder: false,
+    // Editor state
+    lastRange: null,
+    lastSelectedText: '',
+    // Story state
+    storyText: '',
+    fillValues: {},
+    fillOrder: 'alphabetical', // or 'random'
+    storyHasUnsavedChanges: false,
+    // Placeholder state
+    variables: [],
+    variableCounts: {},
+    insertionCounter: 0,
+    usageTracker: {}, // Tracks how many times each placeholder is used
+    // Custom placeholders
+    customPlaceholders: [],
+    // Pronoun groups
+    pronounGroupCount: 0,
+    pronounGroups: {},
+    // Search state
+    currentPlaceholderSearch: '',
+    currentModalPlaceholderSearch: '',
+    // Placeholder editing
+    isEditingPlaceholder: false,
+    currentEditingVariable: null,
+    // Current story metadata
+    currentStoryId: null,
+    // NEW: Chapter-related state
+    chapters: [],
+    currentChapter: 0,
+    allChapters: null, // Used for play mode to store all chapters
+    storyTitle: '',
+    storyAuthor: ''
 };
+
+// Initialize state
+function initState() {
+    console.log("Initializing state");
+    
+    // Create arrays if they don't exist
+    if (!state.variables) {
+        state.variables = [];
+    }
+    
+    if (!state.usageTracker) {
+        state.usageTracker = {};
+    }
+    
+    if (!state.customPlaceholders) {
+        state.customPlaceholders = [];
+    }
+    
+    if (!state.chapters) {
+        state.chapters = [];
+    }
+    
+    console.log("State initialized:", state);
+}
+
+// Run initialization
+initState();
 
 // Export the state object as default export
 export default state;
@@ -56,4 +95,11 @@ export function resetState() {
   state.currentEditingVariable = null;
   state.currentPlaceholderElement = null;
   state.isEditingPlaceholder = false;
+  
+  // NEW: Reset chapter-related state
+  state.chapters = [];
+  state.currentChapter = 0;
+  state.allChapters = null;
+  state.storyTitle = '';
+  state.storyAuthor = '';
 }

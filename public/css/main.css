@@ -21,4 +21,7 @@
 
 /* Utilities */
 @import 'utilities/animations.css';
-@import 'utilities/responsive.css'; 
+@import 'utilities/responsive.css';
+
+/* Fixes - These should override any previous styles */
+@import 'responsive-fixes.css'; 

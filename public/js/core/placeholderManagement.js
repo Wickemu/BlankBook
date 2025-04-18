@@ -1,25 +1,25 @@
 import state from './state.js';
 import { TypeHelpers } from '../utils/typeHelpers.js';
 import { updatePlaceholderAccordion } from './placeholderUI.js';
+import { updateExistingPlaceholderAccordion, forceUpdateExistingPlaceholders } from './existingPlaceholderUI.js';
 
 /**
  * Updates the variables list display in the UI
  */
 export const updateVariablesList = () => {
-    const container = document.getElementById('existingPlaceholdersContainer');
-    container.innerHTML = '';
+    // This function used to update the existingPlaceholdersContainer
+    // Since we've moved to an accordion based approach, we'll just update
+    // the accordions here instead of creating the button elements
+    
+    console.log("updateVariablesList called, variables count:", state.variables.length);
+    
+    // Sort variables by usage
     state.variables.sort((a, b) =>
         (state.usageTracker[b.id] || 0) - (state.usageTracker[a.id] || 0) || a.order - b.order
     );
-    state.variables.forEach(v => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'btn btn-outline-secondary btn-sm m-1 placeholder-item';
-        btn.setAttribute('data-id', v.id);
-        btn.textContent = v.displayOverride || v.officialDisplay;
-        btn.setAttribute('title', v.id);
-        container.appendChild(btn);
-    });
+    
+    // Always update existing placeholder accordions
+    forceUpdateExistingPlaceholders();
 };
 
 /**
@@ -31,8 +31,22 @@ export const updateVariablesFromEditor = () => {
     state.insertionCounter = 0;
     const editor = document.getElementById('storyText');
     const placeholderElements = editor.querySelectorAll('.placeholder');
+    
+    console.log("Scanning editor for placeholders, found:", placeholderElements.length);
+    
+    // Initialize usage tracker if it doesn't exist
+    if (!state.usageTracker) {
+        state.usageTracker = {};
+    }
+    
+    // Clear usage tracker and rebuild it
+    state.usageTracker = {};
+    
     placeholderElements.forEach(el => {
         const id = el.getAttribute('data-id');
+        // Track usage count for each placeholder
+        state.usageTracker[id] = (state.usageTracker[id] || 0) + 1;
+        
         const base = id.replace(/\d+$/, '');
         const numMatch = id.match(/(\d+)$/);
         const num = numMatch ? parseInt(numMatch[1], 10) : 0;
@@ -68,11 +82,17 @@ export const updateVariablesFromEditor = () => {
         }
     });
 
+    console.log("After scanning, variables count:", state.variables.length);
+    console.log("Usage tracker:", state.usageTracker);
+
     const currentSearch = $('#placeholderSearch').val() || '';
     updatePlaceholderAccordion('#placeholderAccordion', '#noResults', currentSearch);
 
     const currentModalSearch = $('#modalPlaceholderSearch').val() || '';
     updatePlaceholderAccordion('#modalPlaceholderAccordion', '#modalNoResults', currentModalSearch);
+    
+    // Update existing placeholder accordions too
+    forceUpdateExistingPlaceholders();
 
     updateVariablesList();
 };

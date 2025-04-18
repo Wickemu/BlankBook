@@ -112,17 +112,36 @@ export const createCustomPlaceholderCategoryCard = (accordionSelector, searchVal
  * @returns {jQuery} The created card header
  */
 export const createCardHeader = (categoryName, sanitizedCategoryName, accordionSelector) => {
+    // Get the appropriate icon for the category
+    let iconClass = 'fas fa-folder';
+    
+    // Map category names to appropriate icons
+    const categoryIcons = {
+        'People': 'fas fa-user',
+        'Places': 'fas fa-map-marker-alt',
+        'Animals': 'fas fa-paw',
+        'Things': 'fas fa-cube',
+        'Actions': 'fas fa-running',
+        'Emotions': 'fas fa-smile',
+        'Descriptions': 'fas fa-palette',
+        'Pronouns': 'fas fa-user-circle',
+        'Custom Placeholders': 'fas fa-star'
+    };
+    
+    if (categoryIcons[categoryName]) {
+        iconClass = categoryIcons[categoryName];
+    }
+    
     return $(`
-  <div class='card-header' id='${sanitizedCategoryName}Heading'>
-    <h2 class='mb-0'>
-      <button class='btn btn-link btn-block text-left w-100' type='button'
-        data-bs-toggle='collapse' data-bs-target='#${sanitizedCategoryName}Collapse'
-        aria-expanded='true' aria-controls='${sanitizedCategoryName}Collapse'>
-        ${categoryName}
-      </button>
-    </h2>
-  </div>
-`);
+    <div class='card-header' id='${sanitizedCategoryName}Heading'>
+        <button class='btn btn-link collapsed' type='button' 
+            data-bs-toggle='collapse' data-bs-target='#${sanitizedCategoryName}Collapse'
+            aria-expanded='true' aria-controls='${sanitizedCategoryName}Collapse'>
+            <i class='${iconClass} me-2'></i> ${categoryName}
+            <i class='fas fa-chevron-down float-end mt-1'></i>
+        </button>
+    </div>
+    `);
 };
 
 /**

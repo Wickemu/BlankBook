@@ -149,6 +149,7 @@ a:hover {
 .story-editor {
   width: 100%;
   min-height: var(--editor-height);
+  max-height: var(--editor-height);
   border: 1px solid var(--gray-300);
   padding: 1.25rem;
   border-radius: var(--border-radius);
@@ -348,7 +349,29 @@ a:hover {
   }
   
   .story-editor {
-    min-height: 250px;
+    min-height: 200px;
+    max-height: 50vh;
+  }
+  
+  /* Condense metadata section in mobile view */
+  .story-metadata {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .story-metadata .form-group {
+    margin-bottom: 0.5rem;
+  }
+  
+  .story-metadata label {
+    font-size: 0.8rem;
+    margin-bottom: 0.15rem;
+  }
+  
+  .story-metadata input {
+    height: 34px;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.9rem;
   }
 }
 
@@ -374,9 +397,10 @@ a:hover {
   background-color: white;
   border: none;
   border-radius: 12px;
-  padding: 0.5rem;
+  padding: 0.75rem;
   box-shadow: var(--shadow);
   animation: fadeIn 0.2s;
+  max-width: 90vw; /* Ensure it doesn't overflow on mobile */
 }
 
 @keyframes fadeIn {
@@ -384,30 +408,30 @@ a:hover {
   to { opacity: 1; transform: translateY(0); }
 }
 
-.floating-menu::after {
+/* Arrow for menu positioned above element (pointing down) */
+.floating-menu.menu-position-top::after {
+  display: none; /* Hide this arrow */
+}
+
+/* Arrow for menu positioned below element (pointing up) */
+.floating-menu.menu-position-bottom::after {
   content: "";
   position: absolute;
-  bottom: -8px;
+  top: -8px;
   left: 50%;
   transform: translateX(-50%);
-  border-width: 8px 8px 0;
+  border-width: 0 8px 8px;
   border-style: solid;
-  border-color: white transparent transparent;
+  border-color: transparent transparent white;
 }
 
-.floating-menu .btn {
-  background: none;
-  border: none;
-  color: var(--primary-color);
-  font-size: 14px;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  border-radius: 8px;
-  transition: var(--transition);
-}
-
-.floating-menu .btn:hover {
-  background-color: rgba(67, 97, 238, 0.1);
+/* Fixed-size buttons for consistent sizing */
+.fixed-size-btn {
+  width: 85px !important; /* Force exact width instead of min-width */
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* No Results Message */
@@ -617,7 +641,12 @@ a:hover {
 .placeholder-menu-row {
   display: flex;
   justify-content: space-between;
-  gap: 4px;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.placeholder-menu-row:last-child {
+  margin-bottom: 0;
 }
 
 .placeholder-menu-row .btn {
@@ -627,14 +656,61 @@ a:hover {
   font-size: 0.875rem;
   white-space: nowrap;
   text-align: center;
+  border-radius: 6px;
 }
 
 #placeholderEditMenu {
-  width: 210px;
-  padding: 8px;
+  width: 200px;
+  padding: 10px;
 }
 
-#placeholderEditMenu .btn {
+#textSelectionMenu {
+  width: 200px;
+  padding: 10px;
+}
+
+#placeholderEditMenu .btn,
+#textSelectionMenu .btn {
   text-overflow: ellipsis;
   overflow: hidden;
+  font-weight: 500;
+}
+
+#placeholderEditMenu .btn-primary,
+#textSelectionMenu .btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+#placeholderEditMenu .btn-secondary,
+#textSelectionMenu .btn-secondary {
+  background-color: var(--gray-200);
+  border-color: var(--gray-300);
+  color: var(--gray-700);
+}
+
+#placeholderEditMenu .btn-danger {
+  background-color: var(--red-400);
+  border-color: var(--red-500);
+}
+
+#placeholderEditMenu .btn-warning {
+  background-color: var(--yellow-400);
+  border-color: var(--yellow-500);
+  color: var(--gray-900);
+}
+
+.floating-menu .btn {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-size: 14px;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: var(--transition);
+}
+
+.floating-menu .btn:hover {
+  background-color: rgba(67, 97, 238, 0.1);
 }

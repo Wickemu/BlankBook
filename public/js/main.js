@@ -20,7 +20,8 @@ import {
     choosePronounTempValue,
     updateExistingPlaceholder,
     addCustomPlaceholder,
-    insertPlaceholderFromCustom
+    insertPlaceholderFromCustom,
+    initPlaceholders
 } from './core/placeholders.js';
 import { buildFillForm } from './ui/forms.js';
 import { 
@@ -54,6 +55,7 @@ import * as domUtils from './utils/domUtils.js';
         // Initialize the application
         initMenus();
         initEvents();
+        initPlaceholders();
         
         // Set a flag to indicate that the app has loaded
         window.appLoaded = true;

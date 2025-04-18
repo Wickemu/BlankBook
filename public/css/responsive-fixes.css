@@ -1,0 +1,111 @@
+/**
+ * Responsive fixes for BlankBook
+ * Focuses on scrolling behavior and mobile optimizations
+ */
+
+/* Ensure story editor has proper scroll behavior */
+#storyText {
+  max-height: var(--editor-height);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Ensure placeholder panel has consistent height and scroll behavior */
+#sidePlaceholderPanel {
+  max-height: var(--editor-height);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Mobile optimizations */
+@media (max-width: 767px) {
+  /* Completely redesigned metadata section for mobile */
+  .story-metadata {
+    margin-bottom: 0.75rem !important;
+  }
+  
+  /* Always show metadata with horizontal layout */
+  .story-metadata {
+    display: block;
+  }
+  
+  /* Create horizontal layouts for each metadata item */
+  .story-metadata .form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.35rem;
+    width: 100%;
+  }
+  
+  /* Make labels fixed width and inline */
+  .story-metadata label {
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin: 0;
+    width: 45px; /* Reduced from 60px since "Title" is shorter than "Story Title" */
+    flex-shrink: 0;
+    color: var(--gray-700);
+  }
+  
+  /* Optimize inputs */
+  .story-metadata input {
+    height: 28px;
+    padding: 0.15rem 0.5rem;
+    font-size: 0.85rem;
+    flex-grow: 1;
+  }
+  
+  /* Reduce the card body padding to save space */
+  #editor .card-body {
+    padding: 0.75rem;
+  }
+  
+  /* Make the title smaller and with less spacing */
+  #editor h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  /* Adjust story editor height for mobile */
+  #storyText {
+    max-height: 50vh;
+    min-height: 200px;
+  }
+  
+  /* Add more visible scrollbar indicator on mobile */
+  #storyText::-webkit-scrollbar,
+  #sidePlaceholderPanel::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  #storyText::-webkit-scrollbar-thumb,
+  #sidePlaceholderPanel::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+  }
+}
+
+/* Tablet and desktop improvements */
+@media (min-width: 768px) {
+  /* Show metadata by default on desktop */
+  .story-metadata {
+    display: flex;
+  }
+  
+  /* Ensure scrollbars are visible when needed */
+  #storyText::-webkit-scrollbar,
+  #sidePlaceholderPanel::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  #storyText::-webkit-scrollbar-thumb,
+  #sidePlaceholderPanel::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+  }
+  
+  #storyText::-webkit-scrollbar-thumb:hover,
+  #sidePlaceholderPanel::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+} 

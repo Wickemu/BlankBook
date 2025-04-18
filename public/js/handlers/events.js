@@ -30,6 +30,7 @@ import {
 import * as domUtils from '../utils/domUtils.js';
 import Swal from 'sweetalert2'; // Ensure Swal is imported if used
 import { showToast } from '../ui/notifications.js';
+import { updateExistingPlaceholderAccordion, initExistingPlaceholderEvents, forceUpdateExistingPlaceholders } from '../core/existingPlaceholderUI.js';
 
 // Handle placeholder button click
 const handlePlaceholderClick = (internalType, displayName) => {
@@ -41,7 +42,7 @@ const handlePlaceholderClick = (internalType, displayName) => {
     } else {
         // For specialized types that have their own modal chains
         if (internalType === "PRONOUN") {
-            pickPronounFormAndGroup();
+            pickPronounFormAndGroup();node
             $('#placeholderSearch').val('');
             updatePlaceholderAccordion('#placeholderAccordion', '#noResults', state.currentPlaceholderSearch);
             // Hide the accordion container after selecting
@@ -325,8 +326,102 @@ const loadPreexistingTags = () => {
     });
 };
 
+// NEW: Handle chapter selector change
+const handleChapterChange = () => {
+    const chapterNumber = $('#chapterSelector').val();
+    
+    // First check if we need to save the current chapter
+    if (state.storyHasUnsavedChanges) {
+        domUtils.confirmDialog({
+            title: 'Unsaved changes',
+            text: 'You have unsaved changes to the current chapter. Would you like to save before switching?',
+            showDenyButton: true,
+            confirmButtonText: 'Save and switch',
+            denyButtonText: 'Discard changes'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Save current chapter first
+                Storage.saveCurrentChapter();
+                
+                // Then load the selected chapter
+                Storage.loadChapter(state.currentStoryId, chapterNumber);
+            } else if (result.isDenied) {
+                // Discard changes and load the selected chapter
+                Storage.loadChapter(state.currentStoryId, chapterNumber);
+            }
+        });
+    } else {
+        // No unsaved changes, just load the selected chapter
+        Storage.loadChapter(state.currentStoryId, chapterNumber);
+    }
+};
+
+// NEW: Handle add chapter button click
+const handleAddChapter = () => {
+    Storage.addChapterToCurrentStory();
+};
+
+// NEW: Handle save chapter button click
+const handleSaveChapter = () => {
+    Storage.saveCurrentChapter();
+};
+
+// NEW: Handle delete chapter button click
+const handleDeleteChapter = () => {
+    const chapterNumber = parseInt($('#chapterSelector').val());
+    if (chapterNumber === 0) {
+        showToast('Cannot delete the main story', 'error');
+        return;
+    }
+    
+    Storage.deleteChapter(state.currentStoryId, chapterNumber);
+};
+
+// NEW: Handle play chapter selection change
+const handlePlayChapterChange = () => {
+    const chapterNumber = $('#playChapterSelector').val();
+    Storage.switchPlayChapter(chapterNumber);
+};
+
+// NEW: Handle previous chapter button click
+const handlePrevChapter = () => {
+    const currentChapter = parseInt($('#playChapterSelector').val());
+    if (currentChapter > 0) {
+        $('#playChapterSelector').val(currentChapter - 1).change();
+    }
+};
+
+// NEW: Handle next chapter button click
+const handleNextChapter = () => {
+    const currentChapter = parseInt($('#playChapterSelector').val());
+    const maxChapter = state.allChapters ? state.allChapters.length - 1 : 0;
+    
+    if (currentChapter < maxChapter) {
+        $('#playChapterSelector').val(currentChapter + 1).change();
+    }
+};
+
 // Attach all event handlers
 export const initEvents = () => {
+    // Debug: Create a test placeholder if there are none (for debugging only - remove in production)
+    const createTestPlaceholders = () => {
+        console.log("Creating test placeholders for debugging");
+        if (!state.variables || state.variables.length === 0) {
+            // Create a couple of test placeholders in the editor
+            const editor = document.getElementById('storyText');
+            if (editor && editor.innerHTML.trim() === '') {
+                editor.innerHTML = 'This is a test story with <span class="placeholder" contenteditable="false" data-id="NN_Animal1" title="NN_Animal1 (noun)">animal</span> placeholders. There is also a <span class="placeholder" contenteditable="false" data-id="VB_Jump1" title="VB_Jump1 (verb)">jump</span> placeholder.';
+                
+                // Update variables from the editor content
+                updateVariablesFromEditor();
+                console.log("Test placeholders created:", state.variables);
+            }
+        }
+    };
+    
+    // Uncomment this line to automatically create test placeholders
+    // createTestPlaceholders();
+    
     // Placeholder button click handler
     $(document).on('click', '.placeholder-btn', function() {
         const internalType = $(this).data('internal');
@@ -398,10 +493,14 @@ export const initEvents = () => {
         }
     }, 50));
 
-    // Init accordions
+    // Initialize accordions
     updatePlaceholderAccordion('#placeholderAccordion', '#noResults', state.currentPlaceholderSearch);
     updatePlaceholderAccordion('#modalPlaceholderAccordion', '#modalNoResults', state.currentModalPlaceholderSearch);
     
+    // Initialize existing placeholder view too - make sure placeholders are loaded right away
+    updateVariablesFromEditor();
+    forceUpdateExistingPlaceholders();
+
     // Filter tag input handler
     $('#filterTag').on('input', Utils.debounce(() => {
         Storage.loadSavedStoriesList();
@@ -481,53 +580,33 @@ export const initEvents = () => {
         state.storyHasUnsavedChanges = true;
     });
 
-    // Upload story button
-    $('#uploadStoryBtn').on('click', () => { 
-        $('#uploadStory').click(); 
-    });
-    
-    $('#uploadStory').on('change', function () {
-        const file = this.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            const content = e.target.result;
-            const storyData = parseStoryFile(content);
-            
-            $('#storyTitle').val(storyData.title);
-            $('#storyAuthor').val(storyData.author);
-            $('#storyText').html(storyData.content);
-            
-            // Reset state
-            state.variables = [];
-            state.variableCounts = {};
-            state.insertionCounter = 0;
-            state.pronounGroupCount = 0;
-            state.pronounGroups = {};
-            state.fillValues = {};
-            state.customPlaceholders = [];
-            
-            updateVariablesFromEditor();
-        };
-        reader.readAsText(file);
-    });
+    // Removed upload story functionality
 
     // Start game button
-    $('#startGame').on('click', () => {
-        const content = $('#storyText').html();
-        if (!content.trim()) {
-            domUtils.showError('Empty Story', 'Please write a story before continuing.');
+    $('#startGame').on('click', (e) => {
+        e.preventDefault();
+        let formValidated = Utils.validateFormInputs(['#storyTitle', '#storyAuthor', '#storyText']);
+        if (!formValidated) {
+            showToast('Please fill out all required fields', 'error');
             return;
         }
+        
+        // Save current content to state for processing
+        state.storyTitle = $('#storyTitle').val();
+        state.storyAuthor = $('#storyAuthor').val();
+        state.storyText = $('#storyText').html();
+        
         updateVariablesFromEditor();
-        state.storyText = generateLegacyText();
-        if (!state.variables.length) {
-            domUtils.showError('No Placeholders', 'No placeholders found in the story.');
-            return;
+        
+        // NEW: If story has chapters, load all chapters for playing
+        if (state.currentStoryId && state.chapters && state.chapters.length > 0) {
+            Storage.loadAllChaptersForPlay(state.currentStoryId);
+        } else {
+            // Just build the form with the current story text
+            buildFillForm();
+            $('#editor').addClass('d-none');
+            $('#inputs').removeClass('d-none');
         }
-        buildFillForm();
-        $('#inputs').removeClass('d-none');
-        $('#editor').addClass('d-none');
     });
 
     // Generate story button
@@ -535,7 +614,7 @@ export const initEvents = () => {
 
     // Create new story buttons
     $('#createNewStory2, #createNewStory').on('click', handleCreateNewStory);
-
+    
     // Clear form button
     $('#clearFormBtn').on('click', handleClearForm);
 
@@ -659,14 +738,52 @@ export const initEvents = () => {
         $('#placeholderModal').modal('show'); 
     });
 
-    // Click handler for existing placeholders
-    document.getElementById('existingPlaceholdersContainer').addEventListener('click', (e) => {
-        const btn = e.target.closest('.placeholder-item');
-        if (!btn) return;
-        const id = btn.getAttribute('data-id');
-        const variable = state.variables.find(v => v.id === id);
-        if (variable) duplicatePlaceholder(variable);
+    // Toggle between New and Existing Placeholder views in sidebar
+    $('#newPlaceholderToggle, #existingPlaceholderToggle').on('click', function() {
+        const isNewToggle = $(this).attr('id') === 'newPlaceholderToggle';
+        
+        // Update button active states
+        $('#newPlaceholderToggle, #existingPlaceholderToggle').removeClass('active');
+        $(this).addClass('active');
+        
+        // Toggle views
+        if (isNewToggle) {
+            $('#newPlaceholderView').show();
+            $('#existingPlaceholderView').hide();
+        } else {
+            $('#newPlaceholderView').hide();
+            $('#existingPlaceholderView').show();
+            // Ensure we update variables first
+            updateVariablesFromEditor();
+            // Then update the existing placeholder accordion
+            updateExistingPlaceholderAccordion('#existingPlaceholderAccordion', '#noExistingResults');
+        }
     });
+    
+    // Toggle between New and Existing Placeholder views in modal
+    $('#modalNewPlaceholderToggle, #modalExistingPlaceholderToggle').on('click', function() {
+        const isNewToggle = $(this).attr('id') === 'modalNewPlaceholderToggle';
+        
+        // Update button active states
+        $('#modalNewPlaceholderToggle, #modalExistingPlaceholderToggle').removeClass('active');
+        $(this).addClass('active');
+        
+        // Toggle views
+        if (isNewToggle) {
+            $('#modalNewPlaceholderView').show();
+            $('#modalExistingPlaceholderView').hide();
+        } else {
+            $('#modalNewPlaceholderView').hide();
+            $('#modalExistingPlaceholderView').show();
+            // Ensure we update variables first
+            updateVariablesFromEditor();
+            // Then update the existing placeholder accordion
+            updateExistingPlaceholderAccordion('#modalExistingPlaceholderAccordion', '#modalNoExistingResults');
+        }
+    });
+    
+    // Initialize existing placeholder events
+    initExistingPlaceholderEvents();
 
     // Add custom placeholder button
     $('#addCustomPlaceholderBtn').on('click', () => {
@@ -711,6 +828,17 @@ export const initEvents = () => {
         state.currentModalPlaceholderSearch = $(this).val().trim().toLowerCase();
         updatePlaceholderAccordion('#modalPlaceholderAccordion', '#modalNoResults', state.currentModalPlaceholderSearch);
     });
+
+    // NEW: Chapter management events
+    $('#chapterSelector').on('change', handleChapterChange);
+    $('#addChapterBtn').on('click', handleAddChapter);
+    $('#saveChapterBtn').on('click', handleSaveChapter);
+    $('#deleteChapterBtn').on('click', handleDeleteChapter);
+    
+    // NEW: Play chapter navigation events
+    $('#playChapterSelector').on('change', handlePlayChapterChange);
+    $('#prevChapterBtn').on('click', handlePrevChapter);
+    $('#nextChapterBtn').on('click', handleNextChapter);
 
     // The remaining initialization code follows
     // ... existing code ...

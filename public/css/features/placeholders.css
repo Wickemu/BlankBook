@@ -4,13 +4,14 @@
 #existingPlaceholdersContainer {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 5px;
   margin-top: 0.5rem;
 }
 
-/* Side Placeholder Panel */
+/* Side Placeholder Panel - unified styles for both panels */
 #sidePlaceholderPanel {
-  max-height: var(--editor-height);
+  min-height: 200px;
+  max-height: 50vh; /* Set maximum height to 50% of viewport height */
   overflow-y: auto;
   padding: 0 1rem 1rem 1rem;
   border-radius: var(--border-radius);
@@ -19,14 +20,40 @@
   border: 1px solid var(--gray-200);
 }
 
-#sidePlaceholderPanel h5 {
+#sidePlaceholderPanel h5,
+#existingPlaceholderView h5 {
   font-size: 1rem;
   margin-bottom: 0.5rem;
   padding-top: 1rem;
+  font-weight: 600;
+  color: var(--gray-800);
 }
 
-#sidePlaceholderPanel hr {
+#sidePlaceholderPanel hr,
+#existingPlaceholderView hr {
   margin: 0.5rem 0;
+  border-color: var(--gray-200);
+}
+
+/* Unified search bar styling for all placeholder search inputs */
+#placeholderSearch,
+#existingPlaceholderSearch,
+#modalPlaceholderSearch,
+#modalExistingPlaceholderSearch {
+  border-radius: 20px;
+  padding: 0.375rem 1rem;
+  border: 1px solid var(--gray-300);
+  background-color: var(--gray-100);
+  transition: all 0.2s ease;
+}
+
+#placeholderSearch:focus,
+#existingPlaceholderSearch:focus,
+#modalPlaceholderSearch:focus,
+#modalExistingPlaceholderSearch:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(67, 97, 238, 0.25);
+  background-color: white;
 }
 
 /* Placeholder in Editor */
@@ -54,17 +81,20 @@
 
 /* Grid layout for modal */
 @media (min-width: 768px) {
-  #modalPlaceholderAccordion .list-group {
+  #modalPlaceholderAccordion .list-group,
+  #modalExistingPlaceholderAccordion .list-group {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 0.5rem;
   }
   
-  #modalPlaceholderAccordion .secondary-placeholder-wrapper {
+  #modalPlaceholderAccordion .secondary-placeholder-wrapper,
+  #modalExistingPlaceholderAccordion .secondary-placeholder-wrapper {
     display: contents;
   }
   
-  #modalPlaceholderAccordion .show-more-toggle {
+  #modalPlaceholderAccordion .show-more-toggle,
+  #modalExistingPlaceholderAccordion .show-more-toggle {
     grid-column: 1 / -1;
   }
   
@@ -73,8 +103,143 @@
   }
   
   /* Ensure placeholder items have the same height in grid layout */
-  #modalPlaceholderAccordion .list-group-item.placeholder-btn {
+  #modalPlaceholderAccordion .list-group-item.placeholder-btn,
+  #modalExistingPlaceholderAccordion .list-group-item {
     height: 100%;
     min-height: 40px;
   }
+}
+
+/* Placeholder Toggle Buttons */
+.placeholder-toggle-buttons {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.placeholder-toggle-buttons .btn.active {
+  background-color: var(--bs-primary);
+  color: white;
+}
+
+/* Unified styling for all placeholder buttons (new and existing) */
+.placeholder-btn,
+.existing-placeholder-btn {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0.25rem;
+  border: 1px solid var(--gray-200);
+  border-radius: 6px;
+  background-color: white;
+}
+
+.placeholder-btn:hover,
+.existing-placeholder-btn:hover {
+  background-color: rgba(var(--bs-primary-rgb), 0.1);
+  border-color: var(--bs-primary);
+}
+
+.placeholder-btn .placeholder-text,
+.existing-placeholder-btn .placeholder-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--gray-800);
+}
+
+.placeholder-btn .placeholder-type-badge,
+.existing-placeholder-btn .placeholder-type-badge {
+  font-size: 0.75rem;
+  padding: 0.15rem 0.4rem;
+}
+
+.placeholder-btn .usage-count,
+.existing-placeholder-btn .usage-count {
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Accordion styling - make consistent for both new and existing placeholders */
+#placeholderAccordion .card,
+#existingPlaceholderAccordion .card,
+#modalPlaceholderAccordion .card,
+#modalExistingPlaceholderAccordion .card {
+  margin-bottom: 0.5rem;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+/* Consistent card header styling for all placeholder types */
+#placeholderAccordion .card-header,
+#existingPlaceholderAccordion .card-header,
+#modalPlaceholderAccordion .card-header,
+#modalExistingPlaceholderAccordion .card-header {
+  background-color: var(--gray-100);
+  padding: 0;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+#placeholderAccordion .btn-link,
+#existingPlaceholderAccordion .btn-link,
+#modalPlaceholderAccordion .btn-link,
+#modalExistingPlaceholderAccordion .btn-link {
+  color: var(--gray-800);
+  font-weight: 600;
+  text-decoration: none;
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  position: relative;
+  background: transparent;
+  border: none;
+  font-size: 0.9rem;
+}
+
+/* Consistent chevron icon for all accordions */
+#placeholderAccordion .btn-link .fa-chevron-down,
+#existingPlaceholderAccordion .btn-link .fa-chevron-down,
+#modalPlaceholderAccordion .btn-link .fa-chevron-down,
+#modalExistingPlaceholderAccordion .btn-link .fa-chevron-down {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.2s ease;
+}
+
+#placeholderAccordion .btn-link.collapsed .fa-chevron-down,
+#existingPlaceholderAccordion .btn-link.collapsed .fa-chevron-down,
+#modalPlaceholderAccordion .btn-link.collapsed .fa-chevron-down,
+#modalExistingPlaceholderAccordion .btn-link.collapsed .fa-chevron-down {
+  transform: translateY(-50%) rotate(-90deg);
+}
+
+#placeholderAccordion .card-body,
+#existingPlaceholderAccordion .card-body,
+#modalPlaceholderAccordion .card-body,
+#modalExistingPlaceholderAccordion .card-body {
+  padding: 0.75rem;
+  background-color: white;
+}
+
+/* No results styling - consistent between new and existing */
+#noResults, 
+#noExistingResults,
+#modalNoResults,
+#modalNoExistingResults {
+  text-align: center;
+  padding: 1rem;
+  color: var(--gray-600);
+}
+
+/* Sticky search bar */
+.sticky-search-bar {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1;
+  padding: 0.5rem 0;
 } 
