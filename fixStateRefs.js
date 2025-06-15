@@ -2,10 +2,10 @@
 const fs = require('fs');
 const path = require('path');
 
-// Path to your main.js file
-const filePath = path.resolve(__dirname, 'main.js');
+// Path to your main.js file located in public/js
+const filePath = path.resolve(__dirname, 'public/js/main.js');
 
-// Read the contents of main.js
+// Read the contents of public/js/main.js
 let content = fs.readFileSync(filePath, 'utf8');
 
 // List of state properties (from your state.js default export)
