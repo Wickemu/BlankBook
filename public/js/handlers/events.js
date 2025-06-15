@@ -42,7 +42,7 @@ const handlePlaceholderClick = (internalType, displayName) => {
     } else {
         // For specialized types that have their own modal chains
         if (internalType === "PRONOUN") {
-            pickPronounFormAndGroup();node
+            pickPronounFormAndGroup();
             $('#placeholderSearch').val('');
             updatePlaceholderAccordion('#placeholderAccordion', '#noResults', state.currentPlaceholderSearch);
             // Hide the accordion container after selecting
