@@ -8,7 +8,8 @@
     "dev": "nodemon server.js",
     "build": "webpack --config webpack.config.js",
     "watch": "webpack --watch --config webpack.config.js",
-    "start:dev": "concurrently \"node server.js\" \"webpack serve --config webpack.config.js --open\""
+    "start:dev": "concurrently \"node server.js\" \"webpack serve --config webpack.config.js --open\"",
+    "test": "jest"
   },
   "dependencies": {
     "body-parser": "^1.20.3",
@@ -28,7 +29,9 @@
     "@babel/preset-env": "^7.26.9",
     "babel-loader": "^9.2.1",
     "concurrently": "^9.1.2",
+    "jest": "^30.0.0",
     "nodemon": "^3.1.9",
+    "supertest": "^7.1.1",
     "webpack": "^5.98.0",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.0"
