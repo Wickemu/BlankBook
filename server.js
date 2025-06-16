@@ -11,14 +11,20 @@ const rateLimit = require('express-rate-limit');
 const { body, validationResult } = require('express-validator');
 const mongoose = require('mongoose');
 const path = require('path');
+const bcrypt = require('bcrypt');
 
-// --- Connect to MongoDB via Mongoose ---
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/blankbook', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log(`${new Date().toISOString()} - Connected to MongoDB`))
-.catch(err => console.error(`${new Date().toISOString()} - MongoDB connection error:`, err));
+let dbConnected = false;
+async function connectToDatabase() {
+  if (dbConnected || process.env.DISABLE_DB === 'true') return;
+  const uri = process.env.MONGODB_URI || 'mongodb://localhost/blankbook';
+  try {
+    await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+    dbConnected = true;
+    console.log(`${new Date().toISOString()} - Connected to MongoDB`);
+  } catch (err) {
+    console.error(`${new Date().toISOString()} - MongoDB connection error:`, err);
+  }
+}
 
 // --- Define the Story Schema & Model ---
 const storySchema = new mongoose.Schema({
@@ -206,6 +212,10 @@ app.post(
       newStory.currentChapter = newStory.currentChapter || 0;
       if (newStory.password && newStory.password.trim() === "") {
         newStory.password = null;
+      }
+      if (newStory.password) {
+        const rounds = parseInt(process.env.SALT_ROUNDS || '10', 10);
+        newStory.password = await bcrypt.hash(newStory.password, rounds);
       }
       
       // Overwrite flag support
@@ -416,7 +426,8 @@ app.post('/api/unlockstory', async (req, res) => {
     if (!story.password) {
       return res.status(400).json({ error: "Story is not password protected" });
     }
-    if (story.password !== password) {
+    const match = await bcrypt.compare(password || '', story.password);
+    if (!match) {
       return res.status(401).json({ error: "Incorrect password" });
     }
     res.json(story);
@@ -626,7 +637,8 @@ app.get('/api/getchapters', async (req, res) => {
 // ====================================================
 // Global Error-Handling Middleware
 // ====================================================
-app.use((err, req, res, next) => {
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, _next) => {
   console.error(`${new Date().toISOString()} - Unhandled error:`, err);
   res.status(500).json({ error: "Internal Server Error" });
 });
@@ -635,9 +647,11 @@ app.use((err, req, res, next) => {
 // Start the Server
 // ====================================================
 if (require.main === module) {
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`${new Date().toISOString()} - Server is running on port ${PORT}`);
+  connectToDatabase().then(() => {
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`${new Date().toISOString()} - Server is running on port ${PORT}`);
+    });
   });
 }
 
-module.exports = app;
+module.exports = { app, connectToDatabase };
