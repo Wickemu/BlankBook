@@ -1,6 +1,6 @@
 const request = require('supertest');
 jest.mock('express-async-errors', () => ({}), { virtual: true });
-const app = require('../server');
+const { app } = require('../server');
 const mongoose = require('mongoose');
 
 describe('GET /api/health', () => {
@@ -9,5 +9,9 @@ describe('GET /api/health', () => {
     expect(res.statusCode).toBe(200);
     expect(res.body).toEqual(expect.objectContaining({ status: 'ok' }));
   });
+});
+
+afterAll(async () => {
+  await mongoose.connection.close();
 });
 
